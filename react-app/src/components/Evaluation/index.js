@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from 'react-router-dom';
 import PitcherForm from '../PitcherForm';
 import NonPitcherForm from '../NonPitcherForm';
+import Notes from '../Notes';
+
+import './Evaluation.css';
 
 const Evaluation = () => {
   const { playerid } = useParams();
@@ -20,11 +23,12 @@ const Evaluation = () => {
   }, []);
   console.log(playerInfo)
   return (
-      <div>
+      <div className='player_evaluation_and_player_notes_container'>
           {!playerInfo ? <h1>loading</h1>: null}
           {playerInfo && playerInfo.position === 'P' ?
           <PitcherForm playerId={playerid}/> :
           <NonPitcherForm playerId={playerid}/> }
+          <Notes />
       </div>
   );
 };

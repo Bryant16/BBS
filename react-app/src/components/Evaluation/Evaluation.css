@@ -1,0 +1,5 @@
+.player_evaluation_and_player_notes_container{
+    display: flex;
+    justify-content: space-around;
+
+}
