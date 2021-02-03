@@ -1,0 +1,11 @@
+.new_player_form_container {
+    display: inline-flex;
+    flex-direction: row;
+    width: 50em;
+    
+}
+.new_player_form_container form{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
