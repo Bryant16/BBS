@@ -28,7 +28,7 @@ const Evaluation = () => {
           {playerInfo && playerInfo.position === 'P' ?
           <PitcherForm playerId={playerid}/> :
           <NonPitcherForm playerId={playerid}/> }
-          <Notes />
+          <Notes playerId={playerid}/>
       </div>
   );
 };

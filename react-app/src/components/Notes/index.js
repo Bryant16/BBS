@@ -1,9 +1,21 @@
 import React, {useState} from 'react';
+import { useDispatch } from 'react-redux';
+import {createNote} from '../../store/note';
 
-const Notes = ()=>{
+const Notes = ({playerId})=>{
+    const dispatch = useDispatch();
     const [title, setTitle] = useState('');
     const [note, setNote] = useState('');
-
+    const handleClickCreate = (e)=>{
+        e.preventDefault();
+        const newNote = {
+            title,
+            note,
+            playerId
+        }
+        console.log(newNote)
+        dispatch(createNote(newNote))
+    }
     return (
         <div>
         <h1>Notes</h1>
@@ -19,7 +31,7 @@ const Notes = ()=>{
         value={note}
         onChange={(e)=> setNote(e.target.value)}/>
         </form>
-        <button>Create</button>
+        <button onClick={handleClickCreate}>Create</button>
         </div>
     )
 }
