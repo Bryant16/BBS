@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import playersReducer from './player';
 import notesReducer from './note';
+import nonPitcherReducer from './nonPitcher';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     players: playersReducer,
-    notes: notesReducer
+    notes: notesReducer,
+    nonPitcher: nonPitcherReducer,
 })
 
 let enhancer;

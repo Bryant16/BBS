@@ -75,7 +75,7 @@ def create_player_pitcher_eval(id):
 @players_routes.route('/<int:id>/nonpitcher/')
 def get_non_pitcher_eval(id):
     player = Player.query.filter(Player.id == id, Player.user_id == current_user.id).all()
-    return jsonify([play.get_evals() for play in player])
+    return jsonify([player[0].get_evals()])
    
 
 @players_routes.route('/<int:id>/nonpitcher/', methods=["POST"])

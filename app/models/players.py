@@ -49,6 +49,5 @@ class Player(db.Model):
         }
     def get_evals(self):
       return {
-          **self.to_dict(),
           "non_pitcher_evaluations": [evals.to_dict() for evals in self.non_pitchers],   
       }

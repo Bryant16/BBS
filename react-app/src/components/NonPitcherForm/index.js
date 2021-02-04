@@ -1,9 +1,12 @@
 import React,{useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
 
 const NonPitcherForm = ({playerId})=>{
 const history = useHistory();
-const [hitting, setHitting] = useState('');
+const {nonPitcher} = useSelector(state=> state.nonPitcher);
+const [evaluations, setEvaluations] = useState();
+const [hitting, setHitting] = useState("" || nonPitcher.hitting_ability);
 const [power, setPower] = useState('');
 const [running, setRunning] = useState('');
 const [baseRunning, setBaseRunning] = useState('');
@@ -16,16 +19,19 @@ const [aggressive, setAggressive] = useState('');
 const [pull, setPull] = useState('');
 const [away, setAway] = useState('');
 const [opp, setOpp] = useState('');
-// const [eval, setEval] = useState({});
+console.log(nonPitcher)
 
 
-const get_non_pitcher_form = async()=>{
-    const res = await fetch(`/api/players/${playerId}/non_pitcher`);
-    if(res.ok){
-        // const eval = await res.json();
-        // setEval(eval)
+useEffect(()=>{
+    const get_non_pitcher_form = async()=>{
+        const res = await fetch(`/api/players/${playerId}/nonpitcher/`);
+        if(res.ok){
+            const player_evaluations = await res.json();
+            setEvaluations(player_evaluations[0].non_pitcher_evaluations[0])
+        }
     }
-}
+    get_non_pitcher_form()
+},[])
 
 const submitEval = async(e)=>{
     e.preventDefault();
@@ -46,6 +52,7 @@ const submitEval = async(e)=>{
         opp
 
     }
+   
     const response = await fetch(`/api/players/${playerId}/nonpitcher/`,{
         headers: { 'Content-type': 'application/json'},
         method: 'POST',
@@ -59,84 +66,90 @@ const submitEval = async(e)=>{
         alert('Error Player Could not be created')
     }
 }
+const hitFunc = (e)=>{
+    // let val = e.target.value
+    setHitting('')
+    setHitting(e.target.value)
+}
 return (
     <div className='pitcher_form_container'>
-        <form>
+        {<form>
             <div>
             <label>Hiting</label>
             <input 
             type='Integer'
             value={hitting}
-            onChange={(e)=>setHitting(e.target.value)} />
+            // onMouseEnter={hitFunc}
+            onChange={hitFunc} />
             </div>
             <div>
             <label>Power</label>
             <input 
             type='Integer'
-            value={power}
+            value={!evaluations ? power : evaluations.power}
             onChange={(e)=>setPower(e.target.value)} />
             </div>
             <div>
             <label>Running Speed</label>
             <input 
             type='Integer'
-            value={running}
+            value={!evaluations ? running : evaluations.running_speed }
             onChange={(e)=>setRunning(e.target.value)} />
             </div>
             <div>
             <label>Base Running</label>
             <input 
             type='Integer'
-            value={baseRunning}
+            value={!evaluations ? baseRunning : evaluations.baserunning }
             onChange={(e)=>setBaseRunning(e.target.value)} />
             </div>
             <div>
             <label>Arm Strength</label>
             <input 
             type='Integer'
-            value={armStr}
+            value={!evaluations ? armStr : evaluations.arm_str }
             onChange={(e)=>setArmStr(e.target.value)} />
             </div>
             <div>
             <label>Arm Accuracy</label>
             <input 
             type='Integer'
-            value={armAcc}
+            value={!evaluations ? armAcc : evaluations.arm_acc }
             onChange={(e)=>setArmAcc(e.target.value)} />
             </div>
             <div>
             <label>Fielding</label>
             <input 
             type='Integer'
-            value={fielding}
+            value={!evaluations ? fielding : evaluations.fielding}
             onChange={(e)=>setFielding(e.target.value)} />
             </div>
             <div>
             <label>Arm Range</label>
             <input 
             type='Integer'
-            value={armRange}
+            value={!evaluations ? armRange : evaluations.arm_acc }
             onChange={(e)=>setArmRange(e.target.value)} />
             </div>
             <div>
             <label>Baseball Instinct</label>
             <input 
             type='Integer'
-            value={instinct}
+            value={!evaluations ? instinct : evaluations.baseball_instinct }
             onChange={(e)=>setInstinct(e.target.value)} />
             </div>
             <div>
             <label>Aggresiveness</label>
             <input 
             type='Integer'
-            value={aggressive}
+            value={!evaluations ? aggressive : evaluations.aggresiveness }
             onChange={(e)=>setAggressive(e.target.value)} />
             </div>
             <div>
             <label>Pull</label>
             <input 
             type='text'
-            value={pull}
+            value={!evaluations ? pull : evaluations.pull }
             onChange={(e)=>setPull(e.target.value)}
             placeholder='Pull'
             />
@@ -145,7 +158,7 @@ return (
             <label>Strength Away</label>
             <input 
             type='text'
-            value={away}
+            value={!evaluations ? away: evaluations.str_away}
             onChange={(e)=>setAway(e.target.value)}
             placeholder='Str Away'
             />
@@ -154,13 +167,14 @@ return (
             <label>Opposite Field</label>
             <input 
             type='text'
-            value={opp}
+            value={!evaluations ? opp: evaluations.opp_field}
             onChange={(e)=>setOpp(e.target.value)}
             placeholder='Opp Field'
             />
             </div>
             <button onClick={submitEval}>Submit</button>
         </form>
+}
     </div>
 )}
 

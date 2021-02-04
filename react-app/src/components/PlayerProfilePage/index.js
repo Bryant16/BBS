@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from 'react-router-dom';
+import {getNonePitcherForm} from '../../store/nonPitcher';
 
 const PlayerProfilePage = ()=>{
     const { user } = useSelector((state) => state.session);
     const {playerid} = useParams();
     const [playerInfo, setPlayerInfo] = useState(false);
-
+    const dispatch = useDispatch();
     useEffect(()=>{
        const getPlayer = async()=>{
             let res = await fetch(`/api/players/${playerid}`)
@@ -16,6 +17,7 @@ const PlayerProfilePage = ()=>{
             }
         }
         getPlayer()
+        dispatch(getNonePitcherForm(playerid))
     },[]);
 
     return (
