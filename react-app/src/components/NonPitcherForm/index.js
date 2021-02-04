@@ -44,6 +44,7 @@ const submitEval = async(e)=>{
     })
     if(response.ok){
         const json = await response.json();
+        console.log(json)
         history.push(`/players/${playerId}`)
     }else{
         alert('Error Player Could not be created')

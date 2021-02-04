@@ -2,7 +2,7 @@ from .db import db
 
 class Non_Pitcher_Evaluation(db.Model):
     __tablename__= 'non_pitcher_evaluations'
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key =True)
     hitting_ability = db.Column(db.Integer, nullable=False)
     power = db.Column(db.Integer, nullable=False)
     running_speed = db.Column(db.Integer, nullable=False)

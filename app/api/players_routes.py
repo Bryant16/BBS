@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, Player, Pitcher_Evaluation
+from app.models import db, Player, Pitcher_Evaluation, Non_Pitcher_Evaluation
 
 players_routes = Blueprint('players', __name__)
 
@@ -76,8 +76,14 @@ def create_player_pitcher_eval(id):
 @players_routes.route('/<int:id>/nonpitcher/', methods=["POST"])
 def create_non_player_pitcher_eval(id):
     data = request.get_json()
+    print('----------------------')
+    print('----------------------')
+    print('----------------------')
+    print('----------------------')
+    print('----------------------')
+    print(data)
     try:
-        new_non_pitcher_eval = Pitcher_Evaluation(
+        new_non_pitcher_eval = Non_Pitcher_Evaluation(
             hitting_ability=data["hitting"],
             power=data["power"],
             running_speed=data["running"],
@@ -91,7 +97,7 @@ def create_non_player_pitcher_eval(id):
             pull=data["pull"],
             str_away=data["away"],
             opp_field=data["opp"],
-            player_id=id,
+            player_id=data["playerId"],
         )
         db.session.add(new_non_pitcher_eval)
         db.session.commit()
