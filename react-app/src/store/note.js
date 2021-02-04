@@ -46,10 +46,10 @@ const notesReducer = (state = initialState, action) => {
       let new_notes = action.note;
       let title = new_notes.title
       let text = new_notes.text
-      return [...state, { text,title }];
+      return [...state, {text,title} ];
     }
     case ALL: {
-      return [...state, ...action.all_note ];
+      return [...state, ...action.all_note];
     }
     case CLEARNOTES: {
       return []

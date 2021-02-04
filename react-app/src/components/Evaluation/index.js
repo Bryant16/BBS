@@ -44,7 +44,7 @@ const Evaluation = () => {
           <NonPitcherForm playerId={playerid}/> }
           <Notes playerId={playerid}/>
           <div>
-            {<DisplayNotes notes={notes} />}
+            {gotNotes && <DisplayNotes notes={notes} />}
           </div>
       </div>
   );
