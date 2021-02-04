@@ -12,9 +12,9 @@ import './Evaluation.css';
 const Evaluation = () => {
   const { playerid } = useParams();
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
   const [playerInfo, setPlayerInfo] = useState(false);
-  const notes = useSelector(state => state.notes)
+  const notes = useSelector(state => state.notes);
   const [gotNotes, setNotes] = useState(notes);
     
   useEffect(() => {
@@ -26,7 +26,6 @@ const Evaluation = () => {
       }
     };
     getPlayer();
-    
   }, []);
 
   useEffect(()=>{
@@ -42,8 +41,8 @@ const Evaluation = () => {
           {playerInfo && playerInfo.position === 'P' ?
           <PitcherForm playerId={playerid}/> :
           <NonPitcherForm playerId={playerid}/> }
-          <Notes playerId={playerid}/>
           <div>
+            <Notes playerId={playerid}/>
             {gotNotes && <DisplayNotes notes={notes} />}
           </div>
       </div>
