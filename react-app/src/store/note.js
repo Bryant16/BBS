@@ -1,5 +1,6 @@
 const CREATE = "notes/CREATE";
 const ALL = "notes/ALL";
+const CLEARNOTES = "notes/CLEARNOTES";
 
 const create = (note) => ({
   type: CREATE,
@@ -10,6 +11,9 @@ const grabAll = (all_note) => ({
   type: ALL,
   all_note,
 });
+export const clearNotes = ()=>({
+  type: CLEARNOTES  
+})
 
 export const getAllNotes = (playerId) => async (dispatch) => {
     console.log("inside ress");
@@ -40,10 +44,15 @@ const notesReducer = (state = initialState, action) => {
     switch (action.type) {
     case CREATE: {
       let new_notes = action.note;
-      return [...state, { notes: new_notes }];
+      let title = new_notes.title
+      let text = new_notes.text
+      return [...state, { text,title }];
     }
     case ALL: {
       return [...state, ...action.all_note ];
+    }
+    case CLEARNOTES: {
+      return []
     }
     default:
       return state;

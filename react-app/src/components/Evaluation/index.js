@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import PitcherForm from '../PitcherForm';
 import NonPitcherForm from '../NonPitcherForm';
 import Notes from '../Notes';
 import {getAllNotes} from "../../store/note";
-
+import DisplayNotes from '../DisplayNotes'
+import {clearNotes} from '../../store/note';
 import './Evaluation.css';
 
 const Evaluation = () => {
   const { playerid } = useParams();
   const dispatch = useDispatch();
+  const history = useHistory()
   const [playerInfo, setPlayerInfo] = useState(false);
   const notes = useSelector(state => state.notes)
-  const [gotNotes, setNotes] = useState(false);
+  const [gotNotes, setNotes] = useState(notes);
     
   useEffect(() => {
     const getPlayer = async () => {
@@ -28,11 +30,12 @@ const Evaluation = () => {
   }, []);
 
   useEffect(()=>{
+    dispatch(clearNotes())
     dispatch(getAllNotes(playerid))
-    // setNotes(true)
-  },[dispatch])
-  // console.log(notes)
-  // setNotes(false)
+    setNotes(true)
+  },[])
+  
+ 
   return (
       <div className='player_evaluation_and_player_notes_container'>
           {!playerInfo ? <h1>loading</h1>: null}
@@ -41,7 +44,7 @@ const Evaluation = () => {
           <NonPitcherForm playerId={playerid}/> }
           <Notes playerId={playerid}/>
           <div>
-            {notes && notes.map(note => <h2>{note.title}</h2>)}
+            {<DisplayNotes notes={notes} />}
           </div>
       </div>
   );

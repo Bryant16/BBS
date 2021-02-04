@@ -13,8 +13,8 @@ const Notes = ({playerId})=>{
             note,
             playerId
         }
+        setNote('')
         dispatch(createNote(newNote))
-        dispatch(getAllNotes(playerId))
     }
   
     return (

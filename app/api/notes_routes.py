@@ -19,3 +19,11 @@ def create_note():
         return jsonify({'note': new_note.to_dict()})
     except:
         return jsonify({'hit': False})
+
+@notes_routes.route('/<int:id>/')
+def get_all_player_notes(id):
+    notes = Note.query.filter(Note.player_id == id).all()
+    try:
+        return jsonify([note.to_dict() for note in notes])
+    except:
+        return jsonify({'errors': True})
