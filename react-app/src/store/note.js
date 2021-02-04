@@ -1,37 +1,53 @@
-const CREATE = "notes/CREATE"
+const CREATE = "notes/CREATE";
+const ALL = "notes/ALL";
 
-const create = note => ({
-    type: CREATE,
-    note,
+const create = (note) => ({
+  type: CREATE,
+  note,
 });
 
-export const createNote = (newNote) => async dispatch => {
-    const res = await fetch(`/api/notes/`,{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newNote)
-      });
+const grabAll = (all_note) => ({
+  type: ALL,
+  all_note,
+});
 
-    if (res.ok) {
-        const notes = await res.json()
-        console.log(notes)
-        dispatch(create(notes.note));
-    }
+export const getAllNotes = (playerId) => async (dispatch) => {
+    console.log("inside ress");
+  const res = await fetch(`/api/notes/${playerId}/`);
+  if (res.ok) {
+    const all_notes = await res.json();
+    dispatch(grabAll(all_notes));
+  }
 };
 
-const initialState = {
-    notes: {}
-}
+export const createNote = (newNote) => async (dispatch) => {
+  const res = await fetch(`/api/notes/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newNote),
+  });
+
+  if (res.ok) {
+    const notes = await res.json();
+    dispatch(create(notes.note));
+  }
+};
+
+const initialState = [];
 const notesReducer = (state = initialState, action) => {
-    switch(action.type) {
-        case CREATE: {
-            return {...state, notes: action.note}
-        }
-        default:
-        return state
+    switch (action.type) {
+    case CREATE: {
+      let new_notes = action.note;
+      return [...state, { notes: new_notes }];
     }
+    case ALL: {
+      return [...state, ...action.all_note ];
+    }
+    default:
+      return state;
+  }
 };
 
 export default notesReducer;

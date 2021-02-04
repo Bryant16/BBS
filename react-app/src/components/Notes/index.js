@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import { useDispatch } from 'react-redux';
+import React, {useEffect, useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {createNote} from '../../store/note';
-
+import {getAllNotes} from '../../store/note';
 const Notes = ({playerId})=>{
     const dispatch = useDispatch();
     const [title, setTitle] = useState('');
@@ -13,9 +13,10 @@ const Notes = ({playerId})=>{
             note,
             playerId
         }
-        console.log(newNote)
         dispatch(createNote(newNote))
+        dispatch(getAllNotes(playerId))
     }
+  
     return (
         <div>
         <h1>Notes</h1>
