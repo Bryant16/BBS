@@ -10,7 +10,6 @@ const Notes = ({playerId})=>{
 
     const handleClickCreate = (e)=>{
         e.preventDefault();
-        console.log(title)
         const newNote = {
             title,
             note,

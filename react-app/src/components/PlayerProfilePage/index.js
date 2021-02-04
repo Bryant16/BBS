@@ -18,7 +18,7 @@ const PlayerProfilePage = ()=>{
         }
         getPlayer()
         dispatch(getNonePitcherForm(playerid))
-    },[]);
+    },[dispatch]);
 
     return (
     <div>
