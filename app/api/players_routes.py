@@ -71,3 +71,30 @@ def create_player_pitcher_eval(id):
         return jsonify({'created': True})
     except:
         return jsonify({'errors': 'Unable to Process at this moment'})
+
+
+@players_routes.route('/<int:id>/nonpitcher/', methods=["POST"])
+def create_non_player_pitcher_eval(id):
+    data = request.get_json()
+    try:
+        new_non_pitcher_eval = Pitcher_Evaluation(
+            hitting_ability=data["hitting"],
+            power=data["power"],
+            running_speed=data["running"],
+            baserunning=data["baseRunning"],
+            arm_str=data["armStr"],
+            arm_acc=data["armAcc"],
+            fielding=data["fielding"],
+            arm_range=data["armRange"],
+            baseball_instinct=data["instinct"],
+            aggresiveness=data["aggressive"],
+            pull=data["pull"],
+            str_away=data["away"],
+            opp_field=data["opp"],
+            player_id=id,
+        )
+        db.session.add(new_non_pitcher_eval)
+        db.session.commit()
+        return jsonify({'created': True})
+    except:
+        return jsonify({'errors': 'Unable to Process at this moment'})
