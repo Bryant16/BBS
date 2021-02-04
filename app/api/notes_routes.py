@@ -8,12 +8,6 @@ notes_routes = Blueprint('notes', __name__)
 @notes_routes.route('/', methods=['POST'])
 def create_note():
     data = request.get_json()
-    print(data)
-    print('_______________')
-    print('_______________')
-    print('_______________')
-    print('_______________')
-    print('_______________')
     try:
         new_note = Note(
             title=data['title'],
