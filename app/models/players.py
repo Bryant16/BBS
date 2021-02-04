@@ -47,10 +47,8 @@ class Player(db.Model):
             "throws": self.throws,
             "hot_list": self.hot_list,
         }
-    # def get_notes(self):
-    #   if self.notes:
-    #     return {
-    #       "notes": [note.to_dict() for note in self.notes]
-    #     }
-    #   else:
-    #     return
+    def get_evals(self):
+      return {
+          **self.to_dict(),
+          "non_pitcher_evaluations": [evals.to_dict() for evals in self.non_pitchers],   
+      }

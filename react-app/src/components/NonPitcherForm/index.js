@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 
 const NonPitcherForm = ({playerId})=>{
@@ -16,6 +16,16 @@ const [aggressive, setAggressive] = useState('');
 const [pull, setPull] = useState('');
 const [away, setAway] = useState('');
 const [opp, setOpp] = useState('');
+// const [eval, setEval] = useState({});
+
+
+const get_non_pitcher_form = async()=>{
+    const res = await fetch(`/api/players/${playerId}/non_pitcher`);
+    if(res.ok){
+        // const eval = await res.json();
+        // setEval(eval)
+    }
+}
 
 const submitEval = async(e)=>{
     e.preventDefault();
@@ -36,7 +46,6 @@ const submitEval = async(e)=>{
         opp
 
     }
-    console.log(new_non_pitcher_eval)
     const response = await fetch(`/api/players/${playerId}/nonpitcher/`,{
         headers: { 'Content-type': 'application/json'},
         method: 'POST',

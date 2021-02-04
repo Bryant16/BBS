@@ -72,16 +72,15 @@ def create_player_pitcher_eval(id):
     except:
         return jsonify({'errors': 'Unable to Process at this moment'})
 
+@players_routes.route('/<int:id>/nonpitcher/')
+def get_non_pitcher_eval(id):
+    player = Player.query.filter(Player.id == id, Player.user_id == current_user.id).all()
+    return jsonify([play.get_evals() for play in player])
+   
 
 @players_routes.route('/<int:id>/nonpitcher/', methods=["POST"])
 def create_non_player_pitcher_eval(id):
     data = request.get_json()
-    print('----------------------')
-    print('----------------------')
-    print('----------------------')
-    print('----------------------')
-    print('----------------------')
-    print(data)
     try:
         new_non_pitcher_eval = Non_Pitcher_Evaluation(
             hitting_ability=data["hitting"],
