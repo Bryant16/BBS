@@ -1,46 +1,48 @@
 import React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
+import {useSelector} from 'react-redux';
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'First Name', width: 130 },
-  { field: 'lastName', headerName: 'Last Name', width: 130 },
+  { field: 'first_name', headerName: 'First', width: 100 },
+  { field: 'last_name', headerName: 'Last', width: 100 },
   {
     field: 'position',
-    headerName: 'Position',
-    type: 'text',
-    width: 90,
+    headerName: 'Pos',
+    width: 80,
   },
   {
     field: 'bats',
     headerName: 'Bats',
-    type: 'text',
-    width: 90,
+    width: 85,
   },
   {
     field: 'throws',
     headerName: 'Throws',
-    type: 'text',
-    width: 90,
+    width: 100,
+  },
+  {
+    field: 'team_name',
+    headerName: 'Team',
+    width: 100,
+  },
+  {
+    field: 'team_city',
+    headerName: 'City',
+    width: 140,
+  },
+  {
+    field: 'team_state',
+    headerName: 'State',
+    width: 140,
   },
 ];
 
-// const rows = [
-//   { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-//   { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-//   { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-//   { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-//   { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-//   { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-//   { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-//   { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-//   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-// ];
-
 export default function DataGridDemo() {
+    const { players } = useSelector((state) => state.players);
+console.log('these are the players',players)
   return (
-    <div style={{ height: 400, width: '100%' }}>
-      <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection />
+    <div style={{ height: '70vh', width: '50%' }}>
+      <DataGrid rows={players} columns={columns} pageSize={10} checkboxSelection  onSelectionChange={(e)=>console.log(e)} />
     </div>
   );
 }

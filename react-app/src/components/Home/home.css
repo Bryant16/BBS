@@ -1,0 +1,4 @@
+.players_library_container{
+    display: flex;
+    justify-content: center;
+}

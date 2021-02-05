@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import LogoutButton from "./auth/LogoutButton";
 import "./NavBar.css";
+import logo from "./auth/new_logo_bbs.png";
+
 const NavBar = () => {
   const user = useSelector((state) => state.session.user);
   return (
@@ -27,12 +29,13 @@ const NavBar = () => {
           </p>
         </div>
       ) : (
-        <>
+        <div className='navbar_container'>
           <div>
             <NavLink to="/">
-              <button>Home</button>
+            <img src={logo} />
             </NavLink>
           </div>
+          <div className='navbar_button_container'>
           <div>
             <NavLink to="/newPlayer">
               <button>New Player</button>
@@ -41,7 +44,8 @@ const NavBar = () => {
           <div>
             <LogoutButton />
           </div>
-        </>
+          </div>
+        </div>
       )}
     </nav>
   );
