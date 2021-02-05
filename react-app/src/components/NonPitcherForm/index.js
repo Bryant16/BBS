@@ -8,25 +8,42 @@ const history = useHistory();
 const dispatch = useDispatch();
 const {nonPitcher} = useSelector(state=> state.nonPitcher);
 const [loaded, setLoaded] = useState(nonPitcher);
-const [hitting, setHitting] = useState("" || nonPitcher.hitting_ability);
-const [power, setPower] = useState(''||nonPitcher.power);
-const [running, setRunning] = useState(''||nonPitcher.running_speed);
-const [baseRunning, setBaseRunning] = useState(''||nonPitcher.baserunning);
-const [armStr, setArmStr] = useState(''||nonPitcher.arm_str);
-const [armAcc, setArmAcc] = useState(''||nonPitcher.arm_acc);
-const [fielding, setFielding] = useState(''||nonPitcher.fielding);
-const [armRange, setArmRange] = useState(''||nonPitcher.arm_range);
-const [instinct, setInstinct] = useState(''||nonPitcher.baseball_instinct);
-const [aggressive, setAggressive] = useState(''||nonPitcher.aggresiveness);
-const [pull, setPull] = useState(''||nonPitcher.pull);
-const [away, setAway] = useState(''||nonPitcher.str_away);
-const [opp, setOpp] = useState(''||nonPitcher.opp_field);
+const [priorEval, setPriorEval] = useState(false);
+const [hitting, setHitting] = useState("" );
+const [power, setPower] = useState('');
+const [running, setRunning] = useState('');
+const [baseRunning, setBaseRunning] = useState('');
+const [armStr, setArmStr] = useState('');
+const [armAcc, setArmAcc] = useState('');
+const [fielding, setFielding] = useState('');
+const [armRange, setArmRange] = useState('');
+const [instinct, setInstinct] = useState('');
+const [aggressive, setAggressive] = useState('');
+const [pull, setPull] = useState('');
+const [away, setAway] = useState('');
+const [opp, setOpp] = useState('');
 
 
 useEffect(()=>{
     dispatch(getNonePitcherForm(playerId))
-    console.log(loaded)
-    // setLoaded(true)
+    try{
+    if(nonPitcher.length){
+        setHitting(nonPitcher[0].hitting_ability)
+        setPower(nonPitcher[0].power)
+        setRunning(nonPitcher[0].running_speed)
+        setBaseRunning(nonPitcher[0].baserunning)
+        setArmStr(nonPitcher[0].arm_str)
+        setArmAcc(nonPitcher[0].arm_acc)
+        setFielding(nonPitcher[0].fielding)
+        setArmRange(nonPitcher[0].arm_range)
+        setInstinct(nonPitcher[0].baseball_instinct)
+        setAggressive(nonPitcher[0].aggresiveness)
+        setPull(nonPitcher[0].pull)
+        setAway(nonPitcher[0].str_away)
+        setOpp(nonPitcher[0].opp_field)
+        setPriorEval(true)
+    }}catch(e){
+    }
 },[])
 
 const submitEval = async(e)=>{
@@ -46,28 +63,31 @@ const submitEval = async(e)=>{
         pull,
         away,
         opp
-
     }
-   
-    const response = await fetch(`/api/players/${playerId}/nonpitcher/`,{
+
+   if(!priorEval){
+        const response = await fetch(`/api/players/${playerId}/nonpitcher/`,{
         headers: { 'Content-type': 'application/json'},
         method: 'POST',
         body: JSON.stringify(new_non_pitcher_eval)
-    })
-    if(response.ok){
-        const json = await response.json();
-        console.log(json)
-        history.push(`/players/${playerId}`)
+        });
+        if(response.ok){
+            const json = await response.json();
+            history.push(`/players/${playerId}`)
+            }
     }else{
-        alert('Error Player Could not be created')
-    }
+        const res = await fetch(`/api/players/${playerId}/nonpitcher/`,{
+        headers:{'Content-type': 'application/json'},
+        method: 'PUT',
+        body:JSON.stringify(new_non_pitcher_eval)
+       });
+       if(res.ok){
+           history.push(`/players/${playerId}`)
+       }
+   }
+    
 }
-const hitFunc = (e)=>{
-    // let val = e.target.value
-    setHitting('')
-    setHitting(e.target.value)
-}
-console.log(nonPitcher.length)
+
 return (
     <div className='pitcher_form_container'>
         {nonPitcher ? (<form>
@@ -77,7 +97,7 @@ return (
             type='Integer'
             value={hitting}
             // onMouseEnter={hitFunc}
-            onChange={hitFunc} />
+            onChange={(e)=>setHitting(e.target.value)} />
             </div>
             <div>
             <label>Power</label>

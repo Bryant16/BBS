@@ -20,7 +20,7 @@ const initialState = {
 const nonPitcherReducer = (state = initialState, action) => {
     switch(action.type) {
         case COLLECT: {
-            return {...state, nonPitcher: action.nonPitcherForms[0]}
+            return {...state, nonPitcher: [action.nonPitcherForms[0]]}
         }
         default:
         return state
