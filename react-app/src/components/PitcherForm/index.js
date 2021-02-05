@@ -41,6 +41,7 @@ const PitcherForm = ({playerId})=>{
         }}catch(e){
         }
     },[])
+    console.log(pitcher)
     const submitEval = async(e)=>{
         e.preventDefault();
         const new_pitcher_eval= {
@@ -58,19 +59,19 @@ const PitcherForm = ({playerId})=>{
             delivery
         }
         if(!priorEval){
-        const response = await fetch(`/api/players/${playerId}/pitcher/`,{
-            headers: { 'Content-type': 'application/json' },
-            method: 'POST',
-            body: JSON.stringify(new_pitcher_eval)
-        })
-        if(response.ok){
-            const json = await response.json();
-            history.push(`/players/${playerId}`)
+            const response = await fetch(`/api/players/${playerId}/pitcher/`,{
+                headers: { 'Content-type': 'application/json' },
+                method: 'POST',
+                body: JSON.stringify(new_pitcher_eval)
+            })
+            if(response.ok){
+                const json = await response.json();
+                history.push(`/players/${playerId}`)
+            }else{
+                alert('Error Player Could not be created')
+            }
         }else{
-            alert('Error Player Could not be created')
-        }
-    }else{
-        const res = await fetch(`/api/players/${playerId}/pitcher/`,{
+         const res = await fetch(`/api/players/${playerId}/pitcher/`,{
             headers:{'Content-type': 'application/json'},
             method: 'PUT',
             body:JSON.stringify(new_pitcher_eval)

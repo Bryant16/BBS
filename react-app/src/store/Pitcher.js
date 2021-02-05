@@ -9,7 +9,7 @@ export const getPitcherForm = (playerId) => async dispatch => {
     const res = await fetch(`/api/players/${playerId}/pitcher/`)
     if (res.ok) {
         const pitcherForms = await res.json()
-        // console.log(pitcherForms)
+        console.log('json', pitcherForms)
         dispatch(collect(pitcherForms[0].pitcher_evaluations));
         // dispatch(collect(pitcherForms));
     }
@@ -22,7 +22,7 @@ const initialState = {
 const pitcherReducer = (state = initialState, action) => {
     switch(action.type) {
         case COLLECTPITCH: {
-            return {...state, pitcher: [action.PitcherForms]}
+            return {...state, pitcher: [action.pitcherForms[0]]}
         }
         default:
         return state

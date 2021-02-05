@@ -88,6 +88,7 @@ def get_pitcher_eval(id):
         Player.id == id, Player.user_id == current_user.id).all()
     return jsonify([player[0].get_pitcher()])
 
+
 @players_routes.route('/<int:id>/nonpitcher/', methods=["POST"])
 def create_non_player_pitcher_eval(id):
     data = request.get_json()
@@ -145,7 +146,7 @@ def update_player_pitcher_eval(id):
     data = request.get_json()
     try:
         form_to_update = Pitcher_Evaluation.query.filter(
-            form_to_update.Pitcher_Evaluation.player_id == id).first()
+            Pitcher_Evaluation.player_id == id).first()
         form_to_update.fast_ball = data["fastball"]
         form_to_update.curve = data["curve"]
         form_to_update.control = data["control"]
