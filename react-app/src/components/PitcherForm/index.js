@@ -1,8 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
+import {useDispatch,useSelector} from 'react-redux';
+import {getPitcherForm} from '../../store/Pitcher';
 
 const PitcherForm = ({playerId})=>{
     const history = useHistory();
+    const dispatch = useDispatch();
+    const {pitcher} = useSelector(state=> state.pitcher);
+    const [priorEval, setPriorEval] = useState(false);
     const [fastball, setFastball] = useState('');
     const [curve, setCurve] = useState('');
     const [control, setControl] = useState('');
@@ -16,6 +21,26 @@ const PitcherForm = ({playerId})=>{
     const [arm, setArm] = useState('');
     const [delivery, setDelivery] = useState('');
 
+    useEffect(()=>{
+        dispatch(getPitcherForm(playerId))
+        try{
+            if(pitcher.length){
+            setFastball(pitcher[0].fast_ball)
+            setCurve(pitcher[0].curve)
+            setControl(pitcher[0].control)
+            setPace(pitcher[0].change_of_pace)
+            setSlider(pitcher[0].slider)
+            setKnuckle(pitcher[0].knuckle_ball)
+            setOther(pitcher[0].other)
+            setPoise(pitcher[0].poise)
+            setInstinct(pitcher[0].baseball_instinct)
+            setAggressive(pitcher[0].aggresiveness)
+            setArm(pitcher[0].arm_action)
+            setDelivery(pitcher[0].delivery)
+            setPriorEval(true)
+        }}catch(e){
+        }
+    },[])
     const submitEval = async(e)=>{
         e.preventDefault();
         const new_pitcher_eval= {
@@ -32,6 +57,7 @@ const PitcherForm = ({playerId})=>{
             arm,
             delivery
         }
+        if(!priorEval){
         const response = await fetch(`/api/players/${playerId}/pitcher/`,{
             headers: { 'Content-type': 'application/json' },
             method: 'POST',
@@ -43,10 +69,20 @@ const PitcherForm = ({playerId})=>{
         }else{
             alert('Error Player Could not be created')
         }
+    }else{
+        const res = await fetch(`/api/players/${playerId}/pitcher/`,{
+            headers:{'Content-type': 'application/json'},
+            method: 'PUT',
+            body:JSON.stringify(new_pitcher_eval)
+           });
+           if(res.ok){
+               history.push(`/players/${playerId}`)
+           }
+    }
     }
     return (
         <div className='pitcher_form_container'>
-            <form>
+            {pitcher ?(<form>
                 <div>
                 <label>Fastball</label>
                 <input 
@@ -136,7 +172,8 @@ const PitcherForm = ({playerId})=>{
                 />
                 </div>
                 <button onClick={submitEval}>Submit</button>
-            </form>
+            </form>):<h1>loading</h1>
+}
         </div>
     )}
 

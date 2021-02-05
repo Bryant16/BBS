@@ -79,8 +79,14 @@ def create_player_pitcher_eval(id):
 def get_non_pitcher_eval(id):
     player = Player.query.filter(
         Player.id == id, Player.user_id == current_user.id).all()
-    return jsonify([player[0].get_evals()])
+    return jsonify([player[0].get_non_pitcher()])
 
+
+@players_routes.route('/<int:id>/pitcher/')
+def get_pitcher_eval(id):
+    player = Player.query.filter(
+        Player.id == id, Player.user_id == current_user.id).all()
+    return jsonify([player[0].get_pitcher()])
 
 @players_routes.route('/<int:id>/nonpitcher/', methods=["POST"])
 def create_non_player_pitcher_eval(id):
@@ -129,6 +135,30 @@ def update_non_player_pitcher_eval(id):
         form_to_update.str_away = data["away"]
         form_to_update.opp_field = data["opp"]
         db.session.commit()
-        return jsonify({'done':True})
+        return jsonify({'done': True})
     except:
-        return jsonify({'Fail':True})
+        return jsonify({'Fail': True})
+
+
+@players_routes.route('/<int:id>/pitcher/', methods=["PUT"])
+def update_player_pitcher_eval(id):
+    data = request.get_json()
+    try:
+        form_to_update = Pitcher_Evaluation.query.filter(
+            form_to_update.Pitcher_Evaluation.player_id == id).first()
+        form_to_update.fast_ball = data["fastball"]
+        form_to_update.curve = data["curve"]
+        form_to_update.control = data["control"]
+        form_to_update.change_of_pace = data["pace"]
+        form_to_update.slider = data["slider"]
+        form_to_update.knuckle_ball = data["knuckle"]
+        form_to_update.other = data["other"]
+        form_to_update.poise = data["poise"]
+        form_to_update.baseball_instinct = data["instinct"]
+        form_to_update.aggresiveness = data["aggressive"]
+        form_to_update.arm_action = data["arm"]
+        form_to_update.delivery = data["delivery"]
+        db.session.commit()
+        return jsonify({'updated': True})
+    except:
+        return jsonify({'errors': 'Unable to Process at this moment'})

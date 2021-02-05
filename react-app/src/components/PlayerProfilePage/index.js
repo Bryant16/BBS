@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from 'react-router-dom';
 import {getNonePitcherForm} from '../../store/nonPitcher';
+import {getPitcherForm} from "../../store/Pitcher";
 
 const PlayerProfilePage = ()=>{
     const { user } = useSelector((state) => state.session);
@@ -18,6 +19,7 @@ const PlayerProfilePage = ()=>{
         }
         getPlayer()
         dispatch(getNonePitcherForm(playerid))
+        dispatch(getPitcherForm(playerid))
     },[dispatch]);
 
     return (

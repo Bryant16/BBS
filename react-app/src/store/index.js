@@ -4,12 +4,14 @@ import sessionReducer from './session';
 import playersReducer from './player';
 import notesReducer from './note';
 import nonPitcherReducer from './nonPitcher';
+import pitcherReducer from './Pitcher';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     players: playersReducer,
     notes: notesReducer,
     nonPitcher: nonPitcherReducer,
+    pitcher: pitcherReducer,
 })
 
 let enhancer;

@@ -26,8 +26,9 @@ const [opp, setOpp] = useState('');
 
 useEffect(()=>{
     dispatch(getNonePitcherForm(playerId))
+    
     try{
-    if(nonPitcher.length){
+        if(nonPitcher.length){
         setHitting(nonPitcher[0].hitting_ability)
         setPower(nonPitcher[0].power)
         setRunning(nonPitcher[0].running_speed)
