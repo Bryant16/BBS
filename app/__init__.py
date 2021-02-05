@@ -16,8 +16,12 @@ from .seeds import seed_commands
 from .config import Config
 
 app = Flask(__name__)
+s3 = boto3.client('s3',
+                    aws_acess_key_id=Config.ACCESS_KEY_ID,
+                    aws_secret_acess_key=Config.ACCESS_SECRET_KEY
+                    )
+BUCKET_NAME='bbscouting'
 
-# Setup login manager
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
 
@@ -27,7 +31,6 @@ def load_user(id):
     return User.query.get(int(id))
 
 
-# Tell flask about our seed commands
 app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
@@ -38,14 +41,8 @@ app.register_blueprint(notes_routes, url_prefix='/api/notes')
 db.init_app(app)
 Migrate(app, db)
 
-# Application Security
 CORS(app)
 
-# Since we are deploying with Docker and Flask,
-# we won't be using a buildpack when we deploy to Heroku.
-# Therefore, we need to make sure that in production any 
-# request made over http is redirected to https.
-# Well.........
 
 @app.before_request
 def https_redirect():

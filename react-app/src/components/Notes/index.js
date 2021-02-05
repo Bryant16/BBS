@@ -21,7 +21,6 @@ const Notes = ({playerId})=>{
 
     return (
         <div>
-        <h1>Notes</h1>
         <form>
         <label>Title</label>
         <select onChange={(e)=> setTitle(e.target.value)}>

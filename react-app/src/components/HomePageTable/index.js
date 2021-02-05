@@ -1,6 +1,7 @@
 import React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import {useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
 const columns = [
   { field: 'first_name', headerName: 'First', width: 100 },
@@ -36,13 +37,17 @@ const columns = [
     width: 140,
   },
 ];
-
 export default function DataGridDemo() {
+    const history = useHistory()
+    const click=(e)=>{
+        const id = e.rowIds[0]
+        history.push(`/players/${id}`)
+    }
     const { players } = useSelector((state) => state.players);
 console.log('these are the players',players)
   return (
     <div style={{ height: '70vh', width: '50%' }}>
-      <DataGrid rows={players} columns={columns} pageSize={10} checkboxSelection  onSelectionChange={(e)=>console.log(e)} />
+      <DataGrid rows={players} columns={columns} pageSize={10} checkboxSelection  onSelectionChange={click} />
     </div>
   );
 }
