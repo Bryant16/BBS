@@ -16,7 +16,9 @@ const Home = () => {
   return user ? (
     <div>
       {players.length ? (
-        players.map((player) => <HomePagePlayerCard player={player} />)
+        players.map((player) => 
+        <HomePagePlayerCard player={player} />
+        )
       ) : (
         <h1>loading</h1>
       )}

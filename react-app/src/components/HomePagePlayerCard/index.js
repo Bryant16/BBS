@@ -3,6 +3,7 @@ import './HomePagePlayerCard.css'
 import {useHistory, Link} from 'react-router-dom';
 import PlayerProfilePage from '../PlayerProfilePage';
 
+
 const HomePagePlayerCard =({player})=>{
     const history = useHistory();
 
