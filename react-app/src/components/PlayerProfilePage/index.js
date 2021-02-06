@@ -28,22 +28,26 @@ const PlayerProfilePage = ()=>{
         const file = e.target.files[0];
         if(file) setImage(file);
     }
+    const handleSubmit = async(e)=>{
+            e.preventDefault();
+            const formData = new FormData();
+            // console.log('imageUpload',imageUpload)
+            formData.append("image", imageUpload)
+            await fetch(`/api/images/${playerid}`,{method:"POST",body:formData})
+        
+    }
     return (
     <div>
         {playerInfo ? (
         <div className='player_profile_container'>
             <i class="fas fa-users"></i>
-            <form onSubmit={async(e)=>{
-                e.preventDefault();
-                const formData = new FormData();
-                formData.append("image", imageUpload)
-                await fetch('/api/images/',{headers:{"Content-Type":"multipart/form-data"},method:"POST",body:formData})
-            }}>
+            <form onSubmit={handleSubmit}>
                 <input type='file' name='file' onChange={updateFile} />
                 <button type="submit" >Upload</button>
             </form>
             <Link to={`/players/${playerid}/evaluation`}>Evaluation</Link>
             <h2>first: {playerInfo.first_name}</h2>
+            <img src='https://bbscouting.s3.amazonaws.com/barbellLogo.png'/>
             <h2>last: {playerInfo.last_name}</h2>
             <h2>height: {playerInfo.height}</h2>
             <h2>weight: {playerInfo.weight}</h2>
