@@ -8,7 +8,9 @@ const PlayerProfilePage = ()=>{
     const { user } = useSelector((state) => state.session);
     const {playerid} = useParams();
     const [playerInfo, setPlayerInfo] = useState(false);
+    const [imageUpload, setImage] = useState('');
     const dispatch = useDispatch();
+
     useEffect(()=>{
        const getPlayer = async()=>{
             let res = await fetch(`/api/players/${playerid}`)
@@ -21,12 +23,25 @@ const PlayerProfilePage = ()=>{
         dispatch(getNonePitcherForm(playerid))
         dispatch(getPitcherForm(playerid))
     },[dispatch]);
-    
+    const updateFile = async(e)=>{
+        e.preventDefault();
+        const file = e.target.files[0];
+        if(file) setImage(file);
+    }
     return (
     <div>
         {playerInfo ? (
         <div className='player_profile_container'>
             <i class="fas fa-users"></i>
+            <form onSubmit={async(e)=>{
+                e.preventDefault();
+                const formData = new FormData();
+                formData.append("image", imageUpload)
+                await fetch('/api/images/',{headers:{"Content-Type":"multipart/form-data"},method:"POST",body:formData})
+            }}>
+                <input type='file' name='file' onChange={updateFile} />
+                <button type="submit" >Upload</button>
+            </form>
             <Link to={`/players/${playerid}/evaluation`}>Evaluation</Link>
             <h2>first: {playerInfo.first_name}</h2>
             <h2>last: {playerInfo.last_name}</h2>

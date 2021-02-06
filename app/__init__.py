@@ -10,17 +10,14 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.players_routes import players_routes
 from .api.notes_routes import notes_routes
+from .api.images_routes import images_routes
 
 from .seeds import seed_commands
 
 from .config import Config
 
 app = Flask(__name__)
-s3 = boto3.client('s3',
-                    aws_acess_key_id=Config.ACCESS_KEY_ID,
-                    aws_secret_acess_key=Config.ACCESS_SECRET_KEY
-                    )
-BUCKET_NAME='bbscouting'
+
 
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
@@ -38,6 +35,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(players_routes, url_prefix='/api/players')
 app.register_blueprint(notes_routes, url_prefix='/api/notes')
+app.register_blueprint(images_routes, url_prefix='/api/images')
 db.init_app(app)
 Migrate(app, db)
 
@@ -72,3 +70,4 @@ def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
+
