@@ -56,3 +56,7 @@ class Player(db.Model):
         return {
             "pitcher_evaluations": [evals.to_dict() for evals in self.pitchers]
         }
+    def get_profile_pic(self):
+        return {
+            "profile_url":[image.to_dict() for image in self.photos]
+        }

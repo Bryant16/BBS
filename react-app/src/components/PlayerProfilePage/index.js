@@ -33,8 +33,15 @@ const PlayerProfilePage = ()=>{
             const formData = new FormData();
             // console.log('imageUpload',imageUpload)
             formData.append("image", imageUpload)
-            await fetch(`/api/images/${playerid}`,{method:"POST",body:formData})
-        
+            const res = await fetch(`/api/images/${playerid}`,{method:"POST",body:formData})
+            if (res.ok){
+                const imageUpload = await res.json();
+                if(imageUpload.error){
+                    alert('error uploading image')
+                }else{
+
+                }
+            }
     }
     return (
     <div>
@@ -47,7 +54,7 @@ const PlayerProfilePage = ()=>{
             </form>
             <Link to={`/players/${playerid}/evaluation`}>Evaluation</Link>
             <h2>first: {playerInfo.first_name}</h2>
-            <img src='https://bbscouting.s3.amazonaws.com/barbellLogo.png'/>
+            <img src=''/>
             <h2>last: {playerInfo.last_name}</h2>
             <h2>height: {playerInfo.height}</h2>
             <h2>weight: {playerInfo.weight}</h2>
