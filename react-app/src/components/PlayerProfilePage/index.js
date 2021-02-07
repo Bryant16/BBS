@@ -4,6 +4,7 @@ import { useParams, Link, Redirect, useHistory } from 'react-router-dom';
 import {getNonePitcherForm} from '../../store/nonPitcher';
 import {getPitcherForm} from "../../store/Pitcher";
 import defaultUser from "./default-user.png";
+import {Image} from "@chakra-ui/react";
 import './PlayerProfilePage.css';
 
 const PlayerProfilePage = ()=>{
@@ -59,7 +60,7 @@ const PlayerProfilePage = ()=>{
         <div className='player_profile_container'>
             <div className='player_profile_container_image'>
             <div>
-            {playerImageUrl ? <img className='profile_picture' src={playerImageUrl}/>: <img className='profile_picture' src={defaultUser}/>}
+            {playerImageUrl ? <Image boxSize="200px" objectFit="cover" src={playerImageUrl}/>: <img className='profile_picture' src={defaultUser}/>}
             </div>
             <div className='file_upload_container'>
             <form onSubmit={handleSubmit}>

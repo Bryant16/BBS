@@ -47,6 +47,8 @@ const NewPlayerForm = ()=>{
             alert('Error Player Could not be created')
         }
     }
+    let playerPositions = ['P','C','1B','2B','3B','SS','RF','LF','CF']
+    
     return (
         <div className='new_player_form_container'>
             <form>
@@ -79,11 +81,29 @@ const NewPlayerForm = ()=>{
                  onChange={(e)=>setWeight(e.target.value)}/>
                 </div>
                 <div>
-                <Input 
-                 type='text'
-                 placeHolder='position'
-                 value={position}
-                 onChange={(e)=>setPosition(e.target.value)}/>
+                <Select 
+                 placeholder='Position'
+                 onChange={(e)=>setPosition(e.target.value)}>
+                     {playerPositions.map((pos)=>{
+                         return(
+                             <option value={pos}>{pos}</option>
+                         )
+                     })}
+                 </Select>
+                <Select 
+                 placeholder='Bats'
+                 onChange={(e)=>setBats(e.target.value)}>
+                     <option value='R'>R</option>
+                     <option value='L'>L</option>
+                     <option value='Both'>Both</option>
+                 </Select>
+                <Select 
+                 placeholder='Throws'
+                 onChange={(e)=>setThrows(e.target.value)}>
+                    <option value='R'>R</option>
+                    <option value='L'>L</option>
+                    <option value='Both'>Both</option>
+                </Select>
                 </div>
                 <div>
                 <Input 
@@ -126,20 +146,6 @@ const NewPlayerForm = ()=>{
                  placeHolder='Team State'
                  value={team_state}
                  onChange={(e)=>setState(e.target.value)}/>
-                </div>
-                <div>
-                <Input 
-                 type='text'
-                 placeHolder='bats'
-                 value={bats}
-                 onChange={(e)=>setBats(e.target.value)}/>
-                </div>
-                <div>
-                <Input 
-                 type='text'
-                 placeHolder='throws'
-                 value={throws}
-                 onChange={(e)=>setThrows(e.target.value)}/>
                 </div>
                 <button onClick={registerClick}>Register</button>
             </form>

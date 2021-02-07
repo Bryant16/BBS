@@ -81,11 +81,17 @@ const PitcherForm = ({playerId})=>{
            }
     }
     }
+    const increase=(e)=>{
+        e.preventDefault()
+        let val = fastball + 10
+        setFastball(val)
+    }
     return (
         <div className='pitcher_form_container'>
             {pitcher ?(<form>
                 <div>
                 <label>Fastball</label>
+                
                 <input 
                 type='Integer'
                 value={fastball}
