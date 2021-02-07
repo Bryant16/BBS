@@ -9,6 +9,6 @@ class Image(db.Model):
 
   def to_dict(self):
     return {
-      "URL": self.URL[len(self.url)-1]
+      "URL": self.URL
     }
  

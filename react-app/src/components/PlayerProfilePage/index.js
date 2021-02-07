@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Redirect } from 'react-router-dom';
 import {getNonePitcherForm} from '../../store/nonPitcher';
 import {getPitcherForm} from "../../store/Pitcher";
+import defaultUser from "./default-user.png";
+import './PlayerProfilePage.css';
 
 const PlayerProfilePage = ()=>{
     const { user } = useSelector((state) => state.session);
     const {playerid} = useParams();
     const [playerInfo, setPlayerInfo] = useState(false);
     const [imageUpload, setImage] = useState('');
+    const [playerImageUrl, setPlayerImageUrl] =useState(false);
     const dispatch = useDispatch();
 
     useEffect(()=>{
@@ -19,10 +22,21 @@ const PlayerProfilePage = ()=>{
                 setPlayerInfo(single_player.player)
             }
         }
+        const getProfileUrl = async()=>{
+            let response = await fetch(`/api/images/${playerid}`);
+            if(response.ok){
+                let profile_url = await response.json();
+                setPlayerImageUrl(profile_url.URL)
+            }
+        }
         getPlayer()
+        getProfileUrl()
         dispatch(getNonePitcherForm(playerid))
         dispatch(getPitcherForm(playerid))
     },[dispatch]);
+    useEffect(()=>{
+        
+    },[playerImageUrl])
     const updateFile = async(e)=>{
         e.preventDefault();
         const file = e.target.files[0];
@@ -36,11 +50,7 @@ const PlayerProfilePage = ()=>{
             const res = await fetch(`/api/images/${playerid}`,{method:"POST",body:formData})
             if (res.ok){
                 const imageUpload = await res.json();
-                if(imageUpload.error){
-                    alert('error uploading image')
-                }else{
-
-                }
+                return <Redirect to={`/players/${playerid}`}/> 
             }
     }
     return (
@@ -54,7 +64,7 @@ const PlayerProfilePage = ()=>{
             </form>
             <Link to={`/players/${playerid}/evaluation`}>Evaluation</Link>
             <h2>first: {playerInfo.first_name}</h2>
-            <img src=''/>
+            {playerImageUrl ? <img className='profile_picture' src={playerImageUrl}/>: <img className='profile_picture' src={defaultUser}/>}
             <h2>last: {playerInfo.last_name}</h2>
             <h2>height: {playerInfo.height}</h2>
             <h2>weight: {playerInfo.weight}</h2>
