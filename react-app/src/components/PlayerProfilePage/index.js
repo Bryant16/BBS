@@ -7,17 +7,18 @@ import {getPitcherForm} from "../../store/Pitcher";
 import './PlayerProfilePage.css';
 import NewPlayerForm from '../NewPlayerForm';
 import PlayerImage from './PlayerImage';
-import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    Button,
-    Lorem
-  } from "@chakra-ui/react"
+import Modal from './Modal';
+// import {
+//     Modal,
+//     ModalOverlay,
+//     ModalContent,
+//     ModalHeader,
+//     ModalFooter,
+//     ModalBody,
+//     ModalCloseButton,
+//     Button,
+//     Lorem
+//   } from "@chakra-ui/react"
 
 const PlayerProfilePage = ()=>{
     const history = useHistory();
@@ -51,7 +52,7 @@ const PlayerProfilePage = ()=>{
             <div className='player_info_container'>
             <div>
                 <Link to={`/players/${playerid}/evaluation`}>Evaluation</Link>
-                <>
+                {/* <>
       <Button onClick={onOpen}>Open Modal</Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -70,8 +71,9 @@ const PlayerProfilePage = ()=>{
             <Button variant="ghost">Secondary Action</Button>
           </ModalFooter>
         </ModalContent>
-      </Modal>
-    </>
+      </Modal> */}
+    {/* </> */}
+    <Modal playerInfo={playerInfo}/>
                 <h2>first: {playerInfo.first_name}</h2>
                 <h2>last: {playerInfo.last_name}</h2>
                 <h2>height: {playerInfo.height}</h2>

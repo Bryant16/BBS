@@ -5,7 +5,7 @@ import './NewPlayerForm.css';
 
 const NewPlayerForm = ()=>{
     const history = useHistory();
-    const [first_name, setFirstName] = useState("");
+    const [first_name, setFirstName] = useState("" );
     const [last_name, setLastName] = useState("");
     const [height, setHeight] = useState("");
     const [weight, setWeight] = useState("");
@@ -48,7 +48,6 @@ const NewPlayerForm = ()=>{
         }
     }
     let playerPositions = ['P','C','1B','2B','3B','SS','RF','LF','CF']
-    
     return (
         <div className='new_player_form_container'>
             <form>
