@@ -48,7 +48,7 @@ const Evaluation = () => {
         <button onClick={toggleNoteEvals}>{toggle}</button>
         <button onClick={(e)=>history.push(`/players/${playerid}`)}>Player Profile</button>
         </div>
-        {toggle === 'Eval' ?(<div>
+        {toggle === 'Notes' ?(<div>
           {!playerInfo ? <h1>loading</h1>:null}
           {playerInfo && playerInfo.position === 'P' ?
           <PitcherForm playerId={playerid}/> :
