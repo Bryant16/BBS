@@ -5,29 +5,16 @@ import { useDisclosure } from "react-use-disclosure";
 import {getNonePitcherForm} from '../../store/nonPitcher';
 import {getPitcherForm} from "../../store/Pitcher";
 import './PlayerProfilePage.css';
-import NewPlayerForm from '../NewPlayerForm';
 import PlayerImage from './PlayerImage';
 import Modal from './Modal';
-// import {
-//     Modal,
-//     ModalOverlay,
-//     ModalContent,
-//     ModalHeader,
-//     ModalFooter,
-//     ModalBody,
-//     ModalCloseButton,
-//     Button,
-//     Lorem
-//   } from "@chakra-ui/react"
+
 
 const PlayerProfilePage = ()=>{
     const history = useHistory();
     const { user } = useSelector((state) => state.session);
     const {playerid} = useParams();
     const [playerInfo, setPlayerInfo] = useState(false);
-    const [edit, setEdit] = useState(false);
     const dispatch = useDispatch();
-    const { isOpen, onOpen, onClose } = useDisclosure();
 
     useEffect(()=>{
        const getPlayer = async()=>{
@@ -52,28 +39,7 @@ const PlayerProfilePage = ()=>{
             <div className='player_info_container'>
             <div>
                 <Link to={`/players/${playerid}/evaluation`}>Evaluation</Link>
-                {/* <>
-      <Button onClick={onOpen}>Open Modal</Button>
-
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Lorem count={2} />
-          </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant="ghost">Secondary Action</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal> */}
-    {/* </> */}
-    <Modal playerid={playerid}/>
+                <Modal playerid={playerid}/>
                 <h2>first: {playerInfo.first_name}</h2>
                 <h2>last: {playerInfo.last_name}</h2>
                 <h2>height: {playerInfo.height}</h2>
