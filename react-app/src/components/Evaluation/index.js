@@ -16,7 +16,7 @@ const Evaluation = () => {
   const [playerInfo, setPlayerInfo] = useState(false);
   const notes = useSelector(state => state.notes);
   const [gotNotes, setNotes] = useState(notes);
-    
+  const [toggle, setToggle] = useState('Eval');
   useEffect(() => {
     const getPlayer = async () => {
       let res = await fetch(`/api/players/${playerid}`);
@@ -33,18 +33,31 @@ const Evaluation = () => {
     dispatch(getAllNotes(playerid))
     setNotes(true)
   },[])
-  
+ const toggleNoteEvals = (e)=>{
+   e.preventDefault()
+   if(toggle === 'Notes'){
+     setToggle('Eval')
+   }else{
+     setToggle('Notes')
+   }
+ } 
  
   return (
       <div className='player_evaluation_and_player_notes_container'>
+        <div>
+        <button onClick={toggleNoteEvals}>{toggle}</button>
+        <button onClick={(e)=>history.push(`/players/${playerid}`)}>Player Profile</button>
+        </div>
+        {toggle === 'Eval' ?(<div>
           {!playerInfo ? <h1>loading</h1>:null}
           {playerInfo && playerInfo.position === 'P' ?
           <PitcherForm playerId={playerid}/> :
           <NonPitcherForm playerId={playerid}/> }
-          <div>
+          </div>):
+          (<div>
             <Notes playerId={playerid}/>
             {gotNotes && <DisplayNotes notes={notes} />}
-          </div>
+          </div>)}
       </div>
   );
 };
