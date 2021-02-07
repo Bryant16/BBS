@@ -33,7 +33,6 @@ const PlayerImage = ({playerid})=>{
             }
     }
     return (
-        
         <div className='player_profile_container_image'>
         <div>
         {playerImageUrl ? <Image boxSize="200px" objectFit="cover" src={playerImageUrl}/>: <img className='profile_picture' src={defaultUser}/>}
