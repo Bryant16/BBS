@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import { Input, Text, Select } from "@chakra-ui/react"
 import './NewPlayerForm.css';
 
-const NewPlayerForm = ()=>{
+const NewPlayerForm = ({playerid})=>{
     const history = useHistory();
     const [first_name, setFirstName] = useState("" );
     const [last_name, setLastName] = useState("");
@@ -18,6 +18,36 @@ const NewPlayerForm = ()=>{
     const [team_state, setState] = useState("");
     const [bats, setBats] = useState("");
     const [throws, setThrows] = useState("");
+    const [playerInfo, setPlayerInfo] = useState(false);
+    
+    useEffect(()=>{
+        const getPlayer = async()=>{
+            let res = await fetch(`/api/players/${playerid}`)
+            if(res.ok){
+                let single_player =await res.json();
+                setPlayerInfo(single_player.player)
+            }
+        }
+        getPlayer()
+        try{
+            setFirstName(playerInfo.first_name)
+            setLastName(playerInfo.last_name)
+            setAddress(playerInfo.address)
+            setHeight(playerInfo.height)
+            setWeight(playerInfo.weight)
+            setPosition(playerInfo.position)
+            setPhone(playerInfo.phone_number)
+            setEmail(playerInfo.email)
+            setTeam(playerInfo.team_name)
+            setCity(playerInfo.team_city)
+            setState(playerInfo.team_state)
+            setBats(playerInfo.bat)
+            setThrows(playerInfo.position)
+            // setPriorEval(true)
+        }catch(e){
+        }
+    },[playerInfo])
+    console.log(playerInfo)
     const registerClick = async(e)=>{
         e.preventDefault();
         const newPlayer = {

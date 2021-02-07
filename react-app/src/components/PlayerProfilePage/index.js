@@ -73,7 +73,7 @@ const PlayerProfilePage = ()=>{
         </ModalContent>
       </Modal> */}
     {/* </> */}
-    <Modal playerInfo={playerInfo}/>
+    <Modal playerid={playerid}/>
                 <h2>first: {playerInfo.first_name}</h2>
                 <h2>last: {playerInfo.last_name}</h2>
                 <h2>height: {playerInfo.height}</h2>

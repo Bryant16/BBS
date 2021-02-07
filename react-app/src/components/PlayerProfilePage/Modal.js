@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleModal({playerInfo}) {
+export default function SimpleModal({playerid}) {
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -47,7 +47,7 @@ export default function SimpleModal({playerInfo}) {
     <div style={modalStyle} className={classes.paper}>
       <h2 id="simple-modal-title">Edit Player</h2>
       <div className='new_player_modal_container'>
-        <NewPlayerForm playerinfo={playerInfo}/>
+        <NewPlayerForm playerid={playerid}/>
     </div>
     </div>
   );
@@ -55,7 +55,7 @@ export default function SimpleModal({playerInfo}) {
   return (
     <div>
       <button type="button" onClick={handleOpen}>
-        Open Modal
+        Edit Player
       </button>
       <Modal
         open={open}
