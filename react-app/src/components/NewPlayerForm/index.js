@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
+import { Input, Text, Select } from "@chakra-ui/react"
 import './NewPlayerForm.css';
 
 const NewPlayerForm = ()=>{
@@ -50,93 +51,93 @@ const NewPlayerForm = ()=>{
         <div className='new_player_form_container'>
             <form>
                 <div>
-                <label>First Name:</label>
-                <input 
+                <Input 
                 type='text'
+                placeHolder='First Name'
                 value={first_name}
                 onChange={(e)=>setFirstName(e.target.value)}/>
                 </div>
                 <div>
-                <label>Last Name:</label>
-                <input
+                <Input
                  type='text'
                  value={last_name}
+                 placeHolder='Last Name'
                  onChange={(e)=>setLastName(e.target.value)} />
                 </div>
                 <div>
-                <label>Height:</label>
-                <input
+                <Input
                  type='text'
                  value={height}
+                 placeHolder='Height'
                  onChange={(e)=>setHeight(e.target.value)} />
                 </div>
                 <div>
-                <label>Weight:</label>
-                <input 
+                <Input 
                  type='text'
                  value={weight}
+                 placeHolder='Weight'
                  onChange={(e)=>setWeight(e.target.value)}/>
                 </div>
                 <div>
-                <label>Position:</label>
-                <input 
+                <Input 
                  type='text'
+                 placeHolder='position'
                  value={position}
                  onChange={(e)=>setPosition(e.target.value)}/>
                 </div>
                 <div>
-                <label>Address:</label>
-                <input 
+                <Input 
                  type='text'
                  value={address}
+                 placeHolder='Full Address'
                  onChange={(e)=>setAddress(e.target.value)}/>
                 </div>
                 <div>
-                <label>Phone Number:</label>
-                <input 
+                <Input 
                  type='text'
                  value={phone_number}
+                 placeHolder='Phone 555-555-5555'
                  onChange={(e)=>setPhone(e.target.value)}/>
                 </div>
                 <div>
-                <label>email:</label>
-                <input 
+                <Input 
                  type='text'
                  value={email}
+                 placeHolder='Email'
                  onChange={(e)=>setEmail(e.target.value)}/>
                 </div>
                 <div>
-                <label>Team Name:</label>
-                <input 
+                <Input 
                  type='text'
                  value={team_name}
+                 placeHolder='Team Name'
                  onChange={(e)=>setTeam(e.target.value)}/>
                 </div>
                 <div>
-                <label>Team City:</label>
-                <input 
+                <Input 
                  type='text'
+                 placeHolder='Team City'
                  value={team_city}
                  onChange={(e)=>setCity(e.target.value)}/>
                 </div>
                 <div>
-                <label>Team State:</label>
-                <input 
+                <Input 
                  type='text'
+                 placeHolder='Team State'
                  value={team_state}
                  onChange={(e)=>setState(e.target.value)}/>
                 </div>
                 <div>
-                <label>Bats:</label>
-                <input 
+                <Input 
                  type='text'
+                 placeHolder='bats'
                  value={bats}
                  onChange={(e)=>setBats(e.target.value)}/>
                 </div>
                 <div>
-                <label>Throws:</label>
-                <input 
+                <Input 
                  type='text'
+                 placeHolder='throws'
                  value={throws}
                  onChange={(e)=>setThrows(e.target.value)}/>
                 </div>

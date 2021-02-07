@@ -37,7 +37,7 @@ const Evaluation = () => {
  
   return (
       <div className='player_evaluation_and_player_notes_container'>
-          {!playerInfo ? <h1>loading</h1>: null}
+          {!playerInfo ? <h1>loading</h1>:null}
           {playerInfo && playerInfo.position === 'P' ?
           <PitcherForm playerId={playerid}/> :
           <NonPitcherForm playerId={playerid}/> }
