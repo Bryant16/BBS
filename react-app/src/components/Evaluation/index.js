@@ -32,7 +32,7 @@ const Evaluation = () => {
     dispatch(clearNotes())
     dispatch(getAllNotes(playerid))
     setNotes(true)
-  },[])
+  },[gotNotes])
  const toggleNoteEvals = (e)=>{
    e.preventDefault()
    if(toggle === 'Notes'){
@@ -56,7 +56,7 @@ const Evaluation = () => {
           </div>):
           (<div>
             <Notes playerId={playerid}/>
-            {gotNotes && <DisplayNotes notes={notes} />}
+            {gotNotes && <DisplayNotes playerid={playerid} notes={notes} />}
           </div>)}
       </div>
   );

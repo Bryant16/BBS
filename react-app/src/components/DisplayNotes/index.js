@@ -1,38 +1,54 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+
 import './DisplayNotes.css';
-const DisplayNotes = ({notes})=>{
-    const deleteNote=(e)=>{
-        e.preventDefault();
-        console.log(e.target.value)
+const DisplayNotes = ({playerid, notes})=>{
+    
+    const deleteNote= async(note, id)=>{
+       const res = await fetch(`/api/notes/players/${id}`,{
+        headers: { 'Content-type': 'application/json' },
+        method: 'DELETE',
+        body: JSON.stringify({note})
+    }) 
+    if(res.ok){
+        const deleted = await res.json()
+      
+    }
+    
+        
+       
     }
     return (
         <div className='notes_container'>
-            <h1>Abilities</h1>
+            <h3>Abilities</h3>
             {notes.filter(note=>note.title==="Abilities").map((note)=>(
-            <div>
-                <h4>{note.text}</h4>
-            </div>
+            <ul className='abilities_notes'>
+                <li>{note.text}</li>
+            </ul>
             ))}
-            <h1>Physical Description</h1>
+            <h3>Physical Description</h3>
             {notes.filter(note=>note.title==='Physical Description').map((note)=>(
-            <div>
-                <h4>{note.text}</h4>
+            <ul>
+                <li>{note.text}</li>
                 <button onClick={deleteNote}>Delete</button>
-            </div>
+            </ul>
             ))}
-            <h1>Weakness</h1>
+            <h3>Weakness</h3>
             {notes.filter(note=>note.title==="Weakness").map((note)=>(
-            <div>
-                <h4>{note.text}</h4>
+            <ul>
+                <li>{note.text}</li>
                 <button onClick={deleteNote}>Delete</button>
-            </div>
+            </ul>
             ))}
-            <h1>Summary</h1>
+            <h3>Summary</h3>
             {notes.filter(note=>note.title==="Summary").map((note)=>(
-            <div>
-                <h4>{note.text}</h4>
-                <button onClick={deleteNote}>Delete</button>
-            </div>
+            <form onSubmit={(e)=>{
+                e.preventDefault()
+                deleteNote(note,playerid)
+                console.log(note, playerid)
+            }}>
+                <li>{note.text}</li>
+                <button type='submit'>Delete</button>
+            </form>
             ))}
         </div>
     )
