@@ -7,7 +7,7 @@ import {getPitcherForm} from "../../store/Pitcher";
 import './PlayerProfilePage.css';
 import PlayerImage from './PlayerImage';
 import Modal from './Modal';
-
+import PlayerCard from './PlayerInfoCard';
 
 const PlayerProfilePage = ()=>{
     const history = useHistory();
@@ -36,24 +36,23 @@ const PlayerProfilePage = ()=>{
         {playerInfo ? (
             <div className='player_profile_container'>
              <PlayerImage playerid={playerid}/>
-            <div className='player_info_container'>
+             <PlayerCard playerInfo={playerInfo}/>
+            {/* <div className='player_info_container'>
             <div>
                 <h2>{(playerInfo.first_name).toUpperCase()} {(playerInfo.last_name).toUpperCase()}</h2>
                 <h2>{playerInfo.height}, {playerInfo.weight}lbs</h2>
-                <h2>{playerInfo.position}, Bat:{playerInfo.bats}, Throws:{playerInfo.throws} </h2>
+                <h2>{playerInfo.position}, Bat:{playerInfo.bats}, Throws: {playerInfo.throws} </h2>
                
             </div>
             <div>
                 <h2>address:{playerInfo.address}</h2>
-                <h2>phone_number: {playerInfo.phone_number}</h2>
-                <h2>email:{playerInfo.email}</h2>
-                <h2>team_name: {playerInfo.team_name}</h2>
-                <h2>team_city: {playerInfo.team_city}</h2>
-                <h2>team_state: {playerInfo.team_state}</h2>
+                <h2>{playerInfo.phone_number}</h2>
+                <h2>{playerInfo.email}</h2>
+                <h2>Team:{(playerInfo.team_name).toUpperCase()} {playerInfo.team_city},{playerInfo.team_state} </h2>
                 <Link to={`/players/${playerid}/evaluation`}>Evaluation</Link>
                 <Modal playerid={playerid}/>
             </div>
-            </div>
+            </div> */}
         </div>
         ): <h1>loading</h1>}
     </div>
