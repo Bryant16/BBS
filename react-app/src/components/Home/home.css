@@ -5,9 +5,9 @@
     display: flex;
     justify-content: center;
 }
-/* .MuiDataGrid-colCellTitleContainer > .MuiSvgIcon-root {
+.MuiDataGrid-colCellTitleContainer svg {
     visibility: hidden !important;
 }
-.MuiIconButton-label:hover{
+/* .MuiIconButton-label:hover{
    background-color: lightgreen;
 } */
