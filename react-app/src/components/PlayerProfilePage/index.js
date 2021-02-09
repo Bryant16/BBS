@@ -29,7 +29,10 @@ const PlayerProfilePage = ()=>{
         dispatch(getPitcherForm(playerid))   
     },[dispatch]);
 
-   
+   const handleEdit = (e)=>{
+       e.preventDefault();
+        history.push(`/newPlayer/${playerid}`)
+   }
     
     return (
     <div className='player_profile_page'>
@@ -40,6 +43,7 @@ const PlayerProfilePage = ()=>{
             <div>
                 <Link to={`/players/${playerid}/evaluation`}>Evaluation</Link>
                 <Modal playerid={playerid}/>
+                {/* <button onClick={handleEdit}>edit player</button> */}
                 <h2>first: {playerInfo.first_name}</h2>
                 <h2>last: {playerInfo.last_name}</h2>
                 <h2>height: {playerInfo.height}</h2>

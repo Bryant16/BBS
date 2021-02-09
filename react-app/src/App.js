@@ -32,7 +32,10 @@ const dispatch = useDispatch();
         <Route path='/players/:playerid'>
           <PlayerProfilePage /> 
         </Route>
-        <Route path='/newPlayer'>
+        <Route exact path='/newPlayer/:playerid'>
+          <NewPlayerForm />
+        </Route>
+        <Route exact path='/newPlayer'>
           <NewPlayerForm />
         </Route>
         <Route path='/'>

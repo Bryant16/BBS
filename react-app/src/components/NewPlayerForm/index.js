@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 import { Input, Text, Select } from "@chakra-ui/react"
 import './NewPlayerForm.css';
 
 const NewPlayerForm = ({playerid})=>{
     const history = useHistory();
+    // const {playerid} = useParams();
     const [first_name, setFirstName] = useState("" );
     const [last_name, setLastName] = useState("");
     const [height, setHeight] = useState("");
@@ -19,13 +20,16 @@ const NewPlayerForm = ({playerid})=>{
     const [bats, setBats] = useState("");
     const [throws, setThrows] = useState("");
     const [playerInfo, setPlayerInfo] = useState(false);
-    
+    const [loaded, setLoad] = useState(false);
+    const [priorForm, setPriorForm] = useState(false);
+
     useEffect(()=>{
         const getPlayer = async()=>{
             let res = await fetch(`/api/players/${playerid}`)
             if(res.ok){
                 let single_player =await res.json();
                 setPlayerInfo(single_player.player)
+                setLoad(true)
             }
         }
         getPlayer()
@@ -41,13 +45,14 @@ const NewPlayerForm = ({playerid})=>{
             setTeam(playerInfo.team_name)
             setCity(playerInfo.team_city)
             setState(playerInfo.team_state)
-            setBats(playerInfo.bat)
-            setThrows(playerInfo.position)
-            // setPriorEval(true)
+            setThrows(playerInfo.throws)
+            setBats(playerInfo.bats)
+            setPriorForm(true)
         }catch(e){
         }
-    },[playerInfo])
-    console.log(playerInfo)
+    },[loaded])
+
+    console.log('playerinfo',playerInfo)
     const registerClick = async(e)=>{
         e.preventDefault();
         const newPlayer = {
@@ -65,6 +70,9 @@ const NewPlayerForm = ({playerid})=>{
             bats,
             throws,
         }
+        console.log('new player', newPlayer)
+        console.log(priorForm,'prior form')
+        if(!priorForm){
         const response = await fetch('/api/players/',{
             headers: { 'Content-type': 'application/json' },
             method: 'POST',
@@ -73,15 +81,24 @@ const NewPlayerForm = ({playerid})=>{
         if(response.ok){
             const {id} = await response.json();
             history.push(`/players/${id}`)
-        }else{
-            alert('Error Player Could not be created')
         }
+    }else{
+        const res = await fetch(`/api/players/${playerid}`,{
+            headers:{'Content-type': 'application/json'},
+            method: 'PUT',
+            body:JSON.stringify(newPlayer)
+           });
+           if(res.ok){
+               history.push(`/players/${playerid}`)
+           }
+    }
     }
     let playerPositions = ['P','C','1B','2B','3B','SS','RF','LF','CF']
     return (
-        <div className='new_player_form_container'>
-            <form>
+         <div className='new_player_form_container'>
+            {(<form>
                 <div>
+                <label>First Name: </label>
                 <Input 
                 type='text'
                 placeHolder='First Name'
@@ -89,6 +106,7 @@ const NewPlayerForm = ({playerid})=>{
                 onChange={(e)=>setFirstName(e.target.value)}/>
                 </div>
                 <div>
+                <label>Last Name: </label>   
                 <Input
                  type='text'
                  value={last_name}
@@ -96,6 +114,7 @@ const NewPlayerForm = ({playerid})=>{
                  onChange={(e)=>setLastName(e.target.value)} />
                 </div>
                 <div>
+                <label>Height(ex. 5'11): </label>
                 <Input
                  type='text'
                  value={height}
@@ -103,6 +122,7 @@ const NewPlayerForm = ({playerid})=>{
                  onChange={(e)=>setHeight(e.target.value)} />
                 </div>
                 <div>
+                <label>Weight: </label>
                 <Input 
                  type='text'
                  value={weight}
@@ -112,6 +132,7 @@ const NewPlayerForm = ({playerid})=>{
                 <div>
                 <Select 
                  placeholder='Position'
+                 value={position}
                  onChange={(e)=>setPosition(e.target.value)}>
                      {playerPositions.map((pos)=>{
                          return(
@@ -119,15 +140,19 @@ const NewPlayerForm = ({playerid})=>{
                          )
                      })}
                  </Select>
+                
                 <Select 
                  placeholder='Bats'
+                 value={bats}
                  onChange={(e)=>setBats(e.target.value)}>
                      <option value='R'>R</option>
                      <option value='L'>L</option>
                      <option value='Both'>Both</option>
                  </Select>
+                
                 <Select 
                  placeholder='Throws'
+                 value={throws}
                  onChange={(e)=>setThrows(e.target.value)}>
                     <option value='R'>R</option>
                     <option value='L'>L</option>
@@ -135,6 +160,7 @@ const NewPlayerForm = ({playerid})=>{
                 </Select>
                 </div>
                 <div>
+                <label>Full Address: </label>
                 <Input 
                  type='text'
                  value={address}
@@ -142,6 +168,7 @@ const NewPlayerForm = ({playerid})=>{
                  onChange={(e)=>setAddress(e.target.value)}/>
                 </div>
                 <div>
+                <label>Phone: </label>
                 <Input 
                  type='text'
                  value={phone_number}
@@ -149,6 +176,7 @@ const NewPlayerForm = ({playerid})=>{
                  onChange={(e)=>setPhone(e.target.value)}/>
                 </div>
                 <div>
+                <label>Email: </label>
                 <Input 
                  type='text'
                  value={email}
@@ -156,6 +184,7 @@ const NewPlayerForm = ({playerid})=>{
                  onChange={(e)=>setEmail(e.target.value)}/>
                 </div>
                 <div>
+                <label>Team Name: </label>
                 <Input 
                  type='text'
                  value={team_name}
@@ -163,6 +192,7 @@ const NewPlayerForm = ({playerid})=>{
                  onChange={(e)=>setTeam(e.target.value)}/>
                 </div>
                 <div>
+                <label>Team City: </label>
                 <Input 
                  type='text'
                  placeHolder='Team City'
@@ -170,6 +200,7 @@ const NewPlayerForm = ({playerid})=>{
                  onChange={(e)=>setCity(e.target.value)}/>
                 </div>
                 <div>
+                <label>Team State: </label>
                 <Input 
                  type='text'
                  placeHolder='Team State'
@@ -177,8 +208,8 @@ const NewPlayerForm = ({playerid})=>{
                  onChange={(e)=>setState(e.target.value)}/>
                 </div>
                 <button onClick={registerClick}>Register</button>
-            </form>
-        </div>
+            </form>) }
+        </div> 
     )
 }
 

@@ -48,6 +48,28 @@ def get_player(id):
     except:
         return jsonify({'errors': 'No player here'})
 
+@players_routes.route('/<int:id>', methods=["PUT"])
+def update_player(id):
+    data = request.get_json()
+    try:
+        player_to_update = Player.query.get(id)
+        player_to_update.first_name = data["first_name"]
+        player_to_update.last_name = data["last_name"]
+        player_to_update.height = data["height"]
+        player_to_update.weight = data["weight"]
+        player_to_update.position = data["position"]
+        player_to_update.address = data["address"]
+        player_to_update.phone_number = data["phone_number"]
+        player_to_update.email = data["email"]
+        player_to_update.team_name = data["team_name"]
+        player_to_update.team_city = data["team_city"]
+        player_to_update.team_state = data["team_state"]
+        player_to_update.bats = data["bats"]
+        player_to_update.throws = data["throws"]
+        db.session.commit()
+        return jsonify({'done': True})
+    except:
+        return jsonify({'Fail': True})
 
 @players_routes.route('/<int:id>/pitcher/', methods=["POST"])
 def create_player_pitcher_eval(id):
