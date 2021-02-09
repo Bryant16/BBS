@@ -15,13 +15,13 @@ const PlayerProfilePage = ()=>{
     const {playerid} = useParams();
     const [playerInfo, setPlayerInfo] = useState(false);
     const dispatch = useDispatch();
-
     useEffect(()=>{
        const getPlayer = async()=>{
             let res = await fetch(`/api/players/${playerid}`)
             if(res.ok){
                 let single_player =await res.json();
                 setPlayerInfo(single_player.player)
+                
             }
         }
         getPlayer()
@@ -29,10 +29,7 @@ const PlayerProfilePage = ()=>{
         dispatch(getPitcherForm(playerid))   
     },[dispatch]);
 
-   const handleEdit = (e)=>{
-       e.preventDefault();
-        history.push(`/newPlayer/${playerid}`)
-   }
+   
     
     return (
     <div className='player_profile_page'>
@@ -41,27 +38,20 @@ const PlayerProfilePage = ()=>{
              <PlayerImage playerid={playerid}/>
             <div className='player_info_container'>
             <div>
-                <Link to={`/players/${playerid}/evaluation`}>Evaluation</Link>
-                <Modal playerid={playerid}/>
-                {/* <button onClick={handleEdit}>edit player</button> */}
-                <h2>first: {playerInfo.first_name}</h2>
-                <h2>last: {playerInfo.last_name}</h2>
-                <h2>height: {playerInfo.height}</h2>
-                <h2>weight: {playerInfo.weight}</h2>
-                <h2>position: {playerInfo.position}</h2>
-                <h2>bats: {playerInfo.bats}</h2>
+                <h2>{(playerInfo.first_name).toUpperCase()} {(playerInfo.last_name).toUpperCase()}</h2>
+                <h2>{playerInfo.height}, {playerInfo.weight}lbs</h2>
+                <h2>{playerInfo.position}, Bat:{playerInfo.bats}, Throws:{playerInfo.throws} </h2>
+               
             </div>
             <div>
                 <h2>address:{playerInfo.address}</h2>
-                <h2>throws:{playerInfo.throws}</h2>
                 <h2>phone_number: {playerInfo.phone_number}</h2>
                 <h2>email:{playerInfo.email}</h2>
                 <h2>team_name: {playerInfo.team_name}</h2>
                 <h2>team_city: {playerInfo.team_city}</h2>
                 <h2>team_state: {playerInfo.team_state}</h2>
-            </div>
-            <div>
-                <h3>VIDEOS</h3>
+                <Link to={`/players/${playerid}/evaluation`}>Evaluation</Link>
+                <Modal playerid={playerid}/>
             </div>
             </div>
         </div>

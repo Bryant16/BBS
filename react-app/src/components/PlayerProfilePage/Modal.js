@@ -47,7 +47,7 @@ export default function SimpleModal({playerid}) {
     <div style={modalStyle} className={classes.paper}>
       <h2 id="simple-modal-title">Edit Player</h2>
       <div className='new_player_modal_container'>
-        <NewPlayerForm playerid={playerid}/>
+        <NewPlayerForm handleClose={handleClose} playerid={playerid}/>
     </div>
     </div>
   );

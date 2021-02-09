@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {useHistory, useParams} from 'react-router-dom';
+import {useHistory, useParams, Redirect} from 'react-router-dom';
 import { Input, Text, Select } from "@chakra-ui/react"
 import './NewPlayerForm.css';
 
-const NewPlayerForm = ({playerid})=>{
+const NewPlayerForm = ({playerid, handleClose})=>{
     const history = useHistory();
     // const {playerid} = useParams();
     const [first_name, setFirstName] = useState("" );
@@ -89,7 +89,9 @@ const NewPlayerForm = ({playerid})=>{
             body:JSON.stringify(newPlayer)
            });
            if(res.ok){
-               history.push(`/players/${playerid}`)
+               handleClose()
+               return <Redirect to={`/players/${playerid}`} />
+            //    history.push(`/players/${playerid}`)
            }
     }
     }
