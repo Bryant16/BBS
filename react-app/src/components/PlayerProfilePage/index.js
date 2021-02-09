@@ -36,23 +36,7 @@ const PlayerProfilePage = ()=>{
         {playerInfo ? (
             <div className='player_profile_container'>
              <PlayerImage playerid={playerid}/>
-             <PlayerCard playerInfo={playerInfo}/>
-            {/* <div className='player_info_container'>
-            <div>
-                <h2>{(playerInfo.first_name).toUpperCase()} {(playerInfo.last_name).toUpperCase()}</h2>
-                <h2>{playerInfo.height}, {playerInfo.weight}lbs</h2>
-                <h2>{playerInfo.position}, Bat:{playerInfo.bats}, Throws: {playerInfo.throws} </h2>
-               
-            </div>
-            <div>
-                <h2>address:{playerInfo.address}</h2>
-                <h2>{playerInfo.phone_number}</h2>
-                <h2>{playerInfo.email}</h2>
-                <h2>Team:{(playerInfo.team_name).toUpperCase()} {playerInfo.team_city},{playerInfo.team_state} </h2>
-                <Link to={`/players/${playerid}/evaluation`}>Evaluation</Link>
-                <Modal playerid={playerid}/>
-            </div>
-            </div> */}
+             <PlayerCard playerid={playerid} playerInfo={playerInfo}/>
         </div>
         ): <h1>loading</h1>}
     </div>

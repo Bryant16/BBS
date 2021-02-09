@@ -1,14 +1,17 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import {useHistory} from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
+import Modal from './Modal';
+import {FaAddressCard, FaBaseballBall} from 'react-icons/fa';
 const useStyles = makeStyles({
   root: {
-    minWidth: 600,
+    minWidth: 300,
+    padding: '1em',
   },
   bullet: {
     display: 'inline-block',
@@ -23,10 +26,14 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard({playerInfo}) {
+export default function SimpleCard({playerid,playerInfo}) {
   const classes = useStyles();
+  const history = useHistory();
   const bull = <span className={classes.bullet}>•</span>;
-
+  const goToEvaluation = (e)=>{
+    e.preventDefault();
+    history.push(`/players/${playerid}/evaluation`)
+  }
   return (
     <Card className={classes.root}>
       <CardContent>
@@ -34,19 +41,21 @@ export default function SimpleCard({playerInfo}) {
           {playerInfo.first_name} {playerInfo.last_name}
         </Typography>
         <Typography variant="h5" component="h2">
-          Th: {playerInfo.throws} Bat: {playerInfo.bats} {playerInfo.position}
+        {playerInfo.position}- {playerInfo.height}, {playerInfo.weight} lbs   
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          adjective
+        Throws: {playerInfo.throws} / Bats: {playerInfo.bats}
         </Typography>
         <Typography variant="body2" component="p">
-          well meaning and kindly.
+        <FaAddressCard /> {playerInfo.address}
           <br />
-          {'"a benevolent smile"'}
+          <FaBaseballBall /> {playerInfo.team_name} {playerInfo.team_city}, {playerInfo.team_state}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button onClick={goToEvaluation} size="small">Evaluation</Button>
+        {/* <Button onClick={editPlayerButton} size='small'>Edit Player</Button> */}
+        <Modal playerid={playerid}/>
       </CardActions>
     </Card>
   );
