@@ -49,11 +49,11 @@ export const removeNote = (note, id)=> async(dispatch)=>{
     method: 'DELETE',
     body: JSON.stringify({note})
   }) 
-  // console.log(note, id, 'inside remove note')
+  
 if(res.ok){
     const deleted = await res.json()
     dispatch(remove(deleted.remove))
-  // console.log(deleted)
+  
 }
 }
 const initialState = [];
@@ -69,7 +69,6 @@ const notesReducer = (state = initialState, action) => {
       return [...state, ...action.all_note];
     }
     case REMOVE:{
-      // let newState = [...state]
       const removedNote = action.noteToDelete;
       const newState = state.filter(note => note.text !== removedNote.text && note.title !== removedNote.titled)
       return newState
