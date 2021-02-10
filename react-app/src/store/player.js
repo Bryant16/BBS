@@ -1,15 +1,27 @@
 import { Editable } from "@chakra-ui/react";
+import { AddIcon } from "@material-ui/data-grid";
 
-const LOAD = "players/LOAD"
-const EDIT = "players/EDIT"
+const LOAD = "players/LOAD";
+const EDIT = "players/EDIT";
+const ADD = "players/ADD";
+const CLEAR = "players/CLEAR";
 
 const load = players => ({
     type: LOAD,
     players,
 });
+
 const editPlayer = updatedPlayer =>({
     type:EDIT,
     updatedPlayer
+});
+
+const addPlayer = newPlayer =>({
+    type:ADD,
+    newPlayer
+});
+export const clearPlayers = ()=>({
+    type:CLEAR
 })
 export const getPlayers = () => async dispatch => {
     const res = await fetch(`/api/players/`)
@@ -30,19 +42,47 @@ export const editPlayerProfile=(playerid, newPlayer)=>async dispatch=>{
             dispatch(editPlayer(playerUpdated.player))
         }
 }
+
+export const addPlayerProfile=(newPlayer)=>async dispatch=>{
+    
+    const response = await fetch('/api/players/',{
+        headers: { 'Content-type': 'application/json' },
+        method: 'POST',
+        body: JSON.stringify(newPlayer)
+    })
+    if(response.ok){
+        const playerToAdd = await response.json();
+        dispatch(addPlayer(playerToAdd.player))
+        return playerToAdd.player.id
+    }
+    
+}
+
 const initialState = {
-    players: {}
+    
 }
 const playersReducer = (state = initialState, action) => {
     switch(action.type) {
         case LOAD: {
-            return {...state, ...action.players}
+            const playersArr = action.players
+            playersArr.unshift({})
+            return {...state, ...playersArr}
         }
         case EDIT:{
             const newState = {...state}
             const updatedPlayer = action.updatedPlayer
             newState[updatedPlayer.id] = updatedPlayer
             return newState
+        }
+        case ADD:{
+            const currState = {...state}
+            const addPlayer = action.newPlayer;
+            const id = addPlayer.id
+            currState[id] = addPlayer;
+            return currState;
+        }
+        case CLEAR:{
+            return {}
         }
         default:
         return state

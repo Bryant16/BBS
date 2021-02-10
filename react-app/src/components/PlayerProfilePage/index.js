@@ -40,12 +40,12 @@ const PlayerProfilePage = ()=>{
     console.log(players[playerid],'new players state')
     return (
     <div className='player_profile_page'>
-        {playerInfo ? (
+        {players && (
             <div className='player_profile_container'>
              <PlayerImage playerid={playerid}/>
              {players[playerid] ? <PlayerCard playerid={playerid} players={players}/>:<h1>loading</h1>}
         </div>
-        ): <h1>loading</h1>}
+        )}
     </div>
     )
 }

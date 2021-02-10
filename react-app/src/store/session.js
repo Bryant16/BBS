@@ -55,6 +55,6 @@ export const SignUp = (username, email, password) => async dispatch => {
   throw outErr;
 };
 
-export default function sessionReducer (state = { user: null }, action) {
+export default function sessionReducer (state = { user: null}, action) {
   return (action.type === USER) ? { ...state, user: action.user} : state;
 }
