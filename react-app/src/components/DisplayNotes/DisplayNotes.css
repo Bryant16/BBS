@@ -1,3 +1,17 @@
 .notes_container{
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    
+    /* height: 60vh; */
+    /* width: 60vw; */
+}
+
+.notes_container button{
+    border: none;
+    outline: none;
+    background-color: white;
+    
+}
+
+.notes_container li {
+    list-style: none;
 }

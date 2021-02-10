@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import LogoutButton from "./auth/LogoutButton";
 import "./NavBar.css";
 import logo from "./auth/new_logo_bbs.png";
-
+import Button from '@material-ui/core/Button';
 const NavBar = () => {
   const user = useSelector((state) => state.session.user);
   return (
@@ -38,7 +38,7 @@ const NavBar = () => {
           <div className='navbar_button_container'>
           <div>
             <NavLink to="/newPlayer">
-              <button>New Player</button>
+              <Button variant="contained" color="primary">New Player</Button>
             </NavLink>
           </div>
           <div>

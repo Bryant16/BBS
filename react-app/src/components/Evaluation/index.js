@@ -7,6 +7,7 @@ import Notes from '../Notes';
 import {getAllNotes} from "../../store/note";
 import DisplayNotes from '../DisplayNotes'
 import {clearNotes} from '../../store/note';
+import Button from '@material-ui/core/Button';
 import './Evaluation.css';
 
 const Evaluation = () => {
@@ -44,9 +45,9 @@ const Evaluation = () => {
  
   return (
       <div className='player_evaluation_and_player_notes_container'>
-        <div>
-        <button onClick={toggleNoteEvals}>{toggle}</button>
-        <button onClick={(e)=>history.push(`/players/${playerid}`)}>Player Profile</button>
+        <div className='eval_nav_buttons'>
+        <Button className='eval_nav_buttons' variant="contained" color="primary" onClick={toggleNoteEvals}>{toggle}</Button>
+        <Button className='eval_nav_buttons' variant="contained" color="primary" onClick={(e)=>history.push(`/players/${playerid}`)}>Player Profile</Button>
         </div>
         {toggle === 'Notes' ?(<div>
           {!playerInfo ? <h1>loading</h1>:null}

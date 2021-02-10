@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import {clearPlayers} from '../../store/player'
 import { LogOut } from '../../store/session';
+import Button from '@material-ui/core/Button';
 export default function LogoutButton () {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -17,9 +18,9 @@ export default function LogoutButton () {
 
   return user
     ? (
-      <button onClick={onLogout}>
+      <Button variant="contained" color="primary" onClick={onLogout}>
         Logout
-      </button>
+      </Button>
       )
     : null;
 }
