@@ -8,13 +8,17 @@ import './PlayerProfilePage.css';
 import PlayerImage from './PlayerImage';
 import Modal from './Modal';
 import PlayerCard from './PlayerInfoCard';
+import {getPlayers} from '../../store/player';
 
 const PlayerProfilePage = ()=>{
     const history = useHistory();
     const { user } = useSelector((state) => state.session);
     const {playerid} = useParams();
-    const [playerInfo, setPlayerInfo] = useState(false);
+    const players = useSelector(state=> state.players)
+    const [playerInfo, setPlayerInfo] = useState(players);
     const dispatch = useDispatch();
+    // console.log(players,'this oneeeeeeee')
+    // const playerInfoSingle = players.filter(player=> player.id !== playerid)
     useEffect(()=>{
        const getPlayer = async()=>{
             let res = await fetch(`/api/players/${playerid}`)
@@ -28,15 +32,18 @@ const PlayerProfilePage = ()=>{
         dispatch(getNonePitcherForm(playerid))
         dispatch(getPitcherForm(playerid))   
     },[dispatch]);
-
+    useEffect(()=>{
+        console.log('did this run')
+        dispatch(getPlayers())
+    },[dispatch])
    
-    
+    console.log(players[playerid],'new players state')
     return (
     <div className='player_profile_page'>
         {playerInfo ? (
             <div className='player_profile_container'>
              <PlayerImage playerid={playerid}/>
-             <PlayerCard playerid={playerid} playerInfo={playerInfo}/>
+             {players[playerid] ? <PlayerCard playerid={playerid} players={players}/>:<h1>loading</h1>}
         </div>
         ): <h1>loading</h1>}
     </div>

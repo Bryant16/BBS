@@ -26,9 +26,12 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard({playerid,playerInfo}) {
+export default function SimpleCard({playerid, players}) {
   const classes = useStyles();
   const history = useHistory();
+  let singlePlayer= players[playerid]
+  console.log(singlePlayer, 'inside player card')
+  
   const bull = <span className={classes.bullet}>•</span>;
   const goToEvaluation = (e)=>{
     e.preventDefault();
@@ -38,18 +41,18 @@ export default function SimpleCard({playerid,playerInfo}) {
     <Card className={classes.root}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-          {playerInfo.first_name} {playerInfo.last_name}
+          {singlePlayer.first_name} {singlePlayer.last_name}
         </Typography>
         <Typography variant="h5" component="h2">
-        {playerInfo.position}- {playerInfo.height}, {playerInfo.weight} lbs   
+        {singlePlayer.position}- {singlePlayer.height}, {singlePlayer.weight} lbs   
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-        Throws: {playerInfo.throws} / Bats: {playerInfo.bats}
+        Throws: {singlePlayer.throws} / Bats: {singlePlayer.bats}
         </Typography>
         <Typography variant="body2" component="p">
-        <FaAddressCard /> {playerInfo.address}
+        <FaAddressCard /> {singlePlayer.address}
           <br />
-          <FaBaseballBall /> {playerInfo.team_name} {playerInfo.team_city}, {playerInfo.team_state}
+          <FaBaseballBall /> {singlePlayer.team_name} {singlePlayer.team_city}, {singlePlayer.team_state}
         </Typography>
       </CardContent>
       <CardActions>

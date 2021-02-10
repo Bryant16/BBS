@@ -49,11 +49,9 @@ export const removeNote = (note, id)=> async(dispatch)=>{
     method: 'DELETE',
     body: JSON.stringify({note})
   }) 
-  
 if(res.ok){
     const deleted = await res.json()
     dispatch(remove(deleted.remove))
-  
 }
 }
 const initialState = [];

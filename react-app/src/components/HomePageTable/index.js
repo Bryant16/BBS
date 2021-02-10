@@ -43,11 +43,13 @@ export default function DataGridDemo() {
         const id = e.rowIds[0]
         history.push(`/players/${id}`)
     }
-    const { players } = useSelector((state) => state.players);
-console.log('these are the players',players)
+    const players  = useSelector((state) => state.players);
+console.log('these are the players',Object.values(players))
+const newArrOfPlayers = Object.values(players)
+const end = newArrOfPlayers.length -1 
   return (
     <div style={{ height: '70vh', width: '50%' }}>
-      <DataGrid rows={players} columns={columns} pageSize={10} checkboxSelection  onSelectionChange={click} />
+      <DataGrid rows={newArrOfPlayers.slice(0,end)} columns={columns} pageSize={10} checkboxSelection  onSelectionChange={click} />
     </div>
   );
 }

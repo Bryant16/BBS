@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {useHistory, useParams, Redirect} from 'react-router-dom';
 import { Input, Text, Select } from "@chakra-ui/react"
 import './NewPlayerForm.css';
+import {editPlayerProfile} from '../../store/player';
 
 const NewPlayerForm = ({playerid, handleClose})=>{
     const history = useHistory();
-    // const {playerid} = useParams();
+    const dispatch = useDispatch();
     const [first_name, setFirstName] = useState("" );
     const [last_name, setLastName] = useState("");
     const [height, setHeight] = useState("");
@@ -27,7 +29,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
         const getPlayer = async()=>{
             let res = await fetch(`/api/players/${playerid}`)
             if(res.ok){
-                let single_player =await res.json();
+                let single_player = await res.json();
                 setPlayerInfo(single_player.player)
                 setLoad(true)
             }
@@ -51,8 +53,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
         }catch(e){
         }
     },[loaded])
-
-    console.log('playerinfo',playerInfo)
+  
     const registerClick = async(e)=>{
         e.preventDefault();
         const newPlayer = {
@@ -70,8 +71,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
             bats,
             throws,
         }
-        console.log('new player', newPlayer)
-        console.log(priorForm,'prior form')
+       
         if(!priorForm){
         const response = await fetch('/api/players/',{
             headers: { 'Content-type': 'application/json' },
@@ -83,16 +83,17 @@ const NewPlayerForm = ({playerid, handleClose})=>{
             history.push(`/players/${id}`)
         }
     }else{
-        const res = await fetch(`/api/players/${playerid}`,{
-            headers:{'Content-type': 'application/json'},
-            method: 'PUT',
-            body:JSON.stringify(newPlayer)
-           });
-           if(res.ok){
-               handleClose()
-               return <Redirect to={`/players/${playerid}`} />
-            //    history.push(`/players/${playerid}`)
-           }
+        // const res = await fetch(`/api/players/${playerid}`,{
+        //     headers:{'Content-type': 'application/json'},
+        //     method: 'PUT',
+        //     body:JSON.stringify(newPlayer)
+        //    });
+        handleClose()
+        dispatch(editPlayerProfile(playerid, newPlayer))
+        //    if(res.ok){
+        //        return <Redirect to={`/players/${playerid}`} />
+        //     //    history.push(`/players/${playerid}`)
+        //    }
     }
     }
     let playerPositions = ['P','C','1B','2B','3B','SS','RF','LF','CF']

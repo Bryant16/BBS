@@ -9,14 +9,16 @@ import './home.css';
 
 const Home = () => {
   const { user } = useSelector((state) => state.session);
-  const { players } = useSelector((state) => state.players);
+  const players  = useSelector((state) => state.players);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPlayers())
   }, [dispatch]);
+ 
   return user ? (
     <div className='players_library_container'>
-      {players.length ? (
+      {players ? (
+        // <h1>hi</h1>
         <DataTable />
         // players.map((player) => 
         // <HomePagePlayerCard player={player} />
