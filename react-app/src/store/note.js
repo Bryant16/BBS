@@ -1,6 +1,7 @@
 const CREATE = "notes/CREATE";
 const ALL = "notes/ALL";
 const CLEARNOTES = "notes/CLEARNOTES";
+const REMOVE = "notes/REMOVE";
 
 const create = (note) => ({
   type: CREATE,
@@ -11,6 +12,10 @@ const grabAll = (all_note) => ({
   type: ALL,
   all_note,
 });
+const remove = (noteToDelete)=>({
+  type: REMOVE,
+  noteToDelete
+})
 export const clearNotes = ()=>({
   type: CLEARNOTES  
 })
@@ -38,7 +43,19 @@ export const createNote = (newNote) => async (dispatch) => {
     dispatch(create(notes.note));
   }
 };
-
+export const removeNote = (note, id)=> async(dispatch)=>{
+  const res = await fetch(`/api/notes/players/${id}`,{
+    headers: { 'Content-type': 'application/json' },
+    method: 'DELETE',
+    body: JSON.stringify({note})
+  }) 
+  // console.log(note, id, 'inside remove note')
+if(res.ok){
+    const deleted = await res.json()
+    dispatch(remove(deleted.remove))
+  // console.log(deleted)
+}
+}
 const initialState = [];
 const notesReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -50,6 +67,12 @@ const notesReducer = (state = initialState, action) => {
     }
     case ALL: {
       return [...state, ...action.all_note];
+    }
+    case REMOVE:{
+      // let newState = [...state]
+      const removedNote = action.noteToDelete;
+      const newState = state.filter(note => note.text !== removedNote.text && note.title !== removedNote.titled)
+      return newState
     }
     case CLEARNOTES: {
       return []

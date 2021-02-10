@@ -32,7 +32,7 @@ const Evaluation = () => {
     dispatch(clearNotes())
     dispatch(getAllNotes(playerid))
     setNotes(true)
-  },[gotNotes])
+  },[])
  const toggleNoteEvals = (e)=>{
    e.preventDefault()
    if(toggle === 'Notes'){

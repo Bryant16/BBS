@@ -42,6 +42,6 @@ def delete_note(id):
                                            Note.text == text).first()
         db.session.delete(note_to_delete)
         db.session.commit()
-        return jsonify({'delete': True})
+        return jsonify({'remove': note_to_info})
     except:
-        return jsonify({'delete':False})
+        return jsonify({'remove': False})

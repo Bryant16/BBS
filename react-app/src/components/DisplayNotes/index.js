@@ -1,21 +1,22 @@
 import React, {useState, useEffect} from "react";
-
+import {removeNote} from '../../store/note';
+import {useDispatch} from 'react-redux';
 import './DisplayNotes.css';
+
 const DisplayNotes = ({playerid, notes})=>{
-    
+    const dispatch = useDispatch();
     const deleteNote= async(note, id)=>{
-       const res = await fetch(`/api/notes/players/${id}`,{
-        headers: { 'Content-type': 'application/json' },
-        method: 'DELETE',
-        body: JSON.stringify({note})
-    }) 
-    if(res.ok){
-        const deleted = await res.json()
+        dispatch(removeNote(note,id))
+    //    const res = await fetch(`/api/notes/players/${id}`,{
+    //     headers: { 'Content-type': 'application/json' },
+    //     method: 'DELETE',
+    //     body: JSON.stringify({note})
+    // }) 
+    // if(res.ok){
+    //     const deleted = await res.json()
       
-    }
+    // }
     
-        
-       
     }
     return (
         <div className='notes_container'>
@@ -44,7 +45,7 @@ const DisplayNotes = ({playerid, notes})=>{
             <form onSubmit={(e)=>{
                 e.preventDefault()
                 deleteNote(note,playerid)
-                console.log(note, playerid)
+                // console.log(note, playerid)
             }}>
                 <li>{note.text}</li>
                 <button type='submit'>Delete</button>
