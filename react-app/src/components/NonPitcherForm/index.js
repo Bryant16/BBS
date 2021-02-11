@@ -2,6 +2,7 @@ import React,{useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {getNonePitcherForm} from '../../store/nonPitcher';
+import './NonPitcherForm.css';
 
 const NonPitcherForm = ({playerId})=>{
 const history = useHistory();
@@ -90,7 +91,7 @@ const submitEval = async(e)=>{
 }
 
 return (
-    <div className='pitcher_form_container'>
+    <div className='non_pitcher_form_container'>
         {nonPitcher ? (<form>
             <div>
             <label>Hiting</label>

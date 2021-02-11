@@ -21,10 +21,21 @@
     display: flex;
     flex-direction: column;
     align-items:center;
-    min-height: 10vh;
+    justify-content: flex-start;
+    min-height: 15vh;
 
 }
+.note_input_container  .MuiButton-contained{
+    margin: 0!important;
+    padding:0 !important ;
+}
+.note_input_container form {
+    display: flex;
 
+}
+.note_input_container form select {
+    min-width: 12vw;
+}
 .notes_categories_containers {
     /* flex-grow: 2; */
     box-sizing: border-box;

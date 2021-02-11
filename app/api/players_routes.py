@@ -8,7 +8,7 @@ players_routes = Blueprint('players', __name__)
 @players_routes.route('/')
 def players():
     players = Player.query.filter(
-        Player.user_id == current_user.id).all()
+        Player.user_id == current_user.id).order_by(Player.first_name).all()
     return jsonify({"players": [player.to_dict() for player in players]})
 
 
@@ -34,7 +34,7 @@ def create_player():
         )
         db.session.add(new_player)
         db.session.commit()
-        return jsonify({'player': new_player.to_dict()})
+        return jsonify({'id': new_player.id})
     except:
         return jsonify({'errors': True})
 
@@ -67,7 +67,7 @@ def update_player(id):
         player_to_update.bats = data["bats"]
         player_to_update.throws = data["throws"]
         db.session.commit()
-        return jsonify({'player': player_to_update.to_dict()})
+        return jsonify({'done': True})
     except:
         return jsonify({'Fail': True})
 
