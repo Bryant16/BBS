@@ -15,7 +15,7 @@
     align-self: center;
     border-radius: 2em;
     border: 1px solid lightgray;
-    box-shadow: 4px 4px 7px -2px rgba(53,53,53,0.66);   ;
+    box-shadow: 4px 4px 7px -2px rgba(53,53,53,0.66);   
 }
 
 .login_form_container form {

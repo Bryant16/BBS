@@ -1,0 +1,15 @@
+.div__container_form{
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+    font-family: Roboto;
+}
+
+.signup__btn{
+    align-self:center;
+}
+.signup__btn button{
+    /* padding: 4em; */
+    min-width: 8vw;
+}
+
