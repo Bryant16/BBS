@@ -8,6 +8,8 @@ import {getAllNotes} from "../../store/note";
 import DisplayNotes from '../DisplayNotes'
 import {clearNotes} from '../../store/note';
 import Button from '@material-ui/core/Button';
+import {getPitcherForm} from '../../store/Pitcher';
+import {getNonePitcherForm} from '../../store/nonPitcher';
 import './Evaluation.css';
 
 const Evaluation = () => {
@@ -31,6 +33,8 @@ const Evaluation = () => {
 
   useEffect(()=>{
     dispatch(clearNotes())
+    dispatch(getNonePitcherForm(playerid))
+    dispatch(getPitcherForm(playerid))
     dispatch(getAllNotes(playerid))
     setNotes(true)
   },[])

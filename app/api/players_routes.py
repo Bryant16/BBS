@@ -100,15 +100,15 @@ def create_player_pitcher_eval(id):
 @players_routes.route('/<int:id>/nonpitcher/')
 def get_non_pitcher_eval(id):
     player = Player.query.filter(
-        Player.id == id, Player.user_id == current_user.id).all()
-    return jsonify([player[0].get_non_pitcher()])
+        Player.id == id, Player.user_id == current_user.id).first()
+    return jsonify(player.get_non_pitcher())
 
 
 @players_routes.route('/<int:id>/pitcher/')
 def get_pitcher_eval(id):
     player = Player.query.filter(
-        Player.id == id, Player.user_id == current_user.id).all()
-    return jsonify([player[0].get_pitcher()])
+        Player.id == id, Player.user_id == current_user.id).first()
+    return jsonify(player.get_pitcher())
 
 
 @players_routes.route('/<int:id>/nonpitcher/', methods=["POST"])

@@ -7,7 +7,7 @@ import './NonPitcherForm.css';
 const NonPitcherForm = ({playerId})=>{
 const history = useHistory();
 const dispatch = useDispatch();
-const {nonPitcher} = useSelector(state=> state.nonPitcher);
+const nonPitcher = useSelector(state=> state.nonPitcher);
 const [loaded, setLoaded] = useState(nonPitcher);
 const [priorEval, setPriorEval] = useState(false);
 const [hitting, setHitting] = useState("" );
@@ -27,9 +27,8 @@ const [opp, setOpp] = useState('');
 
 useEffect(()=>{
     dispatch(getNonePitcherForm(playerId))
-    
     try{
-        if(nonPitcher.length){
+        if(nonPitcher[0]){
         setHitting(nonPitcher[0].hitting_ability)
         setPower(nonPitcher[0].power)
         setRunning(nonPitcher[0].running_speed)

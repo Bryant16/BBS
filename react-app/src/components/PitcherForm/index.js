@@ -6,7 +6,7 @@ import {getPitcherForm} from '../../store/Pitcher';
 const PitcherForm = ({playerId})=>{
     const history = useHistory();
     const dispatch = useDispatch();
-    const {pitcher} = useSelector(state=> state.pitcher);
+    const pitcher = useSelector(state=> state.pitcher);
     const [priorEval, setPriorEval] = useState(false);
     const [fastball, setFastball] = useState('');
     const [curve, setCurve] = useState('');
@@ -24,7 +24,7 @@ const PitcherForm = ({playerId})=>{
     useEffect(()=>{
         dispatch(getPitcherForm(playerId))
         try{
-            if(pitcher.length){
+            if(pitcher[0]){
             setFastball(pitcher[0].fast_ball)
             setCurve(pitcher[0].curve)
             setControl(pitcher[0].control)
@@ -41,7 +41,7 @@ const PitcherForm = ({playerId})=>{
         }}catch(e){
         }
     },[])
-    console.log(pitcher)
+    console.log(pitcher,'this is the pitcher')
     const submitEval = async(e)=>{
         e.preventDefault();
         const new_pitcher_eval= {
