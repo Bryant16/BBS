@@ -65,8 +65,10 @@ const playersReducer = (state = initialState, action) => {
     switch(action.type) {
         case LOAD: {
             const playersArr = action.players
-            playersArr.unshift({})
-            return {...state, ...playersArr}
+            const newStates = {}
+            playersArr.forEach(player=>
+                 newStates[player.id] = player)
+            return {...state, ...newStates }
         }
         case EDIT:{
             const newState = {...state}

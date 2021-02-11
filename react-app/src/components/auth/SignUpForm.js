@@ -42,11 +42,8 @@ const SignUpForm = () => {
   const updateRepeatPassword = ({ target: { value } }) => {
     setRepeatPassword(value);
   };
-  useEffect(()=>{
-    
-    // console.log('inside',user)
-  },[user])
-  // console.log('outside',user)
+  
+  
   return user
     ? <Redirect to='/' />
     : (
