@@ -9,7 +9,6 @@ const NonPitcherForm = ({playerId})=>{
 const history = useHistory();
 const dispatch = useDispatch();
 const nonPitcher = useSelector(state=> state.nonPitcher);
-const [loaded, setLoaded] = useState(nonPitcher);
 const [priorEval, setPriorEval] = useState(false);
 const [hitting, setHitting] = useState(0);
 const [power, setPower] = useState(0);
@@ -66,7 +65,7 @@ const submitEval = async(e)=>{
         away,
         opp
     }
-
+    console.log(fielding, 'fielding')
    if(!priorEval){
         const response = await fetch(`/api/players/${playerId}/nonpitcher/`,{
         headers: { 'Content-type': 'application/json'},
@@ -75,7 +74,7 @@ const submitEval = async(e)=>{
         });
         if(response.ok){
             const json = await response.json();
-            history.push(`/players/${playerId}`)
+            // history.push(`/players/${playerId}`)
             }
     }else{
         const res = await fetch(`/api/players/${playerId}/nonpitcher/`,{
@@ -84,93 +83,80 @@ const submitEval = async(e)=>{
         body:JSON.stringify(new_non_pitcher_eval)
        });
        if(res.ok){
-           history.push(`/players/${playerId}`)
+        //    history.push(`/players/${playerId}`)
        }
    }
     
 }
 
+const Categories = ({ title, value, set, submitEv }) => {
+    return (
+      <div>
+        <div>
+          <label>{title}</label>
+        </div>
+        <div>
+          {value}
+          <EvalButtons setType={set} type={value} submitEv={submitEv} />
+        </div>
+      </div>
+    );
+  };
+ 
+  
 return (
     <div className='non_pitcher_form_container'>
         {nonPitcher ? (<form>
-            <div>
-            <label>Hiting</label>
-            {hitting}
-            <EvalButtons setType={setHitting} type={hitting} />
+            <div className="category_pitcher_container">
+               <Categories title={'Hitting'} value={hitting} set={setHitting} submitEv={submitEval} /> 
+               <Categories title={'Power'} value={power} set={setPower} submitEv={submitEval} /> 
+               <Categories title={'Running Speed'} value={running} set={setRunning} submitEv={submitEval}/> 
+               <Categories title={'Base Running'} value={baseRunning} set={setBaseRunning} submitEv={submitEval} /> 
+               <Categories title={'Arm Strength'} value={armStr} set={setArmStr} submitEv={submitEval}/> 
+               <Categories title={'Arm Accuracy'} value={armAcc} set={setArmAcc} submitEv={submitEval}/> 
+               <Categories title={'Fielding'} value={fielding} set={setFielding} submitEv={submitEval}/> 
+               <Categories title={'Arm Range'} value={armRange} set={setArmRange} submitEv={submitEval}/> 
+               <Categories title={'Baseball Instinct'} value={instinct} set={setInstinct} submitEv={submitEval}/> 
+               <Categories title={'Aggresiveness'} value={aggressive} set={setAggressive} submitEv={submitEval}/> 
+                <div>
+                    <input 
+                    className='text_input_pitcher'
+                    type='text'
+                    value={pull}
+                    onChange={(e)=>{
+                        setPull(e.target.value)
+                        submitEval(e)
+                        }}
+                    placeholder='Pull'
+                    />
+                </div>
+                <div>
+                    
+                    <input 
+                    className='text_input_pitcher'
+                    type='text'
+                    value={away}
+                    onChange={(e)=>{
+                        setAway(e.target.value)
+                        submitEval(e)
+                    }}
+                    placeholder='Str. Away'
+                    />
+                </div>
+                <div>
+                    <input 
+                    className='text_input_pitcher'
+                    type='text'
+                    value={opp}
+                    onChange={(e)=>{
+                        setOpp(e.target.value)
+                        submitEval(e)
+                    }}
+                    placeholder='Opp. Field'
+                    />
+                </div>
+                <button onClick={submitEval}>Submit</button>
             </div>
-            <div>
-            <label>Power</label>
-            { power}
-            <EvalButtons setType={setPower} type={power} />
-            </div>
-            <div>
-            <label>Running Speed</label>
-            {running}
-            <EvalButtons setType={setRunning} type={running} />
-            </div>
-            <div>
-            <label>Base Running</label>
-            {baseRunning}
-            <EvalButtons setType={setBaseRunning} type={baseRunning} />
-            </div>
-            <div>
-            <label>Arm Strength</label>
-            {armStr}
-            <EvalButtons setType={setArmStr} type={armStr} />
-            </div>
-            <div>
-            <label>Arm Accuracy</label>
-            {armAcc}
-            <EvalButtons setType={setArmAcc} type={armAcc} />
-            </div>
-            <div>
-            <label>Fielding</label>
-            {fielding}
-            <EvalButtons setType={setFielding} type={fielding} />
-            </div>
-            <div>
-            <label>Arm Range</label>
-            {armRange}
-            <EvalButtons setType={setArmRange} type={armRange} />
-            </div>
-            <div>
-            <label>Baseball Instinct</label>
-            {instinct}
-            <EvalButtons setType={setInstinct} type={instinct} />
-            </div>
-            <div>
-            <label>Aggresiveness</label>
-            {aggressive}
-            <EvalButtons setType={setAggressive} type={aggressive} />
-            </div>
-            <div>
-            <label>Pull</label>
-            <input 
-            type='text'
-            value={pull}
-            onChange={(e)=>setPull(e.target.value)}
-            placeholder='Pull'
-            />
-            </div>
-            <div>
-            <label>Strength Away</label>
-            <input 
-            type='text'
-            value={away}
-            onChange={(e)=>setAway(e.target.value)}
-            placeholder='Str Away'
-            />
-            </div>
-            <div>
-            <label>Opposite Field</label>
-            <input 
-            type='text'
-            value={opp}
-            onChange={(e)=>setOpp(e.target.value)}
-            placeholder='Opp Field'
-            />
-            </div>
-            <button onClick={submitEval}>Submit</button>
         </form>
         ):<h1>loading</h1>
 }

@@ -2,25 +2,27 @@ import React from "react";
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 
-const ButtonsForEval = ({setType, type}) => {
+const ButtonsForEval = ({setType, type, submitEv}) => {
   return (
     <>
     <ButtonGroup disableElevation variant="contained" color="primary">
       <Button
-      style={{'background-color':'darkgreen',"margin-left":'.3em'}}
+      style={{'backgroundColor':'darkgreen',"marginLeft":'.3em'}}
         type="Integer"
         onClick={(e) => {
           e.preventDefault();
-          return setType(type + 5);
+          setType(type + 5)
+          submitEv(e)
         }}
       >
         +
       </Button>
       <Button
-        style={{'background-color':'red'}}
+        style={{'backgroundColor':'red'}}
         onClick={(e) => {
           e.preventDefault();
-          return setType(type - 5);
+          setType(type - 5);
+          submitEv(e)
         }}
       >
         -

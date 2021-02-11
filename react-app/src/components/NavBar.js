@@ -14,17 +14,17 @@ const NavBar = () => {
           <p>Bryant Klein</p>
           <p>
           <a href="https://github.com/Bryant16">
-            <i class="fab fa-github" />
+            <i className="fab fa-github" />
           </a>
           </p>
           <p>
           <a href="https://www.linkedin.com/in/bryant-klein-927915134/">
-            <i class="fab fa-linkedin-in" />
+            <i className="fab fa-linkedin-in" />
           </a>
           </p>
           <p>
           <a href='mailto:kleinb1616@gmail.com'>
-              <i class='far fa-envelope' />
+              <i className='far fa-envelope' />
             </a>
           </p>
         </div>

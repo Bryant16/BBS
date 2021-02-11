@@ -84,7 +84,7 @@ const PitcherForm = ({ playerId }) => {
     }
   };
 
-  const Categories = ({ title, value, set }) => {
+  const Categories = ({ title, value, set, submitEv }) => {
     return (
       <div>
         <div>
@@ -92,39 +92,38 @@ const PitcherForm = ({ playerId }) => {
         </div>
         <div>
           {value}
-          <EvalButtons setType={set} type={value} />
+          <EvalButtons setType={set} type={value} submitEv={submitEv}/>
         </div>
       </div>
     );
   };
-  const handleArm = (e) => {
-    // e.stopPro()
-    setArm(e.target.value);
-  };
+
 
 
   return (
-    <div className="pitcher_form_container ">
+    <div className="pitcher_form_container">
       {pitcher ? (
         <form>
           <div className="category_pitcher_container">
-            <Categories title={"Fastball"} value={fastball} set={setFastball} />
-            <Categories title={"Curve"} value={curve} set={setCurve} />
-            <Categories title={"Control"} value={control} set={setControl} />
-            <Categories title={"Change of Pace"} value={pace} set={setPace} />
-            <Categories title={"Slider"} value={slider} set={setSlider} />
+            <Categories title={"Fastball"} value={fastball} set={setFastball} submitEv={submitEval}/>
+            <Categories title={"Curve"} value={curve} set={setCurve} submitEv={submitEval}/>
+            <Categories title={"Control"} value={control} set={setControl} submitEv={submitEval}/>
+            <Categories title={"Change of Pace"} value={pace} set={setPace} submitEv={submitEval}/>
+            <Categories title={"Slider"} value={slider} set={setSlider} submitEv={submitEval}/>
             <Categories
               title={"Knuckle Ball"}
               value={knuckle}
               set={setKnuckle}
+              submitEv={submitEval}
             />
-            <Categories title={"Other"} value={other} set={setOther} />
-            <Categories title={"Poise"} value={poise} set={setPoise} />
-            <Categories title={"Instinct"} value={instinct} set={setInstinct} />
+            <Categories title={"Other"} value={other} set={setOther} submitEv={submitEval}/>
+            <Categories title={"Poise"} value={poise} set={setPoise} submitEv={submitEval}/>
+            <Categories title={"Instinct"} value={instinct} set={setInstinct} submitEv={submitEval}/>
             <Categories
               title={"Aggresiveness"}
               value={aggressive}
               set={setAggressive}
+              submitEv={submitEval}
             />
           </div>
           <div>
@@ -132,7 +131,10 @@ const PitcherForm = ({ playerId }) => {
               className='text_input_pitcher'
               type="text"
               value={arm}
-              onChange={(e) => setArm(e.target.value)}
+              onChange={(e) =>{
+                setArm(e.target.value)
+                submitEval(e)
+              }} 
               placeholder={"Arm Action"}
             />
             <div>
@@ -140,7 +142,10 @@ const PitcherForm = ({ playerId }) => {
                 type="text"
                 className='text_input_pitcher'
                 value={delivery}
-                onChange={(e) => setDelivery(e.target.value)}
+                onChange={(e) =>{
+                  setDelivery(e.target.value)
+                  submitEval(e)
+                }} 
                 placeholder={"Delivery"}
               />
             </div>
