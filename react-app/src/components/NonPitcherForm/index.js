@@ -67,6 +67,8 @@ const submitEval = async(e)=>{
     }
     console.log(fielding, 'fielding')
    if(!priorEval){
+    dispatch(getNonePitcherForm(playerId))
+    setPriorEval(true)
         const response = await fetch(`/api/players/${playerId}/nonpitcher/`,{
         headers: { 'Content-type': 'application/json'},
         method: 'POST',

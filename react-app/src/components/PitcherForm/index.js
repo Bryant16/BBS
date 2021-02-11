@@ -61,6 +61,8 @@ const PitcherForm = ({ playerId }) => {
       delivery,
     };
     if (!priorEval) {
+      dispatch(getPitcherForm(playerId));
+      setPriorEval(true);
       const response = await fetch(`/api/players/${playerId}/pitcher/`, {
         headers: { "Content-type": "application/json" },
         method: "POST",
@@ -68,7 +70,7 @@ const PitcherForm = ({ playerId }) => {
       });
       if (response.ok) {
         const json = await response.json();
-        history.push(`/players/${playerId}`);
+        // history.push(`/players/${playerId}`);
       } else {
         alert("Error Player Could not be created");
       }
@@ -79,7 +81,7 @@ const PitcherForm = ({ playerId }) => {
         body: JSON.stringify(new_pitcher_eval),
       });
       if (res.ok) {
-        history.push(`/players/${playerId}`);
+        // history.push(`/players/${playerId}`);
       }
     }
   };
