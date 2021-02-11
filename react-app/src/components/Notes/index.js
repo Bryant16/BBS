@@ -32,7 +32,7 @@ const Notes = ({playerId})=>{
         <div className='note_input_container'> 
         <form> 
             <div>
-            <select class="form-select" id="autoSizingSelect" onChange={(e)=> setTitle(e.target.value)}>
+            <select className="form-select" id="autoSizingSelect" onChange={(e)=> setTitle(e.target.value)}>
             <option value={'Abilities'} >Abilities</option>
             <option value={'Physical Description'} >Physical Description</option>
             <option value={'Weakness'}>Weakness</option>
@@ -40,7 +40,7 @@ const Notes = ({playerId})=>{
             </select>
             </div> 
         
-        <TextareaAutosize  class="form-control" placeholder="Notes"
+        <TextareaAutosize  className="form-control" placeholder="Notes"
         type='text'
         value={note}
         rowsMin={1}
