@@ -3,6 +3,7 @@ import {useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {getNonePitcherForm} from '../../store/nonPitcher';
 import './NonPitcherForm.css';
+import EvalButtons from './ButtonsForEval';
 
 const NonPitcherForm = ({playerId})=>{
 const history = useHistory();
@@ -10,16 +11,16 @@ const dispatch = useDispatch();
 const nonPitcher = useSelector(state=> state.nonPitcher);
 const [loaded, setLoaded] = useState(nonPitcher);
 const [priorEval, setPriorEval] = useState(false);
-const [hitting, setHitting] = useState("" );
-const [power, setPower] = useState('');
-const [running, setRunning] = useState('');
-const [baseRunning, setBaseRunning] = useState('');
-const [armStr, setArmStr] = useState('');
-const [armAcc, setArmAcc] = useState('');
-const [fielding, setFielding] = useState('');
-const [armRange, setArmRange] = useState('');
-const [instinct, setInstinct] = useState('');
-const [aggressive, setAggressive] = useState('');
+const [hitting, setHitting] = useState(0);
+const [power, setPower] = useState(0);
+const [running, setRunning] = useState(0);
+const [baseRunning, setBaseRunning] = useState(0);
+const [armStr, setArmStr] = useState(0);
+const [armAcc, setArmAcc] = useState(0);
+const [fielding, setFielding] = useState(0);
+const [armRange, setArmRange] = useState(0);
+const [instinct, setInstinct] = useState(0);
+const [aggressive, setAggressive] = useState(0);
 const [pull, setPull] = useState('');
 const [away, setAway] = useState('');
 const [opp, setOpp] = useState('');
@@ -94,74 +95,53 @@ return (
         {nonPitcher ? (<form>
             <div>
             <label>Hiting</label>
-            <input 
-            type='Integer'
-            value={hitting}
-            // onMouseEnter={hitFunc}
-            onChange={(e)=>setHitting(e.target.value)} />
+            {hitting}
+            <EvalButtons setType={setHitting} type={hitting} />
             </div>
             <div>
             <label>Power</label>
-            <input 
-            type='Integer'
-            value={ power}
-            onChange={(e)=>setPower(e.target.value)} />
+            { power}
+            <EvalButtons setType={setPower} type={power} />
             </div>
             <div>
             <label>Running Speed</label>
-            <input 
-            type='Integer'
-            value={running }
-            onChange={(e)=>setRunning(e.target.value)} />
+            {running}
+            <EvalButtons setType={setRunning} type={running} />
             </div>
             <div>
             <label>Base Running</label>
-            <input 
-            type='Integer'
-            value={baseRunning}
-            onChange={(e)=>setBaseRunning(e.target.value)} />
+            {baseRunning}
+            <EvalButtons setType={setBaseRunning} type={baseRunning} />
             </div>
             <div>
             <label>Arm Strength</label>
-            <input 
-            type='Integer'
-            value={armStr }
-            onChange={(e)=>setArmStr(e.target.value)} />
+            {armStr}
+            <EvalButtons setType={setArmStr} type={armStr} />
             </div>
             <div>
             <label>Arm Accuracy</label>
-            <input 
-            type='Integer'
-            value={armAcc}
-            onChange={(e)=>setArmAcc(e.target.value)} />
+            {armAcc}
+            <EvalButtons setType={setArmAcc} type={armAcc} />
             </div>
             <div>
             <label>Fielding</label>
-            <input 
-            type='Integer'
-            value={fielding}
-            onChange={(e)=>setFielding(e.target.value)} />
+            {fielding}
+            <EvalButtons setType={setFielding} type={fielding} />
             </div>
             <div>
             <label>Arm Range</label>
-            <input 
-            type='Integer'
-            value={armRange }
-            onChange={(e)=>setArmRange(e.target.value)} />
+            {armRange}
+            <EvalButtons setType={setArmRange} type={armRange} />
             </div>
             <div>
             <label>Baseball Instinct</label>
-            <input 
-            type='Integer'
-            value={instinct }
-            onChange={(e)=>setInstinct(e.target.value)} />
+            {instinct}
+            <EvalButtons setType={setInstinct} type={instinct} />
             </div>
             <div>
             <label>Aggresiveness</label>
-            <input 
-            type='Integer'
-            value={aggressive}
-            onChange={(e)=>setAggressive(e.target.value)} />
+            {aggressive}
+            <EvalButtons setType={setAggressive} type={aggressive} />
             </div>
             <div>
             <label>Pull</label>
