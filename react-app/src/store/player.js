@@ -71,10 +71,10 @@ const playersReducer = (state = initialState, action) => {
             return {...state, ...newStates }
         }
         case EDIT:{
-            const newState = {...state}
+            const newState = {}
             const updatedPlayer = action.updatedPlayer
             newState[updatedPlayer.id] = updatedPlayer
-            return newState
+            return {...state,...newState}
         }
         case ADD:{
             const currState = {...state}

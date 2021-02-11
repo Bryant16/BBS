@@ -67,7 +67,7 @@ def update_player(id):
         player_to_update.bats = data["bats"]
         player_to_update.throws = data["throws"]
         db.session.commit()
-        return jsonify({'done': True})
+        return jsonify({'player': player_to_update.to_dict()})
     except:
         return jsonify({'Fail': True})
 

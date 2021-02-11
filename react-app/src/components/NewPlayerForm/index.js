@@ -72,7 +72,6 @@ const NewPlayerForm = ({playerid, handleClose})=>{
             bats,
             throws,
         }
-       
         if(players[playerid]){
             handleClose()
             dispatch(editPlayerProfile(playerid, newPlayer))

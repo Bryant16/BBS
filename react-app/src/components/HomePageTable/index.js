@@ -44,7 +44,6 @@ export default function DataGridDemo() {
         history.push(`/players/${id}`)
     }
     const players  = useSelector((state) => state.players);
-console.log('these are the players',Object.values(players))
 const newArrOfPlayers = Object.values(players)
   return (
     <div style={{ height: '70vh', width: '50%' }}>

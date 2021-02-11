@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Restore } from "../../store/session";
-import HomePagePlayerCard from "../HomePagePlayerCard";
 import {getPlayers} from '../../store/player';
 import DataTable from '../HomePageTable';
 import './home.css';
@@ -18,11 +17,7 @@ const Home = () => {
   return user ? (
     <div className='players_library_container'>
       {players ? (
-        // <h1>hi</h1>
         <DataTable />
-        // players.map((player) => 
-        // <HomePagePlayerCard player={player} />
-        // )
       ) : (
         <h1>loading</h1>
       )}
