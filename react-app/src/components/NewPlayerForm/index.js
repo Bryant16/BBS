@@ -38,6 +38,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
         }
         getPlayer()
         try{
+            if(playerInfo){
             setFirstName(playerInfo.first_name)
             setLastName(playerInfo.last_name)
             setAddress(playerInfo.address)
@@ -51,6 +52,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
             setState(playerInfo.team_state)
             setThrows(playerInfo.throws)
             setBats(playerInfo.bats)
+            }
         }catch(e){
         }
     },[dispatch, loaded])
@@ -81,7 +83,6 @@ const NewPlayerForm = ({playerid, handleClose})=>{
       
     }
     }
-    console.log(players,'player form')
     let playerPositions = ['P','C','1B','2B','3B','SS','RF','LF','CF']
     return (
          <div className='new_player_form_container'>

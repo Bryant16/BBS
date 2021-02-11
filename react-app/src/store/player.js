@@ -44,7 +44,7 @@ export const editPlayerProfile=(playerid, newPlayer)=>async dispatch=>{
 }
 
 export const addPlayerProfile=(newPlayer)=>async dispatch=>{
-    
+    console.log('in the add player dispatch', newPlayer)
     const response = await fetch('/api/players/',{
         headers: { 'Content-type': 'application/json' },
         method: 'POST',
@@ -52,6 +52,7 @@ export const addPlayerProfile=(newPlayer)=>async dispatch=>{
     })
     if(response.ok){
         const playerToAdd = await response.json();
+        console.log(playerToAdd,'new playerrrrrr')
         dispatch(addPlayer(playerToAdd.player))
         return playerToAdd.player.id
     }

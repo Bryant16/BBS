@@ -34,7 +34,7 @@ def create_player():
         )
         db.session.add(new_player)
         db.session.commit()
-        return jsonify({'id': new_player.id})
+        return jsonify({'player': new_player.to_dict()})
     except:
         return jsonify({'errors': True})
 
