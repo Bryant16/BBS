@@ -10,46 +10,60 @@ const DisplayNotes = ({playerid, notes})=>{
     const deleteNote= async(note, id)=>{
         dispatch(removeNote(note,id))    
     }
-const deleteButton = <button type='submit'><RiDeleteBin6Line style={{"color":'red'}}/></button>
+const deleteButton = <button style={{'align-self':'flex-start'}}type='submit'><RiDeleteBin6Line style={{"color":'red'}}/></button>
     return (
         <div className='notes_container'>
-            <h3>Abilities</h3>
+            <div className='category_container'>
+            <div className='notes_categories_containers'>
+            <ul class="list-group list-group-item-primary">Abilities
             {notes.filter(note=>note.title==="Abilities").map((note)=>(
             <form onSubmit={(e)=>{
                 e.preventDefault()
                 deleteNote(note, playerid)
             }}>
-                <li>{note.text}{deleteButton}</li>
+                <li class="list-group-item">{note.text}{deleteButton}</li>
             </form>
             ))}
-            <h3>Physical Description</h3>
+            </ul>
+            </div>
+            <div className='notes_categories_containers'>
+            <ul class="list-group list-group-item-primary">Physical Description
             {notes.filter(note=>note.title==='Physical Description').map((note)=>(
             <form onSubmit={(e)=>{
                 e.preventDefault();
                 deleteNote(note,playerid)
             }}>
-                <li>{note.text}{deleteButton}</li>
+                <li class="list-group-item">{note.text}{deleteButton}</li>
             </form>
             ))}
-            <h3>Weakness</h3>
+            </ul>
+            </div>
+            <div className='notes_categories_containers'>
+            <ul class="list-group list-group-item-primary">Weakness
             {notes.filter(note=>note.title==="Weakness").map((note)=>(
-            <form onSubmit={(e)=>{
-                e.preventDefault()
+                <form onSubmit={(e)=>{
+                    e.preventDefault()
                 deleteNote(note,playerid)
                 
             }}>
-                <li>{note.text}{deleteButton}</li>
+                <li class="list-group-item">{note.text}{deleteButton}</li>
             </form>
             ))}
-            <h3>Summary</h3>
+            </ul>
+            </div>
+            <div className='notes_categories_containers'>
+            <ul class="list-group list-group-item-primary">Summary
             {notes.filter(note=>note.title==="Summary").map((note)=>(
             <form onSubmit={(e)=>{
                 e.preventDefault()
                 deleteNote(note,playerid)
             }}>
-                <li>{note.text}{deleteButton}</li>
+                <li class="list-group-item">{note.text}{deleteButton}</li>
             </form>
             ))}
+            </ul>
+            </div>
+            </div>
         </div>
     )
 }

@@ -45,10 +45,7 @@ const Evaluation = () => {
  
   return (
       <div className='player_evaluation_and_player_notes_container'>
-        <div className='eval_nav_buttons'>
-        <Button className='eval_nav_buttons' variant="contained" color="primary" onClick={toggleNoteEvals}>{toggle}</Button>
-        <Button className='eval_nav_buttons' variant="contained" color="primary" onClick={(e)=>history.push(`/players/${playerid}`)}>Player Profile</Button>
-        </div>
+        
         {toggle === 'Notes' ?(<div>
           {!playerInfo ? <h1>loading</h1>:null}
           {playerInfo && playerInfo.position === 'P' ?
@@ -59,6 +56,10 @@ const Evaluation = () => {
             <Notes playerId={playerid}/>
             {gotNotes && <DisplayNotes playerid={playerid} notes={notes} />}
           </div>)}
+          <div className='eval_nav_buttons'>
+        <Button className='eval_nav_buttons' variant="contained" color="primary" onClick={toggleNoteEvals}>{toggle}</Button>
+        <Button className='eval_nav_buttons' variant="contained" color="primary" onClick={(e)=>history.push(`/players/${playerid}`)}>Player Profile</Button>
+        </div>
       </div>
   );
 };

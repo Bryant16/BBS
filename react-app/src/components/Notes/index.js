@@ -29,26 +29,31 @@ const Notes = ({playerId})=>{
       }));
     const classes = useStyles();
     return (
-        <div>
+        <div className='note_input_container'> 
         <form>
-        <label>Title</label>
-        <select onChange={(e)=> setTitle(e.target.value)}>
-        <option value={'Abilities'} >Abilities</option>
-        <option value={'Physical Description'} >Physical Description</option>
-        <option value={'Weakness'}>Weakness</option>
-        <option value={'Summary'}>Summary</option>
-        </select> 
-        <label>Note</label>
-        <TextareaAutosize aria-label="empty textarea" placeholder="Empty"
+            <div>
+            <label></label>
+            <select onChange={(e)=> setTitle(e.target.value)}>
+            <option value={'Abilities'} >Abilities</option>
+            <option value={'Physical Description'} >Physical Description</option>
+            <option value={'Weakness'}>Weakness</option>
+            <option value={'Summary'}>Summary</option>
+            </select>
+            </div> 
+        <label></label>
+        <TextareaAutosize  placeholder="Notes"
         type='text'
         value={note}
+        rowsMin={2}
         onChange={(e)=> setNote(e.target.value)}/>
+        <div>
         <Button 
         color="primary"
         size="small"
         className={classes.button}
         startIcon={<BiMessageAdd />}
-        onClick={handleClickCreate}></Button>
+        onClick={handleClickCreate}>Create</Button>
+        </div>
         </form>
         </div>
     )
