@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, useParams, Redirect} from 'react-router-dom';
 import { Input, Text, Select } from "@chakra-ui/react";
+import Button from '@material-ui/core/Button';
 import './NewPlayerForm.css';
 import {editPlayerProfile} from '../../store/player';
 import {getPlayers, addPlayerProfile} from '../../store/player';
@@ -87,7 +88,6 @@ const NewPlayerForm = ({playerid, handleClose})=>{
     return (
          <div className='new_player_form_container'>
             {players && (<form>
-                <label>First Name: </label>
                 <div>
                 <Input 
                 type='text'
@@ -95,8 +95,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                 placeHolder='First Name'
                 value={first_name}
                 onChange={(e)=>setFirstName(e.target.value)}/>
-                </div>
-                <label>Last Name: </label>   
+                </div>   
                 <div>
                 <Input
                  type='text'
@@ -104,7 +103,6 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                  placeHolder='Last Name'
                  onChange={(e)=>setLastName(e.target.value)} />
                 </div>
-                <label>Height(ex. 5'11): </label>
                 <div>
                 <Input
                  type='text'
@@ -112,7 +110,6 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                  placeHolder='Height'
                  onChange={(e)=>setHeight(e.target.value)} />
                 </div>
-                <label>Weight: </label>
                 <div>
                 <Input 
                  type='text'
@@ -131,7 +128,6 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                          )
                      })}
                  </Select>
-                
                 <Select 
                  placeholder='Bats'
                  value={bats}
@@ -150,7 +146,6 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                     <option value='Both'>Both</option>
                 </Select>
                 </div>
-                <label>Full Address: </label>
                 <div>
                 <Input 
                  type='text'
@@ -158,7 +153,6 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                  placeHolder='Full Address'
                  onChange={(e)=>setAddress(e.target.value)}/>
                 </div>
-                <label>Phone: </label>
                 <div>
                 <Input 
                  type='text'
@@ -166,7 +160,6 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                  placeHolder='Phone 555-555-5555'
                  onChange={(e)=>setPhone(e.target.value)}/>
                 </div>
-                <label>Email: </label>
                 <div>
                 <Input 
                  type='text'
@@ -174,7 +167,6 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                  placeHolder='Email'
                  onChange={(e)=>setEmail(e.target.value)}/>
                 </div>
-                <label>Team Name: </label>
                 <div>
                 <Input 
                  type='text'
@@ -182,7 +174,6 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                  placeHolder='Team Name'
                  onChange={(e)=>setTeam(e.target.value)}/>
                 </div>
-                <label>Team City: </label>
                 <div>
                 <Input 
                  type='text'
@@ -190,7 +181,6 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                  value={team_city}
                  onChange={(e)=>setCity(e.target.value)}/>
                 </div>
-                <label>Team State: </label>
                 <div>
                 <Input 
                  type='text'
@@ -198,7 +188,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                  value={team_state}
                  onChange={(e)=>setState(e.target.value)}/>
                 </div>
-                <button onClick={registerClick}>Register</button>
+                <Button id="register_button" size='large' variant="contained" color='primary' onClick={registerClick}>Register</Button>
             </form>) }
         </div> 
     )

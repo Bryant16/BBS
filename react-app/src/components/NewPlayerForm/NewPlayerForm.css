@@ -13,3 +13,14 @@
 .new_player_form_container form div{
     padding:.1em;
 }
+
+#register_button{
+    width: 12.7em;
+}
+.chakra-select__icon-wrapper  svg{
+    display: none;
+  }
+
+.new_player_form_container form select {
+    width: 11.8em;
+}
