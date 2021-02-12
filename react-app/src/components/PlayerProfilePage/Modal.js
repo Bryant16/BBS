@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
 import NewPlayerForm from '../NewPlayerForm';
 import './Modal.css';
 function rand() {
@@ -31,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SimpleModal({playerid}) {
   const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
 
@@ -54,9 +54,9 @@ export default function SimpleModal({playerid}) {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
+      <Button type="button" size='small' variant="outlined" onClick={handleOpen}>
         Edit Player
-      </button>
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}

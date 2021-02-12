@@ -2,13 +2,15 @@ footer {
     font-family: Roboto;
     box-shadow: 1px -11px 15px 1px #eceaea;
     border-radius: .2em;
-    font-size: 1.4em;
+    font-size: 1.2em;
     font-weight: bold;
-    position: absolute;
+    position: fixed;
+    z-index: -2;
     left: 0;
     bottom: 0;
+    max-height: 6vh;
     width: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 footer div a{

@@ -19,30 +19,41 @@ const PlayerImage = ({playerid})=>{
         getProfileUrl()
     },[playerImageUrl])
 
+    const handleSubmit = async(e)=>{
+        e.preventDefault();
+        // const formData = new FormData();
+        // formData.append("image", imageUpload)
+        // const res = await fetch(`/api/images/${playerid}`,{method:"POST",body:formData})
+        // if (res.ok){
+        //     const imageUpload = await res.json();
+        //     setPlayerImageUrl(imageUpload.URL)
+        // }
+}
     const updateFile = async(e)=>{
         e.preventDefault();
         const file = e.target.files[0];
-        if(file) setImage(file);
+        const formData = new FormData();
+        if(file){
+        formData.append("image", file)
+        const res = await fetch(`/api/images/${playerid}`,{method:"POST",body:formData})
+        if (res.ok){
+            const imageUpload = await res.json();
+            setPlayerImageUrl(imageUpload.URL)
+        }
     }
-    const handleSubmit = async(e)=>{
-            e.preventDefault();
-            const formData = new FormData();
-            formData.append("image", imageUpload)
-            const res = await fetch(`/api/images/${playerid}`,{method:"POST",body:formData})
-            if (res.ok){
-                const imageUpload = await res.json();
-                setPlayerImageUrl(imageUpload.URL)
-            }
+            // setImage(file)
+    
     }
+    
     return (
         <div className='player_profile_container_image'>
         <div>
-        {playerImageUrl ? <Image boxSize="200px" objectFit="cover" src={playerImageUrl}/>: <img className='profile_picture' src={defaultUser}/>}
+        {playerImageUrl ? <Image boxSize="245px" objectFit="cover" src={playerImageUrl}/>: <Image boxSize="245px" objectFit="cover" src={defaultUser}/>}
         </div>
         <div className='file_upload_container'>
         <form onSubmit={handleSubmit}>
-            <input type='file' name='file' onChange={updateFile} />
-            <Button type="submit" size='small' variant="contained" startIcon={<CloudUploadIcon />}>Upload</Button>
+                <input type='file' name='file' onChange={updateFile} size="60" accept="image/*"/>
+                <label id='file_upload' for="file"><CloudUploadIcon/></label>
         </form>
         </div>
         </div>

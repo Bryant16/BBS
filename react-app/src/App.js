@@ -19,6 +19,7 @@ const dispatch = useDispatch();
 
   return (
     <BrowserRouter>
+    {/* <div className='page_body'> */}
       <NavBar  />
       <Switch>
         <Route path="/login" exact={true}>
@@ -43,7 +44,8 @@ const dispatch = useDispatch();
           <Home />
         </Route>
       </Switch>
-      {/* <Footer /> */}
+      {/* </div> */}
+      {/* // <Footer /> */}
     </BrowserRouter>
   );
 }

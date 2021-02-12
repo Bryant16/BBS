@@ -10,7 +10,7 @@ import Modal from './Modal';
 import {FaAddressCard, FaBaseballBall} from 'react-icons/fa';
 const useStyles = makeStyles({
   root: {
-    minWidth: 300,
+    minWidth: 370,
     padding: '1em',
   },
   bullet: {
@@ -19,10 +19,10 @@ const useStyles = makeStyles({
     transform: 'scale(0.8)',
   },
   title: {
-    fontSize: 14,
+    fontSize: 21,
   },
   pos: {
-    marginBottom: 12,
+    marginBottom: 2,
   },
 });
 
@@ -55,7 +55,7 @@ export default function SimpleCard({playerid, players}) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button onClick={goToEvaluation} size="small">Evaluation</Button>
+        <Button onClick={goToEvaluation} id="edit_player_button" variant="outlined" size="small">Evaluation</Button>
         {/* <Button onClick={editPlayerButton} size='small'>Edit Player</Button> */}
         <Modal playerid={playerid}/>
       </CardActions>

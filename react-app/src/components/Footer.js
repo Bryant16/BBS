@@ -5,7 +5,7 @@ const Footer = () => {
      
   return (
     <footer class="bg-light text-center text-lg-start">
-     <div className="my_page_links">
+      <div className="my_page_links">
         ©<p> Bryant Klein</p>
           <p>
           <a href="https://github.com/Bryant16">
