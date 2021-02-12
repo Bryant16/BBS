@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 
 const columns = [
+  { field: '__check__', hide: true },
   { field: 'first_name', headerName: 'First', width: 100 },
   { field: 'last_name', headerName: 'Last', width: 100 },
   {
@@ -46,7 +47,7 @@ export default function DataGridDemo() {
     const players  = useSelector((state) => state.players);
 const newArrOfPlayers = Object.values(players)
   return (
-    <div style={{ height: '70vh', width: '50%' }}>
+    <div style={{ height: '40em', width: '55em' }}>
       <DataGrid rows={newArrOfPlayers} columns={columns} pageSize={10} checkboxSelection  onSelectionChange={click} />
     </div>
   );
