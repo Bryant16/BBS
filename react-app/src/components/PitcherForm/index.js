@@ -81,6 +81,7 @@ const PitcherForm = ({ playerId }) => {
         body: JSON.stringify(new_pitcher_eval),
       });
       if (res.ok) {
+        dispatch(getPitcherForm(playerId));
         // history.push(`/players/${playerId}`);
       }
     }

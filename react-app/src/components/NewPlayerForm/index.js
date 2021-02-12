@@ -87,32 +87,33 @@ const NewPlayerForm = ({playerid, handleClose})=>{
     return (
          <div className='new_player_form_container'>
             {players && (<form>
-                <div>
                 <label>First Name: </label>
+                <div>
                 <Input 
                 type='text'
+                required
                 placeHolder='First Name'
                 value={first_name}
                 onChange={(e)=>setFirstName(e.target.value)}/>
                 </div>
-                <div>
                 <label>Last Name: </label>   
+                <div>
                 <Input
                  type='text'
                  value={last_name}
                  placeHolder='Last Name'
                  onChange={(e)=>setLastName(e.target.value)} />
                 </div>
-                <div>
                 <label>Height(ex. 5'11): </label>
+                <div>
                 <Input
                  type='text'
                  value={height}
                  placeHolder='Height'
                  onChange={(e)=>setHeight(e.target.value)} />
                 </div>
-                <div>
                 <label>Weight: </label>
+                <div>
                 <Input 
                  type='text'
                  value={weight}
@@ -149,48 +150,48 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                     <option value='Both'>Both</option>
                 </Select>
                 </div>
-                <div>
                 <label>Full Address: </label>
+                <div>
                 <Input 
                  type='text'
                  value={address}
                  placeHolder='Full Address'
                  onChange={(e)=>setAddress(e.target.value)}/>
                 </div>
-                <div>
                 <label>Phone: </label>
+                <div>
                 <Input 
                  type='text'
                  value={phone_number}
                  placeHolder='Phone 555-555-5555'
                  onChange={(e)=>setPhone(e.target.value)}/>
                 </div>
-                <div>
                 <label>Email: </label>
+                <div>
                 <Input 
                  type='text'
                  value={email}
                  placeHolder='Email'
                  onChange={(e)=>setEmail(e.target.value)}/>
                 </div>
-                <div>
                 <label>Team Name: </label>
+                <div>
                 <Input 
                  type='text'
                  value={team_name}
                  placeHolder='Team Name'
                  onChange={(e)=>setTeam(e.target.value)}/>
                 </div>
-                <div>
                 <label>Team City: </label>
+                <div>
                 <Input 
                  type='text'
                  placeHolder='Team City'
                  value={team_city}
                  onChange={(e)=>setCity(e.target.value)}/>
                 </div>
-                <div>
                 <label>Team State: </label>
+                <div>
                 <Input 
                  type='text'
                  placeHolder='Team State'

@@ -3,6 +3,9 @@
     width: 10em;
     border-radius: 2em;
 }
+input[type='file'] {
+    opacity:.5 ; 
+  }
 .player_profile_page{
     display: flex;
     justify-content: center;

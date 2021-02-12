@@ -1,6 +1,8 @@
 import React,{useEffect, useState} from 'react';
 import defaultUser from "./default-user.png";
 import {Image} from "@chakra-ui/react";
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import Button from '@material-ui/core/Button';
 
 const PlayerImage = ({playerid})=>{
     const [imageUpload, setImage] = useState('');
@@ -40,7 +42,7 @@ const PlayerImage = ({playerid})=>{
         <div className='file_upload_container'>
         <form onSubmit={handleSubmit}>
             <input type='file' name='file' onChange={updateFile} />
-            <button type="submit" >Upload</button>
+            <Button type="submit" size='small' variant="contained" startIcon={<CloudUploadIcon />}>Upload</Button>
         </form>
         </div>
         </div>

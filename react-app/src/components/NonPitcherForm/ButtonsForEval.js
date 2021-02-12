@@ -7,25 +7,25 @@ const ButtonsForEval = ({setType, type, submitEv}) => {
     <>
     <ButtonGroup disableElevation variant="contained" color="primary">
       <Button
-      style={{'backgroundColor':'darkgreen',"marginLeft":'.3em'}}
+      style={{'backgroundColor':'gray',"marginLeft":'1.6em'}}
         type="Integer"
         onClick={(e) => {
           e.preventDefault();
-          setType(type + 5)
-          submitEv(e)
-        }}
-      >
-        +
-      </Button>
-      <Button
-        style={{'backgroundColor':'red'}}
-        onClick={(e) => {
-          e.preventDefault();
-          setType(type - 5);
+          setType(type - 5)
           submitEv(e)
         }}
       >
         -
+      </Button>
+      <Button
+        style={{'backgroundColor':'navyblue',"marginRight":'1.7em'}}
+        onClick={(e) => {
+          e.preventDefault();
+          setType(type + 5);
+          submitEv(e)
+        }}
+      >
+        +
       </Button>
       </ButtonGroup>
     </>

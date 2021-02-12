@@ -80,11 +80,12 @@ const submitEval = async(e)=>{
             }
     }else{
         const res = await fetch(`/api/players/${playerId}/nonpitcher/`,{
-        headers:{'Content-type': 'application/json'},
-        method: 'PUT',
-        body:JSON.stringify(new_non_pitcher_eval)
-       });
-       if(res.ok){
+            headers:{'Content-type': 'application/json'},
+            method: 'PUT',
+            body:JSON.stringify(new_non_pitcher_eval)
+        });
+        if(res.ok){
+           dispatch(getNonePitcherForm(playerId))
         //    history.push(`/players/${playerId}`)
        }
    }
@@ -110,9 +111,9 @@ return (
     <div className='non_pitcher_form_container'>
         {nonPitcher ? (<form>
             <div className="category_pitcher_container">
-               <Categories title={'Hitting'} value={hitting} set={setHitting} submitEv={submitEval} /> 
-               <Categories title={'Power'} value={power} set={setPower} submitEv={submitEval} /> 
-               <Categories title={'Running Speed'} value={running} set={setRunning} submitEv={submitEval}/> 
+               <Categories title={'HITTING'} value={hitting} set={setHitting} submitEv={submitEval} /> 
+               <Categories title={'POWER'} value={power} set={setPower} submitEv={submitEval} /> 
+               <Categories title={'RUNNING SPEED'} value={running} set={setRunning} submitEv={submitEval}/> 
                <Categories title={'Base Running'} value={baseRunning} set={setBaseRunning} submitEv={submitEval} /> 
                <Categories title={'Arm Strength'} value={armStr} set={setArmStr} submitEv={submitEval}/> 
                <Categories title={'Arm Accuracy'} value={armAcc} set={setArmAcc} submitEv={submitEval}/> 

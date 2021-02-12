@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import PlayerProfilePage from "./components/PlayerProfilePage";
 import NewPlayerForm from './components/NewPlayerForm';
 import Evaluation from './components/Evaluation';
+import Footer from './components/Footer';
 
 function App() {
 const dispatch = useDispatch();
@@ -42,6 +43,7 @@ const dispatch = useDispatch();
           <Home />
         </Route>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

@@ -1,13 +1,13 @@
 .new_player_form_container {
-    display: inline-flex;
-    flex-direction: column;
-    width: 50em;
-    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 .new_player_form_container form{
+    
     display: inline-flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .new_player_form_container form div{

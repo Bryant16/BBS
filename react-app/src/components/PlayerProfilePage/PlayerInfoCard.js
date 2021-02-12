@@ -30,7 +30,6 @@ export default function SimpleCard({playerid, players}) {
   const classes = useStyles();
   const history = useHistory();
   let singlePlayer= players[playerid]
-  console.log(singlePlayer, 'inside player card')
   
   const bull = <span className={classes.bullet}>•</span>;
   const goToEvaluation = (e)=>{
