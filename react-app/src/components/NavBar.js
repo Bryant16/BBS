@@ -10,24 +10,7 @@ const NavBar = () => {
   return (
     <nav>
       {!user ? (
-        <div className="my_page_links">
-          <p>Bryant Klein</p>
-          <p>
-          <a href="https://github.com/Bryant16">
-            <i className="fab fa-github" />
-          </a>
-          </p>
-          <p>
-          <a href="https://www.linkedin.com/in/bryant-klein-927915134/">
-            <i className="fab fa-linkedin-in" />
-          </a>
-          </p>
-          <p>
-          <a href='mailto:kleinb1616@gmail.com'>
-              <i className='far fa-envelope' />
-            </a>
-          </p>
-        </div>
+        <div></div>
       ) : (
         <div className='navbar_container'>
           <div>

@@ -43,7 +43,7 @@ const dispatch = useDispatch();
           <Home />
         </Route>
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 }
