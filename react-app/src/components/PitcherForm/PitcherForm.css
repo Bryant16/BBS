@@ -12,3 +12,7 @@
 .text_input_pitcher {
     min-width: 100%;
 }
+
+.player_evaluation_and_player_notes_container form {
+    width:24.4em;
+}
