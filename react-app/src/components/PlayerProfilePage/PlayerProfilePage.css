@@ -24,7 +24,10 @@ input[type='file'] {
 }
 .player_profile_page{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    height: 100vh;
 }
 
 .player_profile_container{
