@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 
 const ButtonsForEval = ({setType, type, submitEv}) => {
+  
   return (
     <>
     <ButtonGroup size='small' disableElevation variant="contained" color="primary">
@@ -11,8 +12,10 @@ const ButtonsForEval = ({setType, type, submitEv}) => {
         type="Integer"
         onClick={(e) => {
           e.preventDefault();
-          setType(type - 5)
-          submitEv(e)
+          setTimeout(()=>{
+            setType(type - 5);
+            // submitEv(e)
+          })
         }}
       >
         -
@@ -22,8 +25,8 @@ const ButtonsForEval = ({setType, type, submitEv}) => {
         style={{'backgroundColor':'navyblue'}}
         onClick={(e) => {
           e.preventDefault();
-          setType(type + 5);
-          submitEv(e)
+          setType(type + 5)
+          // submitEv(e);
         }}
       >
         +

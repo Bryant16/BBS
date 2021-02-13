@@ -86,7 +86,7 @@ const PitcherForm = ({ playerId }) => {
       }
     }
   };
-
+  
   const Categories = ({ title, value, set, submitEv }) => {
     return (
       <div>
@@ -153,7 +153,6 @@ const PitcherForm = ({ playerId }) => {
               />
             </div>
           </div>
-          <button onClick={submitEval}>Submit</button>
         </form>
       ) : (
         <h1>loading</h1>

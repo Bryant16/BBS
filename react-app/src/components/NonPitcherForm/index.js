@@ -24,6 +24,7 @@ const [pull, setPull] = useState('');
 const [away, setAway] = useState('');
 const [opp, setOpp] = useState('');
 
+console.log(fielding, 'outside fetch call')
 
 useEffect(()=>{
     dispatch(getNonePitcherForm(playerId))
@@ -45,10 +46,10 @@ useEffect(()=>{
         setPriorEval(true)
     }}catch(e){
     }
-},[])
+},[]);
 
-const submitEval = async(e)=>{
-    e.preventDefault();
+const submitEval = async()=>{
+    // e.preventDefault();
     const new_non_pitcher_eval= {
         hitting,
         playerId,
@@ -89,8 +90,25 @@ const submitEval = async(e)=>{
         //    history.push(`/players/${playerId}`)
        }
    }
-    
 }
+useEffect(()=>{
+    if(priorEval){
+        submitEval()
+    }
+},[  hitting,
+    playerId,
+    power,
+    running,
+    baseRunning,
+    armStr,
+    armAcc,
+    fielding,
+    armRange,
+    instinct,
+    aggressive,
+    pull,
+    away,
+    opp])
 
 const Categories = ({ title, value, set, submitEv }) => {
     return (
@@ -114,13 +132,13 @@ return (
                <Categories title={'HITTING'} value={hitting} set={setHitting} submitEv={submitEval} /> 
                <Categories title={'POWER'} value={power} set={setPower} submitEv={submitEval} /> 
                <Categories title={'RUNNING SPEED'} value={running} set={setRunning} submitEv={submitEval}/> 
-               <Categories title={'Base Running'} value={baseRunning} set={setBaseRunning} submitEv={submitEval} /> 
-               <Categories title={'Arm Strength'} value={armStr} set={setArmStr} submitEv={submitEval}/> 
-               <Categories title={'Arm Accuracy'} value={armAcc} set={setArmAcc} submitEv={submitEval}/> 
-               <Categories title={'Fielding'} value={fielding} set={setFielding} submitEv={submitEval}/> 
-               <Categories title={'Arm Range'} value={armRange} set={setArmRange} submitEv={submitEval}/> 
-               <Categories title={'Baseball Instinct'} value={instinct} set={setInstinct} submitEv={submitEval}/> 
-               <Categories title={'Aggresiveness'} value={aggressive} set={setAggressive} submitEv={submitEval}/> 
+               <Categories title={'BASE RUNNING'} value={baseRunning} set={setBaseRunning} submitEv={submitEval} /> 
+               <Categories title={'ARM STRENGTH'} value={armStr} set={setArmStr} submitEv={submitEval}/> 
+               <Categories title={'ARM ACCURACY'} value={armAcc} set={setArmAcc} submitEv={submitEval}/> 
+               <Categories title={'FIELDING'} value={fielding} set={setFielding} submitEv={submitEval}/> 
+               <Categories title={'ARM RANGE'} value={armRange} set={setArmRange} submitEv={submitEval}/> 
+               <Categories title={'BASEBALL INSTINCT'} value={instinct} set={setInstinct} submitEv={submitEval}/> 
+               <Categories title={'AGGRESSIVENESS'} value={aggressive} set={setAggressive} submitEv={submitEval}/> 
                 <div>
                     <input 
                     className='text_input_pitcher'
@@ -130,7 +148,7 @@ return (
                         setPull(e.target.value)
                         submitEval(e)
                         }}
-                    placeholder='Pull'
+                    placeholder='PULL'
                     />
                 </div>
                 <div>
@@ -143,7 +161,7 @@ return (
                         setAway(e.target.value)
                         submitEval(e)
                     }}
-                    placeholder='Str. Away'
+                    placeholder='Str. AWAY'
                     />
                 </div>
                 <div>
@@ -155,10 +173,9 @@ return (
                         setOpp(e.target.value)
                         submitEval(e)
                     }}
-                    placeholder='Opp. Field'
+                    placeholder='Opp. FIELD'
                     />
                 </div>
-                <button onClick={submitEval}>Submit</button>
             </div>
         </form>
         ):<h1>loading</h1>
