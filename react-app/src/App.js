@@ -12,6 +12,7 @@ import Evaluation from './components/Evaluation';
 import Footer from './components/Footer';
 
 function App() {
+  const { user } = useSelector((state) => state.session); 
 const dispatch = useDispatch();
   useEffect(() => {
     dispatch(Restore());
@@ -29,19 +30,19 @@ const dispatch = useDispatch();
           <SignUpForm />
         </Route>
         <Route exact path='/players/:playerid/evaluation'>
-          <Evaluation />
+          {user? <Evaluation />: <LoginForm />}
         </Route>
         <Route path='/players/:playerid'>
-          <PlayerProfilePage /> 
+          {user?<PlayerProfilePage />:<LoginForm />} 
         </Route>
         <Route exact path='/newPlayer/:playerid'>
-          <NewPlayerForm />
+          {user?<NewPlayerForm />:<LoginForm />}
         </Route>
         <Route exact path='/newPlayer'>
-          <NewPlayerForm />
+          {user?<NewPlayerForm />:<LoginForm />}
         </Route>
         <Route path='/'>
-          <Home />
+          {user?<Home />:<LoginForm />}
         </Route>
       </Switch>
       {/* </div> */}
