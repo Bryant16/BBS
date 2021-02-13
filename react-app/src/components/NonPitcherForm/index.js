@@ -48,6 +48,7 @@ useEffect(()=>{
     }
 },[]);
 
+console.log(priorEval)
 const submitEval = async()=>{
     // e.preventDefault();
     const new_non_pitcher_eval= {
@@ -68,8 +69,8 @@ const submitEval = async()=>{
     }
     console.log(fielding, 'fielding')
    if(!priorEval){
-    dispatch(getNonePitcherForm(playerId))
-    setPriorEval(true)
+       dispatch(getNonePitcherForm(playerId))
+        setPriorEval(true)
         const response = await fetch(`/api/players/${playerId}/nonpitcher/`,{
         headers: { 'Content-type': 'application/json'},
         method: 'POST',
@@ -92,11 +93,8 @@ const submitEval = async()=>{
    }
 }
 useEffect(()=>{
-    if(priorEval){
-        submitEval()
-    }
-},[  hitting,
-    playerId,
+   submitEval()
+},[ hitting,
     power,
     running,
     baseRunning,

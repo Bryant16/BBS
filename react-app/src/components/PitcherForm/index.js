@@ -42,10 +42,11 @@ const PitcherForm = ({ playerId }) => {
         setPriorEval(true);
       }
     } catch (e) {}
+    
   }, []);
 
-  const submitEval = async (e) => {
-    e.preventDefault();
+  const submitEval = async () => {
+    // e.preventDefault();
     const new_pitcher_eval = {
       fastball,
       curve,
@@ -86,7 +87,25 @@ const PitcherForm = ({ playerId }) => {
       }
     }
   };
+
+  useEffect(()=>{
+    
+        submitEval()
   
+},[fastball,
+  curve,
+  control,
+  pace,
+  slider,
+  knuckle,
+  other,
+  poise,
+  instinct,
+  aggressive,
+  arm,
+  delivery]);
+ 
+
   const Categories = ({ title, value, set, submitEv }) => {
     return (
       <div>
@@ -101,7 +120,7 @@ const PitcherForm = ({ playerId }) => {
     );
   };
 
-
+  
 
   return (
     <div className="pitcher_form_container">

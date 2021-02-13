@@ -12,10 +12,8 @@ const ButtonsForEval = ({setType, type, submitEv}) => {
         type="Integer"
         onClick={(e) => {
           e.preventDefault();
-          setTimeout(()=>{
             setType(type - 5);
-            // submitEv(e)
-          })
+
         }}
       >
         -
@@ -26,7 +24,6 @@ const ButtonsForEval = ({setType, type, submitEv}) => {
         onClick={(e) => {
           e.preventDefault();
           setType(type + 5)
-          // submitEv(e);
         }}
       >
         +

@@ -73,6 +73,12 @@ def update_player(id):
 
 @players_routes.route('/<int:id>/pitcher/', methods=["POST"])
 def create_player_pitcher_eval(id):
+    try: 
+        pitcher = Pitcher_Evaluation.query.filter(Pitcher_Evaluation.player_id == id).first()
+        db.session.delete(pitcher)
+        db.session.commit()
+    except:
+        pass
     data = request.get_json()
     try:
         new_pitcher_eval = Pitcher_Evaluation(
@@ -113,6 +119,12 @@ def get_pitcher_eval(id):
 
 @players_routes.route('/<int:id>/nonpitcher/', methods=["POST"])
 def create_non_player_pitcher_eval(id):
+    try: 
+        non = Non_Pitcher_Evaluation.query.filter(Non_Pitcher_Evaluation.player_id == id).first()
+        db.session.delete(non)
+        db.session.commit()
+    except:
+        pass
     data = request.get_json()
     try:
         new_non_pitcher_eval = Non_Pitcher_Evaluation(
