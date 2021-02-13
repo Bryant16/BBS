@@ -4,13 +4,14 @@ import {Image} from "@chakra-ui/react";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import Button from '@material-ui/core/Button';
 
+
 const PlayerImage = ({playerid})=>{
     const [imageUpload, setImage] = useState('');
     const [playerImageUrl, setPlayerImageUrl] =useState(false);
 
     useEffect(()=>{
         const getProfileUrl = async()=>{
-            let response = await fetch(`/api/images/${playerid}`);
+            let response = await fetch(`/api/media/images/${playerid}`);
             if(response.ok){
                 let profile_url = await response.json();
                 setPlayerImageUrl(profile_url.URL)
@@ -35,7 +36,7 @@ const PlayerImage = ({playerid})=>{
         const formData = new FormData();
         if(file){
         formData.append("image", file)
-        const res = await fetch(`/api/images/${playerid}`,{method:"POST",body:formData})
+        const res = await fetch(`/api/media/images/${playerid}`,{method:"POST",body:formData})
         if (res.ok){
             const imageUpload = await res.json();
             setPlayerImageUrl(imageUpload.URL)

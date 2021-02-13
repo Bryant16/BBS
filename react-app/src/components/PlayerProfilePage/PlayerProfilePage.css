@@ -73,3 +73,11 @@ input[type='file'] {
 .file_upload_container{
     width: 1vw;
 }
+
+.video_container {
+    /* visibility: hidden; */
+    display: flex;
+    width: 50em;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}

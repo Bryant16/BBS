@@ -10,17 +10,30 @@ import Modal from './Modal';
 import PlayerCard from './PlayerInfoCard';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import {getPlayers} from '../../store/player';
+import ReactPlayer from 'react-player';
 
 const PlayerProfilePage = ()=>{
     const history = useHistory();
     const { user } = useSelector((state) => state.session);
     const {playerid} = useParams();
-    const [playerImageUrl, setPlayerImageUrl] =useState(false);
+    const [videoUrl, setVideoUrl] =useState(false);
+    const [videos, setVideos] = useState(false)
     const players = useSelector(state=> state.players)
     const [playerInfo, setPlayerInfo] = useState(players);
     const dispatch = useDispatch();
     // console.log(players,'this oneeeeeeee')
     // const playerInfoSingle = players.filter(player=> player.id !== playerid)
+useEffect(()=>{
+    const getVideos=async()=>{
+        let res = await fetch(`/api/media/videos/${playerid}`)
+        if(res.ok){
+            let videos = await res.json();
+            console.log(videos,'inside fetch')
+            setVideos(videos.videos)
+        }
+    }
+    getVideos()
+},[])
     useEffect(()=>{
        const getPlayer = async()=>{
             let res = await fetch(`/api/players/${playerid}`)
@@ -35,7 +48,6 @@ const PlayerProfilePage = ()=>{
         dispatch(getPitcherForm(playerid))   
     },[dispatch]);
     useEffect(()=>{
-        console.log('did this run')
         dispatch(getPlayers())
     },[dispatch])
 
@@ -45,15 +57,16 @@ const PlayerProfilePage = ()=>{
         const formData = new FormData();
         if(file){
         formData.append("video", file)
-        const res = await fetch(`/api/images/videos/${playerid}`,{method:"POST",body:formData})
+        const res = await fetch(`/api/media/videos/${playerid}`,{method:"POST",body:formData})
         if (res.ok){
-            const imageUpload = await res.json();
-            // setPlayerImageUrl(imageUpload.URL)
+            const video = await res.json();
+            setVideoUrl(video.video_url)
         }
     }
             // setImage(file)
     
     }
+    console.log(videos,'vidsssssss')
     // console.log(players[playerid],'new players state')
     return (
     <div className='player_profile_page'>
@@ -65,9 +78,14 @@ const PlayerProfilePage = ()=>{
         </div>
         )}
         <div className='player_videos'>
+        <div>
         <form>
                 <input type='file' style={{"marginTop":'5em','opacity':1}} name='file' onChange={updateFile} size="60" accept="image/*"/>
         </form>
+            <div className='video_container'>
+            {videos && videos.map(vid=><ReactPlayer width='150px' height='240px'controls light url={vid.content} /> ) }
+            </div>
+        </div>
         </div>
     </div>
     )
