@@ -106,6 +106,7 @@ const SignUpForm = () => {
             </Button>
           </div>
         </form>
+        <img src={logo} />
         </div>
       </div>
       );
