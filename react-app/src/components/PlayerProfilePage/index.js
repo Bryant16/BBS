@@ -11,6 +11,7 @@ import PlayerCard from './PlayerInfoCard';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import {getPlayers} from '../../store/player';
 import ReactPlayer from 'react-player';
+import Button from '@material-ui/core/Button';
 
 const PlayerProfilePage = ()=>{
     const history = useHistory();
@@ -79,7 +80,7 @@ useEffect(()=>{
         )}
         <div className='player_videos'>
         <form>
-                <label id='file_upload' for="video"><a class='new_video'>New Video</a></label>
+                <label id='file_upload' for="video" ><Button style={{'background-color':'white','border':'1px solid lightskyblue'}}class='new_video'>New Video</Button></label>
                 <input type='file' style={{'marginTop':'.5em', 'opacity':'0'}} name='video' onChange={updateFile} size="60" accept="image/*"/>
         </form>
             <div className='video_container'>

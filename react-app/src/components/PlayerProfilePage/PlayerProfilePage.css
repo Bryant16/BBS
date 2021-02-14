@@ -94,3 +94,8 @@ input[type='file'] {
 .video_container div {
     border-bottom: 1px solid lightgray;
 }
+
+.player_videos form {
+    display: flex;
+    justify-content: flex-end;
+}
