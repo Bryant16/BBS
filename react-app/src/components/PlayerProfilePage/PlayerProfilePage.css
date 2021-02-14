@@ -40,7 +40,7 @@ input[type='file'] {
     align-items: flex-start;
     justify-content: center;
     max-width: 30vw;
-    height: 50vh;
+    /* height: 50vh; */
     padding: 1em;
 }
 
@@ -85,8 +85,8 @@ input[type='file'] {
     width: 40em;
     border-radius: .5em;
     /* height: 10em; */
-    border: 1px solid lightgray;
-    box-shadow:5px 5px 15px 5px #B5B5B5;
+    border-top: 1px solid lightgray;
+    /* box-shadow:5px 5px 15px 5px #B5B5B5; */
     /* overflow-y: scroll; */
     /* overflow-x: scroll; */
 }

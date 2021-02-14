@@ -55,9 +55,7 @@ export default function SimpleCard({playerid, players}) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button onClick={goToEvaluation} id="edit_player_button" variant="outlined" size="small">Pics/Video</Button>
         <Button onClick={goToEvaluation} id="edit_player_button" variant="outlined" size="small">Evaluation</Button>
-        {/* <Button onClick={editPlayerButton} size='small'>Edit Player</Button> */}
         <Modal playerid={playerid}/>
       </CardActions>
     </Card>
