@@ -127,22 +127,22 @@ const PitcherForm = ({ playerId }) => {
       {pitcher ? (
         <form>
           <div className="category_pitcher_container">
-            <Categories title={"Fastball"} value={fastball} set={setFastball} submitEv={submitEval}/>
-            <Categories title={"Curve"} value={curve} set={setCurve} submitEv={submitEval}/>
-            <Categories title={"Control"} value={control} set={setControl} submitEv={submitEval}/>
-            <Categories title={"Change of Pace"} value={pace} set={setPace} submitEv={submitEval}/>
-            <Categories title={"Slider"} value={slider} set={setSlider} submitEv={submitEval}/>
+            <Categories title={"FASTBALL"} value={fastball} set={setFastball} submitEv={submitEval}/>
+            <Categories title={"CURVE"} value={curve} set={setCurve} submitEv={submitEval}/>
+            <Categories title={"CONTROL"} value={control} set={setControl} submitEv={submitEval}/>
+            <Categories title={"CHANGE OF PACE"} value={pace} set={setPace} submitEv={submitEval}/>
+            <Categories title={"SLIDER"} value={slider} set={setSlider} submitEv={submitEval}/>
             <Categories
-              title={"Knuckle Ball"}
+              title={"KNUCKLE BALL"}
               value={knuckle}
               set={setKnuckle}
               submitEv={submitEval}
             />
-            <Categories title={"Other"} value={other} set={setOther} submitEv={submitEval}/>
-            <Categories title={"Poise"} value={poise} set={setPoise} submitEv={submitEval}/>
-            <Categories title={"Instinct"} value={instinct} set={setInstinct} submitEv={submitEval}/>
+            <Categories title={"OTHER"} value={other} set={setOther} submitEv={submitEval}/>
+            <Categories title={"POISE"} value={poise} set={setPoise} submitEv={submitEval}/>
+            <Categories title={"INSTINCT"} value={instinct} set={setInstinct} submitEv={submitEval}/>
             <Categories
-              title={"Aggresiveness"}
+              title={"AGGRESSIVENESS"}
               value={aggressive}
               set={setAggressive}
               submitEv={submitEval}
@@ -157,7 +157,7 @@ const PitcherForm = ({ playerId }) => {
                 setArm(e.target.value)
                 submitEval(e)
               }} 
-              placeholder={"Arm Action"}
+              placeholder={"ARM ACTION"}
             />
             <div>
               <input
@@ -168,7 +168,7 @@ const PitcherForm = ({ playerId }) => {
                   setDelivery(e.target.value)
                   submitEval(e)
                 }} 
-                placeholder={"Delivery"}
+                placeholder={"DELIVERY"}
               />
             </div>
           </div>
