@@ -33,7 +33,7 @@ useEffect(()=>{
         }
     }
     getVideos()
-},[])
+},[videoUrl])
     useEffect(()=>{
        const getPlayer = async()=>{
             let res = await fetch(`/api/players/${playerid}`)
@@ -78,13 +78,14 @@ useEffect(()=>{
         </div>
         )}
         <div className='player_videos'>
-        <div>
         <form>
-                <input type='file' style={{"marginTop":'5em','opacity':1}} name='file' onChange={updateFile} size="60" accept="image/*"/>
+                <label id='file_upload' for="video"><a class='new_video'>New Video</a></label>
+                <input type='file' style={{'marginTop':'.5em', 'opacity':'0'}} name='video' onChange={updateFile} size="60" accept="image/*"/>
         </form>
             <div className='video_container'>
-            {videos && videos.map(vid=><ReactPlayer width='150px' height='240px'controls light url={vid.content} /> ) }
+            {videos && videos.map(vid=><ReactPlayer className='react-player'  width='33%' height='15em' style={{'margin':'',"box-shadow":'5px 5px 15px 5px #B5B5B5', 'border-bottom':'1px solid black'}} controls url={vid.content} /> ) }
             </div>
+        <div>
         </div>
         </div>
     </div>
