@@ -13,10 +13,10 @@ s3=boto3.resource('s3',
                 aws_secret_access_key=Config.aws_secret_access_key)
 
 BUCKET_NAME = 'bbscouting'
-images_routes = Blueprint('images', __name__)
+media_routes = Blueprint('media', __name__)
 
 
-@images_routes.route('/<int:id>')
+@media_routes.route('/images/<int:id>')
 def get_player_url(id):
     playerUrl = Image.query.filter(Image.player_id == id).all()
     urls = [player.to_dict() for player in playerUrl]
@@ -26,7 +26,7 @@ def get_player_url(id):
     except:
         return jsonify({'imageurl':False})
 
-@images_routes.route('/<int:id>', methods=['POST'])
+@media_routes.route('/images/<int:id>', methods=['POST'])
 def handle_image_upload(id):
     img = request.files['image']
     if img:
@@ -43,7 +43,7 @@ def handle_image_upload(id):
     else:
         return jsonify({'error':['could not be processed at this time']})
 
-@images_routes.route('/videos/<int:id>', methods=['POST'])
+@media_routes.route('/videos/<int:id>', methods=['POST'])
 def handle_video_upload(id):
     vid = request.files['video']
     if vid:
@@ -57,3 +57,11 @@ def handle_video_upload(id):
             return jsonify({'video_url':  f'https://bbscouting.s3.amazonaws.com/{filename}'})
         except:
             return jsonify({'upload':False})
+
+@media_routes.route('/videos/<int:id>')
+def get_videos(id):
+    videos = Video.query.filter(Video.player_id == id).order_by(Video.id.desc()).all()
+    try:
+        return jsonify({'videos': [video.to_dict() for video in videos]})
+    except:
+        return jsonify({'videos':False})
