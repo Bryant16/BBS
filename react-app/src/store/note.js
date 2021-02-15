@@ -21,7 +21,7 @@ export const clearNotes = ()=>({
 })
 
 export const getAllNotes = (playerId) => async (dispatch) => {
-    console.log("inside ress");
+  
   const res = await fetch(`/api/notes/${playerId}/`);
   if (res.ok) {
     const all_notes = await res.json();

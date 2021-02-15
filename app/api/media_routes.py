@@ -30,7 +30,6 @@ def get_player_url(id):
 def handle_image_upload(id):
     img = request.files['image']
     if img:
-        print(img)
         # data = open('test.png' , 'rb')
         filename = secure_filename(img.filename)
         # img.save(filename)

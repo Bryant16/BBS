@@ -22,14 +22,11 @@ const PlayerProfilePage = ()=>{
     const players = useSelector(state=> state.players)
     const [playerInfo, setPlayerInfo] = useState(players);
     const dispatch = useDispatch();
-    // console.log(players,'this oneeeeeeee')
-    // const playerInfoSingle = players.filter(player=> player.id !== playerid)
 useEffect(()=>{
     const getVideos=async()=>{
         let res = await fetch(`/api/media/videos/${playerid}`)
         if(res.ok){
             let videos = await res.json();
-            console.log(videos,'inside fetch')
             setVideos(videos.videos)
         }
     }
@@ -67,8 +64,6 @@ useEffect(()=>{
             // setImage(file)
     
     }
-    console.log(videos,'vidsssssss')
-    // console.log(players[playerid],'new players state')
     return (
     <div className='player_profile_page'>
         {players && (

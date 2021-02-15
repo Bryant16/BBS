@@ -24,7 +24,6 @@ const [pull, setPull] = useState('');
 const [away, setAway] = useState('');
 const [opp, setOpp] = useState('');
 
-console.log(fielding, 'outside fetch call')
 
 useEffect(()=>{
     dispatch(getNonePitcherForm(playerId))
@@ -48,7 +47,6 @@ useEffect(()=>{
     }
 },[]);
 
-console.log(priorEval)
 const submitEval = async()=>{
     // e.preventDefault();
     const new_non_pitcher_eval= {
@@ -67,7 +65,7 @@ const submitEval = async()=>{
         away,
         opp
     }
-    console.log(fielding, 'fielding')
+    
    if(!priorEval){
        dispatch(getNonePitcherForm(playerId))
         setPriorEval(true)
