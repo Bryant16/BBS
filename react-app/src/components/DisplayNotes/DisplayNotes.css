@@ -1,7 +1,7 @@
 .notes_container{
     /* border: 1px solid black; */
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     /* height: 60vh; */
     /* width: 60vw; */
 }
