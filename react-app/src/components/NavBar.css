@@ -43,14 +43,15 @@ a:hover{
     /* font-weight: bold; */
     /* font-size: 1.1em; */
     outline: none;
-    min-width: 10vw;
-    
+    min-width: 10em;
+    min-height: 1em;
     height:3.7vh;
 }
 .navbar_button_container{
     display: flex;
     flex-direction: column;
+    margin-bottom: .5em;
 }
 .navbar_container img {
-    height: 10vh;
+    height: 4em;
 }
