@@ -6,13 +6,13 @@ import {getNonePitcherForm} from '../../store/nonPitcher';
 import {getPitcherForm} from "../../store/Pitcher";
 import './PlayerProfilePage.css';
 import PlayerImage from './PlayerImage';
-import Modal from './Modal';
 import PlayerCard from './PlayerInfoCard';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import {Image} from "@chakra-ui/react";
 import {getPlayers} from '../../store/player';
 import ReactPlayer from 'react-player';
 import Button from '@material-ui/core/Button';
+import PictureModal from './PictureModal';
 
 const PlayerProfilePage = ()=>{
     const history = useHistory();
@@ -65,6 +65,10 @@ useEffect(()=>{
             // setImage(file)
     
     }
+    const handlePictureClick =(e)=>{
+        e.preventDefault()
+        return 
+    }
     return (
     <div className='player_profile_page'>
         {players && (
@@ -82,9 +86,10 @@ useEffect(()=>{
             <div className='video_container'>
             {videos && videos.map(vid=>
             {if(vid.type.includes('video')){
-               return  <ReactPlayer className='react-player'  width='33%' height='15em' style={{'margin':'',"box-shadow":'5px 5px 15px 5px #B5B5B5', 'border-bottom':'1px solid black'}} controls url={vid.content} /> 
+               return  <ReactPlayer className='react-player'  width='13em' height='15em' style={{'margin':'',"box-shadow":'5px 5px 15px 5px #B5B5B5', 'border-bottom':'1px solid black'}} controls url={vid.content} /> 
             }else{
-                return <Image width='33%' height='15em' objectFit="cover" src={vid.content} />
+                return <PictureModal setVideos={setVideos} playerid={playerid} content={vid.content} />
+                // return <Link onClick={handlePictureClick}><Image width='13em' height='15em' objectFit="cover" src={vid.content} ></Image></Link>
             }}
             ) }
             </div>

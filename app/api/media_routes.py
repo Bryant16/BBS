@@ -64,3 +64,14 @@ def get_videos(id):
         return jsonify({'videos': [video.to_dict() for video in videos]})
     except:
         return jsonify({'videos':False})
+
+@media_routes.route('/videos', methods=["DELETE"])
+def delete_content():
+    url = request.get_json()
+    try:
+        content_to_delete = Video.query.filter(Video.content == url).first()
+        db.session.delete(content_to_delete)
+        db.session.commit()
+        return jsonify({'removed': True})
+    except:
+        return jsonify({'removed':False})

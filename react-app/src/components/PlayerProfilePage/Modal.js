@@ -4,6 +4,7 @@ import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import NewPlayerForm from '../NewPlayerForm';
 import './Modal.css';
+
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
