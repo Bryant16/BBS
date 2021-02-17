@@ -27,7 +27,7 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
-    width: 400,
+    width: '30em',
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
@@ -50,27 +50,27 @@ export default function VideoModal({url, setVideos, playerid}) {
   };
   const deleteContent = async(e, content)=>{
     e.preventDefault();
-    
-    const res = await fetch('/api/media/videos', {
-        headers: {'Content-type': 'application/json'},
-        method: 'DELETE',
-        body: JSON.stringify(content)
-    })
-    if(res.ok){
-        const {removed} = await res.json();
-        if(removed){
-            const getVideos=async()=>{
-                let res = await fetch(`/api/media/videos/${playerid}`)
-                if(res.ok){
-                    let videos = await res.json();
-                    setVideos(videos.videos)
+       if(window.confirm('Delete this item?')){
+        const res = await fetch('/api/media/videos', {
+            headers: {'Content-type': 'application/json'},
+            method: 'DELETE',
+            body: JSON.stringify(content)
+        })
+        if(res.ok){
+            const {removed} = await res.json();
+            if(removed){
+                const getVideos=async()=>{
+                    let res = await fetch(`/api/media/videos/${playerid}`)
+                    if(res.ok){
+                        let videos = await res.json();
+                        setVideos(videos.videos)
+                    }
                 }
+                getVideos()
+                handleClose()
             }
-            getVideos()
-            handleClose()
         }
     }
-
   }
 
   const body = (

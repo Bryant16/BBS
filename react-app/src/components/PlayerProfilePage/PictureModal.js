@@ -26,7 +26,7 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
-    width: 400,
+    width: '30em',
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
@@ -49,7 +49,7 @@ export default function SimpleModal({content, playerid, setVideos, content_type}
   };
   const deleteContent = async(e, content)=>{
     e.preventDefault();
-    
+    if(window.confirm('Delete this item?')){
     const res = await fetch('/api/media/videos', {
         headers: {'Content-type': 'application/json'},
         method: 'DELETE',
@@ -69,7 +69,7 @@ export default function SimpleModal({content, playerid, setVideos, content_type}
             handleClose()
         }
     }
-
+    }
   }
 
   const body = (
