@@ -9,6 +9,7 @@ import PlayerImage from './PlayerImage';
 import Modal from './Modal';
 import PlayerCard from './PlayerInfoCard';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import {Image} from "@chakra-ui/react";
 import {getPlayers} from '../../store/player';
 import ReactPlayer from 'react-player';
 import Button from '@material-ui/core/Button';
@@ -79,7 +80,13 @@ useEffect(()=>{
                 <input type='file' style={{'marginTop':'.5em', 'opacity':'0'}} name='video' onChange={updateFile} size="60" accept="image/*"/>
         </form>
             <div className='video_container'>
-            {videos && videos.map(vid=><ReactPlayer className='react-player'  width='33%' height='15em' style={{'margin':'',"box-shadow":'5px 5px 15px 5px #B5B5B5', 'border-bottom':'1px solid black'}} controls url={vid.content} /> ) }
+            {videos && videos.map(vid=>
+            {if(vid.type.includes('video')){
+               return  <ReactPlayer className='react-player'  width='33%' height='15em' style={{'margin':'',"box-shadow":'5px 5px 15px 5px #B5B5B5', 'border-bottom':'1px solid black'}} controls url={vid.content} /> 
+            }else{
+                return <Image width='33%' height='15em' objectFit="cover" src={vid.content} />
+            }}
+            ) }
             </div>
         <div>
         </div>
