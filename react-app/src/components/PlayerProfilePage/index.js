@@ -83,7 +83,7 @@ useEffect(()=>{
         <div className='player_videos'>
         <form>
                 <label id='file_upload' for="video" ><Button style={{'width':'6em','height':'2em', 'background-color':'white','border':'1px solid lightskyblue'}}class='new_video'>New Media</Button></label>
-                <input type='file' style={{'marginTop':'.5em', 'opacity':'0'}} name='video' onChange={updateFile} size="60" accept="image/*"/>
+                <input type='file' style={{'marginTop':'.5em', 'opacity':'0'}} name='video' onChange={updateFile} size="50" accept="image/*"/>
         </form>
             <div className='video_container'>
             {videos && videos.map(vid=>

@@ -9,6 +9,7 @@ input[type='file'] {
     opacity: 0;
     background-color: white;
   }
+  
 #file_upload{
     color:lightskyblue;
     border-radius: .3em;
@@ -97,5 +98,5 @@ input[type='file'] {
 
 .player_videos form {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 }
