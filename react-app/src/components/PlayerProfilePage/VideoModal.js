@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import NewPlayerForm from '../NewPlayerForm';
+import ReactPlayer from 'react-player';
 import './Modal.css';
 
 function rand() {
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleModal({content, playerid, setVideos, content_type}) {
+export default function VideoModal({url, setVideos, playerid}) {
   const classes = useStyles();
   const history = useHistory();
   const [modalStyle] = React.useState(getModalStyle);
@@ -76,15 +77,15 @@ export default function SimpleModal({content, playerid, setVideos, content_type}
     <div style={modalStyle} className={classes.paper}>
       {/* <h2 id="simple-modal-title">Edit Player</h2> */}
       <div className='picture_modal_container'>
-              <Image width='20em' height='30em' objectFit="cover" src={content} ></Image>
-            <button onClick={e=>deleteContent(e, content)}>delete</button>
+      <ReactPlayer className='react-player'  width='25em' height='40em' style={{'margin':'',"box-shadow":'5px 5px 15px 5px #B5B5B5', 'border-bottom':'1px solid black'}} controls url={url} />
+            <button onClick={e=>deleteContent(e, url)}>delete</button>
     </div>
     </div>
   );
 
   return (
     <div>
-    <Link onClick={handleOpen}><Image width='13em' height='15em' objectFit="cover" src={content} ></Image> </Link>
+    <Link onClick={handleOpen}><ReactPlayer className='react-player'  width='13em' height='15em' style={{'margin':'',"box-shadow":'5px 5px 15px 5px #B5B5B5', 'border-bottom':'1px solid black'}} controls url={url} /></Link>
       <Modal
         open={open}
         onClose={handleClose}
