@@ -63,15 +63,20 @@ def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        user = User(
-            username=form.data['username'],
-            email=form.data['email'],
-            password=form.data['password']
-        )
-        db.session.add(user)
-        db.session.commit()
-        login_user(user)
-        return jsonify({'user': user.to_dict()})
+        if User.query.filter(User.username == form.data['username']).first():
+            return jsonify({'user': {'errors': validation_errors_to_error_messages({'ERROR':['Username must be unique']})}})
+        elif User.query.filter(User.email == form.data['email']).first():
+             return jsonify({'user': {'errors': validation_errors_to_error_messages({'ERROR':['Email must be unique']})}})
+        else:
+            user = User(
+                username=form.data['username'],
+                email=form.data['email'],
+                password=form.data['password']
+            )
+            db.session.add(user)
+            db.session.commit()
+            login_user(user)
+            return jsonify({'user': user.to_dict()})
     return jsonify({'user': {'errors': validation_errors_to_error_messages(form.errors)}})
 
 
