@@ -2,7 +2,7 @@ const USER = 'session/USER';
 const LOGOUT = 'session/Logout'
 const constructSession = user => ({ type: USER, user });
 
-const deconstructSession = () => ({ type: USER });
+const deconstructSession = () => ({ type: LOGOUT });
 
 export const LogIn = (email, password) => async dispatch => {
   const loginResponse = await window.fetch('/api/auth/login', {
@@ -54,6 +54,16 @@ export const SignUp = (username, email, password) => async dispatch => {
   throw outErr;
 };
 
-export default function sessionReducer (state = { user: null}, action) {
-  return (action.type === USER) ? { ...state, user: action.user} : state;
+const sessionReducer = (state = { user: null}, action)=> {
+  switch(action.type) {
+    case USER:{
+      return {...state, user: action.user}
+    }
+    case LOGOUT:
+      return {}
+    default:
+      return state
+    }
 }
+
+export default sessionReducer;

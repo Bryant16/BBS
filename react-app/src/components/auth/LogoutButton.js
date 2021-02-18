@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
 // import { Redirect } from "react-router-dom";
 import {useHistory} from 'react-router-dom';
-import {clearPlayers} from '../../store/player'
 import { LogOut } from '../../store/session';
 import Button from '@material-ui/core/Button';
 export default function LogoutButton () {
@@ -12,7 +11,6 @@ export default function LogoutButton () {
 
   const onLogout = () => {
     dispatch(LogOut())
-    dispatch(clearPlayers())
     history.push('/login')
   };
 
