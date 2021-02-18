@@ -77,7 +77,7 @@ export default function SimpleModal({content, playerid, setVideos, content_type}
       {/* <h2 id="simple-modal-title">Edit Player</h2> */}
       <div className='picture_modal_container'>
               <Image width='20em' height='30em' objectFit="cover" src={content} ></Image>
-            <button onClick={e=>deleteContent(e, content)}>delete</button>
+            <button className='delete_button_pic_video' onClick={e=>deleteContent(e, content)}>Delete</button>
     </div>
     </div>
   );

@@ -20,6 +20,9 @@ input[type='file'] {
     position: absolute;
     margin: auto;
 }
+#file_upload::before{
+    background-color: black;
+}
 .new_video{
     color: lightskyblue;
 }
@@ -99,4 +102,19 @@ input[type='file'] {
 .player_videos form {
     display: flex;
     justify-content: center;
+}
+
+.picture_modal_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.delete_button_pic_video{
+    margin-top: .5em;
+    width: 6em;
+    height: 3em;
+    background-color: red;
+    border-radius: 1em;
+    color: white;
 }

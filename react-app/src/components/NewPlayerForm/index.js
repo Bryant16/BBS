@@ -25,6 +25,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
     const [throws, setThrows] = useState("");
     const [playerInfo, setPlayerInfo] = useState(false);
     const [loaded, setLoad] = useState(false);
+    const [hotList, setHotList] = useState()
     const players = useSelector(state => state.players);
 
     useEffect(()=>{
@@ -53,6 +54,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
             setState(playerInfo.team_state)
             setThrows(playerInfo.throws)
             setBats(playerInfo.bats)
+            setHotList(playerInfo.hot_list)
             }
         }catch(e){
         }
@@ -74,6 +76,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
             team_state,
             bats,
             throws,
+            hotList
         }
         if(players[playerid]){
             handleClose()
@@ -84,6 +87,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
       
     }
     }
+    console.log(playerInfo)
     let playerPositions = ['P','C','1B','2B','3B','SS','RF','LF','CF']
     return (
          <div className='new_player_form_container'>
@@ -187,6 +191,15 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                  placeHolder='Team State'
                  value={team_state}
                  onChange={(e)=>setState(e.target.value)}/>
+                </div>
+                <div>
+                    <label style={{'marginRight':'.5em'}}>Track</label>
+                    <Input
+                    type='checkbox'
+                    checked={hotList}
+                    onChange={(e)=> setHotList(e.target.checked)}
+                    // onChange={(e)=>setHotList(e.target)}
+                    ></Input>
                 </div>
                 <Button id="register_button" size='large' variant="contained" color='primary' onClick={registerClick}>Register</Button>
             </form>) }
