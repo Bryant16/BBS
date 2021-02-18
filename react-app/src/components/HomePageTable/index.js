@@ -42,7 +42,7 @@ export default function DataGridDemo() {
     const history = useHistory()
     const [hot, setHot] = useState(true)
     const [arr, setArr] = useState(false)
-    const [tracked, setTracked] = useState("Currently Tracked")
+    const [tracked, setTracked] = useState("Tracking")
     const click=(e)=>{
         const id = e.rowIds[0]
         history.push(`/players/${id}`)
@@ -55,15 +55,21 @@ export default function DataGridDemo() {
     if(hot){
       setTracked("Not Tracking")
     }else{
-      setTracked("Currently Tracking")
+      setTracked("Tracking")
     }
     setArr(newArrOfPlayers.filter(play=> play.hot_list === !hot))
     setHot(!hot)
   }
-  console.log(arr)
+  const filterResults = (e)=>{
+    setArr(newArrOfPlayers.filter(play=>{
+      const string_to_check = play.first_name + play.last_name + play.team_name + play.team_state + play.address + play.position
+      return string_to_check.toLowerCase().includes(e.target.value.toLowerCase())
+    }))
+  }
   return (
     <div style={{ height: '40em', width: '55em' }}>
-      <button onClick={handleTrack}>{tracked}</button>
+      <button id='tracker_button' onClick={handleTrack}>{tracked}</button>
+      <input type='text' placeHolder='search...'onChange={filterResults}></input>
       <DataGrid rows={arr || newArrOfPlayers.filter(play=>play.hot_list===true)} columns={columns} pageSize={10} checkboxSelection  onSelectionChange={click} />
     </div>
   );

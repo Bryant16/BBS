@@ -8,6 +8,7 @@
 .MuiDataGrid-colCellTitleContainer svg {
     visibility: hidden !important;
 }
-/* .MuiIconButton-label:hover{
-   background-color: lightgreen;
-} */
+#tracker_button{
+    background-color: white;
+    border-radius: .3em;
+}
