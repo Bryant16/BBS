@@ -1,10 +1,14 @@
-const COLLECT = "nonPitcher/COLLECT"
+const COLLECT = "nonPitcher/COLLECT";
+const CLEAR = "nonPitcher/CLEAR";
 
 const collect = nonPitcherForms => ({
     type: COLLECT,
     nonPitcherForms,
 });
 
+export const clearNonPitcher = ()=>({
+    type: CLEAR  
+  })
 export const getNonePitcherForm = (playerId) => async dispatch => {
     const res = await fetch(`/api/players/${playerId}/nonpitcher/`)
     if (res.ok) {
@@ -22,6 +26,9 @@ const nonPitcherReducer = (state = initialState, action) => {
         case COLLECT: {
 
             return {...action.nonPitcherForms }
+        }
+        case CLEAR: {
+            return {}
         }
         default:
         return state

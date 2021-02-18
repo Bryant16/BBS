@@ -1,3 +1,4 @@
+
 const USER = 'session/USER';
 const LOGOUT = 'session/Logout'
 const constructSession = user => ({ type: USER, user });
@@ -60,7 +61,7 @@ const sessionReducer = (state = { user: null}, action)=> {
       return {...state, user: action.user}
     }
     case LOGOUT:
-      return {}
+      return {user:null}
     default:
       return state
     }
