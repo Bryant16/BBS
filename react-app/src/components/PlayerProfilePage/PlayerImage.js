@@ -2,11 +2,9 @@ import React,{useEffect, useState} from 'react';
 import defaultUser from "./default-user.png";
 import {Image} from "@chakra-ui/react";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import Button from '@material-ui/core/Button';
 
 
 const PlayerImage = ({playerid})=>{
-    const [imageUpload, setImage] = useState('');
     const [playerImageUrl, setPlayerImageUrl] =useState(false);
 
     useEffect(()=>{
@@ -18,18 +16,9 @@ const PlayerImage = ({playerid})=>{
             }
         }
         getProfileUrl()
-    },[playerImageUrl])
+    },[playerImageUrl,playerid])
 
-    const handleSubmit = async(e)=>{
-        e.preventDefault();
-        // const formData = new FormData();
-        // formData.append("image", imageUpload)
-        // const res = await fetch(`/api/images/${playerid}`,{method:"POST",body:formData})
-        // if (res.ok){
-        //     const imageUpload = await res.json();
-        //     setPlayerImageUrl(imageUpload.URL)
-        // }
-}
+    
     const updateFile = async(e)=>{
         e.preventDefault();
         const file = e.target.files[0];
@@ -52,7 +41,7 @@ const PlayerImage = ({playerid})=>{
         {playerImageUrl ? <Image boxSize="245px" objectFit="cover" src={playerImageUrl}/>: <Image boxSize="245px" objectFit="cover" src={defaultUser}/>}
         </div>
         <div className='file_upload_container'>
-        <form onSubmit={handleSubmit}>
+        <form >
                 <input type='file' name='file' onChange={updateFile} size="60" accept="image/*"/>
                 <label id='file_upload' for="file"><CloudUploadIcon/></label>
         </form>

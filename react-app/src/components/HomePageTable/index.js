@@ -69,7 +69,7 @@ export default function DataGridDemo() {
   return (
     <div style={{ height: '40em', width: '55em'}}>
       <button id='tracker_button' onClick={handleTrack}>{tracked}</button>
-      <input type='text' placeHolder='search...'onChange={filterResults}></input>
+      <input type='text' placeholder='search...'onChange={filterResults}></input>
       <DataGrid rows={arr || newArrOfPlayers.filter(play=>play.hot_list===true)} columns={columns} pageSize={10} checkboxSelection  onSelectionChange={click} />
     </div>
   );

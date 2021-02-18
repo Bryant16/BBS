@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState} from 'react';
+import { useDispatch} from 'react-redux';
 import {createNote} from '../../store/note';
-import {getAllNotes} from '../../store/note';
 import Button from '@material-ui/core/Button'; 
-import {BiMessageAdd} from 'react-icons/bi';
 import { makeStyles } from '@material-ui/core/styles';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 

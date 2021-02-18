@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPitcherForm } from "../../store/Pitcher";
 import EvalButtons from "../NonPitcherForm/ButtonsForEval";
 import "./PitcherForm.css";
 
 const PitcherForm = ({ playerId }) => {
-  const history = useHistory();
   const dispatch = useDispatch();
   const pitcher = useSelector((state) => state.pitcher);
   const [priorEval, setPriorEval] = useState(false);
@@ -43,7 +41,7 @@ const PitcherForm = ({ playerId }) => {
       }
     } catch (e) {}
     
-  }, []);
+  }, [dispatch, pitcher, playerId]);
 
   const submitEval = async () => {
     // e.preventDefault();
@@ -70,7 +68,7 @@ const PitcherForm = ({ playerId }) => {
         body: JSON.stringify(new_pitcher_eval),
       });
       if (response.ok) {
-        const json = await response.json();
+        // const json = await response.json();
         // history.push(`/players/${playerId}`);
       } else {
         alert("Error Player Could not be created");

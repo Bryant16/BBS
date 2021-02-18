@@ -49,7 +49,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     <div className="login_container">
       <div className="login_form_container">
         <div>
-          <img src={letters} />
+          <img alt='' src={letters} />
         </div>
         <form className="form_for_login" onSubmit={onLogin}>
           <div>
@@ -83,7 +83,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
           </button>
           <button onClick={demoLogin}>Demo User</button>
         </form>
-        <img src={logo} />
+        <img alt='' src={logo} />
       </div>
     </div>
   );

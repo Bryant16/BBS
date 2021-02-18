@@ -31,7 +31,6 @@ export default function SimpleCard({playerid, players, evals, notes}) {
   const history = useHistory();
   let singlePlayer= players[playerid]
   
-  const bull = <span className={classes.bullet}>•</span>;
   const goToEvaluation = (e)=>{
     e.preventDefault();
     history.push(`/players/${playerid}/evaluation`)

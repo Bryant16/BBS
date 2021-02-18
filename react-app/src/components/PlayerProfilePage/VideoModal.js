@@ -1,17 +1,10 @@
 import React from 'react';
-import {Image} from "@chakra-ui/react";
-import {useHistory} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import Button from '@material-ui/core/Button';
-import NewPlayerForm from '../NewPlayerForm';
 import ReactPlayer from 'react-player';
 import './Modal.css';
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
 
 function getModalStyle() {
   const top = 50 ;
@@ -37,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function VideoModal({url, setVideos, playerid}) {
   const classes = useStyles();
-  const history = useHistory();
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
 

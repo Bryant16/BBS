@@ -5,9 +5,6 @@ import Button from '@material-ui/core/Button';
 import NewPlayerForm from '../NewPlayerForm';
 import './Modal.css';
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
 
 function getModalStyle() {
   const top = 50 ;

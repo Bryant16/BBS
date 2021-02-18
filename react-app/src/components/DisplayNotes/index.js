@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import {removeNote} from '../../store/note';
 import {useDispatch} from 'react-redux';
 import {RiDeleteBin6Line} from 'react-icons/ri';

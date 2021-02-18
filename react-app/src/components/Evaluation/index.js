@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import PitcherForm from '../PitcherForm';
 import NonPitcherForm from '../NonPitcherForm';
 import Notes from '../Notes';
@@ -29,7 +29,7 @@ const Evaluation = () => {
       }
     };
     getPlayer();
-  }, []);
+  }, [playerid]);
 
   useEffect(()=>{
     dispatch(clearNotes())
@@ -37,7 +37,7 @@ const Evaluation = () => {
     dispatch(getPitcherForm(playerid))
     dispatch(getAllNotes(playerid))
     setNotes(true)
-  },[])
+  },[dispatch,playerid])
  const toggleNoteEvals = (e)=>{
    e.preventDefault()
    if(toggle === 'Notes'){

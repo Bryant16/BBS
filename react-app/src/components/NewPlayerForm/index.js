@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {useHistory, useParams, Redirect} from 'react-router-dom';
-import { Input, Text, Select } from "@chakra-ui/react";
+import {useHistory} from 'react-router-dom';
+import { Input, Select } from "@chakra-ui/react";
 import Button from '@material-ui/core/Button';
 import './NewPlayerForm.css';
 import {editPlayerProfile} from '../../store/player';
@@ -58,7 +58,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
             }
         }catch(e){
         }
-    },[dispatch, loaded])
+    },[dispatch, loaded,playerInfo,playerid])
   
     const registerClick = async(e)=>{
         e.preventDefault();
@@ -87,7 +87,6 @@ const NewPlayerForm = ({playerid, handleClose})=>{
       
     }
     }
-    console.log(playerInfo)
     let playerPositions = ['P','C','1B','2B','3B','SS','RF','LF','CF']
     return (
          <div className='new_player_form_container'>
@@ -96,7 +95,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                 <Input 
                 type='text'
                 required
-                placeHolder='First Name'
+                placeholder='First Name'
                 value={first_name}
                 onChange={(e)=>setFirstName(e.target.value)}/>
                 </div>   
@@ -104,21 +103,21 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                 <Input
                  type='text'
                  value={last_name}
-                 placeHolder='Last Name'
+                 placeholder='Last Name'
                  onChange={(e)=>setLastName(e.target.value)} />
                 </div>
                 <div>
                 <Input
                  type='text'
                  value={height}
-                 placeHolder='Height'
+                 placeholder='Height'
                  onChange={(e)=>setHeight(e.target.value)} />
                 </div>
                 <div>
                 <Input 
                  type='text'
                  value={weight}
-                 placeHolder='Weight'
+                 placeholder='Weight'
                  onChange={(e)=>setWeight(e.target.value)}/>
                 </div>
                 <div>
@@ -154,41 +153,41 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                 <Input 
                  type='text'
                  value={address}
-                 placeHolder='Full Address'
+                 placeholder='Full Address'
                  onChange={(e)=>setAddress(e.target.value)}/>
                 </div>
                 <div>
                 <Input 
                  type='text'
                  value={phone_number}
-                 placeHolder='Phone 555-555-5555'
+                 placeholder='Phone 555-555-5555'
                  onChange={(e)=>setPhone(e.target.value)}/>
                 </div>
                 <div>
                 <Input 
                  type='text'
                  value={email}
-                 placeHolder='Email'
+                 placeholder='Email'
                  onChange={(e)=>setEmail(e.target.value)}/>
                 </div>
                 <div>
                 <Input 
                  type='text'
                  value={team_name}
-                 placeHolder='Team Name'
+                 placeholder='Team Name'
                  onChange={(e)=>setTeam(e.target.value)}/>
                 </div>
                 <div>
                 <Input 
                  type='text'
-                 placeHolder='Team City'
+                 placeholder='Team City'
                  value={team_city}
                  onChange={(e)=>setCity(e.target.value)}/>
                 </div>
                 <div>
                 <Input 
                  type='text'
-                 placeHolder='Team State'
+                 placeholder='Team State'
                  value={team_state}
                  onChange={(e)=>setState(e.target.value)}/>
                 </div>

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
+import React, {  useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import Button from '@material-ui/core/Button';
-import { SignUp, LogIn } from '../../store/session';
+import { SignUp } from '../../store/session';
 
 import './SignupForm.css';
 import logo from './new_logo_bbs.png';
@@ -12,7 +12,6 @@ import letters from './BBScouting writing.png';
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.session);
-  const history = useHistory();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -50,7 +49,7 @@ const SignUpForm = () => {
       <div className='div__container_form'>
         <div className="login_form_container">
         <div>
-        <a href='/login'><img src={letters}/></a>
+        <a href='/login'><img alt='' src={letters}/></a>
       </div>
         <form className="form_for_login" onSubmit={onSignUp}>
           <div>
@@ -106,7 +105,7 @@ const SignUpForm = () => {
             </Button>
           </div>
         </form>
-        <img src={logo} />
+        <img alt='' src={logo} />
         </div>
       </div>
       );

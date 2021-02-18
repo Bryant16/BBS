@@ -1,12 +1,10 @@
 import React,{useEffect, useState} from 'react';
-import {useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {getNonePitcherForm} from '../../store/nonPitcher';
 import './NonPitcherForm.css';
 import EvalButtons from './ButtonsForEval';
 
 const NonPitcherForm = ({playerId})=>{
-const history = useHistory();
 const dispatch = useDispatch();
 const nonPitcher = useSelector(state=> state.nonPitcher);
 const [priorEval, setPriorEval] = useState(false);
@@ -45,7 +43,7 @@ useEffect(()=>{
         setPriorEval(true)
     }}catch(e){
     }
-},[]);
+},[dispatch, nonPitcher, playerId]);
 
 const submitEval = async()=>{
     // e.preventDefault();
@@ -75,7 +73,7 @@ const submitEval = async()=>{
         body: JSON.stringify(new_non_pitcher_eval)
         });
         if(response.ok){
-            const json = await response.json();
+            // const json = await response.json();
             // history.push(`/players/${playerId}`)
             }
     }else{

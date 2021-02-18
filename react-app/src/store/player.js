@@ -1,6 +1,3 @@
-import { Editable } from "@chakra-ui/react";
-import { AddIcon } from "@material-ui/data-grid";
-
 const LOAD = "players/LOAD";
 const EDIT = "players/EDIT";
 const ADD = "players/ADD";

@@ -4,7 +4,7 @@ import "./Footer.css";
 const Footer = () => {
      
   return (
-    <footer class="bg-light text-center text-lg-start">
+    <footer className="bg-light text-center text-lg-start">
       <div className="my_page_links">
         ©<p> Bryant Klein</p>
           <p>

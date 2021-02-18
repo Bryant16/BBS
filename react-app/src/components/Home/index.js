@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Restore } from "../../store/session";
 import {getPlayers} from '../../store/player';
 import DataTable from '../HomePageTable';
 import './home.css';
