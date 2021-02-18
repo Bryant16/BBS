@@ -10,6 +10,7 @@ import PlayerCard from './PlayerInfoCard';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import {Image} from "@chakra-ui/react";
 import {getPlayers} from '../../store/player';
+import {getAllNotes} from '../../store/note';
 import ReactPlayer from 'react-player';
 import Button from '@material-ui/core/Button';
 import PictureModal from './PictureModal';
@@ -19,6 +20,9 @@ import VideoModal from './VideoModal';
 const PlayerProfilePage = ()=>{
     const history = useHistory();
     const { user } = useSelector((state) => state.session);
+    const nonPitcher = useSelector(state=> state.nonPitcher);
+    const pitcher = useSelector((state) => state.pitcher);
+    const notes = useSelector(state => state.notes);
     const {playerid} = useParams();
     const [videoUrl, setVideoUrl] =useState(false);
     const [videos, setVideos] = useState(false)
@@ -45,6 +49,7 @@ useEffect(()=>{
             }
         }
         getPlayer()
+        dispatch(getAllNotes(playerid))
         dispatch(getNonePitcherForm(playerid))
         dispatch(getPitcherForm(playerid))   
     },[dispatch]);
@@ -71,12 +76,19 @@ useEffect(()=>{
         e.preventDefault()
         return 
     }
+    const whichEval=()=>{
+        if(pitcher[0]){
+            return pitcher[0]
+        }else{
+            return nonPitcher[0]
+        }
+    }
     return (
     <div className='player_profile_page'>
         {players && (
             <div className='player_profile_container'>
              <PlayerImage playerid={playerid}/>
-             {players[playerid] ? <PlayerCard playerid={playerid} players={players}/>:<h1>loading</h1>}
+             {players[playerid] ? <PlayerCard playerid={playerid} players={players} evals={whichEval()} notes={notes}/>:<h1>loading</h1>}
              
         </div>
         )}

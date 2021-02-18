@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard({playerid, players}) {
+export default function SimpleCard({playerid, players, evals, notes}) {
   const classes = useStyles();
   const history = useHistory();
   let singlePlayer= players[playerid]
@@ -35,6 +35,14 @@ export default function SimpleCard({playerid, players}) {
   const goToEvaluation = (e)=>{
     e.preventDefault();
     history.push(`/players/${playerid}/evaluation`)
+  }
+  const share=(e)=>{
+    e.preventDefault()
+    console.log({
+      singlePlayer,
+      evals,
+      notes
+    })
   }
   return (
     <Card className={classes.root}>
@@ -57,6 +65,7 @@ export default function SimpleCard({playerid, players}) {
       <CardActions>
         <Button onClick={goToEvaluation} id="edit_player_button" variant="outlined" size="small">Evaluation</Button>
         <Modal playerid={playerid}/>
+        <Button type="button" size='small' variant="outlined" onClick={share}>Share</Button>
       </CardActions>
     </Card>
   );

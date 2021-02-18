@@ -46,7 +46,7 @@ export default function SimpleModal({playerid}) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Edit Player</h2>
+      <h2 id="simple-modal-title" style={{'text-align':'center'}}>Edit Player</h2>
       <div className='new_player_modal_container'>
         <NewPlayerForm handleClose={handleClose} playerid={playerid}/>
     </div>
@@ -58,6 +58,7 @@ export default function SimpleModal({playerid}) {
       <Button type="button" size='small' variant="outlined" onClick={handleOpen}>
         Edit Player
       </Button>
+     
       <Modal
         open={open}
         onClose={handleClose}
