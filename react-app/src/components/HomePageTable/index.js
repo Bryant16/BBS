@@ -62,12 +62,12 @@ export default function DataGridDemo() {
   }
   const filterResults = (e)=>{
     setArr(newArrOfPlayers.filter(play=>{
-      const string_to_check = play.first_name + play.last_name + play.team_name + play.team_state + play.address + play.position
+      const string_to_check = play.first_name + play.last_name + play.team_name + play.team_state + play.address + play.position + play.team_city + play.team_name
       return string_to_check.toLowerCase().includes(e.target.value.toLowerCase())
     }))
   }
   return (
-    <div style={{ height: '40em', width: '55em' }}>
+    <div style={{ height: '40em', width: '55em'}}>
       <button id='tracker_button' onClick={handleTrack}>{tracked}</button>
       <input type='text' placeHolder='search...'onChange={filterResults}></input>
       <DataGrid rows={arr || newArrOfPlayers.filter(play=>play.hot_list===true)} columns={columns} pageSize={10} checkboxSelection  onSelectionChange={click} />
