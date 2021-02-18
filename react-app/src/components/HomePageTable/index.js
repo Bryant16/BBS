@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
@@ -40,15 +40,31 @@ const columns = [
 ];
 export default function DataGridDemo() {
     const history = useHistory()
+    const [hot, setHot] = useState(true)
+    const [arr, setArr] = useState(false)
+    const [tracked, setTracked] = useState("Currently Tracked")
     const click=(e)=>{
         const id = e.rowIds[0]
         history.push(`/players/${id}`)
     }
     const players  = useSelector((state) => state.players);
-const newArrOfPlayers = Object.values(players)
+  let newArrOfPlayers = Object.values(players)
+  
+  const handleTrack = (e)=>{
+    e.preventDefault();
+    if(hot){
+      setTracked("Not Tracking")
+    }else{
+      setTracked("Currently Tracking")
+    }
+    setArr(newArrOfPlayers.filter(play=> play.hot_list === !hot))
+    setHot(!hot)
+  }
+  console.log(arr)
   return (
     <div style={{ height: '40em', width: '55em' }}>
-      <DataGrid rows={newArrOfPlayers} columns={columns} pageSize={10} checkboxSelection  onSelectionChange={click} />
+      <button onClick={handleTrack}>{tracked}</button>
+      <DataGrid rows={arr || newArrOfPlayers.filter(play=>play.hot_list===true)} columns={columns} pageSize={10} checkboxSelection  onSelectionChange={click} />
     </div>
   );
 }

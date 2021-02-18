@@ -25,7 +25,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
     const [throws, setThrows] = useState("");
     const [playerInfo, setPlayerInfo] = useState(false);
     const [loaded, setLoad] = useState(false);
-    const [hotList, setHotList] = useState()
+    const [hotList, setHotList] = useState(true);
     const players = useSelector(state => state.players);
 
     useEffect(()=>{
