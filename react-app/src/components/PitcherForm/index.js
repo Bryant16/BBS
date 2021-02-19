@@ -41,7 +41,7 @@ const PitcherForm = ({ playerId }) => {
       }
     } catch (e) {}
     
-  }, [dispatch, pitcher, playerId]);
+  }, [dispatch]);
 
   const submitEval = async () => {
     // e.preventDefault();

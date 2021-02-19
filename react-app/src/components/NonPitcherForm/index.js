@@ -43,7 +43,7 @@ useEffect(()=>{
         setPriorEval(true)
     }}catch(e){
     }
-},[dispatch, nonPitcher, playerId]);
+},[dispatch]);
 
 const submitEval = async()=>{
     // e.preventDefault();

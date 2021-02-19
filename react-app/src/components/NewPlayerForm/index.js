@@ -58,7 +58,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
             }
         }catch(e){
         }
-    },[dispatch, loaded,playerInfo,playerid])
+    },[dispatch, loaded])
   
     const registerClick = async(e)=>{
         e.preventDefault();
