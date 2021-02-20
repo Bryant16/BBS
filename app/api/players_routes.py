@@ -31,6 +31,7 @@ def create_player():
             team_state=data["team_state"],
             bats=data["bats"],
             throws=data["throws"],
+            dob=data["dob"],
             hot_list=data["hotList"]
         )
         db.session.add(new_player)
@@ -67,6 +68,7 @@ def update_player(id):
         player_to_update.team_state = data["team_state"]
         player_to_update.bats = data["bats"]
         player_to_update.throws = data["throws"]
+        player_to_update.dob = data["dob"]
         player_to_update.hot_list = data["hotList"]
         db.session.commit()
         return jsonify({'player': player_to_update.to_dict()})

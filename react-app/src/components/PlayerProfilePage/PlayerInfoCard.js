@@ -7,11 +7,12 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Modal from './Modal';
-import {FaAddressCard, FaBaseballBall} from 'react-icons/fa';
+import {FaAddressCard,FaMailchimp, FaBirthdayCake, FaBaseballBall} from 'react-icons/fa';
 const useStyles = makeStyles({
   root: {
-    minWidth: 370,
-    padding: '1em',
+    minWidth: '23em',
+    height: '15.5em',
+    padding: '.5em',
   },
   bullet: {
     display: 'inline-block',
@@ -19,7 +20,7 @@ const useStyles = makeStyles({
     transform: 'scale(0.8)',
   },
   title: {
-    fontSize: 21,
+    fontSize: '2rem',
   },
   pos: {
     marginBottom: 2,
@@ -45,19 +46,23 @@ export default function SimpleCard({playerid, players, evals, notes}) {
   }
   return (
     <Card className={classes.root}>
-      <CardContent>
+      <CardContent style={{'padding':0}}>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
           {singlePlayer.first_name} {singlePlayer.last_name}
         </Typography>
         <Typography variant="h5" component="h2">
-        {singlePlayer.position}- {singlePlayer.height}, {singlePlayer.weight} lbs   
+        {singlePlayer.position} {singlePlayer.height}, {singlePlayer.weight} lbs   
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
         Throws: {singlePlayer.throws} / Bats: {singlePlayer.bats}
         </Typography>
         <Typography variant="body2" component="p">
         <FaAddressCard /> {singlePlayer.address}
+        <br/>
+        <FaMailchimp /> {singlePlayer.email}
           <br />
+         <FaBirthdayCake /> {singlePlayer.dob}
+          <br/>
           <FaBaseballBall /> {singlePlayer.team_name} {singlePlayer.team_city}, {singlePlayer.team_state}
         </Typography>
       </CardContent>

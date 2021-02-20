@@ -23,6 +23,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
     const [team_state, setState] = useState("");
     const [bats, setBats] = useState("");
     const [throws, setThrows] = useState("");
+    const [dob, setDob] = useState("");
     const [playerInfo, setPlayerInfo] = useState(false);
     const [loaded, setLoad] = useState(false);
     const [hotList, setHotList] = useState(true);
@@ -54,6 +55,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
             setState(playerInfo.team_state)
             setThrows(playerInfo.throws)
             setBats(playerInfo.bats)
+            setDob(playerInfo.dob)
             setHotList(playerInfo.hot_list)
             }
         }catch(e){
@@ -76,6 +78,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
             team_state,
             bats,
             throws,
+            dob,
             hotList
         }
         if(players[playerid]){
@@ -110,15 +113,22 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                 <Input
                  type='text'
                  value={height}
-                 placeholder='Height'
+                 placeholder="Height ex.(5'11)"
                  onChange={(e)=>setHeight(e.target.value)} />
                 </div>
                 <div>
                 <Input 
                  type='text'
                  value={weight}
-                 placeholder='Weight'
+                 placeholder='Weight ex.(185)'
                  onChange={(e)=>setWeight(e.target.value)}/>
+                </div>
+                <div>
+                <Input 
+                 type='text'
+                 value={dob}
+                 placeholder='D.O.B. (01/01/2000)'
+                 onChange={(e)=>setDob(e.target.value)}/>
                 </div>
                 <div>
                 <Select 

@@ -21,6 +21,7 @@ class Player(db.Model):
     team_state = db.Column(db.String)
     bats = db.Column(db.String)
     throws = db.Column(db.String)
+    dob = db.Column(db.String)
     hot_list = db.Column(db.Boolean, create_constraint=True)
     notes = db.relationship("Note", back_populates="players")
     photos = db.relationship("Image", back_populates="players")
@@ -46,6 +47,7 @@ class Player(db.Model):
             "bats": self.bats,
             "throws": self.throws,
             "hot_list": self.hot_list,
+            "dob": self.dob
         }
     def get_non_pitcher(self):
       return {

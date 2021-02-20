@@ -19,7 +19,7 @@ const Evaluation = () => {
   const [playerInfo, setPlayerInfo] = useState(false);
   const notes = useSelector(state => state.notes);
   const [gotNotes, setNotes] = useState(notes);
-  const [toggle, setToggle] = useState('Eval');
+  const [toggle, setToggle] = useState('Notes');
   useEffect(() => {
     const getPlayer = async () => {
       let res = await fetch(`/api/players/${playerid}`);
@@ -41,7 +41,7 @@ const Evaluation = () => {
  const toggleNoteEvals = (e)=>{
    e.preventDefault()
    if(toggle === 'Notes'){
-     setToggle('Eval')
+     setToggle('Tools')
    }else{
      setToggle('Notes')
    }
@@ -50,7 +50,7 @@ const Evaluation = () => {
   return (
       <div className='player_evaluation_and_player_notes_container'>
           <div className='eval_nav_buttons'>
-        <Button className='eval_nav_buttons' variant="contained" color="primary" onClick={toggleNoteEvals}>{toggle}</Button>
+        <Button className='eval_nav_buttons' variant="contained" color='primary' onClick={toggleNoteEvals}>{toggle}</Button>
         <Button className='eval_nav_buttons' variant="contained" color="primary" onClick={(e)=>history.push(`/players/${playerid}`)}>Player Profile</Button>
         </div>
         {toggle === 'Notes' ?(<div>
