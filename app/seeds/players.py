@@ -1,9 +1,12 @@
 from app.models import db, Player
 from faker import Faker
+import datetime
 fake = Faker()
 # Adds a demo user, you can add other users here if you want
 def seed_players():
     for i in range(1,21):
+        bday = fake.date_of_birth()
+        birthday_formated = datetime.datetime.strptime(f'{bday}', '%Y-%m-%d').strftime('%m/%d/%y')
         db.session.add(Player(
             user_id=1,
             first_name=fake.first_name_male(),
@@ -17,6 +20,7 @@ def seed_players():
             team_name=fake.random_choices(elements=('Red Hawks','Padres','Red Sox','Black Sox','Blue Sox','Giants','Yankees'),length=1),
             team_city=fake.city(),
             team_state=fake.state(),
+            dob=birthday_formated,
             bats=fake.random_choices(elements=('R','L','B'),length=1),
             throws=fake.random_choices(elements=('R','L'),length=1),
             hot_list=True,
