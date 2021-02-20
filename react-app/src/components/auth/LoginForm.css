@@ -9,8 +9,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
-    /* width: 50%; */
     padding: 2em;
     align-self: center;
     border-radius: 2em;
@@ -52,5 +50,22 @@ background-color: white;
 }
 
 .splash_container div{
-    padding: 3em;
+    padding: 2.5em;
+}
+.splash_container div div{
+    text-align: center;
+}
+.splash_container h6{
+    font-family: cursive;
+    text-decoration: underline;
+}
+.splash_buttons{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+}
+.splash_buttons button{
+    margin-left: 1em;
+    margin-right: 1em;
 }

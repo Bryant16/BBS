@@ -67,9 +67,9 @@ def get_videos(id):
 
 @media_routes.route('/videos', methods=["DELETE"])
 def delete_content():
-    url = request.get_json()
+    data = request.get_json()
     try:
-        content_to_delete = Video.query.filter(Video.content == url).first()
+        content_to_delete = Video.query.filter(Video.id == data['id']).first()
         db.session.delete(content_to_delete)
         db.session.commit()
         return jsonify({'removed': True})

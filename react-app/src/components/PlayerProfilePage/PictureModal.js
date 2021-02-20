@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleModal({content, playerid, setVideos, content_type}) {
+export default function SimpleModal({content, playerid, setVideos, image}) {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
@@ -40,13 +40,13 @@ export default function SimpleModal({content, playerid, setVideos, content_type}
   const handleClose = () => {
     setOpen(false);
   };
-  const deleteContent = async(e, content)=>{
+  const deleteContent = async(e, id)=>{
     e.preventDefault();
     if(window.confirm('Delete this item?')){
     const res = await fetch('/api/media/videos', {
         headers: {'Content-type': 'application/json'},
         method: 'DELETE',
-        body: JSON.stringify(content)
+        body: JSON.stringify({id})
     })
     if(res.ok){
         const {removed} = await res.json();
@@ -70,7 +70,7 @@ export default function SimpleModal({content, playerid, setVideos, content_type}
       {/* <h2 id="simple-modal-title">Edit Player</h2> */}
       <div className='picture_modal_container'>
               <Image width='20em' height='30em' objectFit="cover" src={content} ></Image>
-            <button className='delete_button_pic_video' onClick={e=>deleteContent(e, content)}>Delete</button>
+            <button className='delete_button_pic_video' onClick={e=>deleteContent(e, image.id)}>Delete</button>
     </div>
     </div>
   );

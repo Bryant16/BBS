@@ -80,9 +80,9 @@ useEffect(()=>{
             <div className='video_container'>
             {videos && videos.map(vid=>
             {if(vid.type.includes('video')){
-                return <VideoModal setVideos={setVideos} url={vid.content}  playerid={playerid}/>
+                return <VideoModal setVideos={setVideos} url={vid.content} vid={vid} playerid={playerid}/>
             }else{
-                return <PictureModal setVideos={setVideos} playerid={playerid} content={vid.content} content_type={vid.content_type}/>
+                return <PictureModal setVideos={setVideos} playerid={playerid} image={vid} content={vid.content} content_type={vid.content_type}/>
             }}
             ) }
             </div>

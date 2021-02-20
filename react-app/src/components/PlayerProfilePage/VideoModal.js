@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function VideoModal({url, setVideos, playerid}) {
+export default function VideoModal({vid, url, setVideos, playerid}) {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
@@ -40,13 +40,13 @@ export default function VideoModal({url, setVideos, playerid}) {
   const handleClose = () => {
     setOpen(false);
   };
-  const deleteContent = async(e, content)=>{
+  const deleteContent = async(e, id)=>{
     e.preventDefault();
        if(window.confirm('Delete this item?')){
         const res = await fetch('/api/media/videos', {
             headers: {'Content-type': 'application/json'},
             method: 'DELETE',
-            body: JSON.stringify(content)
+            body: JSON.stringify({id})
         })
         if(res.ok){
             const {removed} = await res.json();
@@ -64,13 +64,13 @@ export default function VideoModal({url, setVideos, playerid}) {
         }
     }
   }
-
+// console.log(vid,'!!!!!')
   const body = (
     <div style={modalStyle} className={classes.paper}>
       {/* <h2 id="simple-modal-title">Edit Player</h2> */}
       <div className='picture_modal_container'>
       <ReactPlayer className='react-player'  width='25em' height='40em' style={{'margin':'',"box-shadow":'5px 5px 15px 5px #B5B5B5', 'border-bottom':'1px solid black'}} controls url={url} />
-            <button className='delete_button_pic_video' onClick={e=>deleteContent(e, url)}>Delete</button>
+            <button className='delete_button_pic_video' onClick={e=>deleteContent(e, vid.id)}>Delete</button>
     </div>
     </div>
   );

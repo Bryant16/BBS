@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import { useDispatch} from 'react-redux';
 import {createNote} from '../../store/note';
 import Button from '@material-ui/core/Button'; 
@@ -26,6 +26,8 @@ const Notes = ({playerId})=>{
         },
       }));
     const classes = useStyles();
+  
+    
     return (
         <div className='note_input_container'> 
         <form> 
@@ -36,8 +38,7 @@ const Notes = ({playerId})=>{
             <option value={'Weakness'}>Weakness</option>
             <option value={'Summary'}>Summary</option>
             </select>
-            </div> 
-        
+            </div>
         <TextareaAutosize  className="form-control" placeholder="Notes"
         type='text'
         value={note}
