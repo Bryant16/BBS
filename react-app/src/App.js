@@ -42,7 +42,7 @@ const dispatch = useDispatch();
           {user?<NewPlayerForm />:<LoginForm />}
         </Route>
         <Route path='/'>
-          {user? <Home />: <Splash />}
+          {user? <Home />: <LoginForm />}
         </Route>
       </Switch>
        <Footer />

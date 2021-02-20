@@ -85,6 +85,12 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         </form>
         <img alt='' src={logo} />
       </div>
+      {/* <div>
+        <p>A Modernized Approach to Baseball Scouting</p>
+        <p>Create Player Profiles to Track Athletes</p>
+        <p>Upload Photos and Videos of Players in Action</p>
+        <p>Track Player Evaluations and Notes</p>
+      </div> */}
     </div>
   );
 };
