@@ -13,13 +13,16 @@ export default function LogoutButton () {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.session);
 
-  const onLogout = () => {
-    dispatch(LogOut())
+  const onLogout = (e) => {
+    e.preventDefault()
+    console.log('hi')
     dispatch(clearPlayers())
     dispatch(clearNotes())
     dispatch(clearNonPitcher())
     dispatch(clearPitcher())
-    history.push('/login')
+    dispatch(LogOut())
+    .then(()=>history.push('/login'))
+    
   };
 
   return user

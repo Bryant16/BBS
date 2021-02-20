@@ -43,3 +43,14 @@ background-color: white;
     padding: .5em;
     outline: none;
 }
+
+.splash_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.splash_container div{
+    padding: 3em;
+}

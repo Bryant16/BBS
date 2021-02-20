@@ -10,6 +10,7 @@ import PlayerProfilePage from "./components/PlayerProfilePage";
 import NewPlayerForm from './components/NewPlayerForm';
 import Evaluation from './components/Evaluation';
 import Footer from './components/Footer';
+import Splash from './components/auth/SplashPage';
 
 function App() {
   const { user } = useSelector((state) => state.session); 
@@ -41,7 +42,7 @@ const dispatch = useDispatch();
           {user?<NewPlayerForm />:<LoginForm />}
         </Route>
         <Route path='/'>
-          {user?<Home />:<LoginForm />}
+          {user? <Home />: <Splash />}
         </Route>
       </Switch>
        <Footer />
