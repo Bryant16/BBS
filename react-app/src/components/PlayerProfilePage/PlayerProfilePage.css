@@ -118,3 +118,7 @@ input[type='file'] {
     border-radius: 1em;
     color: white;
 }
+
+#new_media:hover{
+    top: 10px;
+}
