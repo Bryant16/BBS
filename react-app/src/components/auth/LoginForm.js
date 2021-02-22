@@ -4,6 +4,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import { LogIn } from "../../store/session";
 import "./LoginForm.css";
 import logo from "./new_logo_bbs.png";
+import ReactPlayer from 'react-player';
 import letters from "./BBScouting writing.png";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
@@ -85,6 +86,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         </form>
         <img alt='' src={logo} />
       </div>
+
       {/* <div>
         <p>A Modernized Approach to Baseball Scouting</p>
         <p>Create Player Profiles to Track Athletes</p>
