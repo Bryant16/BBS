@@ -19,7 +19,7 @@ const Evaluation = () => {
   const [playerInfo, setPlayerInfo] = useState(false);
   const notes = useSelector(state => state.notes);
   const [gotNotes, setNotes] = useState(notes);
-  const [toggle, setToggle] = useState('Notes');
+  const [toggle, setToggle] = useState('Tools');
   useEffect(() => {
     const getPlayer = async () => {
       let res = await fetch(`/api/players/${playerid}`);
