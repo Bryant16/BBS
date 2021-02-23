@@ -6,28 +6,28 @@ const Help = ()=>{
     return (
         <div className='help_page_container'>
             <div>
-            <h1>Search</h1>
+            <h1>Player Search</h1>
             <ReactPlayer width='24em' height='24em'  controls url="https://bbscouting.s3.amazonaws.com/searchFeature.mp4" />
             </div>
             <div>
-                <h1>Create a Player Profile</h1>
+                <h1>Create a Profile</h1>
             <ReactPlayer width='24em' height='24em'   controls url="https://bbscouting.s3.amazonaws.com/createPlayer.mp4" />
             </div>
             <div>
-                <h1>Edit a Player's Information</h1>
+                <h1>Edit Information</h1>
             <ReactPlayer width='24em' height='24em'  controls url="https://bbscouting.s3.amazonaws.com/editplayer.mp4" />
             </div>
             <div>
-                <h1>Test</h1>
-            <ReactPlayer width='24em' height='24em'  controls url="https://bbscouting.s3.amazonaws.com/searchFeature.mp4" />
+                <h1>File Uploading</h1>
+            <ReactPlayer width='24em' height='24em'  controls url="https://bbscouting.s3.amazonaws.com/media.mp4" />
             </div>
             <div>
-                <h1>Test</h1>
-            <ReactPlayer width='24em' height='24em'  controls url="https://bbscouting.s3.amazonaws.com/searchFeature.mp4" />
+                <h1>Tracking Players</h1>
+            <ReactPlayer width='24em' height='24em'  controls url="https://bbscouting.s3.amazonaws.com/track.mp4" />
             </div>
             <div>
-                <h1>Test</h1>
-            <ReactPlayer  width='24em' height='24em'  controls url="https://bbscouting.s3.amazonaws.com/searchFeature.mp4" />
+                <h1>Evaluation Forms</h1>
+            <ReactPlayer  width='24em' height='24em'  controls url="https://bbscouting.s3.amazonaws.com/evaluation.mp4" />
             </div>
         </div>
 

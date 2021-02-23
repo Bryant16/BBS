@@ -1,9 +1,12 @@
 
 const USER = 'session/USER';
 const LOGOUT = 'session/Logout'
+const FIRST = 'session/FIRST'
 const constructSession = user => ({ type: USER, user });
 
 const deconstructSession = () => ({ type: LOGOUT });
+
+export const firstTime = () =>({type:FIRST, nums:0})
 
 export const LogIn = (email, password) => async dispatch => {
   const loginResponse = await window.fetch('/api/auth/login', {
@@ -60,6 +63,16 @@ const sessionReducer = (state = { user: null}, action)=> {
     case USER:{
       return {...state, user: action.user}
     }
+    case FIRST: 
+    const newState = {...state}
+    if(newState['FIRST']){
+      let val = newState['FIRST']
+      newState['FIRST'] = val +1
+    }else{
+      newState['FIRST'] = 1
+    }
+   
+      return newState 
     case LOGOUT:
       return {user:null}
     default:

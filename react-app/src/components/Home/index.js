@@ -1,24 +1,35 @@
-import React, { useEffect} from "react";
+import React, { useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import {getPlayers} from '../../store/player';
 import DataTable from '../HomePageTable';
+import HelpModal from './HelpModal';
+import {firstTime} from '../../store/session'
 import './home.css';
 
 const Home = () => {
-  const { user } = useSelector((state) => state.session);
+  const { user, FIRST } = useSelector((state) => state.session);
   const players  = useSelector((state) => state.players);
+  
+  // const [firstTimes, setFirstTimes] = useState(false )
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(firstTime())
     dispatch(getPlayers())
   }, [dispatch]);
- 
+
+
   return user ? (
     <div className='players_library_container'>
-      {players ? (
+      {players && FIRST ? (
+        <>
+        <HelpModal firstTimes={FIRST} />
         <DataTable />
+        </>
       ) : (
+        <>
         <h1>loading</h1>
+        </>
       )}
     </div>
   ) : (
