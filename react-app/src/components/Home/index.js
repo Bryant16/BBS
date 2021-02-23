@@ -21,7 +21,7 @@ const Home = () => {
 
   return user ? (
     <div className='players_library_container'>
-      {players && FIRST ? (
+      {(players && FIRST>0) ? (
         <>
         <HelpModal firstTimes={FIRST} />
         <DataTable />

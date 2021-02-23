@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
@@ -30,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SimpleModal({firstTimes}) {
+const dispatch = useDispatch();
   const classes = useStyles();
   const history = useHistory();
   const [modalStyle] = React.useState(getModalStyle);
@@ -49,7 +51,8 @@ export default function SimpleModal({firstTimes}) {
   }
   useEffect(()=>{
       if(firstTimes === 1) handleOpen()
-  })
+      dispatch(firstTime())
+  },[])
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <h2 id="simple-modal-title" style={{'text-align':'center'}}>Need Help?</h2>
