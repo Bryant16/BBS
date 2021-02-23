@@ -68,7 +68,7 @@ useEffect(()=>{
         {players && (
             <div className='player_profile_container'>
              <PlayerImage playerid={playerid}/>
-             {players[playerid] ? <PlayerCard playerid={playerid} players={players} evals={whichEval()} notes={notes}/>:<h1>loading</h1>}
+             {players[playerid] ? <PlayerCard playerid={playerid} players={players} evals={whichEval()} notes={notes} media={videos}/>:<h1>loading</h1>}
              
         </div>
         )}

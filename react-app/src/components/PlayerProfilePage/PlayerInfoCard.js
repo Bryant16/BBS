@@ -27,7 +27,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard({playerid, players, evals, notes}) {
+export default function SimpleCard({playerid, players, evals, notes, media}) {
   const classes = useStyles();
   const history = useHistory();
   let singlePlayer= players[playerid]
@@ -41,7 +41,8 @@ export default function SimpleCard({playerid, players, evals, notes}) {
     console.log({
       singlePlayer,
       evals,
-      notes
+      notes,
+      media
     })
   }
   return (
