@@ -133,6 +133,7 @@ input[type='file'] {
 .pdf_media_links_container{
     display: flex;
     justify-content: center;
+    margin-right: 14em;
     flex-wrap: wrap;
     /* width:25em; */
 }
@@ -161,4 +162,10 @@ input[type='file'] {
     display: flex;
     flex-direction: row;
     align-self: center;
+}
+
+.pdf_eval_pitcher{
+    display: flex;
+    justify-content: center;
+    margin-right: 17em;
 }

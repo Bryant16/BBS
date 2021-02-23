@@ -16,7 +16,7 @@ const PlayerImage = ({playerid})=>{
             }
         }
         getProfileUrl()
-    },[playerImageUrl,playerid])
+    },[playerImageUrl, playerid])
 
     
     const updateFile = async(e)=>{
@@ -31,7 +31,6 @@ const PlayerImage = ({playerid})=>{
             setPlayerImageUrl(imageUpload.URL)
         }
     }
-            // setImage(file)
     
     }
     

@@ -40,7 +40,7 @@ useEffect(()=>{
     }
     getProfileUrl()
     getVideos()
-},[videoUrl, playerid]);
+},[videoUrl, playerid,playerImageUrl]);
 
     useEffect(()=>{
         dispatch(getAllNotes(playerid))

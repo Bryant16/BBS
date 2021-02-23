@@ -61,10 +61,14 @@ export default function DataGridDemo() {
     setHot(!hot)
   }
   const filterResults = (e)=>{
-    setArr(newArrOfPlayers.filter(play=>{
-      const string_to_check = play.first_name + play.last_name + play.team_name + play.team_state + play.address + play.position + play.team_city + play.team_name
-      return string_to_check.toLowerCase().includes(e.target.value.toLowerCase())
-    }))
+    if(newArrOfPlayers.length > 0 ){
+      setArr(newArrOfPlayers.filter(play=>{
+        if(play.first_name){
+          const string_to_check = play.first_name + play.last_name + play.team_name + play.team_state + play.address + play.position + play.team_city + play.team_name
+          return string_to_check.toLowerCase().includes(e.target.value.toLowerCase())
+        }
+      }))
+    }
   }
   return (
     <div style={{ height: '40em', width: '55em'}}>
