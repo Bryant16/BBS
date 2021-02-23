@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import {getPlayers} from '../../store/player';
@@ -10,8 +10,6 @@ import './home.css';
 const Home = () => {
   const { user, FIRST } = useSelector((state) => state.session);
   const players  = useSelector((state) => state.players);
-  
-  // const [firstTimes, setFirstTimes] = useState(false )
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(firstTime())

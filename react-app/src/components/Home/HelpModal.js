@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import NewPlayerForm from '../NewPlayerForm';
 import { useHistory } from 'react-router-dom';
 import { firstTime } from '../../store/session';
-
+import helper from './baseballHelper.png';
 
 function getModalStyle() {
   const top = 50 ;
@@ -56,11 +56,12 @@ const dispatch = useDispatch();
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <h2 id="simple-modal-title" style={{'text-align':'center'}}>Need Help?</h2>
+      <img src={helper} style={{'marginLeft':'3em','marginBottom':'1em'}} />
       <div className='new_player_modal_container'>
       <Button type="button" size='small' variant="outlined" onClick={helpPage}>
         YES PLEASE!
       </Button>
-      <Button type="button" size='small' variant="outlined" onClick={handleOpen}>
+      <Button type="button" size='small' variant="outlined" onClick={handleClose}>
         NO THANKS!
       </Button>
     </div>
