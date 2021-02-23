@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard({playerid, players, evals, notes, media}) {
+export default function SimpleCard({playerid, players, evals, notes, media, url}) {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -46,7 +46,8 @@ export default function SimpleCard({playerid, players, evals, notes, media}) {
       singlePlayer,
       notes,
       media,
-      evals
+      evals,
+      url
     }
     dispatch(infoPDF(pdfPlayer))
     history.push('/share')

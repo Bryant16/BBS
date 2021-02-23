@@ -1,5 +1,5 @@
 import React, {  useEffect } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { Restore } from './store/session';
 import LoginForm from "./components/auth/LoginForm";
@@ -47,10 +47,10 @@ const dispatch = useDispatch();
           {user?<Help />:<LoginForm />}
         </Route>
         <Route exact path='/share'>
-          {user ? <Print load={state}/>:null}
+          {user && state.players ? <Print load={state}/>:<Redirect to='/' />}
         </Route>
         <Route path='/'>
-          {user? <Home />: <LoginForm />}
+          {user && state.players ? <Home />: <LoginForm />}
         </Route>
       </Switch>
        <Footer />

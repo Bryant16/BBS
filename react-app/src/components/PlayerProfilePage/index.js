@@ -21,6 +21,7 @@ const PlayerProfilePage = ()=>{
     const [videoUrl, setVideoUrl] =useState(false);
     const [videos, setVideos] = useState(false)
     const players = useSelector(state=> state.players);
+    const [playerImageUrl, setPlayerImageUrl] =useState(false);
     const dispatch = useDispatch();
 useEffect(()=>{
     const getVideos=async()=>{
@@ -30,6 +31,14 @@ useEffect(()=>{
             setVideos(videos.videos)
         }
     }
+    const getProfileUrl = async()=>{
+        let response = await fetch(`/api/media/images/${playerid}`);
+        if(response.ok){
+            let profile_url = await response.json();
+            setPlayerImageUrl(profile_url.URL)
+        }
+    }
+    getProfileUrl()
     getVideos()
 },[videoUrl, playerid]);
 
@@ -39,7 +48,7 @@ useEffect(()=>{
         dispatch(getPitcherForm(playerid))  
         dispatch(getPlayers())
         const pdfPlayer = {
-            player: players[playerid],
+            player: players[playerid]
          }
          dispatch(infoPDF(pdfPlayer)) 
         
@@ -73,7 +82,7 @@ useEffect(()=>{
         {players && (
             <div className='player_profile_container'>
              <PlayerImage playerid={playerid}/>
-             {players[playerid] ? <PlayerCard playerid={playerid} players={players} evals={whichEval()} notes={notes} media={videos}/>:<h1>loading</h1>}
+             {players[playerid] ? <PlayerCard playerid={playerid} players={players} evals={whichEval()} notes={notes} media={videos} url={playerImageUrl}/>:<h1>loading</h1>}
              
         </div>
         )}
