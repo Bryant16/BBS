@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {useHistory} from 'react-router-dom';
 import Card from '@material-ui/core/Card';
@@ -7,6 +7,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Modal from './Modal';
+import PDF from './PDF';
+import { PDFViewer } from '@react-pdf/renderer';
+import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer'
+import Print from './Print';
 import {FaAddressCard,FaMailchimp, FaBirthdayCake, FaBaseballBall} from 'react-icons/fa';
 const useStyles = makeStyles({
   root: {
@@ -31,24 +35,34 @@ export default function SimpleCard({playerid, players, evals, notes, media}) {
   const classes = useStyles();
   const history = useHistory();
   let singlePlayer= players[playerid]
-  
+  const [loader, setLoader] = useState(false)
   const goToEvaluation = (e)=>{
     e.preventDefault();
     history.push(`/players/${playerid}/evaluation`)
   }
-  const share=(e)=>{
+  const share=(e,loading)=>{
     e.preventDefault()
+    console.log(loading.stream(true), 'load')
+    setLoader(true)
+    return (
+    <PDF player={'bry'} />)
+    console.log(loading)
     console.log({
       singlePlayer,
       evals,
       notes,
       media
     })
+    // <PDFDownloadLink document={<PDF />} fileName="somename.pdf">
+    //   {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
+    // </PDFDownloadLink>
   }
   return (
     <Card className={classes.root}>
+      
       <CardContent style={{'padding':0}}>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
+        
           {singlePlayer.first_name} {singlePlayer.last_name}
         </Typography>
         <Typography variant="h5" component="h2">
@@ -70,7 +84,10 @@ export default function SimpleCard({playerid, players, evals, notes, media}) {
       <CardActions>
         <Button onClick={goToEvaluation} id="edit_player_button" variant="outlined" size="small">Evaluation</Button>
         <Modal playerid={playerid}/>
-        <Button type="button" size='small' variant="outlined" onClick={share}>Share</Button>
+        <Print  player={'bry'}/>
+     
+        {/* <Button type="button" size='small' variant="outlined" onClick={share}>Share</Button> */}
+        
       </CardActions>
     </Card>
   );
