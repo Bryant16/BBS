@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import ReactToPrint from 'react-to-print';
 import Button from '@material-ui/core/Button';
 import { useSelector } from 'react-redux';
-// import {Image} from "@chakra-ui/react";
+import {Image} from "@chakra-ui/react";
 import { useHistory } from 'react-router-dom';
 // import { ComponentToPrint } from './ComponentToPrint';
 // import React,{useState} from 'react';
@@ -87,23 +87,25 @@ const useStyles = makeStyles({
       marginBottom: 2,
     },
   });
+//   const classes = useStyles();
 class ComponentToPrint extends React.PureComponent {
     render() {
-    const classes = useStyles();
     
         
         return (
-            <Card className={classes.root}>
-      
+            <div>
+            <div className='pdf_container'>
+            {this.props.url&&<Image boxSize="245px" objectFit="cover" src={this.props.url}/>}
+            <Card style={{minWidth: '23em',height: '15.5em',padding: '.5em',} }>
       <CardContent style={{'padding':0}}>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
+        <Typography  style={{fontSize: '2rem'}}color="textSecondary" gutterBottom>
    
           {this.props.name.first_name} {this.props.name.last_name}
         </Typography>
         <Typography variant="h5" component="h2">
         {this.props.name.position} {this.props.name.height}, {this.props.name.weight} lbs   
         </Typography>
-        <Typography className={classes.pos} color="textSecondary">
+        <Typography style={{ marginBottom: 2}}color="textSecondary">
         Throws: {this.props.name.throws} / Bats: {this.props.name.bats}
         </Typography>
         <Typography variant="body2" component="p">
@@ -117,6 +119,16 @@ class ComponentToPrint extends React.PureComponent {
         </Typography>
       </CardContent>
     </Card>
+    </div>
+    <div className='pdf_media_links_container'>
+            <ul>
+                {this.props.media.map(link=><a href={link.content}><li>{link.content}</li></a>)}
+            </ul>
+    </div>
+    <div>
+        {/* <p>{this.props.evals}</p> */}
+    </div>
+    </div>
             // <div className='pdf_container'>
             //      {this.props.url && <Image boxSize="245px" objectFit="cover" src={this.props.url}/>}
             //     <h1>{this.props.name.first_name} {this.props.name.last_name}</h1>
@@ -141,21 +153,23 @@ const Example = ({load}) => {
   const history = useHistory();
   const {players} = useSelector(state=> state.players)
   const pdf = load.players.PDF
-
+console.log(pdf.evals)
 const back = (e)=>{
     e.preventDefault()
     history.push(`/players/${pdf.singlePlayer.id}`)
 }
   return (
-    <div>
+    <div >
+        <div className='pdf_container_buttons'>
       <ReactToPrint
         trigger={() =>{
-         return <Button type="button" size='small' variant="outlined">Create PDF</Button>}
+            return <Button type="button" size='small' variant="outlined">Create PDF</Button>}
         }    
         content={() =>componentRef.current }
       />
-      <Button type="button" size='small' variant="contained" color='primary' onClick={back}>Back</Button>
-      <ComponentToPrint name={""||(pdf.singlePlayer)} url={pdf.url} media={pdf.media}ref={componentRef} />
+        <Button type="button" size='small' variant="contained" color='primary' onClick={back}>Back</Button>
+      </div>
+      <ComponentToPrint name={""||(pdf.singlePlayer)} evals={pdf.evals} url={pdf.url} media={pdf.media}ref={componentRef} />
     </div>
   );
 };

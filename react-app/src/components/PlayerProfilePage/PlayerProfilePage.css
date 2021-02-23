@@ -125,6 +125,40 @@ input[type='file'] {
 
 .pdf_container{
     display: flex;
+    margin-top: 3em;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.pdf_media_links_container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* width:25em; */
+}
+
+.pdf_media_links_container ul {
+    display: flex;
     flex-direction: column;
-    align-items: center;
+    margin-left: 4em;
+    list-style: none;
+    /* align-items: center; */
+}
+
+.pdf_container_buttons{
+    display: flex;
+    flex-direction: row;
+    /* flex-direction: column; */
+    /* width:10em; */
+    /* height: 3em; */
+    justify-content: center;
+}
+
+.pdf_container_buttons button {
+    width: 10em;
+    margin-left: .1em;
+    margin-right: .1em;
+    display: flex;
+    flex-direction: row;
+    align-self: center;
 }
