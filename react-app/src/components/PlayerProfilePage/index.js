@@ -11,7 +11,7 @@ import {getAllNotes} from '../../store/note';
 import Button from '@material-ui/core/Button';
 import PictureModal from './PictureModal';
 import VideoModal from './VideoModal';
-
+import {infoPDF} from '../../store/player';
 
 const PlayerProfilePage = ()=>{
     const nonPitcher = useSelector(state=> state.nonPitcher);
@@ -37,7 +37,12 @@ useEffect(()=>{
         dispatch(getAllNotes(playerid))
         dispatch(getNonePitcherForm(playerid))
         dispatch(getPitcherForm(playerid))  
-        dispatch(getPlayers()) 
+        dispatch(getPlayers())
+        const pdfPlayer = {
+            player: players[playerid],
+         }
+         dispatch(infoPDF(pdfPlayer)) 
+        
     },[dispatch,playerid]);
 
     const updateFile = async(e)=>{

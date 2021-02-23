@@ -11,9 +11,11 @@ import NewPlayerForm from './components/NewPlayerForm';
 import Evaluation from './components/Evaluation';
 import Footer from './components/Footer';
 import Help from './components/Help';
+import Print from './components/PlayerProfilePage/Print';
 
 function App() {
   const { user } = useSelector((state) => state.session); 
+  const state = useSelector(state=> state)
 const dispatch = useDispatch();
   useEffect(() => {
     dispatch(Restore());
@@ -43,6 +45,9 @@ const dispatch = useDispatch();
         </Route>
         <Route exact path='/help'>
           {user?<Help />:<LoginForm />}
+        </Route>
+        <Route exact path='/share'>
+          {user ? <Print load={state}/>:null}
         </Route>
         <Route path='/'>
           {user? <Home />: <LoginForm />}

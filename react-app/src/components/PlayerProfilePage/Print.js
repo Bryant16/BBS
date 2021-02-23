@@ -1,41 +1,48 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactToPrint from 'react-to-print';
 import Button from '@material-ui/core/Button';
+import { useSelector } from 'react-redux';
 
 // import { ComponentToPrint } from './ComponentToPrint';
 class ComponentToPrint extends React.PureComponent {
     render() {
         
         return (
-            <div style={{'visibility':`${!this.props.hidden}`,'opacity':0, 'zIndex':-100,'position':'absolute'}}>
-                <p>{this.props.player}</p>
-                <p>{this.props.player}</p>
-                <p>{this.props.player}</p>
-                <p>{this.props.player}</p>
-                <p>{this.props.player}</p>
-                <p>{this.props.player}</p>
-                <p>{this.props.player}</p>
-                <p>{this.props.player}</p>
-                <p>{this.props.player}</p>
-                <p>{this.props.player}</p>
+            <div >
+                <h1>{this.props.name}</h1>
             </div>
       );
     }
 }
-const Example = ({player}) => {
+const Example = ({load}) => {
   const componentRef = useRef();
-  const [hide, setHide] = useState(false);
-  console.log(player,'test')
+  const {players} = useSelector(state=> state.players)
+//   const [pdfs, setPdfs] = useState(players)
+  const pdf = load.players.PDF
+//   const pdf = players['PDF']
+//   useEffect(()=>{
+    //       try{
+        //         const pdf = players['PDF']
+        //         setPdfs(pdf)
+        //         console.log(pdf)
+        //       }catch(e){
+            
+            //       }
+            //   },[pdfs])
+useEffect(()=>{
+    console.log(players)
+    console.log(load.players.PDF)
+    // setPdfs(players)
+},[load])
   return (
     <div>
       <ReactToPrint
         trigger={() =>{
-            setHide(true)
-         return <Button type="button" size='small' variant="outlined" >Share</Button>}
+         return <Button type="button" size='small' variant="outlined">Create PDF</Button>}
         }    
         content={() =>componentRef.current }
       />
-      <ComponentToPrint style={{'opacity':0}}player={player} hidden={hide} ref={componentRef} />
+      <ComponentToPrint name={""||(pdf.singlePlayer.first_name)}ref={componentRef} />
     </div>
   );
 };

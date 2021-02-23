@@ -2,6 +2,7 @@ const LOAD = "players/LOAD";
 const EDIT = "players/EDIT";
 const ADD = "players/ADD";
 const CLEAR = "players/CLEAR";
+const PDF = "players/PDF";
 
 const load = players => ({
     type: LOAD,
@@ -17,9 +18,16 @@ const addPlayer = newPlayer =>({
     type:ADD,
     newPlayer
 });
+
+export const infoPDF = (player)=>({
+    type: PDF,
+    player
+});
+
 export const clearPlayers = ()=>({
     type:CLEAR
-})
+});
+
 export const getPlayers = () => async dispatch => {
     const res = await fetch(`/api/players/`)
     if (res.ok) {
@@ -77,6 +85,11 @@ const playersReducer = (state = initialState, action) => {
             const id = addPlayer.id
             currState[id] = addPlayer;
             return currState;
+        }
+        case PDF:{
+            const curState = {...state}
+            curState['PDF'] = action.player
+            return curState
         }
         case CLEAR:{
             return {}
