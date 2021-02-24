@@ -21,43 +21,47 @@ const EvalContainer = ({evals})=>{
             {(evals && evals.fast_ball) ? (
                 <div className='pdf_eval_pitcher'>
                     <div>
-            <p>FastBall: {evals.fast_ball}</p>
-            <p>Curve: {evals.curve}</p>
-            <p>Slider: {evals.slider}</p>
-            <p>Knuckle Ball: {evals.knuckle_ball}</p>
-            <p>Other: {evals.other}</p>
-            <p>Arm Action: {evals.arm_action}</p>
+            <p>FASTBALL: {evals.fast_ball}</p>
+            <p>CURVE: {evals.curve}</p>
+            <p>SLIDER: {evals.slider}</p>
+            <p>KNUCKLE BALL: {evals.knuckle_ball}</p>
+            <p>OTHER: {evals.other}</p>
+            <p>ARM ACTION: {evals.arm_action}</p>
             </div>
             <div style={{marginLeft:'1em'}}>
-            <p>Change of Pace: {evals.change_of_pace}</p>
-            <p>Control: {evals.control}</p>
-            <p>Poise: {evals.poise}</p>
-            <p>Baseball Instinct: {evals.baseball_instinct}</p>
-            <p>Aggresiveness: {evals.aggresiveness}</p>
-            <p>Delivery: {evals.delivery}</p>
+            <p>CHANGE OF PACE: {evals.change_of_pace}</p>
+            <p>CONTROL: {evals.control}</p>
+            <p>POSIE: {evals.poise}</p>
+            <p>BASEBALL INSTINCT: {evals.baseball_instinct}</p>
+            <p>AGGRESIVENESS: {evals.aggresiveness}</p>
+            <p>DELIVERY: {evals.delivery}</p>
                 
             </div>
             </div>
             ):
-            (evals &&(<div className='pdf_eval_pitcher'>
-            <div>
-                <p>Arm Accuracy: {evals.arm_acc}</p>
-                <p>Arm Range: {evals.arm_range}</p>
-                <p>Arm Strength: {evals.arm_str}</p>
-                <p>Aggresiveness:  {evals.aggresiveness}</p>
-                <p>Baseball Instinct: {evals.baseball_instinct}</p>
-                <p>Opposite Field: {evals.opp_field}</p>
+            (evals &&(
+            <div className='pdf_eval_nonpitcher'>
+                <div>
+                    <p>ARM ACCURACY: {evals.arm_acc}</p>
+                    <p>ARM RANGE: {evals.arm_range}</p>
+                    <p>ARM STRENGTH: {evals.arm_str}</p>
+                    <p>AGGRESIVENESS:  {evals.aggresiveness}</p>
+                    <p>BASEBALL INSTINCT: {evals.baseball_instinct}</p>
+                    <p>PULL: {evals.pull}</p>
+                    <p>OPPOSITE FIELD: {evals.opp_field}</p>
+                    <p>STRENGTH AWAY: {evals.str_away}</p>
                 </div>
                 <div style={{marginLeft:'1em'}}>
-                <p>Base Running: {evals.baserunning}</p>
-                <p>Running Speed: {evals.running_speed}</p>
-                <p>Fielding: {evals.fielding}</p>
-                <p>Hitting Ability: {evals.hitting_ability}</p>
-                <p>Power: {evals.power}</p>
-                <p>Pull: {evals.pull}</p>
-                <p>Strength Away: {evals.str_away}</p>
+                    
+                    <p>BASE RUNNING: {evals.baserunning}</p>
+                    <p>RUNNING SPEED: {evals.running_speed}</p>
+                    <p>FIELDING: {evals.fielding}</p>
+                    <p>HITTING ABILITY: {evals.hitting_ability}</p>
+                    <p>POWER: {evals.power}</p>
+                    
+                </div>
             </div>
-            </div>))}
+            ))}
         </div>
     )
 }
@@ -98,6 +102,8 @@ class ComponentToPrint extends React.PureComponent {
             </CardContent>
           </Card>
         </div>
+              <EvalContainer evals={this.props.evals}/>
+            {this.props.media.length && <h2 style={{textAlign:'center',textDecoration:'underline'}}>Media Links</h2>}
         <div className="pdf_media_links_container">
           <ul>
             {this.props.media.map((link) => (
@@ -107,7 +113,6 @@ class ComponentToPrint extends React.PureComponent {
             ))}
           </ul>
         </div>
-        <EvalContainer evals={this.props.evals}/>
       </div>
     );
   }
