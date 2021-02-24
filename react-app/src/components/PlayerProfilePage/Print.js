@@ -22,53 +22,53 @@ const EvalContainer = ({evals})=>{
                 <div className='pdf_eval_pitcher'>
                     <div>
                     <div  className='pdf_pitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>FASTBALL</p></div>
+                        <div><p id='category_title'>FASTBALL</p></div>
                         <div><p>{evals.fast_ball}</p></div>
                     </div>
                     <div  className='pdf_pitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>CURVE</p></div>
+                        <div><p id='category_title'>CURVE</p></div>
                         <div><p>{evals.fast_ball}</p></div>
                     </div>
                     <div  className='pdf_pitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>SLIDER</p></div>
+                        <div><p id='category_title'>SLIDER</p></div>
                         <div><p>{evals.slider}</p></div>
                     </div>
                     <div  className='pdf_pitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>KNUCKLE BALL</p></div>
+                        <div><p id='category_title'>KNUCKLE BALL</p></div>
                         <div><p>{evals.knuckle_ball}</p></div>
                     </div>
                     <div  className='pdf_pitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>OTHER</p></div>
+                        <div><p id='category_title'>OTHER</p></div>
                         <div><p>{evals.other}</p></div>
                     </div>
-                    <div  className='pdf_pitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>ARM ACTION</p></div>
+                    <div  className='pdf_pitcher_category_text'>
+                        <div><p id='category_title'>ARM ACTION</p></div>
                         <div><p>{evals.arm_action}</p></div>
                     </div>
-                    <div  className='pdf_pitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>DELIVERY</p></div>
+                    <div  className='pdf_pitcher_category_text'>
+                        <div><p id='category_title'>DELIVERY</p></div>
                         <div><p>{evals.delivery}</p></div>
                     </div>
                     </div>
                     <div style={{marginLeft:'1em'}}>
                     <div  className='pdf_pitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>CHANGE OF PACE</p></div>
+                        <div><p id='category_title'>CHANGE OF PACE</p></div>
                         <div><p>{evals.change_of_pace}</p></div>
                     </div>
                     <div  className='pdf_pitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>CONTROL</p></div>
+                        <div><p id='category_title'>CONTROL</p></div>
                         <div><p>{evals.control}</p></div>
                     </div>
                     <div  className='pdf_pitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>POSIE</p></div>
+                        <div><p id='category_title'>POSIE</p></div>
                         <div><p>{evals.poise}</p></div>
                     </div>
                     <div  className='pdf_pitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>BASEBALL INSTINCT</p></div>
+                        <div><p id='category_title'>BASEBALL INSTINCT</p></div>
                         <div><p>{evals.baseball_instinct}</p></div>
                     </div>
                     <div  className='pdf_pitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>AGGRESIVENESS</p></div>
+                        <div><p id='category_title'>AGGRESIVENESS</p></div>
                         <div><p>{evals.aggresiveness}</p></div>
                     </div>
                    
@@ -81,57 +81,57 @@ const EvalContainer = ({evals})=>{
             <div className='pdf_eval_nonpitcher'>
                 <div>
                     <div  className='pdf_nonpitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>ARM ACCURACY:</p></div>
+                        <div><p id='category_title'>ARM ACCURACY:</p></div>
                         <div><p>{evals.arm_acc}</p></div>
                     </div>
                     <div className='pdf_nonpitcher_category'>
-                    <div><p style={{textDecoration:'underline'}}>ARM RANGE</p></div>
+                    <div><p id='category_title'>ARM RANGE</p></div>
                     <div><p>{evals.arm_range}</p></div>
                     </div>
                     <div className='pdf_nonpitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>ARM STRENGTH</p></div>
+                        <div><p id='category_title'>ARM STRENGTH</p></div>
                         <div><p>{evals.arm_str}</p></div>
                     </div>
                     <div className='pdf_nonpitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>AGGRESIVENESS</p></div>
+                        <div><p id='category_title'>AGGRESIVENESS</p></div>
                         <div><p>{evals.aggresiveness}</p></div>
                     </div>
                     <div className='pdf_nonpitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>BASEBALL INSTINCT</p></div>
+                        <div><p id='category_title'>BASEBALL INSTINCT</p></div>
                         <div><p>{evals.baseball_instinct}</p></div>
                     </div>
                     <div className='pdf_nonpitcher_category_text'>
-                        <div><p style={{textDecoration:'underline'}}>PULL</p></div>
+                        <div><p id='category_title'>PULL</p></div>
                         <div><p id='text_bar'>{evals.pull}</p></div>
                     </div>
                     <div className='pdf_nonpitcher_category_text'>
-                        <div><p style={{textDecoration:'underline'}}>OPPOSITE FIELD</p></div>
+                        <div><p id='category_title'>OPPOSITE FIELD</p></div>
                         <div><p id='text_bar'>{evals.opp_field}</p></div>
                     </div>
                     <div className='pdf_nonpitcher_category_text'>
-                        <div><p style={{textDecoration:'underline'}}>STRENGTH AWAY</p></div>
+                        <div><p id='category_title'>STRENGTH AWAY</p></div>
                         <div><p id='text_bar'>{evals.str_away}</p></div>
                     </div>
                 </div>
                 <div style={{marginLeft:'1em'}}>
                 <div className='pdf_nonpitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>BASE RUNNING</p></div>
+                        <div><p id='category_title'>BASE RUNNING</p></div>
                         <div><p>{evals.baserunning}</p></div>
                     </div>
                 <div className='pdf_nonpitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>RUNNING SPEED</p></div>
+                        <div><p id='category_title'>RUNNING SPEED</p></div>
                         <div><p>{evals.running_speed}</p></div>
                     </div>
                 <div className='pdf_nonpitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>FIELDING</p></div>
+                        <div><p id='category_title'>FIELDING</p></div>
                         <div><p>{evals.fielding}</p></div>
                     </div>
                 <div className='pdf_nonpitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>HITTING ABILITY</p></div>
+                        <div><p id='category_title'>HITTING ABILITY</p></div>
                         <div><p>{evals.hitting_ability}</p></div>
                     </div>
                 <div className='pdf_nonpitcher_category'>
-                        <div><p style={{textDecoration:'underline'}}>POWER</p></div>
+                        <div><p id='category_title'>POWER</p></div>
                         <div><p>{evals.power}</p></div>
                     </div>
                     

@@ -195,13 +195,27 @@ input[type='file'] {
 
 .pdf_nonpitcher_category_text{
     display: flex;
-    width: 18em;
-    text-align: center;
+}
+.pdf_nonpitcher_category_text div{
+    display: flex;
+    margin-right: .3em;
+}
+.pdf_pitcher_category_text{
+    display: flex;
+    /* justify-content: space-between; */
+    /* width:20em; */
+}
+.pdf_pitcher_category_text div{
+    display: flex;
+    margin-right: .3em;
+}
+.pdf_pitcher_category{
+    display: flex;
+    width: 12em;
     justify-content: space-between;
 }
 
-.pdf_pitcher_category{
-    display: flex;
-    width: 18em;
-    justify-content: space-between;
+#category_title{
+    text-decoration: underline;
+    color:rgb(14, 75, 145);
 }
