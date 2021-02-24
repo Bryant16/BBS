@@ -31,7 +31,7 @@ const Help = ()=>{
             </div>
             <div>
                 <h1>Player PDF Sharing</h1>
-            <ReactPlayer  width='24em' height='24em'  controls url="https://bbscouting.s3.amazonaws.com/evaluation.mp4" />
+            <ReactPlayer  width='24em' height='24em'  controls url="https://bbscouting.s3.amazonaws.com/pdf.mp4" />
             </div>
         </div>
 
