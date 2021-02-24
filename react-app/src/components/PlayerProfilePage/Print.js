@@ -17,10 +17,9 @@ import {
 
 const EvalContainer = ({ evals }) => {
   return (
-    <div>
+    <div className='evalContainer'>
       {evals && evals.fast_ball ? (
         <div className="pdf_eval_pitcher">
-          <div>
             <div className="pdf_pitcher_category">
               <div>
                 <p id="category_title">FASTBALL</p>
@@ -61,24 +60,6 @@ const EvalContainer = ({ evals }) => {
                 <p>{evals.other}</p>
               </div>
             </div>
-            <div className="pdf_pitcher_category_text">
-              <div>
-                <p id="category_title">ARM ACTION</p>
-              </div>
-              <div>
-                <p>{evals.arm_action}</p>
-              </div>
-            </div>
-            <div className="pdf_pitcher_category_text">
-              <div>
-                <p id="category_title">DELIVERY</p>
-              </div>
-              <div>
-                <p>{evals.delivery}</p>
-              </div>
-            </div>
-          </div>
-          <div style={{ marginLeft: "1em" }}>
             <div className="pdf_pitcher_category">
               <div>
                 <p id="category_title">CHANGE OF PACE</p>
@@ -119,13 +100,27 @@ const EvalContainer = ({ evals }) => {
                 <p>{evals.aggresiveness}</p>
               </div>
             </div>
+            <div className="pdf_pitcher_category">
+              <div>
+                <p id="category_title">DELIVERY</p>
+                <p >{evals.delivery}</p>
+              </div>
+              <div id="text_bar">
+                
+              </div>
+            </div>
+            <div className="pdf_pitcher_category">
+              <div>
+                <p id="category_title">ARM ACTION</p>
+                <p >{evals.arm_action}</p>
+              </div>
+              <div id="text_bar">
+              </div>
           </div>
-          <div></div>
         </div>
       ) : (
         evals && (
           <div className="pdf_eval_nonpitcher">
-            <div>
               <div className="pdf_nonpitcher_category">
                 <div>
                   <p id="category_title">ARM ACCURACY</p>
@@ -166,32 +161,6 @@ const EvalContainer = ({ evals }) => {
                   <p>{evals.baseball_instinct}</p>
                 </div>
               </div>
-              <div className="pdf_nonpitcher_category_text">
-                <div>
-                  <p id="category_title">PULL</p>
-                </div>
-                <div>
-                  <p id="text_bar">{evals.pull}</p>
-                </div>
-              </div>
-              <div className="pdf_nonpitcher_category_text">
-                <div>
-                  <p id="category_title">OPPOSITE FIELD</p>
-                </div>
-                <div>
-                  <p id="text_bar">{evals.opp_field}</p>
-                </div>
-              </div>
-              <div className="pdf_nonpitcher_category_text">
-                <div>
-                  <p id="category_title">STRENGTH AWAY</p>
-                </div>
-                <div>
-                  <p id="text_bar">{evals.str_away}</p>
-                </div>
-              </div>
-            </div>
-            <div style={{ marginLeft: "1em" }}>
               <div className="pdf_nonpitcher_category">
                 <div>
                   <p id="category_title">BASE RUNNING</p>
@@ -231,9 +200,26 @@ const EvalContainer = ({ evals }) => {
                 <div>
                   <p>{evals.power}</p>
                 </div>
+                </div>
+              <div className="pdf_nonpitcher_category">
+                <div>
+                  <p id="category_title">PULL</p>
+                  <p id="text_bar">{evals.pull}</p>
+                </div>
               </div>
+              <div className="pdf_nonpitcher_category">
+                <div>
+                  <p id="category_title">OPPOSITE FIELD</p>
+                  <p id="text_bar">{evals.opp_field}</p>
+                </div>
+              </div>
+              <div className="pdf_nonpitcher_category">
+                <div>
+                  <p id="category_title">STRENGTH AWAY</p>
+                  <p id="text_bar">{evals.str_away}</p>
+                </div>
             </div>
-          </div>
+            </div>
         )
       )}
     </div>
@@ -276,10 +262,11 @@ class ComponentToPrint extends React.PureComponent {
             </CardContent>
           </Card>
         </div>
+        <div className='eval_and_links_pdf'>
         <EvalContainer evals={this.props.evals} />
         <div className="pdf_media_links_container">
         {(this.props.media.length > 0) && 
-          <h2 style={{ textAlign: "left", textDecoration: "underline" }}>
+          <h2 style={{ textAlign: "left",marginTop:'.5em', textDecoration: "underline" }}>
             Media Links
           </h2>
         }
@@ -290,6 +277,7 @@ class ComponentToPrint extends React.PureComponent {
               </a>
             ))}
           </ul>
+        </div>
         </div>
       </div>
     );
