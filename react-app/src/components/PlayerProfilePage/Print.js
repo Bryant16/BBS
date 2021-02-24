@@ -279,6 +279,28 @@ class ComponentToPrint extends React.PureComponent {
           </ul>
         </div>
         </div>
+        <div className='pdf_notes_container'>
+          <div className='category_container_notes'>
+          <div>
+          <h4>Abilities</h4>
+          <p style={{width:'12em'}}>{this.props.notes['Abilities']}</p>
+          </div>
+          <div>
+          <h4>Weakness</h4>
+          <p style={{width:'12em'}}>{this.props.notes['Weakness']}</p>
+          </div>
+          </div>
+          <div  className='category_container_notes'>
+          <div>
+          <h4>Summary</h4>
+          <p style={{width:'12em'}}>{this.props.notes['Summary']}</p>
+          </div>
+          <div>
+          <h4>Physical Description</h4>
+          <p style={{width:'12em'}}>{this.props.notes['Physical Description']}</p>
+          </div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -321,6 +343,7 @@ const Example = ({ load }) => {
         evals={pdf.evals}
         url={pdf.url}
         media={pdf.media}
+        notes={pdf.notes}
         ref={componentRef}
       />
     </div>

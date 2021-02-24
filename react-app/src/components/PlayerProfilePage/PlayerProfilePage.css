@@ -227,3 +227,17 @@ input[type='file'] {
     text-decoration: underline;
     color:rgb(14, 75, 145);
 }
+
+.pdf_notes_container{
+    display: flex;
+    align-self: center;
+    /* justify-content: center; */
+    /* width: 50%; */
+}
+.category_container_notes{
+    display: flex;
+}
+.pdf_notes_container div{
+    margin-right:.5em ;
+    margin-left:.5em ;
+}

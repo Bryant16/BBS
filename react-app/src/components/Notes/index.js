@@ -1,16 +1,20 @@
 import React, { useEffect, useState} from 'react';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import {createNote} from '../../store/note';
 import Button from '@material-ui/core/Button'; 
 import { makeStyles } from '@material-ui/core/styles';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import {getAllNotes} from '../../store/note';
 
 const Notes = ({playerId})=>{
     const dispatch = useDispatch();
-    // const [title, setTitle] = useState('Abilities');
-    const [note, setNote] = useState('');
-
-    const handleClickCreate = (e, title)=>{
+    const {notes} = useSelector(state=>state);
+    const [abilitiesText, setAbilitiesText] = useState('');
+    const [physicalText, setPhysicalText] = useState('');
+    const [weaknessText, setWeaknessText] = useState('');
+    const [sumText, setSumText] = useState('');
+    
+    const handleClickCreate = (e, title,note)=>{
         e.preventDefault();
         const titleToSend = title
         const newNote = {
@@ -18,8 +22,6 @@ const Notes = ({playerId})=>{
             note,
             playerId
         }
-        console.log(newNote)
-        // setNote('')
         dispatch(createNote(newNote))
     }
     const useStyles = makeStyles((theme) => ({
@@ -28,63 +30,80 @@ const Notes = ({playerId})=>{
         },
       }));
     const classes = useStyles();
-  
-    
+  useEffect(()=>{
+      dispatch(getAllNotes(playerId))
+      const getTheNotes = async()=>{
+          const res = await fetch(`/api/notes/${playerId}/`)
+          if(res.ok){
+              const notesJson = await res.json()
+              notesJson.forEach(note=>{
+                if(note.title ==='Abilities'){
+                  setAbilitiesText(note.text)
+                }else if(note.title === 'Weakness'){
+                 setWeaknessText(note.text) 
+                }else if(note.title === 'Physical Description'){
+                  setPhysicalText(note.text)
+                }else{
+                  setSumText(note.text)
+                }
+              })
+          }
+      }
+      getTheNotes()
+  },[dispatch])
     return (
-        <div className='note_input_container'> 
+        (notes  ? (<div className='note_input_container'> 
         <form> 
         <h1>Abilities</h1>
         <TextareaAutosize  className="form-control" 
         type='text'
-        value={note}
+        value={abilitiesText}
         rowsMin={3}
-        onChange={(e)=> setNote(e.target.value)}/>
+        onChange={(e)=> setAbilitiesText(e.target.value)}/>
          <Button 
         color="primary"
         size="large"
         variant='contained'
         className={classes.button}
-        onClick={e=>handleClickCreate(e,'Abilities')}>Save</Button>
+        onClick={e=>handleClickCreate(e,'Abilities',abilitiesText)}>Save</Button>
         <h1>Physical Description</h1>
         <TextareaAutosize  className="form-control" 
         type='text'
-        value={note}
+        value={physicalText}
         rowsMin={3}
-        onChange={(e)=> setNote(e.target.value)}/>
+        onChange={(e)=> setPhysicalText(e.target.value)}/>
          <Button 
         color="primary"
         size="large"
         variant='contained'
         className={classes.button}
-        onClick={e=>handleClickCreate(e,'Physical Description')}>Save</Button>
+        onClick={e=>handleClickCreate(e,'Physical Description',physicalText)}>Save</Button>
         <h1>Weakness</h1>
         <TextareaAutosize  className="form-control" 
         type='text'
-        value={note}
+        value={weaknessText}
         rowsMin={3}
-        onChange={(e)=> setNote(e.target.value)}/>
+        onChange={(e)=> setWeaknessText(e.target.value)}/>
          <Button 
         color="primary"
         size="large"
         variant='contained'
         className={classes.button}
-        onClick={e=>handleClickCreate(e,'Weakness')}>Save</Button>
+        onClick={e=>handleClickCreate(e,'Weakness', weaknessText)}>Save</Button>
         <h1>Summary</h1>
         <TextareaAutosize  className="form-control" 
         type='text'
-        value={note}
+        value={sumText}
         rowsMin={3}
-        onChange={(e)=> setNote(e.target.value)}/>
-  
+        onChange={(e)=> setSumText(e.target.value)}/>
         <Button 
         color="primary"
         size="large"
         variant='contained'
         className={classes.button}
-        onClick={e=>handleClickCreate(e,'Summary')}>Save</Button>
-     
+        onClick={e=>handleClickCreate(e,'Summary', sumText)}>Save</Button>
         </form>
-        </div>
+        </div>):<h1>loading</h1>)
     )
 }
 
