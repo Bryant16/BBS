@@ -21,43 +21,119 @@ const EvalContainer = ({evals})=>{
             {(evals && evals.fast_ball) ? (
                 <div className='pdf_eval_pitcher'>
                     <div>
-            <p>FASTBALL: {evals.fast_ball}</p>
-            <p>CURVE: {evals.curve}</p>
-            <p>SLIDER: {evals.slider}</p>
-            <p>KNUCKLE BALL: {evals.knuckle_ball}</p>
-            <p>OTHER: {evals.other}</p>
-            <p>ARM ACTION: {evals.arm_action}</p>
-            </div>
-            <div style={{marginLeft:'1em'}}>
-            <p>CHANGE OF PACE: {evals.change_of_pace}</p>
-            <p>CONTROL: {evals.control}</p>
-            <p>POSIE: {evals.poise}</p>
-            <p>BASEBALL INSTINCT: {evals.baseball_instinct}</p>
-            <p>AGGRESIVENESS: {evals.aggresiveness}</p>
-            <p>DELIVERY: {evals.delivery}</p>
-                
+                    <div  className='pdf_pitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>FASTBALL</p></div>
+                        <div><p>{evals.fast_ball}</p></div>
+                    </div>
+                    <div  className='pdf_pitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>CURVE</p></div>
+                        <div><p>{evals.fast_ball}</p></div>
+                    </div>
+                    <div  className='pdf_pitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>SLIDER</p></div>
+                        <div><p>{evals.slider}</p></div>
+                    </div>
+                    <div  className='pdf_pitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>KNUCKLE BALL</p></div>
+                        <div><p>{evals.knuckle_ball}</p></div>
+                    </div>
+                    <div  className='pdf_pitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>OTHER</p></div>
+                        <div><p>{evals.other}</p></div>
+                    </div>
+                    <div  className='pdf_pitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>ARM ACTION</p></div>
+                        <div><p>{evals.arm_action}</p></div>
+                    </div>
+                    <div  className='pdf_pitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>DELIVERY</p></div>
+                        <div><p>{evals.delivery}</p></div>
+                    </div>
+                    </div>
+                    <div style={{marginLeft:'1em'}}>
+                    <div  className='pdf_pitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>CHANGE OF PACE</p></div>
+                        <div><p>{evals.change_of_pace}</p></div>
+                    </div>
+                    <div  className='pdf_pitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>CONTROL</p></div>
+                        <div><p>{evals.control}</p></div>
+                    </div>
+                    <div  className='pdf_pitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>POSIE</p></div>
+                        <div><p>{evals.poise}</p></div>
+                    </div>
+                    <div  className='pdf_pitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>BASEBALL INSTINCT</p></div>
+                        <div><p>{evals.baseball_instinct}</p></div>
+                    </div>
+                    <div  className='pdf_pitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>AGGRESIVENESS</p></div>
+                        <div><p>{evals.aggresiveness}</p></div>
+                    </div>
+                   
+                    </div>
+                <div>
             </div>
             </div>
             ):
             (evals &&(
             <div className='pdf_eval_nonpitcher'>
                 <div>
-                    <p>ARM ACCURACY: {evals.arm_acc}</p>
-                    <p>ARM RANGE: {evals.arm_range}</p>
-                    <p>ARM STRENGTH: {evals.arm_str}</p>
-                    <p>AGGRESIVENESS:  {evals.aggresiveness}</p>
-                    <p>BASEBALL INSTINCT: {evals.baseball_instinct}</p>
-                    <p>PULL: {evals.pull}</p>
-                    <p>OPPOSITE FIELD: {evals.opp_field}</p>
-                    <p>STRENGTH AWAY: {evals.str_away}</p>
+                    <div  className='pdf_nonpitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>ARM ACCURACY:</p></div>
+                        <div><p>{evals.arm_acc}</p></div>
+                    </div>
+                    <div className='pdf_nonpitcher_category'>
+                    <div><p style={{textDecoration:'underline'}}>ARM RANGE</p></div>
+                    <div><p>{evals.arm_range}</p></div>
+                    </div>
+                    <div className='pdf_nonpitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>ARM STRENGTH</p></div>
+                        <div><p>{evals.arm_str}</p></div>
+                    </div>
+                    <div className='pdf_nonpitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>AGGRESIVENESS</p></div>
+                        <div><p>{evals.aggresiveness}</p></div>
+                    </div>
+                    <div className='pdf_nonpitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>BASEBALL INSTINCT</p></div>
+                        <div><p>{evals.baseball_instinct}</p></div>
+                    </div>
+                    <div className='pdf_nonpitcher_category_text'>
+                        <div><p style={{textDecoration:'underline'}}>PULL</p></div>
+                        <div><p id='text_bar'>{evals.pull}</p></div>
+                    </div>
+                    <div className='pdf_nonpitcher_category_text'>
+                        <div><p style={{textDecoration:'underline'}}>OPPOSITE FIELD</p></div>
+                        <div><p id='text_bar'>{evals.opp_field}</p></div>
+                    </div>
+                    <div className='pdf_nonpitcher_category_text'>
+                        <div><p style={{textDecoration:'underline'}}>STRENGTH AWAY</p></div>
+                        <div><p id='text_bar'>{evals.str_away}</p></div>
+                    </div>
                 </div>
                 <div style={{marginLeft:'1em'}}>
-                    
-                    <p>BASE RUNNING: {evals.baserunning}</p>
-                    <p>RUNNING SPEED: {evals.running_speed}</p>
-                    <p>FIELDING: {evals.fielding}</p>
-                    <p>HITTING ABILITY: {evals.hitting_ability}</p>
-                    <p>POWER: {evals.power}</p>
+                <div className='pdf_nonpitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>BASE RUNNING</p></div>
+                        <div><p>{evals.baserunning}</p></div>
+                    </div>
+                <div className='pdf_nonpitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>RUNNING SPEED</p></div>
+                        <div><p>{evals.running_speed}</p></div>
+                    </div>
+                <div className='pdf_nonpitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>FIELDING</p></div>
+                        <div><p>{evals.fielding}</p></div>
+                    </div>
+                <div className='pdf_nonpitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>HITTING ABILITY</p></div>
+                        <div><p>{evals.hitting_ability}</p></div>
+                    </div>
+                <div className='pdf_nonpitcher_category'>
+                        <div><p style={{textDecoration:'underline'}}>POWER</p></div>
+                        <div><p>{evals.power}</p></div>
+                    </div>
                     
                 </div>
             </div>
@@ -68,7 +144,7 @@ const EvalContainer = ({evals})=>{
 class ComponentToPrint extends React.PureComponent {
   render() {
     return (
-      <div>
+      <div className='print_container'>
         <div className="pdf_container">
           {this.props.url && (
             <Image boxSize="245px" objectFit="cover" src={this.props.url} />
@@ -103,7 +179,7 @@ class ComponentToPrint extends React.PureComponent {
           </Card>
         </div>
               <EvalContainer evals={this.props.evals}/>
-            {this.props.media.length && <h2 style={{textAlign:'center',textDecoration:'underline'}}>Media Links</h2>}
+            {this.props.media.length && <h2 style={{textAlign:'left',textDecoration:'underline'}}>Media Links</h2>}
         <div className="pdf_media_links_container">
           <ul>
             {this.props.media.map((link) => (
