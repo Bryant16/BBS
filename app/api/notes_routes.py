@@ -8,15 +8,23 @@ notes_routes = Blueprint('notes', __name__)
 @notes_routes.route('/', methods=['POST'])
 def create_note():
     data = request.get_json()
+    note = Note.query.filter(Note.title == data['title'], Note.player_id == data["playerId"] ).first()
     try:
-        new_note = Note(
-            title=data['title'],
-            text=data['note'],
-            player_id=data["playerId"]
-        )
-        db.session.add(new_note)
-        db.session.commit()
-        return jsonify({'note': new_note.to_dict()})
+        if note:
+            note.title = data['title']
+            note.text = data['note']
+            note.player_id = data["playerId"]
+            db.session.commit()
+            return jsonify({'note': note.to_dict()})
+        else:
+            new_note = Note(
+                title=data['title'],
+                text=data['note'],
+                player_id=data["playerId"]
+            )
+            db.session.add(new_note)
+            db.session.commit()
+            return jsonify({'note': new_note.to_dict()})
     except:
         return jsonify({'hit': False})
 

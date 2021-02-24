@@ -7,17 +7,19 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 const Notes = ({playerId})=>{
     const dispatch = useDispatch();
-    const [title, setTitle] = useState('Abilities');
+    // const [title, setTitle] = useState('Abilities');
     const [note, setNote] = useState('');
 
-    const handleClickCreate = (e)=>{
+    const handleClickCreate = (e, title)=>{
         e.preventDefault();
+        const titleToSend = title
         const newNote = {
-            title,
+            title: titleToSend,
             note,
             playerId
         }
-        setNote('')
+        console.log(newNote)
+        // setNote('')
         dispatch(createNote(newNote))
     }
     const useStyles = makeStyles((theme) => ({
@@ -31,28 +33,56 @@ const Notes = ({playerId})=>{
     return (
         <div className='note_input_container'> 
         <form> 
-            <div>
-            <select className="form-select" id="autoSizingSelect" onChange={(e)=> setTitle(e.target.value)}>
-            <option value={'Abilities'} >Abilities</option>
-            <option value={'Physical Description'} >Physical Description</option>
-            <option value={'Weakness'}>Weakness</option>
-            <option value={'Summary'}>Summary</option>
-            </select>
-            </div>
-        <TextareaAutosize  className="form-control" placeholder="Notes"
+        <h1>Abilities</h1>
+        <TextareaAutosize  className="form-control" 
         type='text'
         value={note}
-        rowsMin={1}
+        rowsMin={3}
         onChange={(e)=> setNote(e.target.value)}/>
-        {/* <div> */}
+         <Button 
+        color="primary"
+        size="large"
+        variant='contained'
+        className={classes.button}
+        onClick={e=>handleClickCreate(e,'Abilities')}>Save</Button>
+        <h1>Physical Description</h1>
+        <TextareaAutosize  className="form-control" 
+        type='text'
+        value={note}
+        rowsMin={3}
+        onChange={(e)=> setNote(e.target.value)}/>
+         <Button 
+        color="primary"
+        size="large"
+        variant='contained'
+        className={classes.button}
+        onClick={e=>handleClickCreate(e,'Physical Description')}>Save</Button>
+        <h1>Weakness</h1>
+        <TextareaAutosize  className="form-control" 
+        type='text'
+        value={note}
+        rowsMin={3}
+        onChange={(e)=> setNote(e.target.value)}/>
+         <Button 
+        color="primary"
+        size="large"
+        variant='contained'
+        className={classes.button}
+        onClick={e=>handleClickCreate(e,'Weakness')}>Save</Button>
+        <h1>Summary</h1>
+        <TextareaAutosize  className="form-control" 
+        type='text'
+        value={note}
+        rowsMin={3}
+        onChange={(e)=> setNote(e.target.value)}/>
+  
         <Button 
         color="primary"
         size="large"
         variant='contained'
         className={classes.button}
-        // startIcon={<BiMessageAdd />}
-        onClick={handleClickCreate}>Create</Button>
-        {/* </div> */}
+        onClick={e=>handleClickCreate(e,'Summary')}>Save</Button>
+     
         </form>
         </div>
     )

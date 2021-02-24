@@ -25,6 +25,9 @@
     /* min-height: 15vh; */
 
 }
+.note_input_container h1{
+    text-align: center;
+}
 .note_input_container  .MuiButton-contained{
     margin: 0!important;
     padding:0 !important ;

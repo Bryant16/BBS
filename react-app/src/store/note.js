@@ -40,6 +40,7 @@ export const createNote = (newNote) => async (dispatch) => {
 
   if (res.ok) {
     const notes = await res.json();
+    console.log(notes,'after updating')
     dispatch(create(notes.note));
   }
 };
