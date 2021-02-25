@@ -83,30 +83,18 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
               className='sub__button'
               type='submit'
             >Login</Button>
-          {/* <button type="submit">Login</button> */}
           <Button
               className='sub__button'
               type='submit'
               onClick={handleSignup}
             >Sign Up</Button>
-          {/* <button onClick={handleSignup} type="submit">
-            Sign Up
-          </button> */}
           <Button
               className='sub__button'
               onClick={demoLogin}
             >Demo User</Button>
-          {/* <button onClick={demoLogin}>Demo User</button> */}
         </form>
         <img alt='' src={logo} />
       </div>
-
-      {/* <div>
-        <p>A Modernized Approach to Baseball Scouting</p>
-        <p>Create Player Profiles to Track Athletes</p>
-        <p>Upload Photos and Videos of Players in Action</p>
-        <p>Track Player Evaluations and Notes</p>
-      </div> */}
     </div>
   );
 };

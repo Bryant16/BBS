@@ -64,7 +64,6 @@ export default function VideoModal({vid, url, setVideos, playerid}) {
         }
     }
   }
-// console.log(vid,'!!!!!')
   const body = (
     <div style={modalStyle} className={classes.paper}>
       {/* <h2 id="simple-modal-title">Edit Player</h2> */}

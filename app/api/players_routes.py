@@ -157,13 +157,6 @@ def create_non_player_pitcher_eval(id):
 @players_routes.route('/<int:id>/nonpitcher/', methods=["PUT"])
 def update_non_player_pitcher_eval(id):
     data = request.get_json()
-    print(data)
-    print('-------------')
-    print('-------------')
-    print('-------------')
-    print('-------------')
-    print('-------------')
-    print('-------------')
     try:
         form_to_update = Non_Pitcher_Evaluation.query.filter(
             Non_Pitcher_Evaluation.player_id == id).first()

@@ -15,7 +15,6 @@ export default function LogoutButton () {
 
   const onLogout = (e) => {
     e.preventDefault()
-    console.log('hi')
     dispatch(clearPlayers())
     dispatch(clearNotes())
     dispatch(clearNonPitcher())

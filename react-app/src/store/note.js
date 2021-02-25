@@ -25,7 +25,6 @@ export const getAllNotes = (playerId) => async (dispatch) => {
   const res = await fetch(`/api/notes/${playerId}/`);
   if (res.ok) {
     const all_notes = await res.json();
-    console.log(...all_notes,'all of them')
     dispatch(grabAll(all_notes));
   }
 };
@@ -41,7 +40,6 @@ export const createNote = (newNote) => async (dispatch) => {
 
   if (res.ok) {
     const notes = await res.json();
-    console.log(notes,'after updating')
     dispatch(create(notes.note));
   }
 };

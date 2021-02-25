@@ -44,7 +44,8 @@ background-color: white;
 .form_for_login input {
     margin-top: .5em;
     border-radius: 1em;
-    padding: .5em;
+    padding: .6em;
+    width: 14.5em;
     outline: none;
 }
 

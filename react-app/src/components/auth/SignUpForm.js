@@ -42,7 +42,6 @@ const SignUpForm = () => {
     setRepeatPassword(value);
   };
   
-  console.log(errors)
   return user
     ? <Redirect to='/' />
     : (
