@@ -33,6 +33,10 @@ const Help = ()=>{
                 <h1>Player PDF Sharing</h1>
             <ReactPlayer  width='24em' height='24em'  controls url="https://bbscouting.s3.amazonaws.com/pdf.mp4" />
             </div>
+            <div>
+                <h1>Creating Notes</h1>
+            <ReactPlayer  width='24em' height='24em'  controls url="https://bbscouting.s3.amazonaws.com/notes.mp4" />
+            </div>
         </div>
 
     )
