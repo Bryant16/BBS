@@ -49,7 +49,7 @@ const SignUpForm = () => {
       <div className='div__container_form'>
         <div className="login_form_container">
         <div>
-        <a href='/login'><img alt='' src={letters}/></a>
+        <a href='/login'><img alt='' id="bb_letters" src={letters}/></a>
       </div>
         <form className="form_for_login" onSubmit={onSignUp}>
           <div>

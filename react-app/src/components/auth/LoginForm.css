@@ -27,6 +27,10 @@
 .login_form_container img {
 background-color: white;
 }
+#bb_letters{
+    /* width: 80%; */
+    align-self: center;
+}
 .form_for_login button{
     margin-top: .5em;
     border-radius: 1em;
