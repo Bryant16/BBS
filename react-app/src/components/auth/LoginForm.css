@@ -1,10 +1,19 @@
-.login_container{
+.login_container,
+.div__container_form{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 2em;
+    /* margin-top: 2em; */
     font-family: Roboto;
+    width: 100%;
+    background-attachment: absolute;
+    background: url('https://portcitydaily.com/wp-content/uploads/2018/08/Baseball-Port-City-Daily.jpg ');
+    background-size: cover;
+    background-position: top;
+    height: 100vh;
+    /* background-image: url('https://portcitydaily.com/wp-content/uploads/2018/08/Baseball-Port-City-Daily.jpg center center'); */
+
 }
 .login_form_container{
     display: flex;
@@ -12,10 +21,12 @@
     align-items: center;
     justify-content: center;
     padding: 2em;
+    margin-top: 2em;
     align-self: center;
-    border-radius: 2em;
+    /* border-radius: 2em; */
     border: 1px solid lightgray;
-    box-shadow: 4px 4px 7px -2px rgba(53,53,53,0.66);   
+    box-shadow: 4px 4px 7px -2px rgba(243, 243, 243, 0.66);  
+    background-color: white; 
 }
 
 .login_form_container form {
