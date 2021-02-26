@@ -59,7 +59,6 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
               <div>{error}</div>
             ))}
           </div>
-          {/* <label htmlFor="email">Email</label> */}
           <div>
             <input
               name="email"
