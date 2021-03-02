@@ -15,4 +15,13 @@
 
 .player_evaluation_and_player_notes_container form {
     width:24.4em;
+    font-size:1.5em;
+}
+
+.note_input_container form {
+    font-size: 1.5em;
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

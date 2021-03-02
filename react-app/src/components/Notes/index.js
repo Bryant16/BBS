@@ -58,7 +58,7 @@ const Notes = ({playerId})=>{
         <TextareaAutosize  className="form-control" 
         type='text'
         value={abilitiesText}
-        rowsMin={3}
+        rowsMin={4}
         onChange={(e)=> setAbilitiesText(e.target.value)}/>
          <Button 
         color="primary"
@@ -70,7 +70,7 @@ const Notes = ({playerId})=>{
         <TextareaAutosize  className="form-control" 
         type='text'
         value={physicalText}
-        rowsMin={3}
+        rowsMin={4}
         onChange={(e)=> setPhysicalText(e.target.value)}/>
          <Button 
         color="primary"
@@ -82,7 +82,7 @@ const Notes = ({playerId})=>{
         <TextareaAutosize  className="form-control" 
         type='text'
         value={weaknessText}
-        rowsMin={3}
+        rowsMin={4}
         onChange={(e)=> setWeaknessText(e.target.value)}/>
          <Button 
         color="primary"
@@ -94,7 +94,7 @@ const Notes = ({playerId})=>{
         <TextareaAutosize  className="form-control" 
         type='text'
         value={sumText}
-        rowsMin={3}
+        rowsMin={4}
         onChange={(e)=> setSumText(e.target.value)}/>
         <Button 
         color="primary"
