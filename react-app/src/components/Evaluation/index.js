@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Redirect } from 'react-router-dom';
 import PitcherForm from '../PitcherForm';
 import NonPitcherForm from '../NonPitcherForm';
 import Notes from '../Notes';
@@ -15,6 +15,7 @@ import './Evaluation.css';
 const Evaluation = () => {
   const { playerid } = useParams();
   const dispatch = useDispatch();
+  const players = useSelector(state=> state.players);
   const history = useHistory();
   const [playerInfo, setPlayerInfo] = useState(false);
   const notes = useSelector(state => state.notes);
@@ -48,7 +49,7 @@ const Evaluation = () => {
  } 
  
   return (
-      <div className='player_evaluation_and_player_notes_container'>
+     players[playerid]? (<div className='player_evaluation_and_player_notes_container'>
           <div className='eval_nav_buttons'>
         <Button className='eval_nav_buttons' variant="contained" color='primary' onClick={toggleNoteEvals}>{toggle}</Button>
         <Button className='eval_nav_buttons' variant="contained" color="primary" onClick={(e)=>history.push(`/players/${playerid}`)}>Player Profile</Button>
@@ -64,7 +65,7 @@ const Evaluation = () => {
             {gotNotes && <DisplayNotes playerid={playerid} notes={notes} />}
           </div>)}
         
-      </div>
+      </div>):<Redirect to='/' />
   );
 };
 

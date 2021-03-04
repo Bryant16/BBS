@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import {getNonePitcherForm} from '../../store/nonPitcher';
 import {getPitcherForm} from "../../store/Pitcher";
 import './PlayerProfilePage.css';
@@ -98,7 +98,7 @@ useEffect(()=>{
         }
     }
     return (
-    <div className='player_profile_page'>
+    players[playerid] ? (<div className='player_profile_page'>
         {players && (
             <div className='player_profile_container'>
              <PlayerImage playerid={playerid}/>
@@ -123,7 +123,7 @@ useEffect(()=>{
         <div>
         </div>
         </div>
-    </div>
+    </div>): <Redirect to='/' />
     )
 }
 

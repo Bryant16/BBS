@@ -25,7 +25,7 @@ def authenticate():
     """
     if current_user.is_authenticated:
         return jsonify({'user': current_user.to_dict()})
-    return jsonify({'user':{'errors': ['Unauthorized']}}), 401
+    return jsonify({'user':{'errors': ['Unauthorized']}})
 
 
 @auth_routes.route('/login', methods=['POST'])

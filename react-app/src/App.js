@@ -32,19 +32,19 @@ const dispatch = useDispatch();
           <SignUpForm />
         </Route>
         <Route exact path='/players/:playerid/evaluation'>
-          {user? <Evaluation />: <LoginForm />}
+          {user ? <Evaluation />: <LoginForm />}
         </Route>
         <Route path='/players/:playerid'>
-          {user?<PlayerProfilePage />:<LoginForm />} 
+          {user ? <PlayerProfilePage />:<LoginForm />} 
         </Route>
         <Route exact path='/newPlayer/:playerid'>
-          {user?<NewPlayerForm />:<LoginForm />}
+          {user ? <NewPlayerForm />:<LoginForm />}
         </Route>
         <Route exact path='/newPlayer'>
-          {user?<NewPlayerForm />:<LoginForm />}
+          {user ? <NewPlayerForm />:<LoginForm />}
         </Route>
         <Route exact path='/help'>
-          {user?<Help />:<LoginForm />}
+          {user  ? <Help />:<LoginForm />}
         </Route>
         <Route exact path='/share'>
           {user && state.players ? <Print load={state}/>:<Redirect to='/' />}
