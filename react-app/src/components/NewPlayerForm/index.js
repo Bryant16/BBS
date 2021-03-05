@@ -130,35 +130,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                  placeholder='D.O.B. (01/01/2000)'
                  onChange={(e)=>setDob(e.target.value)}/>
                 </div>
-                <div>
-                <Select 
-                 placeholder='Position'
-                 value={position}
-                 onChange={(e)=>setPosition(e.target.value)}>
-                     {playerPositions.map((pos)=>{
-                         return(
-                             <option value={pos}>{pos}</option>
-                         )
-                     })}
-                 </Select>
-                <Select 
-                 placeholder='Bats'
-                 value={bats}
-                 onChange={(e)=>setBats(e.target.value)}>
-                     <option value='R'>R</option>
-                     <option value='L'>L</option>
-                     <option value='Both'>Both</option>
-                 </Select>
-                
-                <Select 
-                 placeholder='Throws'
-                 value={throws}
-                 onChange={(e)=>setThrows(e.target.value)}>
-                    <option value='R'>R</option>
-                    <option value='L'>L</option>
-                    <option value='Both'>Both</option>
-                </Select>
-                </div>
+               
                 <div>
                 <Input 
                  type='text'
@@ -202,10 +174,40 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                  onChange={(e)=>setState(e.target.value)}/>
                 </div>
                 <div>
-                    <label style={{'marginRight':'.5em'}}>Track</label>
+                <Select 
+                 placeholder='Position'
+                 value={position}
+                 onChange={(e)=>setPosition(e.target.value)}>
+                     {playerPositions.map((pos)=>{
+                         return(
+                             <option value={pos}>{pos}</option>
+                         )
+                     })}
+                 </Select>
+                <Select 
+                 placeholder='Bats'
+                 value={bats}
+                 onChange={(e)=>setBats(e.target.value)}>
+                     <option value='R'>R</option>
+                     <option value='L'>L</option>
+                     <option value='Both'>Both</option>
+                 </Select>
+                
+                <Select 
+                 placeholder='Throws'
+                 value={throws}
+                 onChange={(e)=>setThrows(e.target.value)}>
+                    <option value='R'>R</option>
+                    <option value='L'>L</option>
+                    <option value='Both'>Both</option>
+                </Select>
+                </div>
+                <div style={{display:'flex', alignItems:'center'}}>
+                    <label style={{'marginRight':'.5em',fontSize:'1.3em'}}>Track</label>
                     <Input
                     type='checkbox'
                     checked={hotList}
+                    style={{width:'2.4em'}}
                     onChange={(e)=> setHotList(e.target.checked)}
                     // onChange={(e)=>setHotList(e.target)}
                     ></Input>

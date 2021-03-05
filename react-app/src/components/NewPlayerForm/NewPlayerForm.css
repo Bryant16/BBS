@@ -8,6 +8,7 @@
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
+    font-size: 1.6em;
 }
 
 .new_player_form_container form div{
@@ -15,7 +16,7 @@
 }
 
 #register_button{
-    width: 12.7em;
+    width: 20.5em;
 }
 .chakra-select__icon-wrapper  svg{
     display: none;
@@ -23,4 +24,9 @@
 
 .new_player_form_container form select {
     width: 11.8em;
+}
+input[type='checkbox'] {
+    width:1.4em!important;
+    height:1.4em;
+    
 }
