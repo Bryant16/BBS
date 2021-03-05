@@ -12,7 +12,9 @@
 
 .eval_nav_buttons button{
     margin-right: .5em;
-    min-width: 10vw;
+    min-width: 13em;
+    /* min-height: 4em; */
+    font-size: 1.5em;
     margin-bottom: 2em;
     /* padding: .5em; */
 }

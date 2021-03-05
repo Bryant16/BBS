@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import {getAllNotes} from '../../store/note';
+import './Notes.css';
 
 const Notes = ({playerId})=>{
     const dispatch = useDispatch();
@@ -58,7 +59,7 @@ const Notes = ({playerId})=>{
         <TextareaAutosize  className="form-control" 
         type='text'
         value={abilitiesText}
-        rowsMin={4}
+        rowsMin={7}
         onChange={(e)=> setAbilitiesText(e.target.value)}/>
          <Button 
         color="primary"
@@ -70,7 +71,7 @@ const Notes = ({playerId})=>{
         <TextareaAutosize  className="form-control" 
         type='text'
         value={physicalText}
-        rowsMin={4}
+        rowsMin={7}
         onChange={(e)=> setPhysicalText(e.target.value)}/>
          <Button 
         color="primary"
@@ -82,7 +83,7 @@ const Notes = ({playerId})=>{
         <TextareaAutosize  className="form-control" 
         type='text'
         value={weaknessText}
-        rowsMin={4}
+        rowsMin={7}
         onChange={(e)=> setWeaknessText(e.target.value)}/>
          <Button 
         color="primary"
@@ -94,7 +95,7 @@ const Notes = ({playerId})=>{
         <TextareaAutosize  className="form-control" 
         type='text'
         value={sumText}
-        rowsMin={4}
+        rowsMin={7}
         onChange={(e)=> setSumText(e.target.value)}/>
         <Button 
         color="primary"
