@@ -56,7 +56,7 @@ export default function SimpleCard({playerid, players, evals, notes, media, url}
     <Card className={classes.root}>
       
       <CardContent style={{'padding':0}}>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
+        <Typography className={classes.title}  gutterBottom>
    
           {singlePlayer.first_name} {singlePlayer.last_name}
         </Typography>
