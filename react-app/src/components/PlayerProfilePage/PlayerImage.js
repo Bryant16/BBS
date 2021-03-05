@@ -37,7 +37,7 @@ const PlayerImage = ({playerid})=>{
     return (
         <div className='player_profile_container_image'>
         <div>
-        {playerImageUrl ? <Image boxSize="245px" objectFit="cover" src={playerImageUrl}/>: <Image boxSize="245px" objectFit="cover" src={defaultUser}/>}
+        {playerImageUrl ? <Image boxSize="25em" objectFit="cover" src={playerImageUrl}/>: <Image boxSize="245px" objectFit="cover" src={defaultUser}/>}
         </div>
         <div className='file_upload_container'>
         <form >

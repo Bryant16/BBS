@@ -14,7 +14,7 @@ input[type='file'] {
     color:lightskyblue;
     border-radius: .3em;
     z-index: -1;
-    width:5vw;
+    width:10em;
     text-align: left;
     background-color: white;
     position: absolute;
@@ -27,7 +27,7 @@ input[type='file'] {
     color: lightskyblue;
 }
 #file_upload svg{
-    font-size: 3em;
+    font-size: 4em;
 }
 .player_profile_page{
     display: flex;
@@ -81,15 +81,23 @@ input[type='file'] {
     width: 1vw;
 }
 
+#card_info_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align:left;
+    justify-content: space-around;
+}
+
 .video_container {
     /* visibility: hidden; */
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    width: 40em;
+    width: 65em;
     border-radius: .5em;
     /* height: 10em; */
-    border-top: 1px solid lightgray;
+    /* border-top: 1px solid lightgray; */
     /* box-shadow:5px 5px 15px 5px #B5B5B5; */
     /* overflow-y: scroll; */
     /* overflow-x: scroll; */
@@ -102,6 +110,8 @@ input[type='file'] {
 .player_videos form {
     display: flex;
     justify-content: center;
+    margin-top: .5em;
+    margin-bottom: .5em;
 }
 
 .picture_modal_container{

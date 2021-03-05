@@ -13,9 +13,9 @@ import {infoPDF} from '../../store/player';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: '23em',
-    height: '15.5em',
-    padding: '.5em',
+    minWidth: '32em',
+    height: '25em',
+    padding: '0',
   },
   bullet: {
     display: 'inline-block',
@@ -23,10 +23,11 @@ const useStyles = makeStyles({
     transform: 'scale(0.8)',
   },
   title: {
-    fontSize: '2rem',
+    fontSize: '3rem',
+    margin:0
   },
   pos: {
-    marginBottom: 2,
+    marginBottom: 1,
   },
 });
 
@@ -53,20 +54,20 @@ export default function SimpleCard({playerid, players, evals, notes, media, url}
     history.push('/share')
   }
   return (
-    <Card className={classes.root}>
+    <Card id='card_info_container' className={classes.root}>
       
       <CardContent style={{'padding':0}}>
         <Typography className={classes.title}  gutterBottom>
    
           {singlePlayer.first_name} {singlePlayer.last_name}
         </Typography>
-        <Typography variant="h5" component="h2">
+        <Typography variant="h3" component="h2" >
         {singlePlayer.position} {singlePlayer.height}, {singlePlayer.weight} lbs   
         </Typography>
-        <Typography className={classes.pos} color="textSecondary">
+        <Typography className={classes.pos} color="textSecondary" style={{marginTop:'1em'}}>
         Throws: {singlePlayer.throws} / Bats: {singlePlayer.bats}
         </Typography>
-        <Typography variant="body2" component="p">
+        <Typography variant="body1" component="p" style={{'marginTop':'.5em','fontSize':'1.5em'}}>
         <FaAddressCard /> {singlePlayer.address}
         <br/>
         <FaMailchimp /> {singlePlayer.email}
@@ -77,9 +78,9 @@ export default function SimpleCard({playerid, players, evals, notes, media, url}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button onClick={goToEvaluation} id="edit_player_button" variant="outlined" size="small">Evaluation</Button>
+        <Button onClick={goToEvaluation} id="edit_player_button" variant="outlined" size="large" style={{width:'8em'}}>Evaluation</Button>
         <Modal playerid={playerid}/>
-        <Button type="button" size='small' variant="outlined" onClick={share}>Share</Button>
+        <Button type="button" size='large' variant="outlined" onClick={share} style={{width:'8em'}}>Share</Button>
       </CardActions>
     </Card>
   );

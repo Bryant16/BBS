@@ -52,8 +52,8 @@ export default function SimpleModal({playerid}) {
 
   return (
     <div>
-      <Button type="button" size='small' variant="outlined" onClick={handleOpen}>
-        Edit Player
+      <Button type="button" size='large' variant="outlined" onClick={handleOpen} style={{width:'8em',height:'2.8em'}}>
+        Update
       </Button>
      
       <Modal
