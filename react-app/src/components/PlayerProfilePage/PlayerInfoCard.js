@@ -64,7 +64,7 @@ export default function SimpleCard({playerid, players, evals, notes, media, url}
         <Typography variant="h3" component="h2" >
         {singlePlayer.position} {singlePlayer.height}, {singlePlayer.weight} lbs   
         </Typography>
-        <Typography className={classes.pos} color="textSecondary" style={{marginTop:'1em'}}>
+        <Typography className={classes.pos} color="textSecondary" style={{marginTop:'.5em','fontSize':'1.9em'}}>
         Throws: {singlePlayer.throws} / Bats: {singlePlayer.bats}
         </Typography>
         <Typography variant="body1" component="p" style={{'marginTop':'.5em','fontSize':'1.5em'}}>
