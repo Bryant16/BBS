@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   }
 });
 
-// Create Document Component
+
 const MyDocument = () => (
   <Document>
     <Page size="A4" style={styles.page}>
