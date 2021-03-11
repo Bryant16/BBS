@@ -30,15 +30,12 @@ def get_player_url(id):
 def handle_image_upload(id):
     img = request.files['image']
     if img:
-        # data = open('test.png' , 'rb')
         filename = secure_filename(img.filename)
-        # img.save(filename)
         s3.Bucket(BUCKET_NAME).put_object(Key=filename, Body=img, ContentType=img.content_type, ACL='public-read')
         newProfilePic = Image(URL="{}{}".format('https://bbscouting.s3.amazonaws.com/',filename),player_id=id)
         db.session.add(newProfilePic)
         db.session.commit()
         return jsonify({'newPic':True})
-        # return jsonify({'hiii':True})
     else:
         return jsonify({'error':['could not be processed at this time']})
 
