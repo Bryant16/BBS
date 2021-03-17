@@ -68,7 +68,7 @@ export default function VideoModal({vid, url, setVideos, playerid}) {
     <div style={modalStyle} className={classes.paper}>
       {/* <h2 id="simple-modal-title">Edit Player</h2> */}
       <div className='picture_modal_container'>
-      <ReactPlayer className='react-player'  width='25em' height='40em' style={{'margin':'',"box-shadow":'5px 5px 15px 5px #B5B5B5', 'border-bottom':'1px solid black'}} controls url={url} />
+      <ReactPlayer className='react-player' width='25em' height='40em' style={{'margin':'',"box-shadow":'5px 5px 15px 5px #B5B5B5', 'border-bottom':'1px solid black'}} controls url={url} />
             <button className='delete_button_pic_video' onClick={e=>deleteContent(e, vid.id)}>Delete</button>
     </div>
     </div>
@@ -76,7 +76,7 @@ export default function VideoModal({vid, url, setVideos, playerid}) {
 
   return (
     <div>
-    <Link onClick={handleOpen}><ReactPlayer className='react-player'  width='20em' height='22em' style={{'margin':'',"box-shadow":'5px 5px 15px 5px #B5B5B5', 'border-bottom':'1px solid black'}} controls url={url} /></Link>
+    <Link onClick={handleOpen}><ReactPlayer className='react-player' width='20em' height='22em' style={{'margin':'',"box-shadow":'5px 5px 15px 5px #B5B5B5', 'border-bottom':'1px solid black'}} controls url={url} /></Link>
       <Modal
         open={open}
         onClose={handleClose}
