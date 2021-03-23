@@ -8,7 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Modal from './Modal';
-import {FaAddressCard,FaMailchimp, FaBirthdayCake, FaBaseballBall} from 'react-icons/fa';
+import {FaAddressCard,FaMailchimp, FaBirthdayCake, FaBaseballBall,FaRegEnvelope} from 'react-icons/fa';
 import {infoPDF} from '../../store/player';
 
 const useStyles = makeStyles({
@@ -70,7 +70,7 @@ export default function SimpleCard({playerid, players, evals, notes, media, url}
         <Typography variant="body1" component="p" style={{'marginTop':'.5em','fontSize':'1.5em'}}>
         <FaAddressCard /> {singlePlayer.address}
         <br/>
-        <FaMailchimp /> {singlePlayer.email}
+        <FaRegEnvelope /> {singlePlayer.email}
           <br />
          <FaBirthdayCake /> {singlePlayer.dob}
           <br/>
