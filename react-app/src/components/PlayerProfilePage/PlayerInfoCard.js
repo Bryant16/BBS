@@ -53,6 +53,13 @@ export default function SimpleCard({playerid, players, evals, notes, media, url}
     dispatch(infoPDF(pdfPlayer))
     history.push('/share')
   }
+  function calculateAge(birthday) { // birthday is a date
+    let ageDifMs = Date.now() - birthday;
+    console.log(birthday,'milis')
+    let ageDate = new Date(ageDifMs); // miliseconds from epoch
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+  let birthdate = new Date(singlePlayer.dob)
   return (
     <Card id='card_info_container' className={classes.root}>
       
@@ -61,11 +68,11 @@ export default function SimpleCard({playerid, players, evals, notes, media, url}
    
           {singlePlayer.first_name} {singlePlayer.last_name}
         </Typography>
-        <Typography variant="h3" component="h2" >
-        {singlePlayer.position} {singlePlayer.height}, {singlePlayer.weight} lbs   
+        <Typography variant="h5" component="h2" >
+        Age: {calculateAge(birthdate)||null} Height: {singlePlayer.height} Weight: {singlePlayer.weight} lbs  
         </Typography>
-        <Typography className={classes.pos} color="textSecondary" style={{marginTop:'.5em','fontSize':'1.9em'}}>
-        Throws: {singlePlayer.throws} / Bats: {singlePlayer.bats}
+        <Typography className={classes.pos} variant='h5' style={{marginTop:'.5em'}}>
+         {singlePlayer.position} / Bats: {singlePlayer.bats} / Throws: {singlePlayer.throws}
         </Typography>
         <Typography variant="body1" component="p" style={{'marginTop':'.5em','fontSize':'1.5em'}}>
         <FaAddressCard /> {singlePlayer.address}
