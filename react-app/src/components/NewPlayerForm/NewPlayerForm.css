@@ -26,7 +26,26 @@
     width: 11.3em;
 }
 input[type='checkbox'] {
-    width:1.4em!important;
-    height:1.4em;
+    width:1em!important;
+    height:1em;
     
+}
+
+.positions_checkboxes{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    /* width:12em; */
+    
+}
+.positions_checkboxes label{
+    margin-left: .1em;
+    margin-right: .1em;
+}
+.positions_checkboxes input[type='checkbox']{
+    width: 1em!important;
+    height: 1em!important;
 }
