@@ -56,7 +56,7 @@ const Evaluation = () => {
         </div>
         {toggle === 'Notes' ?(<div>
           {!playerInfo ? <h1>loading</h1>:null}
-          {playerInfo && playerInfo.position === 'P' ||playerInfo.position === 'RHP' ||playerInfo.position === 'LHP'?
+          {playerInfo && playerInfo.position.includes('P')?
           <>
           <PitcherForm playerId={playerid}/> 
           <NonPitcherForm playerId={playerid}/>
