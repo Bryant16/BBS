@@ -90,7 +90,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
       
     }
     }
-    let playerPositions = ['P','C','1B','2B','3B','SS','RF','LF','CF']
+    let playerPositions = ['RHP','LHP','P','C','1B','2B','3B','SS','RF','LF','CF']
     return (
          <div className='new_player_form_container'>
             {players && (<form>

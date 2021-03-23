@@ -19,5 +19,11 @@
     /* padding: .5em; */
 }
 
+#title_for_forms{
+    text-align: center;
+    text-decoration: underline;
+    margin-top: .5em;
+    margin-bottom: 1em;
+}
 
 

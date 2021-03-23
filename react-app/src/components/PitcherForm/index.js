@@ -122,8 +122,10 @@ const PitcherForm = ({ playerId }) => {
 
   return (
     <div className="pitcher_form_container">
+       <h1 id='title_for_forms'>Pitcher</h1>
       {pitcher ? (
         <form>
+         
           <div className="category_pitcher_container">
             <Categories title={"FASTBALL"} value={fastball} set={setFastball} submitEv={submitEval}/>
             <Categories title={"CURVE"} value={curve} set={setCurve} submitEv={submitEval}/>

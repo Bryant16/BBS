@@ -13,6 +13,7 @@ import {
   FaMailchimp,
   FaBirthdayCake,
   FaBaseballBall,
+  FaRegEnvelope
 } from "react-icons/fa";
 
 const EvalContainer = ({ evals }) => {
@@ -237,7 +238,7 @@ class ComponentToPrint extends React.PureComponent {
             <CardContent style={{ padding: 0 }}>
               <Typography
                 style={{ fontSize: "2rem" }}
-                color="textSecondary"
+                variant="h3"
                 gutterBottom
               >
                 {this.props.name.first_name} {this.props.name.last_name}
@@ -252,7 +253,7 @@ class ComponentToPrint extends React.PureComponent {
               <Typography variant="body2" component="p">
                 <FaAddressCard /> {this.props.name.address}
                 <br />
-                <FaMailchimp /> {this.props.name.email}
+                <FaRegEnvelope /> {this.props.name.email}
                 <br />
                 <FaBirthdayCake /> {this.props.name.dob}
                 <br />

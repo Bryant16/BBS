@@ -121,6 +121,7 @@ const Categories = ({ title, value, set, submitEv }) => {
   
 return (
     <div className='non_pitcher_form_container'>
+        <h1 id='title_for_forms'>NonPitcher</h1>
         {nonPitcher ? (<form>
             <div className="category_pitcher_container">
                <Categories title={'HITTING'} value={hitting} set={setHitting} submitEv={submitEval} /> 
