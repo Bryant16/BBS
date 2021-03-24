@@ -60,6 +60,7 @@ export default function DataGridDemo() {
     setArr(newArrOfPlayers.filter(play=> play.hot_list === !hot))
     setHot(!hot)
   }
+  
   const filterResults = (e)=>{
     if(newArrOfPlayers.length > 0 ){
       setArr(newArrOfPlayers.filter(play=>{
