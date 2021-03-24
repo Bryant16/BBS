@@ -29,7 +29,7 @@ const Positions = ({positionUpdater, currentPos})=>{
             {playerPositions.slice(3,8).map(pos=><><label>{isCatcher(pos)}</label><input type='checkbox' checked={curPos.includes(pos)} onChange={handleClick} value={pos}/></>)}
             </div>
             <div>
-            {playerPositions.slice(0,3).map(pos=><><label>{pos}</label><input type='checkbox' checked={curPos.includes(pos)} onChange={handleClick} value={pos}/></>)}
+            {playerPositions.slice(0,3).map(pos=><><label>{isCatcher(pos)}</label><input type='checkbox' checked={curPos.includes(pos)} onChange={handleClick} value={pos}/></>)}
             </div>
             <div>
             {playerPositions.slice(8).map(pos=><><label>{pos}</label><input type='checkbox' checked={curPos.includes(pos)} onChange={handleClick} value={pos}/></>)}
