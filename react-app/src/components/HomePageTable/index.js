@@ -71,6 +71,7 @@ export default function DataGridDemo() {
       }))
     }
   }
+  
   return (
     <div style={{ height: '50em', width: '60em'}}>
       <button id='tracker_button' onClick={handleTrack}>{tracked}</button>
