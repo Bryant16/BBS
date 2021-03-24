@@ -60,6 +60,13 @@ export default function SimpleCard({playerid, players, evals, notes, media, url}
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
   let birthdate = new Date(singlePlayer.dob)
+  let catcherFormating = (p)=>{
+    if(p.includes('Catcher')){
+      return p.replace('atcher','')
+    }else{
+      return p
+    }
+  }
   return (
     <Card id='card_info_container' className={classes.root}>
       
@@ -72,7 +79,7 @@ export default function SimpleCard({playerid, players, evals, notes, media, url}
         Age: {calculateAge(birthdate)||null} Height: {singlePlayer.height} Weight: {singlePlayer.weight} lbs  
         </Typography>
         <Typography className={classes.pos} variant='h5' style={{marginTop:'.5em'}}>
-         {singlePlayer.position} / Bats: {singlePlayer.bats} / Throws: {singlePlayer.throws}
+         {catcherFormating(singlePlayer.position)} / Bats: {singlePlayer.bats} / Throws: {singlePlayer.throws}
         </Typography>
         <Typography variant="body1" component="p" style={{'marginTop':'.5em','fontSize':'1.5em'}}>
         <FaAddressCard /> {singlePlayer.address}

@@ -228,6 +228,13 @@ const EvalContainer = ({ evals }) => {
 };
 class ComponentToPrint extends React.PureComponent {
   render() {
+    let catcherFormating = (p)=>{
+      if(p.includes('Catcher')){
+        return p.replace('atcher','')
+      }else{
+        return p
+      }
+    }
     return (
       <div className="print_container">
         <div className="pdf_container">
@@ -244,7 +251,7 @@ class ComponentToPrint extends React.PureComponent {
                 {this.props.name.first_name} {this.props.name.last_name}
               </Typography>
               <Typography variant="h5" component="h2">
-                {this.props.name.position} {this.props.name.height},{" "}
+                {catcherFormating(this.props.name.position)} {this.props.name.height},{" "}
                 {this.props.name.weight} lbs
               </Typography>
               <Typography style={{ marginBottom: 2 }} color="textSecondary">
