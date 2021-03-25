@@ -94,7 +94,9 @@ def send_reset_email(user):
     msg = Message('Password Reset Request', sender='bbscouting16@gmail.com', recipients=[user.email])
     msg.body = f'''To Reset your password, visit the following link: {f'https://localhost:3000/reset-password'}
     '''
+    print(msg)
     mail.send(msg)
+    return 'Sent'
 
 @auth_routes.route('/reset_password', methods=['POST'])
 def reset_request():
@@ -113,6 +115,7 @@ def reset_request():
             print('--------------')
             print('--------------')
             send_reset_email(user)
+            print('comeback now')
             return jsonify({'email':True})
         except:
             return jsonify({'email':False})

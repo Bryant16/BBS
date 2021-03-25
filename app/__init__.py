@@ -4,7 +4,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
-from flask_mail import Mail
+from flask_mail import Mail, Message
 
 from .models import db, User
 from .api.user_routes import user_routes
@@ -35,9 +35,10 @@ app.config.from_object(Config)
 app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')
-app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
-mail = Mail(app)
+# app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USERNAME'] = 'bbscouting16@gmail.com'
+app.config['MAIL_PASSWORD'] = 'Napsterbbdog16*'
+
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(players_routes, url_prefix='/api/players')
@@ -45,6 +46,7 @@ app.register_blueprint(notes_routes, url_prefix='/api/notes')
 app.register_blueprint(media_routes, url_prefix='/api/media')
 db.init_app(app)
 Migrate(app, db)
+mail = Mail(app)
 
 CORS(app)
 
