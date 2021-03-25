@@ -29,8 +29,7 @@ class LoginForm(FlaskForm):
                            DataRequired(), password_matches])
 
 class RequestResetForm(FlaskForm):
-    email = StringField('email', validators=[DataRequired(), Email(),user_exists])
-    submit = SubmitField('Request Password Rest')
+    email = StringField('email', validators=[DataRequired()])
 
 class ResetPasswordForm(FlaskForm):
     password = StringField('password', validators=[

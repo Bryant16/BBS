@@ -25,6 +25,7 @@ const resetPassword = async(e)=>{
         body: JSON.stringify({email}),
       });
       if (res.ok) {
+          console.log(res.email)
           history.push('/login')
       }
 }
