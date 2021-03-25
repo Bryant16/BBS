@@ -12,6 +12,8 @@ import Evaluation from './components/Evaluation';
 import Footer from './components/Footer';
 import Help from './components/Help';
 import Print from './components/PlayerProfilePage/Print';
+import ForgotPassword from './components/auth/ForgotPassword';
+import ConfirmReset from './components/auth/ConfirmReset';
 
 function App() {
   const { user } = useSelector((state) => state.session); 
@@ -27,6 +29,12 @@ const dispatch = useDispatch();
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm />
+        </Route>
+        <Route path="/forgot-password" exact={true}>
+          <ForgotPassword />
+        </Route>
+        <Route path="/reset-password" exact={true}>
+          <ConfirmReset />
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />

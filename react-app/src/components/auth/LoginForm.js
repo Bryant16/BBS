@@ -44,7 +44,10 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     e.preventDefault();
     history.push("/sign-up");
   };
-
+  const forgotPassword = (e)=>{
+    e.preventDefault()
+    history.push('/forgot-password')
+  }
   return user ? (
     <Redirect to="/" />
   ) : (
@@ -91,6 +94,10 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
               className='sub__button'
               onClick={demoLogin}
             >Demo User</Button>
+          <Button
+              className='sub__button'
+              onClick={forgotPassword}
+            >Forgot Password</Button>
         </form>
         <img alt='' src={logo} />
       </div>

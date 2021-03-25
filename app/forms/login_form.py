@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField
+from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Email, ValidationError
 from app.models import User
 
@@ -27,3 +27,12 @@ class LoginForm(FlaskForm):
     email = StringField('email', validators=[DataRequired(), user_exists])
     password = StringField('password', validators=[
                            DataRequired(), password_matches])
+
+class RequestResetForm(FlaskForm):
+    email = StringField('email', validators=[DataRequired(), Email(),user_exists])
+    submit = SubmitField('Request Password Rest')
+
+class ResetPasswordForm(FlaskForm):
+    password = StringField('password', validators=[
+                           DataRequired(), password_matches])
+    submit = SubmitField('Rest Password')

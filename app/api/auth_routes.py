@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import User, db
-from app.forms import LoginForm
+from app.forms import LoginForm,RequestResetForm,ResetPasswordForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -86,3 +86,28 @@ def unauthorized():
     Returns unauthorized JSON when flask-login authentication fails
     """
     return jsonify({'user':{'errors': ['Unauthorized']}}), 401
+
+def send_reset_email(user):
+    pass
+
+@auth_routes.route('/reset_password', methods=['POST'])
+def reset_request():
+#     if current_user.is_authenticated:
+#         return jsonify({'user':True})
+    form = RequestResetForm()
+    if form.validate_on_submit():
+        user = User.query.filter(User.email == form.data['email']).first()
+        send_reset_email(user)
+        flash('an email has been sent with instructions to reset your password')
+        return redirect(url_for('login'))
+    return jsonify({'worked':True})
+
+@auth_routes.route('/reset_password/<token>', methods=['GET','POST'])
+def reset_token(token):
+    if current_user.is_authenticated:
+        return jsonify({'user':True})
+    user = User.verify_reset_token(token)
+    if user is None:
+        flash('That is an invalid or expired token')
+        return redirect(url_for('reset_request'))
+    form = RestPasswordForm()
