@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import Button from '@material-ui/core/Button';
 import { SignUp } from '../../store/session';
-
+import {useAuth} from './contexts/AuthContext';
 import './SignupForm.css';
 import logo from './new_logo_bbs.png';
 import letters from './BBScouting writing.png';
@@ -17,7 +17,23 @@ const SignUpForm = () => {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [errors, setErrors] = useState([]);
-
+  const [loading,setLoading] = useState(false);
+const {signUp} = useAuth();
+const handleSubmit=async (e)=>{
+  e.preventDefault();
+  if(password !== repeatPassword) setErrors(['Passwords Do Not Match'])
+    
+  try{
+    setErrors([])
+    setLoading(true)
+    await signUp(email,password)
+  }catch{
+    setErrors(['Failed to create an error'])
+  }
+  setLoading(false)
+  
+  
+}
   const onSignUp = (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
@@ -50,7 +66,7 @@ const SignUpForm = () => {
         <div>
         <a href='/login'><img alt='' id="bb_letters" src={letters}/></a>
       </div>
-        <form className="form_for_login" onSubmit={onSignUp}>
+        <form className="form_for_login" onSubmit={handleSubmit}>
           <div>
             {errors.map((error) => (
               <div key={nanoid()}>
@@ -99,6 +115,7 @@ const SignUpForm = () => {
             <Button
               className='sub__button'
               type='submit'
+              disabled={loading}
             >
               Sign Up
             </Button>

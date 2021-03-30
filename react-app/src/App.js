@@ -12,6 +12,9 @@ import Evaluation from './components/Evaluation';
 import Footer from './components/Footer';
 import Help from './components/Help';
 import Print from './components/PlayerProfilePage/Print';
+import firebase from 'firebase/app'
+import "firebase/auth"
+import {AuthProvider} from './components/auth/contexts/AuthContext';
 
 function App() {
   const { user } = useSelector((state) => state.session); 
@@ -22,6 +25,7 @@ const dispatch = useDispatch();
   }, [dispatch]);
 
   return (
+    <AuthProvider>
     <BrowserRouter>
       <NavBar  />
       <Switch>
@@ -55,6 +59,7 @@ const dispatch = useDispatch();
       </Switch>
        <Footer />
     </BrowserRouter>
+    </AuthProvider>
   );
 }
 
