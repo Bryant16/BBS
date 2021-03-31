@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import {getPitcherForm} from '../../store/Pitcher';
 import {getNonePitcherForm} from '../../store/nonPitcher';
 import './Evaluation.css';
+import { Tooltip } from "@chakra-ui/react";
 
 const Evaluation = () => {
   const { playerid } = useParams();
@@ -21,6 +22,7 @@ const Evaluation = () => {
   const notes = useSelector(state => state.notes);
   const [gotNotes, setNotes] = useState(notes);
   const [toggle, setToggle] = useState('Tools');
+  
   useEffect(() => {
     const getPlayer = async () => {
       let res = await fetch(`/api/players/${playerid}`);

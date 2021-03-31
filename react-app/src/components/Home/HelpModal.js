@@ -55,7 +55,7 @@ const dispatch = useDispatch();
   },[])
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title" style={{'text-align':'center'}}>Need Help?</h2>
+      <h2 id="simple-modal-title" style={{'textAlign':'center'}}>Need Help?</h2>
       <img src={helper} style={{'marginLeft':'3em','marginBottom':'1em'}} />
       <div className='new_player_modal_container'>
       <Button type="button" size='small' variant="outlined" onClick={helpPage}>

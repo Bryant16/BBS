@@ -8,16 +8,16 @@ const PitcherForm = ({ playerId }) => {
   const dispatch = useDispatch();
   const pitcher = useSelector((state) => state.pitcher);
   const [priorEval, setPriorEval] = useState(false);
-  const [fastball, setFastball] = useState(0);
-  const [curve, setCurve] = useState(0);
-  const [control, setControl] = useState(0);
-  const [pace, setPace] = useState(0);
-  const [slider, setSlider] = useState(0);
-  const [knuckle, setKnuckle] = useState(0);
-  const [other, setOther] = useState(0);
-  const [poise, setPoise] = useState(0);
-  const [instinct, setInstinct] = useState(0);
-  const [aggressive, setAggressive] = useState(0);
+  const [fastball, setFastball] = useState(20);
+  const [curve, setCurve] = useState(20);
+  const [control, setControl] = useState(20);
+  const [pace, setPace] = useState(20);
+  const [slider, setSlider] = useState(20);
+  const [knuckle, setKnuckle] = useState(20);
+  const [other, setOther] = useState(20);
+  const [poise, setPoise] = useState(20);
+  const [instinct, setInstinct] = useState(20);
+  const [aggressive, setAggressive] = useState(20);
   const [arm, setArm] = useState("");
   const [delivery, setDelivery] = useState("");
 

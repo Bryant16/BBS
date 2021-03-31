@@ -55,7 +55,6 @@ export default function SimpleCard({playerid, players, evals, notes, media, url}
   }
   function calculateAge(birthday) { // birthday is a date
     let ageDifMs = Date.now() - birthday;
-    console.log(birthday,'milis')
     let ageDate = new Date(ageDifMs); // miliseconds from epoch
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
