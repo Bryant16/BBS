@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {GoogleLogin} from 'react-google-login';
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { LogIn } from "../../store/session";
@@ -44,7 +45,11 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     e.preventDefault();
     history.push("/sign-up");
   };
-
+const responseGoogle =(response)=>{
+  const userGoogleId = response.profileObj.googleId
+  const userGoogleEmail = response.profileObj.email
+  
+} 
   return user ? (
     <Redirect to="/" />
   ) : (
@@ -92,6 +97,11 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
               onClick={demoLogin}
             >Demo User</Button>
         </form>
+        <GoogleLogin
+        clientId='614086811334-mqbql2dkraq640faunnn9hgv2t10vsp9.apps.googleusercontent.com'
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
+        />
         <img alt='' src={logo} />
       </div>
     </div>

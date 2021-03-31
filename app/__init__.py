@@ -4,6 +4,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
+from authlib.integrations.flask_client import OAuth
 
 from .models import db, User
 from .api.user_routes import user_routes
@@ -19,9 +20,22 @@ from .config import Config
 app = Flask(__name__)
 
 
+oauth = OAuth()
+oauth.init_app(app)
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
-
+oauth.register(
+    name='google',
+    client_id=os.environ.get("GOOGLE_CLIENT_ID"),
+    client_secret=os.environ.get("GOOGLE_CLIENT_SECRET"),
+    access_token_url='https://accounts.google.com/o/oauth2/token',
+    access_token_params=None,
+    authorize_url='https://accounts.google.com/o/oauth2/auth',
+    authorize_params=None,
+    api_base_url='https://www.googleapis.com/oauth2/v1/',
+    userinfo_endpoint='https://openidconnect.googleapis.com/v1/userinfo',  # This is only needed if using openId to fetch user info
+    client_kwargs={'scope': 'openid email profile'},
+)
 
 @login.user_loader
 def load_user(id):
