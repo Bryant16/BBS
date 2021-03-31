@@ -13,7 +13,7 @@ def seed_players():
             last_name=fake.last_name(),
             height=fake.random_choices(elements=("5'10","5'11","6'0","6'1","6'3"),length=1),
             weight=fake.random_choices(elements=('180','188','192','205','220','233','213'),length=1),
-            position=fake.random_choices(elements=('1B','2B','3B','SS','RF','CF','LF','Catcher','RHP,LHP'),length=1),
+            position=fake.random_choices(elements=('1B','2B','3B','SS','RF','CF','LF','Catcher','RHP','LHP'),length=1),
             address=fake.street_address(),
             phone_number= fake.phone_number(),
             email=fake.ascii_email(),
