@@ -8,16 +8,16 @@ const NonPitcherForm = ({playerId})=>{
 const dispatch = useDispatch();
 const nonPitcher = useSelector(state=> state.nonPitcher);
 const [priorEval, setPriorEval] = useState(false);
-const [hitting, setHitting] = useState(0);
-const [power, setPower] = useState(0);
-const [running, setRunning] = useState(0);
-const [baseRunning, setBaseRunning] = useState(0);
-const [armStr, setArmStr] = useState(0);
-const [armAcc, setArmAcc] = useState(0);
-const [fielding, setFielding] = useState(0);
-const [armRange, setArmRange] = useState(0);
-const [instinct, setInstinct] = useState(0);
-const [aggressive, setAggressive] = useState(0);
+const [hitting, setHitting] = useState(20);
+const [power, setPower] = useState(20);
+const [running, setRunning] = useState(20);
+const [baseRunning, setBaseRunning] = useState(20);
+const [armStr, setArmStr] = useState(20);
+const [armAcc, setArmAcc] = useState(20);
+const [fielding, setFielding] = useState(20);
+const [armRange, setArmRange] = useState(20);
+const [instinct, setInstinct] = useState(20);
+const [aggressive, setAggressive] = useState(20);
 const [pull, setPull] = useState('');
 const [away, setAway] = useState('');
 const [opp, setOpp] = useState('');
@@ -121,6 +121,7 @@ const Categories = ({ title, value, set, submitEv }) => {
   
 return (
     <div className='non_pitcher_form_container'>
+        <h1 id='title_for_forms'>NonPitcher</h1>
         {nonPitcher ? (<form>
             <div className="category_pitcher_container">
                <Categories title={'HITTING'} value={hitting} set={setHitting} submitEv={submitEval} /> 

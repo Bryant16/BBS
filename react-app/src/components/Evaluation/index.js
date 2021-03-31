@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import {getPitcherForm} from '../../store/Pitcher';
 import {getNonePitcherForm} from '../../store/nonPitcher';
 import './Evaluation.css';
+import { Tooltip } from "@chakra-ui/react";
 
 const Evaluation = () => {
   const { playerid } = useParams();
@@ -21,6 +22,7 @@ const Evaluation = () => {
   const notes = useSelector(state => state.notes);
   const [gotNotes, setNotes] = useState(notes);
   const [toggle, setToggle] = useState('Tools');
+  
   useEffect(() => {
     const getPlayer = async () => {
       let res = await fetch(`/api/players/${playerid}`);
@@ -56,9 +58,13 @@ const Evaluation = () => {
         </div>
         {toggle === 'Notes' ?(<div>
           {!playerInfo ? <h1>loading</h1>:null}
-          {playerInfo && playerInfo.position === 'P' ?
-          <PitcherForm playerId={playerid}/> :
-          <NonPitcherForm playerId={playerid}/> }
+          {playerInfo && playerInfo.position.includes('P')?
+          <>
+          <PitcherForm playerId={playerid}/> 
+          <NonPitcherForm playerId={playerid}/>
+          </>
+          :
+          <NonPitcherForm playerId={playerid}/>}
           </div>):
           (<div>
             <Notes playerId={playerid}/>

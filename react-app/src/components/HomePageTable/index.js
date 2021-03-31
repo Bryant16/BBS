@@ -49,7 +49,6 @@ export default function DataGridDemo() {
     }
     const players  = useSelector((state) => state.players);
   let newArrOfPlayers = Object.values(players)
-  
   const handleTrack = (e)=>{
     e.preventDefault();
     if(hot){

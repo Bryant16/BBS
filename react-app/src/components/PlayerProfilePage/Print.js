@@ -13,6 +13,7 @@ import {
   FaMailchimp,
   FaBirthdayCake,
   FaBaseballBall,
+  FaRegEnvelope
 } from "react-icons/fa";
 
 const EvalContainer = ({ evals }) => {
@@ -227,6 +228,13 @@ const EvalContainer = ({ evals }) => {
 };
 class ComponentToPrint extends React.PureComponent {
   render() {
+    let catcherFormating = (p)=>{
+      if(p.includes('Catcher')){
+        return p.replace('atcher','')
+      }else{
+        return p
+      }
+    }
     return (
       <div className="print_container">
         <div className="pdf_container">
@@ -237,13 +245,13 @@ class ComponentToPrint extends React.PureComponent {
             <CardContent style={{ padding: 0 }}>
               <Typography
                 style={{ fontSize: "2rem" }}
-                color="textSecondary"
+                variant="h3"
                 gutterBottom
               >
                 {this.props.name.first_name} {this.props.name.last_name}
               </Typography>
               <Typography variant="h5" component="h2">
-                {this.props.name.position} {this.props.name.height},{" "}
+                {catcherFormating(this.props.name.position)} {this.props.name.height},{" "}
                 {this.props.name.weight} lbs
               </Typography>
               <Typography style={{ marginBottom: 2 }} color="textSecondary">
@@ -252,7 +260,7 @@ class ComponentToPrint extends React.PureComponent {
               <Typography variant="body2" component="p">
                 <FaAddressCard /> {this.props.name.address}
                 <br />
-                <FaMailchimp /> {this.props.name.email}
+                <FaRegEnvelope /> {this.props.name.email}
                 <br />
                 <FaBirthdayCake /> {this.props.name.dob}
                 <br />

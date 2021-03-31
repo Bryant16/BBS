@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import './NewPlayerForm.css';
 import {editPlayerProfile} from '../../store/player';
 import {getPlayers, addPlayerProfile} from '../../store/player';
+import Positions from './Positions';
 
 const NewPlayerForm = ({playerid, handleClose})=>{
     const history = useHistory();
@@ -90,7 +91,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
       
     }
     }
-    let playerPositions = ['P','C','1B','2B','3B','SS','RF','LF','CF']
+    let playerPositions = ['RHP','LHP','P','C','1B','2B','3B','SS','RF','LF','CF']
     return (
          <div className='new_player_form_container'>
             {players && (<form>
@@ -174,7 +175,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                  onChange={(e)=>setState(e.target.value)}/>
                 </div>
                 <div>
-                <Select 
+                {/* <Select 
                  placeholder='Position'
                  value={position}
                  onChange={(e)=>setPosition(e.target.value)}>
@@ -183,7 +184,8 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                              <option value={pos}>{pos}</option>
                          )
                      })}
-                 </Select>
+                 </Select> */}
+                 
                 <Select 
                  placeholder='Bats'
                  value={bats}
@@ -201,6 +203,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                     <option value='L'>L</option>
                     <option value='Both'>Both</option>
                 </Select>
+                <Positions currentPos={position} positionUpdater={setPosition}/>
                 </div>
                 <div style={{display:'flex', alignItems:'center'}}>
                     <label style={{'marginRight':'.5em',fontSize:'1.3em'}}>Track</label>
