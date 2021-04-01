@@ -103,9 +103,9 @@ input[type='file'] {
     /* overflow-x: scroll; */
 }
 
-.video_container div {
+/* .video_container div {
     border-bottom: 1px solid lightgray;
-}
+} */
 
 .player_videos form {
     display: flex;
