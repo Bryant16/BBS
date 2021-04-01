@@ -89,20 +89,13 @@ useEffect(()=>{
         }
     }
     }
-   
-    const whichEval=()=>{
-        if(pitcher[0]){
-            return pitcher[0]
-        }else{
-            return nonPitcher[0]
-        }
-    }
+  
     return (
     players[playerid] ? (<div className='player_profile_page'>
         {players && (
             <div className='player_profile_container'>
              <PlayerImage playerid={playerid}/>
-             {players[playerid] ? <PlayerCard playerid={playerid} players={players} evals={whichEval()} notes={notes} media={videos} url={playerImageUrl}/>:<h1>loading</h1>}
+             {players[playerid] ? <PlayerCard playerid={playerid} players={players} evals={{...pitcher[0],...nonPitcher[0]}} notes={notes} media={videos} url={playerImageUrl}/>:<h1>loading</h1>}
              
         </div>
         )}

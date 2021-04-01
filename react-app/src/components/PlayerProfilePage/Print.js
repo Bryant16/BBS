@@ -118,7 +118,108 @@ const EvalContainer = ({ evals }) => {
               <div id="text_bar">
               </div>
           </div>
+          <div className="pdf_eval_nonpitcher">
+              <div className="pdf_nonpitcher_category">
+                <div>
+                  <p id="category_title">ARM ACCURACY</p>
+                </div>
+                <div>
+                  <p>{evals.arm_acc}</p>
+                </div>
+              </div>
+              <div className="pdf_nonpitcher_category">
+                <div>
+                  <p id="category_title">ARM RANGE</p>
+                </div>
+                <div>
+                  <p>{evals.arm_range}</p>
+                </div>
+              </div>
+              <div className="pdf_nonpitcher_category">
+                <div>
+                  <p id="category_title">ARM STRENGTH</p>
+                </div>
+                <div>
+                  <p>{evals.arm_str}</p>
+                </div>
+              </div>
+              <div className="pdf_nonpitcher_category">
+                <div>
+                  <p id="category_title">AGGRESIVENESS</p>
+                </div>
+                <div>
+                  <p>{evals.aggresiveness}</p>
+                </div>
+              </div>
+              <div className="pdf_nonpitcher_category">
+                <div>
+                  <p id="category_title">BASEBALL INSTINCT</p>
+                </div>
+                <div>
+                  <p>{evals.baseball_instinct}</p>
+                </div>
+              </div>
+              <div className="pdf_nonpitcher_category">
+                <div>
+                  <p id="category_title">BASE RUNNING</p>
+                </div>
+                <div>
+                  <p>{evals.baserunning}</p>
+                </div>
+              </div>
+              <div className="pdf_nonpitcher_category">
+                <div>
+                  <p id="category_title">RUNNING SPEED</p>
+                </div>
+                <div>
+                  <p>{evals.running_speed}</p>
+                </div>
+              </div>
+              <div className="pdf_nonpitcher_category">
+                <div>
+                  <p id="category_title">FIELDING</p>
+                </div>
+                <div>
+                  <p>{evals.fielding}</p>
+                </div>
+              </div>
+              <div className="pdf_nonpitcher_category">
+                <div>
+                  <p id="category_title">HITTING ABILITY</p>
+                </div>
+                <div>
+                  <p>{evals.hitting_ability}</p>
+                </div>
+              </div>
+              <div className="pdf_nonpitcher_category">
+                <div>
+                  <p id="category_title">POWER</p>
+                </div>
+                <div>
+                  <p>{evals.power}</p>
+                </div>
+                </div>
+              <div className="pdf_nonpitcher_category">
+                <div>
+                  <p id="category_title">PULL</p>
+                  <p id="text_bar">{evals.pull}</p>
+                </div>
+              </div>
+              <div className="pdf_nonpitcher_category">
+                <div>
+                  <p id="category_title">OPPOSITE FIELD</p>
+                  <p id="text_bar">{evals.opp_field}</p>
+                </div>
+              </div>
+              <div className="pdf_nonpitcher_category">
+                <div>
+                  <p id="category_title">STRENGTH AWAY</p>
+                  <p id="text_bar">{evals.str_away}</p>
+                </div>
+            </div>
+            </div>
         </div>
+        
       ) : (
         evals && (
           <div className="pdf_eval_nonpitcher">
