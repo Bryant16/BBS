@@ -1,12 +1,38 @@
-import React,{useEffect, useState} from 'react';
+import React,{useEffect, useState,useCallback} from 'react';
 import defaultUser from "./default-user.png";
 import {Image} from "@chakra-ui/react";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-
+import Cropper from 'react-easy-crop'
 
 const PlayerImage = ({playerid})=>{
     const [playerImageUrl, setPlayerImageUrl] =useState(false);
-
+    const [crop, setCrop] = useState({ x: 0, y: 0 })
+    const [zoom, setZoom] = useState(1)
+    const [x, setX] = useState('')
+    const [y, setY] = useState('')
+    const [upload, setUpload] = useState(false)
+  let count = 0
+    const onCropComplete = useCallback(async(croppedArea, croppedAreaPixels) => {
+      console.log(croppedArea, croppedAreaPixels)
+      if(count>1){
+          setX(croppedArea.x)
+          setY(croppedArea.y)
+          const res = await fetch(`/api/media/update/images/${playerid}`,{headers:{'Content-type': 'application/json'},method:"POST",body:JSON.stringify({
+            url:playerImageUrl,
+            x,
+            y
+        })})
+        if (res.ok){
+            const answer = await res.json();
+            console.log(answer,'the answerrrrrr')
+        }
+        console.log('nope!!!!')
+          setUpload(false)
+          count = 0
+      }
+      count++
+    //   setUpload(false)
+    }, [])
     useEffect(()=>{
         const getProfileUrl = async()=>{
             let response = await fetch(`/api/media/images/${playerid}`);
@@ -29,15 +55,25 @@ const PlayerImage = ({playerid})=>{
         if (res.ok){
             const imageUpload = await res.json();
             setPlayerImageUrl(imageUpload.URL)
+            setUpload(true)
         }
     }
     
     }
-    
+    console.log(x,y,'x and y')
     return (
         <div className='player_profile_container_image'>
         <div>
-        {playerImageUrl ? <Image boxSize="25em"  objectFit="scale-down" src={playerImageUrl}/>: <Image boxSize="245px" objectFit="cover" src={defaultUser}/>}
+        {upload &&<Cropper
+      image={playerImageUrl}
+      crop={crop}
+      zoom={zoom}
+      aspect={4 / 3}
+      onCropChange={setCrop}
+      onCropComplete={onCropComplete}
+      onZoomChange={setZoom}
+    />}
+        {playerImageUrl ? <Image boxSize="25em" objectPosition={`${x}% ${y}%`} objectFit="cover" src={playerImageUrl}/>: <Image boxSize="245px" objectFit="cover" src={defaultUser}/>}
         </div>
         <div className='file_upload_container'>
         <form >

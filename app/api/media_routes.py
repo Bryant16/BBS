@@ -35,7 +35,26 @@ def handle_image_upload(id):
         newProfilePic = Image(URL="{}{}".format('https://bbscouting.s3.amazonaws.com/',filename),player_id=id)
         db.session.add(newProfilePic)
         db.session.commit()
-        return jsonify({'newPic':True})
+        return jsonify({'newPic': True})
+    else:
+        return jsonify({'error': ['could not be processed at this time']})
+
+@media_routes.route('/update/images/<int:id>', methods=["POST"])
+def update_x_y(id):
+    data = request.get_json()
+    print(data['url'])
+    print('!!!!!!!!!!!!')
+    print('!!!!!!!!!!!!')
+    print('!!!!!!!!!!!!')
+    print('!!!!!!!!!!!!')
+    print('!!!!!!!!!!!!')
+    img = Image.query.filter(Image.player_id == id,Image.URL == data['url']).first()
+    print('!!!!!!!!!!!!')
+    if img:
+        img.x = data['x']
+        img.y = data['y']
+        db.session.commit()
+        return jsonify({'picupdated':True})
     else:
         return jsonify({'error':['could not be processed at this time']})
 

@@ -251,3 +251,7 @@ input[type='file'] {
     margin-right:.5em ;
     margin-left:.5em ;
 }
+
+.video_container div{
+    border:1px solid lightgray;
+}
