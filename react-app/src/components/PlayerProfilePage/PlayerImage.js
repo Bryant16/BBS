@@ -5,30 +5,47 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import Cropper from 'react-easy-crop'
 
 const PlayerImage = ({playerid})=>{
-    const [playerImageUrl, setPlayerImageUrl] =useState(false);
+    const [playerImageUrl, setPlayerImageUrl] = useState(false);
     const [crop, setCrop] = useState({ x: 0, y: 0 })
     const [zoom, setZoom] = useState(1)
     const [x, setX] = useState('')
     const [y, setY] = useState('')
+    const [pic, setPic] = useState({x:'',y:'',url:''})
     const [upload, setUpload] = useState(false)
   let count = 0
+  const updateXAndY = async(dimensions)=>{
+    const res = await fetch(`/api/media/update/images/${playerid}`,{
+        headers:{'Content-type': 'application/json'},
+        method:"POST",
+        body:JSON.stringify(dimensions)
+    })
+        if (res.ok){
+            const answer = await res.json();
+            const {x,y} = answer.img
+            console.log(answer,'answerrrr')
+            console.log(x)
+            console.log(y)
+            // console.log(answer.y,'xxxx')
+        }
+    }
+  
     const onCropComplete = useCallback(async(croppedArea, croppedAreaPixels) => {
-      console.log(croppedArea, croppedAreaPixels)
       if(count>1){
           setX(croppedArea.x)
           setY(croppedArea.y)
-          const res = await fetch(`/api/media/update/images/${playerid}`,{headers:{'Content-type': 'application/json'},method:"POST",body:JSON.stringify({
-            url:playerImageUrl,
-            x,
-            y
-        })})
-        if (res.ok){
-            const answer = await res.json();
-            console.log(answer,'the answerrrrrr')
-        }
-        console.log('nope!!!!')
           setUpload(false)
           count = 0
+          let response = await fetch(`/api/media/images/${playerid}`);
+        if(response.ok){
+            let profile_url = await response.json();
+            // console.log(x,y,'xy')
+            const xy = {x:croppedArea.x,y:croppedArea.y}
+            const updateProfileImageXY = {
+                ...xy,
+                url:profile_url.URL
+            }
+            updateXAndY(updateProfileImageXY)
+        }
       }
       count++
     //   setUpload(false)
@@ -38,7 +55,14 @@ const PlayerImage = ({playerid})=>{
             let response = await fetch(`/api/media/images/${playerid}`);
             if(response.ok){
                 let profile_url = await response.json();
+                console.log(profile_url,'grab profile url')
+                if(profile_url.x !==null){
+                    setX(profile_url.x)
+                    setY(profile_url.y)
+                    console.log('its been set')
+                }
                 setPlayerImageUrl(profile_url.URL)
+
             }
         }
         getProfileUrl()
@@ -57,10 +81,10 @@ const PlayerImage = ({playerid})=>{
             setPlayerImageUrl(imageUpload.URL)
             setUpload(true)
         }
+       
     }
     
     }
-    console.log(x,y,'x and y')
     return (
         <div className='player_profile_container_image'>
         <div>

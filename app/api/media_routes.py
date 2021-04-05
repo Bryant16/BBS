@@ -24,7 +24,7 @@ def get_player_url(id):
     try:
         return jsonify(last)
     except:
-        return jsonify({'imageurl':False})
+        return jsonify({'imageurl': False})
 
 @media_routes.route('/images/<int:id>', methods=['POST'])
 def handle_image_upload(id):
@@ -42,19 +42,12 @@ def handle_image_upload(id):
 @media_routes.route('/update/images/<int:id>', methods=["POST"])
 def update_x_y(id):
     data = request.get_json()
-    print(data['url'])
-    print('!!!!!!!!!!!!')
-    print('!!!!!!!!!!!!')
-    print('!!!!!!!!!!!!')
-    print('!!!!!!!!!!!!')
-    print('!!!!!!!!!!!!')
     img = Image.query.filter(Image.player_id == id,Image.URL == data['url']).first()
-    print('!!!!!!!!!!!!')
     if img:
         img.x = data['x']
         img.y = data['y']
         db.session.commit()
-        return jsonify({'picupdated':True})
+        return jsonify({'picupdated': True, 'img': img.to_dict()})
     else:
         return jsonify({'error':['could not be processed at this time']})
 
