@@ -32,7 +32,10 @@ export default function SimpleModal({content, playerid, setVideos, image}) {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
+  const [x, setX] = React.useState(image.x);
+  const [y, setY] = React.useState(image.y);
 
+console.log(image,'heres the image looking for')
   const handleOpen = () => {
     setOpen(true);
   };
@@ -69,15 +72,14 @@ export default function SimpleModal({content, playerid, setVideos, image}) {
     <div style={modalStyle} className={classes.paper}>
       {/* <h2 id="simple-modal-title">Edit Player</h2> */}
       <div className='picture_modal_container'>
-              <Image width='20em' height='30em'  src={content} ></Image>
+              <Image width='20em' height='30em'  src={content} objectPosition={`${y}% ${x}%`}></Image>
             <button className='delete_button_pic_video' onClick={e=>deleteContent(e, image.id)}>Delete</button>
     </div>
     </div>
   );
-
   return (
     <div>
-    <Link onClick={handleOpen}><Image width='20em' height='22em'  objectFit="cover" object-position="50% 50%" src={content} ></Image> </Link>
+    <Link onClick={handleOpen}><Image width='20em' height='22em'  objectFit="cover" objectPosition={`${y}% ${x}%`} src={content} ></Image> </Link>
       <Modal
         open={open}
         onClose={handleClose}

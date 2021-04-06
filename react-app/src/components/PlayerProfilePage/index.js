@@ -12,12 +12,15 @@ import Button from '@material-ui/core/Button';
 import PictureModal from './PictureModal';
 import VideoModal from './VideoModal';
 import {infoPDF} from '../../store/player';
+import HandleCropper from "./HandleCropper";
 
 const PlayerProfilePage = ()=>{
     const nonPitcher = useSelector(state=> state.nonPitcher);
     const pitcher = useSelector((state) => state.pitcher);
     // const notes = useSelector(state => state.notes);
     const [notes, setNotes] = useState('')
+    const [upload, setUpload] = useState(false)
+    const [cropperUrl, setCropperUrl] = useState(false)
     const {playerid} = useParams();
     const [videoUrl, setVideoUrl] =useState(false);
     const [videos, setVideos] = useState(false)
@@ -85,6 +88,10 @@ useEffect(()=>{
         const res = await fetch(`/api/media/videos/${playerid}`,{method:"POST",body:formData})
         if (res.ok){
             const video = await res.json();
+            if(video.type.includes('image')){
+                setCropperUrl(video.video_url)
+                setUpload(true)
+            }
             setVideoUrl(video.video_url)
         }
     }
@@ -104,13 +111,18 @@ useEffect(()=>{
                 <label id='file_upload' for="video" ><Button style={{'min-width':'8em','height':'2.5em', 'background-color':'lightskyblue','border':'1px solid lightskyblue','color':'white'}}class='new_video'>New Media</Button></label>
                 <input type='file'  style={{'marginTop':'.5em', 'opacity':'0'}} name='video' onChange={updateFile} size="50" accept="image/*,video/*"/>
         </form>
+        <>
+            {upload && <HandleCropper url={cropperUrl} setUpload={setUpload} playerid={playerid}/>}
+            </>
             <div className='video_container'>
+                
             {videos && videos.map(vid=>
             {if(vid.type.includes('video')){
-                return <VideoModal setVideos={setVideos} url={vid.content} vid={vid} playerid={playerid}/>
+                return <VideoModal setVideos={setVideos} url={vid.content} vid={vid} vidid={vid.id} playerid={playerid}/>
             }else{
                 return <PictureModal setVideos={setVideos} playerid={playerid} image={vid} content={vid.content} content_type={vid.content_type}/>
             }}
+            
             ) }
             </div>
         <div>
