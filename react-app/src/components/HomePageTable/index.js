@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
@@ -69,6 +69,7 @@ export default function DataGridDemo() {
       }))
     }
   }
+  
   return (
     <div style={{ height: '50em', width: '60em'}}>
       <button id='tracker_button' onClick={handleTrack}>{tracked}</button>

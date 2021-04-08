@@ -19,6 +19,7 @@ const HandleCropper = ({url, setUpload, playerid,vidid})=>{
               const answer = await res.json();
               const { x, y } = answer.img;
               console.log(answer,'answerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr')
+              console.log(answer)
             }
           };
       if (count > 1) {

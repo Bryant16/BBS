@@ -103,9 +103,9 @@ input[type='file'] {
     /* overflow-x: scroll; */
 }
 
-.video_container div {
+/* .video_container div {
     border-bottom: 1px solid lightgray;
-}
+} */
 
 .player_videos form {
     display: flex;
@@ -250,4 +250,8 @@ input[type='file'] {
 .pdf_notes_container div{
     margin-right:.5em ;
     margin-left:.5em ;
+}
+
+.video_container div{
+    border:1px solid lightgray;
 }

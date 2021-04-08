@@ -24,7 +24,7 @@ def get_player_url(id):
     try:
         return jsonify(last)
     except:
-        return jsonify({'imageurl':False})
+        return jsonify({'imageurl': False})
 
 @media_routes.route('/images/<int:id>', methods=['POST'])
 def handle_image_upload(id):
@@ -35,7 +35,19 @@ def handle_image_upload(id):
         newProfilePic = Image(URL="{}{}".format('https://bbscouting.s3.amazonaws.com/',filename),player_id=id)
         db.session.add(newProfilePic)
         db.session.commit()
-        return jsonify({'newPic':True})
+        return jsonify({'newPic': True})
+    else:
+        return jsonify({'error': ['could not be processed at this time']})
+
+@media_routes.route('/update/images/<int:id>', methods=["POST"])
+def update_x_y(id):
+    data = request.get_json()
+    img = Image.query.filter(Image.player_id == id,Image.URL == data['url']).first()
+    if img:
+        img.x = data['x']
+        img.y = data['y']
+        db.session.commit()
+        return jsonify({'picupdated': True, 'img': img.to_dict()})
     else:
         return jsonify({'error':['could not be processed at this time']})
 
@@ -72,3 +84,15 @@ def delete_content():
         return jsonify({'removed': True})
     except:
         return jsonify({'removed':False})
+
+@media_routes.route('/update/pic/<int:id>/<int:vidid>', methods=["POST"])
+def update_x_y_picture(id,vidid):
+    data = request.get_json()
+    img = Video.query.filter(Video.id == vidid, Video.player_id == id, Video.content == data['url']).first()
+    if img:
+        img.x = data['x']
+        img.y = data['y']
+        db.session.commit()
+        return jsonify({'picupdated': True, 'img': img.to_dict()})
+    else:
+        return jsonify({'error':['could not be processed at this time']})
