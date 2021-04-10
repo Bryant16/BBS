@@ -340,7 +340,7 @@ class ComponentToPrint extends React.PureComponent {
       <div className="print_container">
         <div className="pdf_container">
           {this.props.url && (
-            <Image boxSize="245px" objectFit="cover" src={this.props.url} />
+            <Image boxSize="245px" objectFit="scale-down" src={this.props.url} />
           )}
           <Card style={{ minWidth: "23em", height: "15.5em", padding: ".5em" }}>
             <CardContent style={{ padding: 0 }}>

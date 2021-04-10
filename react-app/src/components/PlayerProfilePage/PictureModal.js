@@ -20,7 +20,6 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
-    width: '30em',
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
@@ -69,7 +68,7 @@ export default function SimpleModal({content, playerid, setVideos, image}) {
     <div style={modalStyle} className={classes.paper}>
       {/* <h2 id="simple-modal-title">Edit Player</h2> */}
       <div className='picture_modal_container'>
-              <Image width='20em' height='30em'  src={content} ></Image>
+              <Image width='25em' height='30em' objectFit="scale-down" src={content} ></Image>
             <button className='delete_button_pic_video' onClick={e=>deleteContent(e, image.id)}>Delete</button>
     </div>
     </div>
@@ -77,7 +76,7 @@ export default function SimpleModal({content, playerid, setVideos, image}) {
 
   return (
     <div>
-    <Link onClick={handleOpen}><Image width='20em' height='22em'  objectFit="scale-down"src={content} ></Image> </Link>
+    <Link onClick={handleOpen}><Image width='20em' height='22em'  objectFit="cover" src={content} ></Image> </Link>
       <Modal
         open={open}
         onClose={handleClose}
