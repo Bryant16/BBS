@@ -1,9 +1,11 @@
 import os
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
+from flask_mail import Mail
+from flask_mail import Message
 
 from .models import db, User
 from .api.user_routes import user_routes
@@ -17,7 +19,6 @@ from .seeds import seed_commands
 from .config import Config
 
 app = Flask(__name__)
-
 
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
@@ -40,7 +41,7 @@ db.init_app(app)
 Migrate(app, db)
 
 CORS(app)
-
+mail = Mail(app)
 
 @app.before_request
 def https_redirect():
@@ -71,3 +72,13 @@ def react_root(path):
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
 
+@app.route('/passwordreset/<email>')
+def password_reset(email):
+    user = User.query.filter(User.email == email).first()
+    if user:
+        msg = Message('Hello from the other side!', sender ='bbscouting16@gmail.com', recipients = [user.email])
+        msg.body = "Hey Paul, sending you this email from my Flask app, lmk if it works"
+        mail.send(msg)
+        return jsonify({'user': user.to_dict()})
+    else:
+        return jsonify({'user': False})

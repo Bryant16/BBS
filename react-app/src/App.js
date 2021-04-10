@@ -12,6 +12,7 @@ import Evaluation from './components/Evaluation';
 import Footer from './components/Footer';
 import Help from './components/Help';
 import Print from './components/PlayerProfilePage/Print';
+import ForgotPassword from './components/auth/ForgotPassword';
 
 function App() {
   const { user } = useSelector((state) => state.session); 
@@ -30,6 +31,9 @@ const dispatch = useDispatch();
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path="/forgot-password" exact={true}>
+          <ForgotPassword />
         </Route>
         <Route exact path='/players/:playerid/evaluation'>
           {user ? <Evaluation />: <LoginForm />}

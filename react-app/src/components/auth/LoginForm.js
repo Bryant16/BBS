@@ -44,7 +44,9 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     e.preventDefault();
     history.push("/sign-up");
   };
-
+  const handleForgotPassword = (e)=>{
+    history.push("/forgot-password")
+  }
   return user ? (
     <Redirect to="/" />
   ) : (
@@ -78,6 +80,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
               onChange={updatePassword}
             />
           </div>
+          <a className='forgot_password' onClick={handleForgotPassword}>Forgot Password?</a>
           <Button
               className='sub__button'
               type='submit'

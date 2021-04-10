@@ -87,3 +87,9 @@ background-color: white;
     margin-left: 1em;
     margin-right: 1em;
 }
+
+.forgot_password{
+    text-align: center;
+    font-size: .6em;
+    cursor: pointer;
+}

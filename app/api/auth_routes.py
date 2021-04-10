@@ -4,6 +4,7 @@ from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
 
+
 auth_routes = Blueprint('auth', __name__)
 
 
@@ -68,7 +69,6 @@ def sign_up():
             login_user(user)
             return jsonify({'user': user.to_dict()})
     return jsonify({'user': {'errors': validation_errors_to_error_messages(form.errors)}})
-
 
 @auth_routes.route('/unauthorized')
 def unauthorized():
