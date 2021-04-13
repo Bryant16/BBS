@@ -70,6 +70,23 @@ def sign_up():
             return jsonify({'user': user.to_dict()})
     return jsonify({'user': {'errors': validation_errors_to_error_messages(form.errors)}})
 
+@auth_routes.route('/passReset', methods=['POST'])
+def reset_pass():
+    data = request.get_json()
+    token = data['token']
+    print(token)
+    print('----------')
+    print('----------')
+    print('----------')
+    print('----------')
+    user = User.query.filter(User.email == data['email']).first()
+    if user:
+        user.password = data['password']
+        db.session.commit()
+        login_user(user)
+        return jsonify({'user': user.to_dict()})
+    return jsonify({'user': {'errors': validation_errors_to_error_messages(form.errors)}})
+
 @auth_routes.route('/unauthorized')
 def unauthorized():
     return jsonify({'user':{'errors': ['Unauthorized']}}), 401

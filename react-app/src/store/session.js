@@ -57,6 +57,20 @@ export const SignUp = (username, email, password) => async dispatch => {
   outErr.errors = [...user.errors];
   throw outErr;
 };
+export const PassReset = (email, password,token) => async dispatch => {
+  const passResetRes = await window.fetch('/api/auth/passReset', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ token, email, password })
+  });
+  const { user } = await passResetRes.json();
+  if (!user.errors) return dispatch(constructSession(user));
+  const outErr = new Error();
+  outErr.errors = [...user.errors];
+  throw outErr;
+};
 
 const sessionReducer = (state = { user: null}, action)=> {
   switch(action.type) {

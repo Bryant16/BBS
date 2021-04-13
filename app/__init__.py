@@ -75,9 +75,10 @@ def react_root(path):
 @app.route('/passwordreset/<email>')
 def password_reset(email):
     user = User.query.filter(User.email == email).first()
+    token = 1232
     if user:
-        msg = Message('Hello from the other side!', sender ='bbscouting16@gmail.com', recipients = [user.email])
-        msg.body = "Hey Paul, sending you this email from my Flask app, lmk if it works"
+        msg = Message('Link To Reset Password', sender ='bbscouting16@gmail.com', recipients = [user.email])
+        msg.body = f"Please follow the link http://localhost:3000/reset/{token} to reset your password for BBScouting."
         mail.send(msg)
         return jsonify({'user': user.to_dict()})
     else:

@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import Help from './components/Help';
 import Print from './components/PlayerProfilePage/Print';
 import ForgotPassword from './components/auth/ForgotPassword';
+import PasswordReset from './components/auth/PasswordReset';
 
 function App() {
   const { user } = useSelector((state) => state.session); 
@@ -34,6 +35,9 @@ const dispatch = useDispatch();
         </Route>
         <Route path="/forgot-password" exact={true}>
           <ForgotPassword />
+        </Route>
+        <Route path="/reset/:token" exact={true}>
+          <PasswordReset />
         </Route>
         <Route exact path='/players/:playerid/evaluation'>
           {user ? <Evaluation />: <LoginForm />}

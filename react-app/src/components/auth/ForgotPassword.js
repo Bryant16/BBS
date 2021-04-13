@@ -16,7 +16,13 @@ const ForgotPassword = ()=>{
     e.preventDefault();
     let res = await fetch(`/passwordreset/${email}`)
        if(res.ok){
-           const user = await res.json()
+           const {user} = await res.json()
+          if(!user){
+            alert('There is no user with that Email Address. Email Addresses are case sensitive.')
+          }else{
+            alert('Check your email for password reset instructions')
+            history.push('/')
+          }
        }
   };
 
@@ -28,7 +34,9 @@ const ForgotPassword = ()=>{
         <div className="login_container">
       <div className="login_form_container">
         <div>
+          <a onClick={()=>history.push('/')} style={{cursor:'pointer'}}>
           <img id="bb_letters"alt='' src={letters} />
+          </a>
         </div>
         <form className="form_for_login" onSubmit={passwordReset}>
           <div>
