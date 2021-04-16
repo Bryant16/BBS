@@ -76,7 +76,7 @@ export default function SimpleModal({content, playerid, setVideos, image}) {
 
   return (
     <div>
-    <Link onClick={handleOpen}><Image width='20em' height='22em'  objectFit="cover" src={content} ></Image> </Link>
+    <Link onClick={handleOpen}><Image width='20em' height='22em'  objectFit="fill" src={content} ></Image> </Link>
       <Modal
         open={open}
         onClose={handleClose}
