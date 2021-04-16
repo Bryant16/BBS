@@ -1,3 +1,4 @@
+import datetime
 from flask import Blueprint, jsonify, session, request
 from app.models import User, db
 from app.forms import LoginForm
@@ -74,17 +75,15 @@ def sign_up():
 def reset_pass():
     data = request.get_json()
     token = data['token']
-    print(token)
-    print('----------')
-    print('----------')
-    print('----------')
-    print('----------')
+    curDate = datetime.datetime.now()
     user = User.query.filter(User.email == data['email']).first()
     if user:
-        user.password = data['password']
-        db.session.commit()
-        login_user(user)
-        return jsonify({'user': user.to_dict()})
+        if user.resetToken == token and curDate < user.resetDate:
+            user.password = data['password']
+            db.session.commit()
+            login_user(user)
+            return jsonify({'user': user.to_dict()})
+        return jsonify({'user': {'errors': ['Failed To Reset Password']}})
     return jsonify({'user': {'errors': validation_errors_to_error_messages(form.errors)}})
 
 @auth_routes.route('/unauthorized')

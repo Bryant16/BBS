@@ -1,4 +1,6 @@
 import os
+import secrets
+import datetime
 from flask import Flask, render_template, request, session, redirect, jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate
@@ -75,8 +77,11 @@ def react_root(path):
 @app.route('/passwordreset/<email>')
 def password_reset(email):
     user = User.query.filter(User.email == email).first()
-    token = 1232
+    token = secrets.token_hex(32)
     if user:
+        user.resetToken = token
+        user.resetDate = datetime.datetime.now() + datetime.timedelta(minutes=15)
+        db.session.commit()
         msg = Message('Link To Reset Password', sender ='bbscouting16@gmail.com', recipients = [user.email])
         msg.body = f"Please follow the link http://localhost:3000/reset/{token} to reset your password for BBScouting."
         mail.send(msg)

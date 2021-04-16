@@ -1,8 +1,8 @@
-"""tables
+"""update user token
 
-Revision ID: 6d646d5642ee
+Revision ID: f7c3cadb2fad
 Revises: 
-Create Date: 2021-02-15 07:25:12.387075
+Create Date: 2021-04-16 15:37:37.713412
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6d646d5642ee'
+revision = 'f7c3cadb2fad'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,6 +23,8 @@ def upgrade():
     sa.Column('username', sa.String(length=40), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
+    sa.Column('resetToken', sa.String(length=255), nullable=True),
+    sa.Column('resetDate', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
@@ -43,6 +45,7 @@ def upgrade():
     sa.Column('team_state', sa.String(), nullable=True),
     sa.Column('bats', sa.String(), nullable=True),
     sa.Column('throws', sa.String(), nullable=True),
+    sa.Column('dob', sa.String(), nullable=True),
     sa.Column('hot_list', sa.Boolean(), nullable=True, create_constraint=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -102,6 +105,7 @@ def upgrade():
     op.create_table('videos',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('content', sa.String(), nullable=False),
+    sa.Column('content_type', sa.String(), nullable=True),
     sa.Column('player_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['player_id'], ['players.id'], ),
     sa.PrimaryKeyConstraint('id')

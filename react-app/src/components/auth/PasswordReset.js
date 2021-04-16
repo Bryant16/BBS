@@ -22,6 +22,7 @@ const PasswordReset = () => {
     e.preventDefault();
     if (password === repeatPassword) {
       dispatch(PassReset(email, password,token))
+        .then(()=> alert('Password has been updated!'))
         .catch(err => setErrors(err.errors || []));
     } else setErrors(['Passwords must match.']);
   };
