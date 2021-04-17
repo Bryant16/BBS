@@ -15,7 +15,7 @@ const Notes = ({playerId})=>{
     const [weaknessText, setWeaknessText] = useState('');
     const [sumText, setSumText] = useState('');
     
-    const handleClickCreate = (e, title,note)=>{
+    const handleClickCreate = (e, title, note)=>{
         e.preventDefault();
         const titleToSend = title
         const newNote = {
@@ -54,12 +54,12 @@ const Notes = ({playerId})=>{
   },[dispatch])
     return (
         (notes  ? (<div className='note_input_container'> 
-        <form> 
+        <form>
         <h1>Abilities</h1>
         <TextareaAutosize  className="form-control" 
         type='text'
         value={abilitiesText}
-        rowsMin={7}
+        rowsMin={5}
         onChange={(e)=> setAbilitiesText(e.target.value)}/>
          <Button 
         color="primary"
@@ -71,7 +71,7 @@ const Notes = ({playerId})=>{
         <TextareaAutosize  className="form-control" 
         type='text'
         value={physicalText}
-        rowsMin={7}
+        rowsMin={5}
         onChange={(e)=> setPhysicalText(e.target.value)}/>
          <Button 
         color="primary"
@@ -83,7 +83,7 @@ const Notes = ({playerId})=>{
         <TextareaAutosize  className="form-control" 
         type='text'
         value={weaknessText}
-        rowsMin={7}
+        rowsMin={5}
         onChange={(e)=> setWeaknessText(e.target.value)}/>
          <Button 
         color="primary"
@@ -95,7 +95,7 @@ const Notes = ({playerId})=>{
         <TextareaAutosize  className="form-control" 
         type='text'
         value={sumText}
-        rowsMin={7}
+        rowsMin={5}
         onChange={(e)=> setSumText(e.target.value)}/>
         <Button 
         color="primary"
