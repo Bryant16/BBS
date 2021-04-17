@@ -21,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
     width: 400,
+    maxHeight: '35em',
+    overflowY: 'scroll',
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
@@ -45,7 +47,7 @@ export default function SimpleModal({playerid}) {
     <div style={modalStyle} className={classes.paper}>
       <h2 id="simple-modal-title" style={{'text-align':'center'}}>Edit Player</h2>
       <div className='new_player_modal_container'>
-        <NewPlayerForm handleClose={handleClose} playerid={playerid}/>
+        <NewPlayerForm id='edit_player_modal' handleClose={handleClose} playerid={playerid}/>
     </div>
     </div>
   );
