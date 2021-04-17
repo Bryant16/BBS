@@ -318,7 +318,7 @@ const EvalContainer = ({ evals }) => {
               <div className="pdf_nonpitcher_category">
                 <div>
                   <p id="category_title">STRENGTH AWAY</p>
-                  <p id="text_bar">{evals.str_away}</p>
+                  <p id="text_bar" >{evals.str_away}</p>
                 </div>
             </div>
             </div>
