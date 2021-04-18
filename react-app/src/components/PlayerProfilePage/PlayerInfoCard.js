@@ -31,7 +31,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard({playerid, players, evals, notes, media, url}) {
+export default function SimpleCard({playerid, players, nonPitcherEvals,pitcherEvals,evals, notes, media, url}) {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -47,6 +47,8 @@ export default function SimpleCard({playerid, players, evals, notes, media, url}
       notes,
       media,
       evals,
+      pitcherEvals,
+      nonPitcherEvals,
       url
     }
     dispatch(infoPDF(pdfPlayer))

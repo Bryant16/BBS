@@ -95,7 +95,7 @@ useEffect(()=>{
         {players && (
             <div className='player_profile_container'>
              <PlayerImage playerid={playerid}/>
-             {players[playerid] ? <PlayerCard playerid={playerid} players={players} evals={{...pitcher[0],...nonPitcher[0]}} notes={notes} media={videos} url={playerImageUrl}/>:<h1>loading</h1>}
+             {players[playerid] ? <PlayerCard playerid={playerid} players={players}  pitcherEvals={pitcher[0]}nonPitcherEvals={nonPitcher[0]} notes={notes} media={videos} url={playerImageUrl}/>:<h1>loading</h1>}
              
         </div>
         )}
