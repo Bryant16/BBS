@@ -44,6 +44,18 @@ useEffect(()=>{
                 playerNotes['Weakness'] = note.text
             }else if(note.title === 'Physical Description'){
                 playerNotes['Physical Description'] = note.text
+            }else if(note.title === 'habits'){
+                playerNotes['habits'] = note.text
+            }else if(note.title === 'dedication'){
+                playerNotes['dedication'] = note.text
+            }else if(note.title === 'agility'){
+                playerNotes['agility'] = note.text
+            }else if(note.title === 'apitude'){
+                playerNotes['apitude'] = note.text
+            }else if(note.title === 'pMaturity'){
+                playerNotes['pMaturity'] = note.text
+            }else if(note.title === 'eMaturity'){
+                playerNotes['eMaturity'] = note.text
             }else{
                 playerNotes['Summary'] = note.text
             }

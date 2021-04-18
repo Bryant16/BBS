@@ -22,6 +22,7 @@ const EvalContainer = ({ pitcherEvals, nonPitcherEvals}) => {
       {pitcherEvals && pitcherEvals.fast_ball ? (
         <>
         <div className="pdf_eval_pitcher">
+        <h3 style={{textDecoration:'underline'}}>Pitcher</h3>
             <div className="pdf_pitcher_category">
               <div>
                 <p id="category_title">FASTBALL</p>
@@ -121,6 +122,7 @@ const EvalContainer = ({ pitcherEvals, nonPitcherEvals}) => {
           </div>
           </div>
         <div className="pdf_eval_nonpitcher">
+        <h3 style={{textDecoration:'underline'}}>Non Pitcher</h3>
               <div className="pdf_nonpitcher_category">
                 <div>
                   <p id="category_title">ARM ACCURACY</p>
@@ -224,6 +226,7 @@ const EvalContainer = ({ pitcherEvals, nonPitcherEvals}) => {
       ) : (
         nonPitcherEvals && (
           <div className="pdf_eval_nonpitcher">
+            <h3 style={{textDecoration:'underline'}}>Non Pitcher</h3>
               <div className="pdf_nonpitcher_category">
                 <div>
                   <p id="category_title">ARM ACCURACY</p>
@@ -374,7 +377,33 @@ class ComponentToPrint extends React.PureComponent {
         </div>
         <div className='eval_and_links_pdf'>
         <EvalContainer nonPitcherEvals={this.props.nonPitcherEvals}  pitcherEvals={this.props.pitcherEvals}/>
-        
+        <div style={{marginTop:'2em',marginLeft:'2em'}}>
+        <h3 style={{textDecoration:'underline'}}>Word Descriptions</h3>
+          <div style={{display:'flex'}}>
+          <h7 style={{marginRight:'.5em'}}id='category_title'>Habits</h7>
+          <p >{this.props.notes['habits']}</p>
+          </div>
+          <div style={{display:'flex'}}>
+          <h7 style={{marginRight:'.5em'}}id='category_title'>Dedication</h7>
+          <p >{this.props.notes['dedication']}</p>
+          </div>
+          <div style={{display:'flex'}}>
+          <h7 style={{marginRight:'.5em'}}id='category_title'>Agility</h7>
+          <p >{this.props.notes['agility']}</p>
+          </div>
+          <div style={{display:'flex'}}>
+          <h7 style={{marginRight:'.5em'}}id='category_title'>Apitude</h7>
+          <p >{this.props.notes['apitude']}</p>
+          </div>
+          <div style={{display:'flex'}}>
+          <h7 style={{marginRight:'.5em'}}id='category_title'>Phys. Maturity</h7>
+          <p >{this.props.notes['pMaturity']}</p>
+          </div>
+          <div style={{display:'flex'}}>
+          <h7 style={{marginRight:'.5em'}}id='category_title'>Emot. Maturity</h7>
+          <p >{this.props.notes['eMaturity']}</p>
+          </div>
+        </div>
         </div>
         <div className='pdf_notes_container'>
           <div className='category_container_notes'>
