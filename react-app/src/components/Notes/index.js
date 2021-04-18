@@ -13,6 +13,12 @@ const Notes = ({playerId})=>{
     const [abilitiesText, setAbilitiesText] = useState('');
     const [physicalText, setPhysicalText] = useState('');
     const [weaknessText, setWeaknessText] = useState('');
+    const [habits, setHabits] = useState('');
+    const [dedication, setDedication] = useState('');
+    const [agility, setAgility] = useState('');
+    const [apitude, setApitude] = useState('');
+    const [pMaturity, setPMaturity] = useState('');
+    const [eMaturity, setEMaturity] = useState('');
     const [sumText, setSumText] = useState('');
     
     const handleClickCreate = (e, title, note)=>{
@@ -24,6 +30,16 @@ const Notes = ({playerId})=>{
             playerId
         }
         dispatch(createNote(newNote))
+    }
+    const handleCreateDescriptions = (e)=>{
+        e.preventDefault();
+        dispatch(createNote({title:`habits`,note:habits,playerId}))
+        dispatch(createNote({title:`dedication`,note:dedication,playerId}))
+        dispatch(createNote({title:`agility`,note:agility,playerId}))
+        dispatch(createNote({title:`apitude`,note:apitude,playerId}))
+        dispatch(createNote({title:`pMaturity`,note:pMaturity,playerId}))
+        dispatch(createNote({title:`eMaturity`,note:eMaturity,playerId}))
+       
     }
     const useStyles = makeStyles((theme) => ({
         button: {
@@ -44,6 +60,18 @@ const Notes = ({playerId})=>{
                  setWeaknessText(note.text) 
                 }else if(note.title === 'Physical Description'){
                   setPhysicalText(note.text)
+                }else if(note.title=== 'habits'){
+                  setHabits(note.text)
+                }else if(note.title=== 'dedication'){
+                  setDedication(note.text)
+                }else if(note.title=== 'agility'){
+                  setAgility(note.text)
+                }else if(note.title=== 'apitude'){
+                  setApitude(note.text)
+                }else if(note.title=== 'pMaturity'){
+                  setPMaturity(note.text)
+                }else if(note.title=== 'eMaturity'){
+                  setEMaturity(note.text)
                 }else{
                   setSumText(note.text)
                 }
@@ -103,6 +131,25 @@ const Notes = ({playerId})=>{
         variant='contained'
         className={classes.button}
         onClick={e=>handleClickCreate(e,'Summary', sumText)}>Save</Button>
+        <h1>Word Descriptions</h1>
+        <div className='word_descripitions_container'>
+          <div>
+            <input type='text' value={habits} onChange={(e)=>setHabits(e.target.value)}placeholder='Habits'></input>
+            <input type='text' value={dedication} onChange={(e)=>setDedication(e.target.value)}placeholder='Dedication'></input>
+            <input type='text' value={agility} onChange={(e)=>setAgility(e.target.value)}placeholder='Agility'></input>
+          </div>
+          <div>
+            <input type='text' value={apitude} onChange={(e)=>setApitude(e.target.value)}placeholder='Apitude'></input>
+            <input type='text' value={pMaturity} onChange={(e)=>setPMaturity(e.target.value)}placeholder='Phys. Maturity'></input>
+            <input type='text' value={eMaturity} onChange={(e)=>setEMaturity(e.target.value)}placeholder='Emot. Maturity'></input>
+          </div>
+        </div>
+          <Button 
+        color="primary"
+        size="large"
+        variant='contained'
+        className={classes.button}
+        onClick={handleCreateDescriptions}>Save</Button>
         </form>
         </div>):<h1>loading</h1>)
     )

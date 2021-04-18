@@ -1,3 +1,14 @@
 .note_input_container{
     width: 50em;
 }
+
+.word_descripitions_container{
+    display: flex;
+    /* height: 10em; */
+}
+
+.word_descripitions_container div {
+    display: flex;
+    flex-direction: column;
+    margin-right: .5em;
+}
