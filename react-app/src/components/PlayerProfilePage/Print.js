@@ -19,7 +19,8 @@ import {
 const EvalContainer = ({ pitcherEvals, nonPitcherEvals}) => {
   return (
     <div className='evalContainer'>
-      {nonPitcherEvals && pitcherEvals.fast_ball ? (
+      {pitcherEvals && pitcherEvals.fast_ball ? (
+        <>
         <div className="pdf_eval_pitcher">
             <div className="pdf_pitcher_category">
               <div>
@@ -118,7 +119,8 @@ const EvalContainer = ({ pitcherEvals, nonPitcherEvals}) => {
               <div id="text_bar">
               </div>
           </div>
-          <div className="pdf_eval_nonpitcher">
+          </div>
+        <div className="pdf_eval_nonpitcher">
               <div className="pdf_nonpitcher_category">
                 <div>
                   <p id="category_title">ARM ACCURACY</p>
@@ -216,10 +218,9 @@ const EvalContainer = ({ pitcherEvals, nonPitcherEvals}) => {
                   <p id="category_title">STRENGTH AWAY</p>
                   <p id="text_bar">{nonPitcherEvals.str_away}</p>
                 </div>
-            </div>
-            </div>
+            </div>    
         </div>
-        
+        </>
       ) : (
         nonPitcherEvals && (
           <div className="pdf_eval_nonpitcher">
@@ -373,20 +374,7 @@ class ComponentToPrint extends React.PureComponent {
         </div>
         <div className='eval_and_links_pdf'>
         <EvalContainer nonPitcherEvals={this.props.nonPitcherEvals}  pitcherEvals={this.props.pitcherEvals}/>
-        <div className="pdf_media_links_container">
-        {(this.props.media.length > 0) && 
-          <h2 style={{ textAlign: "left",marginTop:'.5em', textDecoration: "underline" }}>
-            Media Links
-          </h2>
-        }
-          <ul>
-            {this.props.media.map((link) => (
-              <a href={link.content}>
-                <li>{link.content}</li>
-              </a>
-            ))}
-          </ul>
-        </div>
+        
         </div>
         <div className='pdf_notes_container'>
           <div className='category_container_notes'>
@@ -409,6 +397,20 @@ class ComponentToPrint extends React.PureComponent {
           <p style={{width:'12em'}}>{this.props.notes['Physical Description']}</p>
           </div>
           </div>
+        </div>
+        <div className="pdf_media_links_container">
+        {(this.props.media.length > 0) && 
+          <h2 style={{ textAlign: "left",marginTop:'.5em', textDecoration: "underline" }}>
+            Media Links
+          </h2>
+        }
+          <ul>
+            {this.props.media.map((link) => (
+              <a href={link.content}>
+                <li>{link.content}</li>
+              </a>
+            ))}
+          </ul>
         </div>
       </div>
     );

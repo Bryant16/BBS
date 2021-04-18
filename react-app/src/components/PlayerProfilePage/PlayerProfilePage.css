@@ -182,7 +182,6 @@ input[type='file'] {
 .evalContainer{
     display: flex;
     justify-content: flex-start;
-    margin-right: 2em;
 }
 .pdf_eval_nonpitcher{
     display: flex;
@@ -201,12 +200,13 @@ input[type='file'] {
     align-self: flex-start;
     align-items: flex-start;
     margin-top: 2em;
+    margin-right: 2em;
     font-weight: bold;
 }
 
 .pdf_nonpitcher_category{
     display: flex;
-    width: 20em;
+    width: 15em;
     font-size: .7em;
     justify-content: space-between;
 }
@@ -224,12 +224,11 @@ input[type='file'] {
 }
 .eval_and_links_pdf{
     display: flex;
-    margin-left: 10em;
 }
 .pdf_pitcher_category{
     display: flex;
     font-size: .7em;
-    width: 20em;
+    width: 15em;
     justify-content: space-between;
 }
 
