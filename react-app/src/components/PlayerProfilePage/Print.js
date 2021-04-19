@@ -333,6 +333,7 @@ const EvalContainer = ({ pitcherEvals, nonPitcherEvals}) => {
 };
 class ComponentToPrint extends React.PureComponent {
   render() {
+    
     let catcherFormating = (p)=>{
       if(p.includes('Catcher')){
         return p.replace('atcher','')
