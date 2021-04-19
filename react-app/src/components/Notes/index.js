@@ -96,7 +96,7 @@ const Notes = ({playerId})=>{
     return (
         (notes  ? (<div className='note_input_container'> 
         <form>
-        <input type='date' value={date} onChange={handleDate}placeholder='Date of Eval (01/01/2021)'></input>
+        <input type='date' style={{marginBottom:'.5em'}}value={date} onChange={handleDate}placeholder='Date of Eval (01/01/2021)'></input>
         <h1>Abilities</h1>
         <TextareaAutosize  className="form-control" 
         type='text'
