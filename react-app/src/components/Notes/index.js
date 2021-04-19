@@ -19,6 +19,7 @@ const Notes = ({playerId})=>{
     const [apitude, setApitude] = useState('');
     const [pMaturity, setPMaturity] = useState('');
     const [eMaturity, setEMaturity] = useState('');
+    const [date, setDate] = useState('');
     const [sumText, setSumText] = useState('');
     
     const handleClickCreate = (e, title, note)=>{
@@ -30,6 +31,16 @@ const Notes = ({playerId})=>{
             playerId
         }
         dispatch(createNote(newNote))
+    }
+    const handleDate=(e)=>{
+      e.preventDefault();
+      setDate(e.target.value)
+      const dateNote = {
+        title: 'Date',
+        note: e.target.value,
+        playerId
+      }
+      dispatch(createNote(dateNote))
     }
     const handleCreateDescriptions = (e)=>{
         e.preventDefault();
@@ -72,6 +83,8 @@ const Notes = ({playerId})=>{
                   setPMaturity(note.text)
                 }else if(note.title=== 'eMaturity'){
                   setEMaturity(note.text)
+                }else if(note.title==='Date'){
+                  setDate(note.text)
                 }else{
                   setSumText(note.text)
                 }
@@ -83,6 +96,7 @@ const Notes = ({playerId})=>{
     return (
         (notes  ? (<div className='note_input_container'> 
         <form>
+        <input type='date' value={date} onChange={handleDate}placeholder='Date of Eval (01/01/2021)'></input>
         <h1>Abilities</h1>
         <TextareaAutosize  className="form-control" 
         type='text'

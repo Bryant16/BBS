@@ -56,6 +56,8 @@ useEffect(()=>{
                 playerNotes['pMaturity'] = note.text
             }else if(note.title === 'eMaturity'){
                 playerNotes['eMaturity'] = note.text
+            }else if(note.title === 'Date'){
+                playerNotes['Date'] = note.text
             }else{
                 playerNotes['Summary'] = note.text
             }

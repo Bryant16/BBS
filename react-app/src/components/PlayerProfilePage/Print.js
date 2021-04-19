@@ -372,6 +372,8 @@ class ComponentToPrint extends React.PureComponent {
                 <br />
                 <FaBaseballBall /> {this.props.name.team_name}{" "}
                 {this.props.name.team_city}, {this.props.name.team_state}
+                <br />
+                Date of Eval: {this.props.notes['Date']}
               </Typography>
             </CardContent>
           </Card>
