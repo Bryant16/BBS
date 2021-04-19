@@ -2,10 +2,11 @@ import React,{useEffect, useState} from 'react';
 import defaultUser from "./default-user.png";
 import {Image} from "@chakra-ui/react";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-
+import helper from './baseballHelper.png';
 
 const PlayerImage = ({playerid})=>{
     const [playerImageUrl, setPlayerImageUrl] =useState(false);
+    const [loading, setLoading] =useState(false);
 
     useEffect(()=>{
         const getProfileUrl = async()=>{
@@ -21,6 +22,7 @@ const PlayerImage = ({playerid})=>{
     
     const updateFile = async(e)=>{
         e.preventDefault();
+        setLoading(true)
         const file = e.target.files[0];
         const formData = new FormData();
         if(file){
@@ -29,6 +31,10 @@ const PlayerImage = ({playerid})=>{
         if (res.ok){
             const imageUpload = await res.json();
             setPlayerImageUrl(imageUpload.URL)
+            setLoading(false)
+        }else{
+            setLoading(false)
+            alert('Upload Failed')
         }
     }
     
@@ -37,6 +43,7 @@ const PlayerImage = ({playerid})=>{
     return (
         <div className='player_profile_container_image'>
         <div>
+        {loading && <img src={helper} alt="centered image" className='loading_image' />}
         {playerImageUrl ? <Image boxSize="25em"  objectFit="scale-down" src={playerImageUrl}/>: <Image  boxSize="25em"  objectFit="scale-down" src={defaultUser}/>}
         </div>
         <div className='file_upload_container'>

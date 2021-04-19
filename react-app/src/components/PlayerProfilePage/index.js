@@ -12,12 +12,14 @@ import Button from '@material-ui/core/Button';
 import PictureModal from './PictureModal';
 import VideoModal from './VideoModal';
 import {infoPDF} from '../../store/player';
+import helper from './baseballHelper.png';
 
 const PlayerProfilePage = ()=>{
     const nonPitcher = useSelector(state=> state.nonPitcher);
     const pitcher = useSelector((state) => state.pitcher);
     // const notes = useSelector(state => state.notes);
-    const [notes, setNotes] = useState('')
+    const [notes, setNotes] = useState('');
+    const [loading, setLoading] = useState(false);
     const {playerid} = useParams();
     const [videoUrl, setVideoUrl] =useState(false);
     const [videos, setVideos] = useState(false)
@@ -92,6 +94,7 @@ useEffect(()=>{
 
     const updateFile = async(e)=>{
         e.preventDefault();
+        setLoading(true)
         const file = e.target.files[0];
         const formData = new FormData();
         if(file){
@@ -100,6 +103,10 @@ useEffect(()=>{
         if (res.ok){
             const video = await res.json();
             setVideoUrl(video.video_url)
+            setLoading(false)
+        }else{
+            setLoading(false)
+            alert('Upload Failed')
         }
     }
     }
@@ -114,6 +121,7 @@ useEffect(()=>{
         </div>
         )}
         <div className='player_videos'>
+            {loading && <img src={helper} alt="centered image" className='loading_image' />}
         <form>
                 <label id='file_upload' for="video" ><Button style={{'min-width':'8em','height':'2.5em', 'background-color':'lightskyblue','border':'1px solid lightskyblue','color':'white'}}class='new_video'>New Media</Button></label>
                 <input type='file'  style={{'marginTop':'.5em', 'opacity':'0'}} name='video' onChange={updateFile} size="50" accept="image/*,video/*"/>

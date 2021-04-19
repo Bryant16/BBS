@@ -250,3 +250,10 @@ input[type='file'] {
     margin-right:.5em ;
     margin-left:.5em ;
 }
+
+.loading_image{
+    position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
