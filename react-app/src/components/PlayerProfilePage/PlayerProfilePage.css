@@ -8,6 +8,7 @@ input[type='file'] {
     /* display: none; */
     opacity: 0;
     background-color: white;
+ 
   }
   
 #file_upload{
@@ -19,6 +20,7 @@ input[type='file'] {
     background-color: white;
     position: absolute;
     margin: auto;
+    
 }
 #file_upload::before{
     background-color: black;
@@ -28,6 +30,7 @@ input[type='file'] {
 }
 #file_upload svg{
     font-size: 4em;
+    
 }
 .player_profile_page{
     display: flex;
