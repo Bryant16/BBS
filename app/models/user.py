@@ -11,6 +11,7 @@ class User(db.Model, UserMixin):
   hashed_password = db.Column(db.String(255), nullable = False)
   resetToken = db.Column(db.String(255))
   resetDate = db.Column(db.DateTime)
+  stopHelp = db.Column(db.Boolean)
 
   @property
   def password(self):
@@ -30,5 +31,6 @@ class User(db.Model, UserMixin):
     return {
       "id": self.id,
       "username": self.username,
-      "email": self.email
+      "email": self.email,
+      "help": self.stopHelp
     }

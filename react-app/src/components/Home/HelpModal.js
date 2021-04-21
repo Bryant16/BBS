@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch} from 'react-redux';
+import React, {useEffect, useState } from 'react';
+import {useDispatch,useSelector} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SimpleModal({firstTimes}) {
+  const { user } = useSelector((state) => state.session);
 const dispatch = useDispatch();
   const classes = useStyles();
   const history = useHistory();
@@ -44,13 +45,20 @@ const dispatch = useDispatch();
   const handleClose = () => {
     setOpen(false);
   };
+  const handleNeverAgain = async() => {
+    setOpen(false);
+    const res = await fetch(`/api/users/stopHelper/${user.id}`)
+    if(res.ok){
+      const user = await res.json()
+    }
+  };
 
   const helpPage = (e)=>{
       e.preventDefault()
       history.push('/help')
   }
   useEffect(()=>{
-      if(firstTimes === 1) handleOpen()
+      if(firstTimes === 1 && !user.help) handleOpen()
       dispatch(firstTime())
   },[])
   const body = (
@@ -63,6 +71,9 @@ const dispatch = useDispatch();
       </Button>
       <Button type="button" size='small' variant="outlined" onClick={handleClose}>
         NO THANKS!
+      </Button>
+      <Button type="button" size='small' variant="outlined" onClick={handleNeverAgain}>
+        PLEASE STOP!
       </Button>
     </div>
     </div>
