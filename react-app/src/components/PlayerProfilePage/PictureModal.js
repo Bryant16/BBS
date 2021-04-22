@@ -39,6 +39,7 @@ export default function SimpleModal({content, playerid, setVideos, image}) {
   const handleClose = () => {
     setOpen(false);
   };
+  
   const deleteContent = async(e, id)=>{
     e.preventDefault();
     if(window.confirm('Delete this item?')){
@@ -66,7 +67,6 @@ export default function SimpleModal({content, playerid, setVideos, image}) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      {/* <h2 id="simple-modal-title">Edit Player</h2> */}
       <div className='picture_modal_container'>
               <Image width='25em' height='30em' objectFit="scale-down" src={content} ></Image>
             <button className='delete_button_pic_video' onClick={e=>deleteContent(e, image.id)}>Delete</button>

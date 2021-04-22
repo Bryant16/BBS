@@ -25,7 +25,8 @@ const PlayerProfilePage = ()=>{
     const players = useSelector(state=> state.players);
     const [playerImageUrl, setPlayerImageUrl] = useState(false);
     const dispatch = useDispatch();
-useEffect(()=>{
+    
+    useEffect(()=>{
     const getVideos=async()=>{
         let res = await fetch(`/api/media/videos/${playerid}`)
         if(res.ok){
@@ -33,6 +34,7 @@ useEffect(()=>{
             setVideos(videos.videos)
         }
     }
+    
     const getTheNotes = async()=>{
         const res = await fetch(`/api/notes/${playerid}/`);
         if(res.ok){

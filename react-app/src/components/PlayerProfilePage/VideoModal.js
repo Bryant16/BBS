@@ -40,6 +40,7 @@ export default function VideoModal({vid, url, setVideos, playerid}) {
   const handleClose = () => {
     setOpen(false);
   };
+  
   const deleteContent = async(e, id)=>{
     e.preventDefault();
        if(window.confirm('Delete this item?')){
@@ -63,7 +64,8 @@ export default function VideoModal({vid, url, setVideos, playerid}) {
             }
         }
     }
-  }
+  };
+
   const body = (
     <div style={modalStyle} className={classes.paper}>
       {/* <h2 id="simple-modal-title">Edit Player</h2> */}

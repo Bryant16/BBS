@@ -35,11 +35,13 @@ export default function SimpleCard({playerid, players, nonPitcherEvals,pitcherEv
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
-  let singlePlayer= players[playerid]
+  let singlePlayer= players[playerid];
+
   const goToEvaluation = (e)=>{
     e.preventDefault();
     history.push(`/players/${playerid}/evaluation`)
-  }
+  };
+
   const share=(e)=>{
     e.preventDefault();
     const pdfPlayer = {
@@ -53,20 +55,23 @@ export default function SimpleCard({playerid, players, nonPitcherEvals,pitcherEv
     }
     dispatch(infoPDF(pdfPlayer))
     history.push('/share')
-  }
+  };
+
   function calculateAge(birthday) { // birthday is a date
     let ageDifMs = Date.now() - birthday;
     let ageDate = new Date(ageDifMs); // miliseconds from epoch
     return Math.abs(ageDate.getUTCFullYear() - 1970);
-  }
-  let birthdate = new Date(singlePlayer.dob)
+  };
+
+  let birthdate = new Date(singlePlayer.dob);
   let catcherFormating = (p)=>{
     if(p.includes('Catcher')){
       return p.replace('atcher','')
     }else{
       return p
     }
-  }
+  };
+  
   return (
     <Card id='card_info_container' className={classes.root}>
       
