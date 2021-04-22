@@ -17,7 +17,6 @@ import helper from './baseballHelper.png';
 const PlayerProfilePage = ()=>{
     const nonPitcher = useSelector(state=> state.nonPitcher);
     const pitcher = useSelector((state) => state.pitcher);
-    // const notes = useSelector(state => state.notes);
     const [notes, setNotes] = useState('');
     const [loading, setLoading] = useState(false);
     const {playerid} = useParams();
