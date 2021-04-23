@@ -39,16 +39,20 @@ const columns = [
   },
 ];
 export default function DataGridDemo() {
-    const history = useHistory()
-    const [hot, setHot] = useState(true)
-    const [arr, setArr] = useState(false)
-    const [tracked, setTracked] = useState("Tracking")
+    const history = useHistory();
+    const [hot, setHot] = useState(true);
+    const [arr, setArr] = useState(false);
+    const [tracked, setTracked] = useState("Tracking");
+
     const click=(e)=>{
         const id = e.rowIds[0]
         history.push(`/players/${id}`)
-    }
+    };
+
     const players  = useSelector((state) => state.players);
-  let newArrOfPlayers = Object.values(players)
+
+  let newArrOfPlayers = Object.values(players);
+
   const handleTrack = (e)=>{
     e.preventDefault();
     if(hot){
@@ -58,7 +62,8 @@ export default function DataGridDemo() {
     }
     setArr(newArrOfPlayers.filter(play=> play.hot_list === !hot))
     setHot(!hot)
-  }
+  };
+
   const filterResults = (e)=>{
     if(newArrOfPlayers.length > 0 ){
       setArr(newArrOfPlayers.filter(play=>{
@@ -68,7 +73,7 @@ export default function DataGridDemo() {
         }
       }))
     }
-  }
+  };
   
   return (
     <div style={{ height: '50em', width: '60em'}}>

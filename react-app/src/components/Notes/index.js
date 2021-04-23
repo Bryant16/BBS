@@ -31,7 +31,8 @@ const Notes = ({playerId})=>{
             playerId
         }
         dispatch(createNote(newNote))
-    }
+    };
+
     const handleDate=(e)=>{
       e.preventDefault();
       setDate(e.target.value)
@@ -41,7 +42,8 @@ const Notes = ({playerId})=>{
         playerId
       }
       dispatch(createNote(dateNote))
-    }
+    };
+
     const handleCreateDescriptions = (e)=>{
         e.preventDefault();
         dispatch(createNote({title:`habits`,note:habits,playerId}))
@@ -50,15 +52,17 @@ const Notes = ({playerId})=>{
         dispatch(createNote({title:`apitude`,note:apitude,playerId}))
         dispatch(createNote({title:`pMaturity`,note:pMaturity,playerId}))
         dispatch(createNote({title:`eMaturity`,note:eMaturity,playerId}))
-       
-    }
+    };
+
     const useStyles = makeStyles((theme) => ({
         button: {
           margin: theme.spacing(1),
         },
       }));
+
     const classes = useStyles();
-  useEffect(()=>{
+
+    useEffect(()=>{
       dispatch(getAllNotes(playerId))
       const getTheNotes = async()=>{
           const res = await fetch(`/api/notes/${playerId}/`)
@@ -93,6 +97,7 @@ const Notes = ({playerId})=>{
       }
       getTheNotes()
   },[dispatch])
+  
     return (
         (notes  ? (<div className='note_input_container'> 
         <form>

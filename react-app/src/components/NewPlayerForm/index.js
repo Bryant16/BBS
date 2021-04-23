@@ -90,8 +90,10 @@ const NewPlayerForm = ({playerid, handleClose})=>{
         .then((id)=> history.push(`/players/${id}`))
       
     }
-    }
-    let playerPositions = ['RHP','LHP','P','C','1B','2B','3B','SS','RF','LF','CF']
+    };
+
+    let playerPositions = ['RHP','LHP','P','C','1B','2B','3B','SS','RF','LF','CF'];
+
     return (
          <div className='new_player_form_container'>
             {players && (<form>
@@ -175,17 +177,6 @@ const NewPlayerForm = ({playerid, handleClose})=>{
                  onChange={(e)=>setState(e.target.value)}/>
                 </div>
                 <div>
-                {/* <Select 
-                 placeholder='Position'
-                 value={position}
-                 onChange={(e)=>setPosition(e.target.value)}>
-                     {playerPositions.map((pos)=>{
-                         return(
-                             <option value={pos}>{pos}</option>
-                         )
-                     })}
-                 </Select> */}
-                 
                 <Select 
                  placeholder='Bats'
                  value={bats}
