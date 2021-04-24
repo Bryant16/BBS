@@ -13,3 +13,6 @@ class Config:
   MAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
   MAIL_USE_TLS = False
   MAIL_USE_SSL = True
+  MAIL_SUPPRESS_SEND = False
+  MAIL_DEBUG = True
+  TESTING = False
