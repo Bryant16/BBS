@@ -36,7 +36,7 @@ const EvalContainer = ({ pitcherEvals, nonPitcherEvals}) => {
                 <p id="category_title">CURVE</p>
               </div>
               <div>
-                <p>{pitcherEvals.fast_ball}</p>
+                <p>{pitcherEvals.curve}</p>
               </div>
             </div>
             <div className="pdf_pitcher_category">
