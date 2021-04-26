@@ -37,7 +37,6 @@ const PlayerImage = ({playerid})=>{
             alert('Upload Failed')
         }
     }
-    
     }
     
     return (
