@@ -5,7 +5,7 @@ import PitcherForm from '../PitcherForm';
 import NonPitcherForm from '../NonPitcherForm';
 import Notes from '../Notes';
 import {getAllNotes} from "../../store/note";
-import DisplayNotes from '../DisplayNotes'
+// import DisplayNotes from '../DisplayNotes'
 import {clearNotes} from '../../store/note';
 import Button from '@material-ui/core/Button';
 import {getPitcherForm} from '../../store/Pitcher';
@@ -68,7 +68,7 @@ const Evaluation = () => {
           </div>):
           (<div>
             <Notes playerId={playerid}/>
-            {gotNotes && <DisplayNotes playerid={playerid} notes={notes} />}
+            {/* {gotNotes && <DisplayNotes playerid={playerid} notes={notes} />} */}
           </div>)}
         
       </div>):<Redirect to='/' />
