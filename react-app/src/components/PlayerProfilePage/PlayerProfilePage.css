@@ -96,10 +96,11 @@ input[type='file'] {
     /* visibility: hidden; */
     display: flex;
     justify-content: center;
+    position: relative;
     flex-wrap: wrap;
     width: 65em;
     border-radius: .5em;
-    /* height: 10em; */
+    height: 10em;
     /* border-top: 1px solid lightgray; */
     /* box-shadow:5px 5px 15px 5px #B5B5B5; */
     /* overflow-y: scroll; */
@@ -260,10 +261,10 @@ input[type='file'] {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-/* 
+
 @media only screen 
     and(min-device-width: 768px)
     and (max-device-width: 1112px)
     and (-webkit-min-device-pixel-ratio:1){
         
-    } */
+    }
