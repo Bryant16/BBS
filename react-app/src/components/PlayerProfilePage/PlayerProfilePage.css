@@ -93,7 +93,6 @@ input[type='file'] {
 }
 
 .video_container {
-    /* visibility: hidden; */
     display: flex;
     justify-content: center;
     position: relative;

@@ -78,7 +78,6 @@ export default function VideoModal({vid, url, setVideos, playerid}) {
 
   return (
     <div>
-      
     <Link onClick={handleOpen}><ReactPlayer className='react-player' width='20em' height='22em' style={{'margin':'',"box-shadow":'5px 5px 15px 5px #B5B5B5', 'border-bottom':'1px solid black'}} controls playing={false} url={url} /></Link>
       <Modal
         open={open}
@@ -87,7 +86,6 @@ export default function VideoModal({vid, url, setVideos, playerid}) {
         aria-describedby="simple-modal-description"
       >
         {body}
-        
       </Modal>
     </div>
   );
