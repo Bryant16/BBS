@@ -341,6 +341,13 @@ class ComponentToPrint extends React.PureComponent {
         return p
       }
     }
+    function calculateAge(birthday) { // birthday is a date
+      let ageDifMs = Date.now() - birthday;
+      let ageDate = new Date(ageDifMs); // miliseconds from epoch
+      return Math.abs(ageDate.getUTCFullYear() - 1970);
+    };
+  
+    let birthdate = new Date(this.props.name.dob);
     return (
       <div className="print_container">
         <div className="pdf_container">
@@ -359,6 +366,8 @@ class ComponentToPrint extends React.PureComponent {
               <Typography variant="h5" component="h2">
                 {catcherFormating(this.props.name.position)} {this.props.name.height},{" "}
                 {this.props.name.weight} lbs
+                <br/>
+                Age: {calculateAge(birthdate)||null} 
               </Typography>
               <Typography style={{ marginBottom: 2 }} color="textSecondary">
                 Throws: {this.props.name.throws} / Bats: {this.props.name.bats}
