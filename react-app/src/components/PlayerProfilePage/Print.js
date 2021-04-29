@@ -373,13 +373,13 @@ class ComponentToPrint extends React.PureComponent {
                 Throws: {this.props.name.throws} / Bats: {this.props.name.bats}
               </Typography>
               <Typography variant="body2" component="p">
-                <FaAddressCard /> {this.props.name.address}
+                Address: {this.props.name.address}
                 <br />
-                <FaRegEnvelope /> {this.props.name.email}
+                Email: {this.props.name.email}
                 <br />
-                <FaBirthdayCake /> {this.props.name.dob}
+                DOB: {this.props.name.dob}
                 <br />
-                <FaBaseballBall /> {this.props.name.team_name}{" "}
+                TEAM: {this.props.name.team_name}{" "}
                 {this.props.name.team_city}, {this.props.name.team_state}
                 <br />
                 Date of Eval: {this.props.notes['Date']}
