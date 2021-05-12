@@ -92,7 +92,6 @@ const NewPlayerForm = ({playerid, handleClose})=>{
     }
     };
 
-    let playerPositions = ['RHP','LHP','P','C','1B','2B','3B','SS','RF','LF','CF','OF'];
 
     return (
          <div className='new_player_form_container'>
