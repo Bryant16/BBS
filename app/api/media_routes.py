@@ -42,6 +42,14 @@ def handle_image_upload(id):
 @media_routes.route('/videos/<int:id>', methods=['POST'])
 def handle_video_upload(id):
     vid = request.files['video']
+    print(vid)
+    print('----------')
+    print('----------')
+    print('----------')
+    print('----------')
+    print('----------')
+    print('----------')
+    print('----------')
     if vid:
         content = vid.content_type
         try:

@@ -97,6 +97,7 @@ const PlayerProfilePage = ()=>{
         e.preventDefault();
         setLoading(true)
         const file = e.target.files[0];
+        console.log(file,'this is the file')
         const formData = new FormData();
         if(file){
         formData.append("video", file)
