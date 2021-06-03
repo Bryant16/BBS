@@ -100,6 +100,7 @@ const PlayerProfilePage = ()=>{
         const formData = new FormData();
         if(file){
         formData.append("video", file)
+        formData.set("size", file.size)
         const res = await fetch(`/api/media/videos/${playerid}`,{method:"POST",body:formData})
         if (res.ok){
             const video = await res.json();
