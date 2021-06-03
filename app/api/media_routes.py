@@ -57,7 +57,12 @@ def handle_video_upload(id):
                 return jsonify({'upload':False})
         else:
             try:
-                pass
+                filename = secure_filename(vid.filename)
+                s3.Bucket(BUCKET_NAME).put_object(Body=vid, Key=filename, ContentType=content, ACL='public-read')
+                newVideo = Video(content= f'https://bbscouting.s3.amazonaws.com/{filename}', content_type=content, player_id=id)
+                db.session.add(newVideo)
+                db.session.commit()
+                return jsonify({'video_url':  f'https://bbscouting.s3.amazonaws.com/{filename}','type':content})
             except:
                 return jsonify({'upload':False})
 
