@@ -45,22 +45,21 @@ def handle_video_upload(id):
     size = request.form['size']
     if vid:
         content = vid.content_type
-        print(size)
-        print('----------------')
-        print('----------------')
-        print('----------------')
-        print('----------------')
-        print('----------------')
-        print('----------------')
-        try:
-            filename = secure_filename(vid.filename)
-            s3.Bucket(BUCKET_NAME).put_object(Body=vid, Key=filename, ContentType=content, ACL='public-read')
-            newVideo = Video(content= f'https://bbscouting.s3.amazonaws.com/{filename}', content_type=content, player_id=id)
-            db.session.add(newVideo)
-            db.session.commit()
-            return jsonify({'video_url':  f'https://bbscouting.s3.amazonaws.com/{filename}','type':content})
-        except:
-            return jsonify({'upload':False})
+        if int(size) < (50 * 1024 * 1024):
+            try:
+                filename = secure_filename(vid.filename)
+                s3.Bucket(BUCKET_NAME).put_object(Body=vid, Key=filename, ContentType=content, ACL='public-read')
+                newVideo = Video(content= f'https://bbscouting.s3.amazonaws.com/{filename}', content_type=content, player_id=id)
+                db.session.add(newVideo)
+                db.session.commit()
+                return jsonify({'video_url':  f'https://bbscouting.s3.amazonaws.com/{filename}','type':content})
+            except:
+                return jsonify({'upload':False})
+        else:
+            try:
+                pass
+            except:
+                return jsonify({'upload':False})
 
 @media_routes.route('/videos/<int:id>')
 def get_videos(id):
