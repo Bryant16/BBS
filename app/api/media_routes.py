@@ -4,6 +4,7 @@ from app.models import db, Player, Pitcher_Evaluation, Note, Image, Video
 from werkzeug.utils import secure_filename
 from app.config import Config
 import boto3
+from boto3.s3.transfer import TransferConfig
 import mimetypes
 import magic
 
@@ -14,7 +15,11 @@ s3=boto3.resource('s3',
 
 BUCKET_NAME = 'bbscouting'
 media_routes = Blueprint('media', __name__)
-
+multi_config = TransferConfig(
+                        multipart_threshold=1024 * 10,
+                        max_concurrency=10,
+                        multipart_chunksize=1024 * 5,
+                        use_threads=True)
 
 @media_routes.route('/images/<int:id>')
 def get_player_url(id):
@@ -45,7 +50,7 @@ def handle_video_upload(id):
     size = request.form['size']
     if vid:
         content = vid.content_type
-        if int(size) < (50 * 1024 * 1024):
+        if int(size) < (10 * 1024 * 1024):
             try:
                 filename = secure_filename(vid.filename)
                 s3.Bucket(BUCKET_NAME).put_object(Body=vid, Key=filename, ContentType=content, ACL='public-read')
@@ -58,13 +63,13 @@ def handle_video_upload(id):
         else:
             try:
                 filename = secure_filename(vid.filename)
-                s3.Bucket(BUCKET_NAME).put_object(Body=vid, Key=filename, ContentType=content, ACL='public-read')
+                s3.Object(BUCKET_NAME, filename).upload_fileobj(vid, ExtraArgs={'ContentType' : content, 'ACL' : 'public-read'}, Config=multi_config)
                 newVideo = Video(content= f'https://bbscouting.s3.amazonaws.com/{filename}', content_type=content, player_id=id)
                 db.session.add(newVideo)
                 db.session.commit()
                 return jsonify({'video_url':  f'https://bbscouting.s3.amazonaws.com/{filename}','type':content})
             except:
-                return jsonify({'upload':False})
+                return jsonify({'upload' : False})
 
 @media_routes.route('/videos/<int:id>')
 def get_videos(id):
