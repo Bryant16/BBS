@@ -90,6 +90,7 @@ input[type='file'] {
     align-items: center;
     text-align:left;
     justify-content: space-around;
+    padding: 1em;
 }
 
 .video_container {
@@ -262,3 +263,6 @@ input[type='file'] {
   transform: translate(-50%, -50%);
 }
 
+.player_profile_container_image {
+    border-radius: 10px;
+}
