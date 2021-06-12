@@ -21,7 +21,6 @@ multi_config = TransferConfig(
     multipart_chunksize=1024 * 5,
     use_threads=True)
 
-
 @media_routes.route('/images/<int:id>')
 def get_player_url(id):
     playerUrl = Image.query.filter(Image.player_id == id).all()
