@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Positions = ({positionUpdater, currentPos})=>{
-    let playerPositions = ['RHP','LHP','Catcher','1B','2B','3B','SS','RF','LF','CF','OF']
+    let playerPositions = ['RHP','LHP','Catcher','1B','2B','3B','SS','RF','LF','CF']
     let curPos = currentPos
     const handleClick = (e)=>{
         // e.preventDefault()
