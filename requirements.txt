@@ -17,7 +17,7 @@ faker==6.4.1
 flask-cors==3.0.8
 flask-jwt-extended==3.24.1
 flask-login==0.5.0
-Flask-Mail==*
+Flask-Mail==0.9.1
 flask-migrate==2.5.3
 flask-sqlalchemy==2.4.4
 flask-wtf==0.14.3
