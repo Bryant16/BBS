@@ -94,7 +94,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
               onClick={demoLogin}
             >Demo User</Button>
         </form>
-        <img alt='' src={logo} />
+        <img alt='' src={logo} id='batter'/>
       </div>
     </div>
   );

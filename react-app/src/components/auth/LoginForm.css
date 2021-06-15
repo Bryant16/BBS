@@ -93,3 +93,25 @@ background-color: white;
     font-size: .6em;
     cursor: pointer;
 }
+
+/* @media only screen and (min-width: 400px) {
+    .login_form_container {
+        width:30em;
+    }
+    #bb_letters{
+        width: 25em;
+        padding-bottom: 1em;
+    }
+  }
+  @media only screen and (min-height: 400px) {
+    .login_form_container {
+        height: 32em;
+    }
+    #bb_letters{
+        width: 25em;
+        padding-bottom: 1em;
+    }
+    #batter{
+        height:8em;
+    }
+  } */

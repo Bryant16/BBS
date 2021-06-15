@@ -101,6 +101,7 @@ input[type='file'] {
     width: 65em;
     border-radius: .5em;
     height: 10em;
+    padding: 1px;
     /* border-top: 1px solid lightgray; */
     /* box-shadow:5px 5px 15px 5px #B5B5B5; */
     /* overflow-y: scroll; */
@@ -266,3 +267,5 @@ input[type='file'] {
 .player_profile_container_image {
     border-radius: 10px;
 }
+
+
