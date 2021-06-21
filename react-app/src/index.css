@@ -1,4 +1,33 @@
 /* TODO Add site wide styles */
 .page_body {
-    min-height: 95vh;
+  min-height: 95vh;
+}
+
+/* .MuiDataGrid-window::-webkit-scrollbar, */
+html::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* .MuiDataGrid-window::-webkit-track, */
+html::-webkit-scrollbar-track {
+  background: rgb(252, 252, 252);
+  border-radius: 10px;
+}
+
+/* .MuiDataGrid-window::-webkit-thumb, */
+html::-webkit-scrollbar-thumb {
+  background: rgb(63, 81, 181);
+  border-radius: 10px;
+}
+
+/* .MuiDataGrid-window::-webkit-scrollbar-thumb:hover, */
+html::-webkit-scrollbar-thumb:hover {
+  background: rgb(117, 125, 232);
+  border-radius: 10px;
+}
+
+/* .MuiDataGrid-window::-webkit-scrollbar-thumb:active, */
+html::-webkit-scrollbar-thumb:active {
+  background: rgb(0, 41, 132);
+  border-radius: 10px;
 }

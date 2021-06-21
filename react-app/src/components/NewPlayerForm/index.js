@@ -97,6 +97,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
     return (
          <div className='new_player_form_container'>
             {players && (<form>
+                <h1 style={{textAlign:'center'}}>New Player</h1>
                 <div>
                 <Input 
                 type='text'

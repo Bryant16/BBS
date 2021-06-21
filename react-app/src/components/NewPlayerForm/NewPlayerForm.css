@@ -4,13 +4,17 @@
     justify-content: center;
     
 }
+
+
+
 .new_player_form_container form{
-    
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
-    font-size: 1.3em;
-    
+    width: 85vw;
+        font-size: 2.5rem ;
+    justify-items: center;
+    display: grid;
 }
 
 .new_player_form_container form div{
@@ -53,3 +57,16 @@ input[type='checkbox'] {
     height: 1em!important;
 }
 
+.chakra-input {
+    border: solid 2px #3f51b5;
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .new_player_form_container form{
+        font-size: 1.5rem ;
+        
+        
+    }
+    }

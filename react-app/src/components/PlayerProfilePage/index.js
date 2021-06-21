@@ -1,4 +1,5 @@
 import React, { useEffect, useState} from 'react';
+import Grid from '@material-ui/core/Grid';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from 'react-router-dom';
 import {getNonePitcherForm} from '../../store/nonPitcher';
@@ -116,11 +117,22 @@ const PlayerProfilePage = ()=>{
     return (
     players[playerid] ? (<div className='player_profile_page'>
         {players && (
-            <div className='player_profile_container'>
-             <PlayerImage playerid={playerid}/>
-             {players[playerid] ? <PlayerCard playerid={playerid} players={players}  pitcherEvals={pitcher[0]}nonPitcherEvals={nonPitcher[0]} notes={notes} media={videos} url={playerImageUrl}/>:<h1>loading</h1>}
+            <Grid container>
+                <Grid item xs={12} sm={4} md={6}>
+                    <Grid container justify="center">
+                        <PlayerImage playerid={playerid}/>
+                    </Grid>
+                </Grid>
+                <Grid item xs={12} sm={8} md={6}>
+                    {players[playerid] ? <PlayerCard playerid={playerid} players={players}  pitcherEvals={pitcher[0]}nonPitcherEvals={nonPitcher[0]} notes={notes} media={videos} url={playerImageUrl}/>:<h1>loading</h1>}
+                </Grid>
+            </Grid>
+      
+        //     <div className='player_profile_container'>
+        //      <PlayerImage playerid={playerid}/>
+        //      {players[playerid] ? <PlayerCard playerid={playerid} players={players}  pitcherEvals={pitcher[0]}nonPitcherEvals={nonPitcher[0]} notes={notes} media={videos} url={playerImageUrl}/>:<h1>loading</h1>}
              
-        </div>
+        // </div>
         )}
         <div className='player_videos'>
             {loading && <img src={helper} alt="centered image" className='loading_image' />}

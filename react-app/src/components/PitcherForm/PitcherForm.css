@@ -1,3 +1,13 @@
+input {
+    margin: 1vh 0;
+    border-radius: 10px;
+    border: solid 2px #3f51b5;
+}
+
+input::placeholder {
+    text-align: center;
+}
+
 .category_pitcher_container div{
     display: flex;
     align-items: flex-start;
@@ -13,11 +23,16 @@
     min-width: 100%;
 }
 
-.player_evaluation_and_player_notes_container form {
-    /* width:24.4em; */
-    font-size:2.5em;
+@media only screen and (min-width: 600px) {
+    .player_evaluation_and_player_notes_container form {
+        font-size:2em;
+    }
 }
-
+@media only screen and (min-width: 900px) {
+    .player_evaluation_and_player_notes_container form {
+        font-size:2.5em;
+    }
+}
 .note_input_container form {
     font-size: 1.5em;
    

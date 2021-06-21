@@ -9,6 +9,9 @@
     display: flex;
     flex-direction: column;
 }
+.eval_nav_buttons {
+    text-align: center;
+}
 
 .eval_nav_buttons button{
     margin-right: .5em;
