@@ -4,9 +4,9 @@ import { Redirect, useHistory } from "react-router-dom";
 import { LogIn } from "../../store/session";
 import "./LoginForm.css";
 import logo from "./new_logo_bbs.png";
-import ReactPlayer from 'react-player';
+import ReactPlayer from "react-player";
 import letters from "./BBScouting writing.png";
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
@@ -44,16 +44,16 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     e.preventDefault();
     history.push("/sign-up");
   };
-  const handleForgotPassword = (e)=>{
-    history.push("/forgot-password")
-  }
+  const handleForgotPassword = (e) => {
+    history.push("/forgot-password");
+  };
   return user ? (
     <Redirect to="/" />
   ) : (
     <div className="login_container">
       <div className="login_form_container">
         <div>
-          <img id="bb_letters"alt='' src={letters} />
+          <img id="bb_letters" alt="" src={letters} />
         </div>
         <form className="form_for_login" onSubmit={onLogin}>
           <div>
@@ -79,22 +79,20 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
               onChange={updatePassword}
             />
           </div>
-          <a className='forgot_password' onClick={handleForgotPassword}>Forgot Password?</a>
-          <Button
-              className='sub__button'
-              type='submit'
-            >Login</Button>
-          <Button
-              className='sub__button'
-              type='submit'
-              onClick={handleSignup}
-            >Sign Up</Button>
-          <Button
-              className='sub__button'
-              onClick={demoLogin}
-            >Demo User</Button>
+          <a className="forgot_password" onClick={handleForgotPassword}>
+            Forgot Password?
+          </a>
+          <Button className="sub__button" type="submit">
+            Login
+          </Button>
+          <Button className="sub__button" type="submit" onClick={handleSignup}>
+            Sign Up
+          </Button>
+          <Button className="sub__button" onClick={demoLogin}>
+            Demo User
+          </Button>
         </form>
-        <img alt='' src={logo} />
+        <img alt="" src={logo} />
       </div>
     </div>
   );
