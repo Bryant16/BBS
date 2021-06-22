@@ -12,16 +12,17 @@ const grabAll = (all_note) => ({
   type: ALL,
   all_note,
 });
-const remove = (noteToDelete)=>({
+
+const remove = (noteToDelete) => ({
   type: REMOVE,
-  noteToDelete
-})
-export const clearNotes = ()=>({
-  type: CLEARNOTES  
-})
+  noteToDelete,
+});
+
+export const clearNotes = () => ({
+  type: CLEARNOTES,
+});
 
 export const getAllNotes = (playerId) => async (dispatch) => {
-  
   const res = await fetch(`/api/notes/${playerId}/`);
   if (res.ok) {
     const all_notes = await res.json();
@@ -43,50 +44,53 @@ export const createNote = (newNote) => async (dispatch) => {
     dispatch(create(notes.note));
   }
 };
-export const removeNote = (note, id)=> async(dispatch)=>{
-  const res = await fetch(`/api/notes/players/${id}`,{
-    headers: { 'Content-type': 'application/json' },
-    method: 'DELETE',
-    body: JSON.stringify({note})
-  }) 
-if(res.ok){
-    const deleted = await res.json()
-    dispatch(remove(deleted.remove))
-}
-}
+export const removeNote = (note, id) => async (dispatch) => {
+  const res = await fetch(`/api/notes/players/${id}`, {
+    headers: { "Content-type": "application/json" },
+    method: "DELETE",
+    body: JSON.stringify({ note }),
+  });
+  if (res.ok) {
+    const deleted = await res.json();
+    dispatch(remove(deleted.remove));
+  }
+};
 const initialState = [];
 const notesReducer = (state = initialState, action) => {
-    switch (action.type) {
+  switch (action.type) {
     case CREATE: {
       let new_notes = action.note;
-      let title = new_notes.title
-      let text = new_notes.text
-      const oldState = {...state}
-      oldState[title] = text
+      let title = new_notes.title;
+      let text = new_notes.text;
+      const oldState = { ...state };
+      oldState[title] = text;
       return oldState;
     }
     case ALL: {
-      const newNotes = {...state}
-      action.all_note.forEach(note=>{
-        if(note.title ==='Abilities'){
-          newNotes['Abilities'] = note.text
-        }else if(note.title === 'Weakness'){
-          newNotes['Weakness'] = note.text
-        }else if(note.title === 'Physical Description'){
-          newNotes['Physical Description'] = note.text
-        }else{
-          newNotes['Summary'] = note.text
+      const newNotes = { ...state };
+      action.all_note.forEach((note) => {
+        if (note.title === "Abilities") {
+          newNotes["Abilities"] = note.text;
+        } else if (note.title === "Weakness") {
+          newNotes["Weakness"] = note.text;
+        } else if (note.title === "Physical Description") {
+          newNotes["Physical Description"] = note.text;
+        } else {
+          newNotes["Summary"] = note.text;
         }
-      })
+      });
       return newNotes;
     }
-    case REMOVE:{
+    case REMOVE: {
       const removedNote = action.noteToDelete;
-      const newState = state.filter(note => note.text !== removedNote.text && note.title !== removedNote.titled)
-      return newState
+      const newState = state.filter(
+        (note) =>
+          note.text !== removedNote.text && note.title !== removedNote.titled
+      );
+      return newState;
     }
     case CLEARNOTES: {
-      return []
+      return [];
     }
     default:
       return state;

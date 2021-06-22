@@ -18,7 +18,8 @@ import PasswordReset from './components/auth/PasswordReset';
 function App() {
   const { user } = useSelector((state) => state.session); 
   const state = useSelector(state=> state)
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(Restore());
   }, [dispatch]);

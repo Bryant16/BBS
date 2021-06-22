@@ -8,7 +8,8 @@ const collect = nonPitcherForms => ({
 
 export const clearNonPitcher = ()=>({
     type: CLEAR  
-  })
+  });
+
 export const getNonePitcherForm = (playerId) => async dispatch => {
     const res = await fetch(`/api/players/${playerId}/nonpitcher/`)
     if (res.ok) {
