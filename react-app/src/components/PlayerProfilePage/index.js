@@ -13,8 +13,25 @@ import PictureModal from './PictureModal';
 import VideoModal from './VideoModal';
 import {infoPDF} from '../../store/player';
 import helper from './baseballHelper.png';
+// import S3 from 'react-aws-s3';
+// import S3FileUpload  from 'react-s3';
+// import { uploadFile } from 'react-s3';
+import AWS from 'aws-sdk';
 
 const PlayerProfilePage = ()=>{
+    const{REACT_APP_aws_access_key_id,REACT_APP_aws_secret_access_key} = process.env;
+
+const config = {
+    bucketName: 'bbscouting',
+    region: 'us-east-1',
+    mode: 'no-cors',
+    accessKeyId: REACT_APP_aws_access_key_id,
+    secretAccessKey: REACT_APP_aws_secret_access_key
+}
+AWS.config.update({ region: config.region, accessKeyId: config.accessKeyId, secretAccessKey: config.secretAccessKey });
+const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
+
+// const ReactS3Client = new S3(config);
     const nonPitcher = useSelector(state=> state.nonPitcher);
     const pitcher = useSelector((state) => state.pitcher);
     const [notes, setNotes] = useState('');
@@ -93,25 +110,56 @@ const PlayerProfilePage = ()=>{
         
     },[dispatch,playerid]);
 
-    const updateFile = async(e)=>{
-        e.preventDefault();
-        setLoading(true)
-        const file = e.target.files[0];
-        const formData = new FormData();
-        if(file){
-        formData.append("video", file)
-        formData.set("size", file.size)
-        const res = await fetch(`/api/media/videos/${playerid}`,{method:"POST",body:formData})
-        if (res.ok){
-            const video = await res.json();
-            setVideoUrl(video.video_url)
-            setLoading(false)
-        }else{
-            setLoading(false)
-            alert('Upload Failed')
-        }
-    }
-    }
+    // const updateFile = async(e)=>{
+    //     e.preventDefault();
+    //     setLoading(true)
+    //     const file = e.target.files[0];
+    //     const formData = new FormData();
+    //     if(file){
+    //     formData.append("video", file)
+    //     formData.set("size", file.size)
+    //     const res = await fetch(`/api/media/videos/${playerid}`,{method:"POST",body:formData})
+    //     if (res.ok){
+    //         const video = await res.json();
+    //         setVideoUrl(video.video_url)
+    //         setLoading(false)
+    //     }else{
+    //         setLoading(false)
+    //         alert('Upload Failed')
+    //     }
+    // }
+    // }
+    const getUrlUpload = async(data,file)=>{
+        try{
+            const res = await fetch(`/api/media/media_url/${playerid}`,
+            {method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({data,type:file.type})})
+            if (res.ok){
+                const {url} = await res.json();
+                setVideoUrl(url)
+                setLoading(false)
+            }
+        }catch(err){
+                alert('Sorry There was an Error with the Upload')
+                setLoading(false)
+            }
+      }
+  const updateFile = async(e)=>{
+      e.preventDefault();
+      const file = e.target.files[0];
+      var params = {Bucket: config.bucketName, Key: file.name, Body: file,ACL:'public-read'};
+      setLoading(true)  
+      s3
+      .upload(params, async function(err, data) {
+          return new Promise((resolve,reject)=>{
+              getUrlUpload(data,file)
+              resolve()
+          })
+            })
+  }
   
     return (
     players[playerid] ? (<div className='player_profile_page'>

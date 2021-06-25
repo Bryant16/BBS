@@ -21,6 +21,19 @@ multi_config = TransferConfig(
     multipart_chunksize=1024 * 5,
     use_threads=True)
 
+@media_routes.route('/media_url/<int:id>', methods=['POST'])
+def store_url(id):
+    data = request.get_json()
+    try:
+        url = data['data']['Location']
+        content_type=data['type']
+        new_media = Video(content=url, content_type=content_type, player_id=id)
+        db.session.add(new_media)
+        db.session.commit()
+        return jsonify({url : url})
+    except:
+        return jsonify({'imageurl': False})
+
 @media_routes.route('/images/<int:id>')
 def get_player_url(id):
     playerUrl = Image.query.filter(Image.player_id == id).all()
