@@ -254,14 +254,28 @@ input[type='file'] {
     margin-right:.5em ;
     margin-left:.5em ;
 }
-
-.loading_image{
+.loader_container{
+    /* height:50px;
+    width: 50px; */
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+     z-index: 100;
+  transform: translate(-50%, -50%);
+}
+.loader_container h1{
+    color: red;
+}
+/* .loading_image{
   position: fixed;
   top: 50%;
   left: 50%;
   z-index: 100;
   transform: translate(-50%, -50%);
-}
+} */
 
 .player_profile_container_image {
     border-radius: 10px;

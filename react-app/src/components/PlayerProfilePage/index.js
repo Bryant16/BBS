@@ -17,6 +17,7 @@ import helper from './baseballHelper.png';
 // import S3FileUpload  from 'react-s3';
 // import { uploadFile } from 'react-s3';
 import AWS from 'aws-sdk';
+// import httpUploadProgress from 'aws-sdk';
 
 const PlayerProfilePage = ()=>{
     const{REACT_APP_aws_access_key_id,REACT_APP_aws_secret_access_key} = process.env;
@@ -41,6 +42,7 @@ const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
     const [videos, setVideos] = useState(false)
     const players = useSelector(state=> state.players);
     const [playerImageUrl, setPlayerImageUrl] = useState(false);
+    const [loadPercentage, setLoadPercentage] = useState(0);
     const dispatch = useDispatch();
     
     useEffect(()=>{
@@ -158,7 +160,9 @@ const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
               getUrlUpload(data,file)
               resolve()
           })
-            })
+            }).on('httpUploadProgress', function(evt) {
+                setLoadPercentage(parseInt((evt.loaded * 100) / evt.total)+'%');
+                })
   }
   
     return (
@@ -171,7 +175,7 @@ const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
         </div>
         )}
         <div className='player_videos'>
-            {loading && <img src={helper} alt="centered image" className='loading_image' />}
+            {loading && <div className='loader_container'><img src={helper} alt="centered image" className='loading_image' /><h1 >{loadPercentage}</h1></div>}
         <form>
                 <label id='file_upload' for="video" ><Button style={{'min-width':'8em','height':'2.5em', 'background-color':'lightskyblue','border':'1px solid lightskyblue','color':'white'}}class='new_video'>New Media</Button></label>
                 <input type='file'  style={{'marginTop':'.5em', 'opacity':'0'}} name='video' onChange={updateFile} size="50" accept="image/*,video/*"/>
