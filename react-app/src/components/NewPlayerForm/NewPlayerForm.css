@@ -15,6 +15,7 @@
         font-size: 2.5rem ;
     justify-items: center;
     display: grid;
+    padding-bottom: 1em;
 }
 
 .new_player_form_container form div{
