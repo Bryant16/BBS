@@ -189,7 +189,7 @@ const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
         <div className='player_videos'>
             {loading && <div className='loader_container'><img src={helper} alt="centered image" className='loading_image' /><h1 >{loadPercentage}</h1></div>}
         <form>
-                <label id='file_upload' for="video" ><Button style={{'min-width':'8em','height':'2.5em', 'background-color':'lightskyblue','border':'1px solid lightskyblue','color':'white'}}class='new_video'>New Media</Button></label>
+                <label id='file_upload' for="video" ><Button style={{'min-width':'8em','height':'2.5em', 'background-color':'#3f51b5','border':'1px solid lightskyblue','color':'white'}}class='new_video'>New Media</Button></label>
                 <input type='file'  style={{'marginTop':'.5em', 'opacity':'0'}} name='video' onChange={updateFile} size="50" accept="image/*,video/*"/>
         </form>
             <div className='video_container'>
