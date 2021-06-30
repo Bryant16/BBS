@@ -13,8 +13,8 @@ import {infoPDF} from '../../store/player';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: '32em',
-    height: '25em',
+    // minWidth: '32em',
+    minHeight: '25em',
     padding: '0',
   },
   bullet: {

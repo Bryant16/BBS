@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import Grid from '@material-ui/core/Grid';
 
 import './index.css';
 import App from './App';

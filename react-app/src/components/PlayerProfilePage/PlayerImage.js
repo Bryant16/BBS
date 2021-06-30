@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import defaultUser from "./default-user.png";
-import {Image} from "@chakra-ui/react";
+import {Image, AspectRatio } from "@chakra-ui/react"
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import helper from './baseballHelper.png';
 
@@ -43,7 +43,9 @@ const PlayerImage = ({playerid})=>{
         <div className='player_profile_container_image'>
         <div>
         {loading && <img src={helper} alt="centered image" className='loading_image' />}
+        {/* <AspectRatio maxW="560px" ratio={1}> */}
         {playerImageUrl ? <Image boxSize="25em"  objectFit="scale-down" src={playerImageUrl}/>: <Image  boxSize="25em"  objectFit="scale-down" src={defaultUser}/>}
+        {/* </AspectRatio> */}
         </div>
         <div className='file_upload_container'>
         <form >

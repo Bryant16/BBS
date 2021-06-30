@@ -6,6 +6,10 @@
     
 }
 
+.header_brand {
+    max-height: 6vh;
+}
+
 .my_page_links p{
     padding-left: .2em;
     padding-right: .2em;
@@ -44,12 +48,17 @@ a:hover{
     min-width: 6em;
     min-height: 3em;
     /* height:3.7vh; */
-    font-size: 1em;
+    /* font-size: 1em; */
 }
 
 @media only screen and (max-width: 600px) {
     nav {
-      font-size: 1.5em;
+        font-size: 1.5em;
+    }
+}
+    @media only screen and (max-width: 760px) {
+    .header_brand {
+        display: none;
     }
   }
 
@@ -60,5 +69,6 @@ a:hover{
 }
 .navbar_container img {
     height: 4em;
+    max-height: 8vh;
     padding: 5px;
 }

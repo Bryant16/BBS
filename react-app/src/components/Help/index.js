@@ -6,35 +6,35 @@ const Help = ()=>{
     return (
         <div className='help_page_container'>
             <div>
-            <h1>Player Search</h1>
+            <h1 class="primary_color">Player Search</h1>
             <ReactPlayer width='24em' height='24em'  controls url="https://bbscouting.s3.amazonaws.com/searchFeature.mp4" />
             </div>
             <div>
-                <h1>Create a Profile</h1>
+                <h1 class="primary_color">Create a Profile</h1>
             <ReactPlayer width='24em' height='24em'   controls url="https://bbscouting.s3.amazonaws.com/createPlayer.mp4" />
             </div>
             <div>
-                <h1>Edit Information</h1>
+                <h1 class="primary_color">Edit Information</h1>
             <ReactPlayer width='24em' height='24em'  controls url="https://bbscouting.s3.amazonaws.com/editplayer.mp4" />
             </div>
             <div>
-                <h1>File Uploading</h1>
+                <h1 class="primary_color">File Uploading</h1>
             <ReactPlayer width='24em' height='24em'  controls url="https://bbscouting.s3.amazonaws.com/media.mp4" />
             </div>
             <div>
-                <h1>Tracking Players</h1>
+                <h1 class="primary_color">Tracking Players</h1>
             <ReactPlayer width='24em' height='24em'  controls url="https://bbscouting.s3.amazonaws.com/track.mp4" />
             </div>
             <div>
-                <h1>Evaluation Forms</h1>
+                <h1 class="primary_color">Evaluation Forms</h1>
             <ReactPlayer  width='24em' height='24em'  controls url="https://bbscouting.s3.amazonaws.com/evaluation.mp4" />
             </div>
             <div>
-                <h1>Player PDF Sharing</h1>
+                <h1 class="primary_color">Player PDF Sharing</h1>
             <ReactPlayer  width='24em' height='24em'  controls url="https://bbscouting.s3.amazonaws.com/pdf.mp4" />
             </div>
             <div>
-                <h1>Creating Notes</h1>
+                <h1 class="primary_color">Creating Notes</h1>
             <ReactPlayer  width='24em' height='24em'  controls url="https://bbscouting.s3.amazonaws.com/notes.mp4" />
             </div>
         </div>

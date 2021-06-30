@@ -96,11 +96,11 @@ input[type='file'] {
 .video_container {
     display: flex;
     justify-content: center;
-    position: relative;
+    /* position: relative; */
     flex-wrap: wrap;
-    width: 65em;
+    /* width: 65em;
     border-radius: .5em;
-    height: 10em;
+    height: 10em; */
     /* border-top: 1px solid lightgray; */
     /* box-shadow:5px 5px 15px 5px #B5B5B5; */
     /* overflow-y: scroll; */
@@ -242,7 +242,7 @@ input[type='file'] {
 }
 
 .pdf_notes_container{
-    display: flex;
+    /* display: flex; */
     align-self: center;
     /* justify-content: center; */
     /* width: 50%; */

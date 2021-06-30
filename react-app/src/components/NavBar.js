@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import LogoutButton from "./auth/LogoutButton";
 import "./NavBar.css";
 import logo from "./auth/new_logo_bbs.png";
+import letters from "./auth/BBScouting writing.png";
+
 import Button from '@material-ui/core/Button';
 const NavBar = () => {
   const user = useSelector((state) => state.session.user);
@@ -13,7 +15,7 @@ const NavBar = () => {
         <div></div>
       ) : (
         <div className='navbar_container'>
-            <NavLink to="/"><img src={logo} /></NavLink>
+            <NavLink to="/"><img src={logo} /><img id="bb_letters"alt='' src={letters} class="header_brand"/></NavLink>
           <div className='navbar_button_container'>
             <div>
               <NavLink to="/">
