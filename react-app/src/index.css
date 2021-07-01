@@ -26,6 +26,7 @@ html::-webkit-scrollbar-thumb:hover {
   border-radius: 10px;
 }
 
+
 /* .MuiDataGrid-window::-webkit-scrollbar-thumb:active, */
 html::-webkit-scrollbar-thumb:active {
   background: rgb(0, 41, 132);
