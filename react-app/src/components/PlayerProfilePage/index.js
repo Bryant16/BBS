@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Redirect } from 'react-router-dom';
+import { useParams, Redirect,Link } from 'react-router-dom';
 import {getNonePitcherForm} from '../../store/nonPitcher';
 import {getPitcherForm} from "../../store/Pitcher";
 import './PlayerProfilePage.css';
@@ -12,8 +12,10 @@ import {getAllNotes} from '../../store/note';
 import Button from '@material-ui/core/Button';
 import PictureModal from './PictureModal';
 import VideoModal from './VideoModal';
+import {Image} from "@chakra-ui/react";
 import {infoPDF} from '../../store/player';
 import helper from './baseballHelper.png';
+import ReactPlayer from 'react-player';
 // import S3 from 'react-aws-s3';
 // import S3FileUpload  from 'react-s3';
 // import { uploadFile } from 'react-s3';
@@ -44,16 +46,18 @@ const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
     const players = useSelector(state=> state.players);
     const [playerImageUrl, setPlayerImageUrl] = useState(false);
     const [loadPercentage, setLoadPercentage] = useState(0);
+    const [controls, setControls] = useState(false);
     const dispatch = useDispatch();
     
-    useEffect(()=>{
     const getVideos=async()=>{
         let res = await fetch(`/api/media/videos/${playerid}`)
+        if(controls) setControls(false);
         if(res.ok){
             let videos = await res.json();
             setVideos(videos.videos)
         }
     }
+    useEffect(()=>{
     
     const getTheNotes = async()=>{
         const res = await fetch(`/api/notes/${playerid}/`);
@@ -165,7 +169,45 @@ const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
                 setLoadPercentage(parseInt((evt.loaded * 100) / evt.total)+'%');
                 })
   }
-  
+  const handleOpenButton =(e)=>{
+      e.preventDefault()
+    document.getElementById("new_media_upload").click()
+  }
+  const handleVideoOpen =(e,vid)=>{
+      e.preventDefault()
+      setVideos([vid])
+      setControls(true)
+      console.log()
+  }
+  const backToPlayerHome = (e)=>{
+    e.preventDefault();
+    getVideos()
+  }
+  const deleteContent = async(e)=>{
+    e.preventDefault();
+    let id = videos[0].id
+       if(window.confirm('Delete this item?')){
+        const res = await fetch('/api/media/videos', {
+            headers: {'Content-type': 'application/json'},
+            method: 'DELETE',
+            body: JSON.stringify({id})
+        })
+        if(res.ok){
+            const {removed} = await res.json();
+            if(removed){
+                const getVideos=async()=>{
+                    let res = await fetch(`/api/media/videos/${playerid}`)
+                    if(res.ok){
+                        let videos = await res.json();
+                        setVideos(videos.videos)
+                    }
+                }
+                getVideos()
+                setControls(false)
+            }
+        }
+    }
+  };
     return (
     players[playerid] ? (<div className='player_profile_page'>
         {players && (
@@ -189,15 +231,19 @@ const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
         <div className='player_videos'>
             {loading && <div className='loader_container'><img src={helper} alt="centered image" className='loading_image' /><h1 >{loadPercentage}</h1></div>}
         <form>
-                <label id='file_upload' for="video" ><Button style={{'min-width':'8em','height':'2.5em', 'background-color':'#3f51b5','border':'1px solid lightskyblue','color':'white'}}class='new_video'>New Media</Button></label>
-                <input type='file'  style={{'marginTop':'.5em', 'opacity':'0'}} name='video' onChange={updateFile} size="50" accept="image/*,video/*"/>
+                {!controls&&<Button onClick={handleOpenButton}  variant="contained" color="primary" >New Media</Button>}
+                {controls&&<Button id='profile_back_button' onClick={backToPlayerHome}  variant="contained" color="primary">Back</Button>}
+                {controls&&<Button id='profile_delete_button' onClick={deleteContent}  variant="contained" color="secondary">Delete</Button>}
+                <input type='file'  id='new_media_upload'style={{'marginTop':'.5em', 'opacity':'0'}} name='video' onChange={updateFile} size="50" accept="image/*,video/*"/>
         </form>
             <div className='video_container'>
             {videos && videos.map(vid=>
             {if(vid.type.includes('video')){
-                return <VideoModal setVideos={setVideos} url={vid.content} vid={vid} playerid={playerid}/>
+                return <Link onClick={(e)=>handleVideoOpen(e,vid)}><ReactPlayer className='react-player' width='22em' height='22em' style={{'margin':'',"box-shadow":'5px 5px 15px 5px #B5B5B5', 'border-bottom':'1px solid black'}} controls={controls} playing={false} url={vid.content} /></Link>
+                // return <VideoModal setVideos={setVideos} url={vid.content} vid={vid} playerid={playerid}/>
             }else{
-                return <PictureModal setVideos={setVideos} playerid={playerid} image={vid} content={vid.content} content_type={vid.content_type}/>
+                return <Link onClick={(e)=>handleVideoOpen(e,vid)}><Image width={!controls?'20em':'40em'} height={!controls ? '22em':'40em'}  objectFit={!controls?"fill":'scale-down'} src={vid.content} className='react-player'></Image> </Link>
+                // return <PictureModal setVideos={setVideos} playerid={playerid} image={vid} content={vid.content} content_type={vid.content_type}/>
             }}
             ) }
             </div>

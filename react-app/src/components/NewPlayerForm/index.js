@@ -8,7 +8,7 @@ import {editPlayerProfile} from '../../store/player';
 import {getPlayers, addPlayerProfile} from '../../store/player';
 import Positions from './Positions';
 
-const NewPlayerForm = ({playerid, handleClose})=>{
+const NewPlayerForm = ({playerid, handleClose,edit})=>{
     const history = useHistory();
     const dispatch = useDispatch();
     const [first_name, setFirstName] = useState("" );
@@ -97,7 +97,7 @@ const NewPlayerForm = ({playerid, handleClose})=>{
     return (
          <div className='new_player_form_container'>
             {players && (<form>
-                <h1 style={{textAlign:'center'}}>New Player</h1>
+                {!edit&&<h1 style={{textAlign:'center'}}>New Player</h1>}
                 <div>
                 <Input 
                 type='text'

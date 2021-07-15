@@ -38,7 +38,10 @@ const PlayerImage = ({playerid})=>{
         }
     }
     }
-    
+    const handleOpenFile =(e)=>{
+        e.preventDefault();
+        document.getElementById('cloud_profile_pic_upload').click()
+    }
     return (
         <div className='player_profile_container_image'>
         <div>
@@ -49,8 +52,8 @@ const PlayerImage = ({playerid})=>{
         </div>
         <div className='file_upload_container'>
         <form >
-                <input type='file' name='file' onChange={updateFile} size="60" accept="image/*"/>
-                <label id='file_upload' for="file"><CloudUploadIcon/></label>
+            <button id='cloud_button' onClick={handleOpenFile}><CloudUploadIcon/></button>
+                <input id='cloud_profile_pic_upload' type='file' name='file' onChange={updateFile} size="60" accept="image/*"/>
         </form>
         </div>
         </div>

@@ -76,10 +76,50 @@ export default function DataGridDemo() {
   };
   
   return (
-    <div style={{ minHeight: '50em', width: '60em'}}>
+    <div style={{ minHeight: '80vh', width: '98vw'}}>
+      {/* , fontSize: '1.8rem' */}
       <button id='tracker_button' onClick={handleTrack}>{tracked}</button>
       <input id='search_bar' type='text' placeholder='search...'onChange={filterResults}></input>
-      <DataGrid autoPageSize rows={arr || newArrOfPlayers.filter(play=>play.hot_list===true)} columns={columns} pageSize={10} checkboxSelection  onSelectionChange={click} />
+      <DataGrid autoPageSize rows={arr || newArrOfPlayers.filter(play=>play.hot_list===true)} rowHeight={80} columns={
+        [{ field: '__check__', hide: true },{
+          field: "first_name",  headerName: "First name",  width: 130,
+          renderCell: (cellValues) => { return (<div style={{ color: "black", fontSize: '1.6rem', width: "100%", textAlign: "right" }}>{cellValues.value}</div>); }
+        },
+        {
+          field: "last_name",  headerName: "Last name",  width: 130,
+          renderCell: (cellValues) => { return (<div style={{ color: "black", fontSize: '1.6rem', width: "100%", textAlign: "right" }}>{cellValues.value}</div>);
+         }
+        },
+        {
+          field: "position",  headerName: "Position",  width: 130,
+          renderCell: (cellValues) => { return (<div style={{ color: "black", fontSize: '1.6rem', width: "100%", textAlign: "right" }}>{cellValues.value}</div>);
+         }
+        },
+        {
+          field: "bats",  headerName: "Bats",  width: 130,
+          renderCell: (cellValues) => { return (<div style={{ color: "black", fontSize: '1.6rem', width: "100%", textAlign: "right" }}>{cellValues.value}</div>);
+         }
+        },
+        {
+          field: "throws",  headerName: "Throws",  width: 130,
+          renderCell: (cellValues) => { return (<div style={{ color: "black", fontSize: '1.6rem', width: "100%", textAlign: "right" }}>{cellValues.value}</div>);
+         }
+        },
+        {
+          field: "team_name",  headerName: "Team",  width: 130,
+          renderCell: (cellValues) => { return (<div style={{ color: "black", fontSize: '1.6rem', width: "100%", textAlign: "right" }}>{cellValues.value}</div>);
+         }
+        },
+        {
+          field: "team_city",  headerName: "City",  width: 130,
+          renderCell: (cellValues) => { return (<div style={{ color: "black", fontSize: '1.6rem', width: "100%", textAlign: "right" }}>{cellValues.value}</div>);
+         }
+        },
+        {
+          field: "team_state",  headerName: "State",  width: 130,
+          renderCell: (cellValues) => { return (<div style={{ color: "black", fontSize: '1.6rem', width: "100%", textAlign: "right" }}>{cellValues.value}</div>);
+         }
+        }]} pageSize={10} checkboxSelection  onSelectionChange={click} />
     </div>
   );
 }
