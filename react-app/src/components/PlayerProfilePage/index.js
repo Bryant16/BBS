@@ -16,26 +16,22 @@ import {Image} from "@chakra-ui/react";
 import {infoPDF} from '../../store/player';
 import helper from './baseballHelper.png';
 import ReactPlayer from 'react-player';
-// import S3 from 'react-aws-s3';
-// import S3FileUpload  from 'react-s3';
-// import { uploadFile } from 'react-s3';
 import AWS from 'aws-sdk';
-// import httpUploadProgress from 'aws-sdk';
 
 const PlayerProfilePage = ()=>{
     const{REACT_APP_aws_access_key_id,REACT_APP_aws_secret_access_key} = process.env;
 
-const config = {
+    const config = {
     bucketName: 'bbscouting',
     region: 'us-east-1',
     mode: 'no-cors',
     accessKeyId: REACT_APP_aws_access_key_id,
     secretAccessKey: REACT_APP_aws_secret_access_key
-}
-AWS.config.update({ region: config.region, accessKeyId: config.accessKeyId, secretAccessKey: config.secretAccessKey });
-const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
-
-// const ReactS3Client = new S3(config);
+    }
+    
+    AWS.config.update({ region: config.region, accessKeyId: config.accessKeyId, secretAccessKey: config.secretAccessKey });
+    
+    const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
     const nonPitcher = useSelector(state=> state.nonPitcher);
     const pitcher = useSelector((state) => state.pitcher);
     const [notes, setNotes] = useState('');
@@ -57,8 +53,8 @@ const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
             setVideos(videos.videos)
         }
     }
+
     useEffect(()=>{
-    
     const getTheNotes = async()=>{
         const res = await fetch(`/api/notes/${playerid}/`);
         if(res.ok){
@@ -117,25 +113,6 @@ const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
         
     },[dispatch,playerid]);
 
-    // const updateFile = async(e)=>{
-    //     e.preventDefault();
-    //     setLoading(true)
-    //     const file = e.target.files[0];
-    //     const formData = new FormData();
-    //     if(file){
-    //     formData.append("video", file)
-    //     formData.set("size", file.size)
-    //     const res = await fetch(`/api/media/videos/${playerid}`,{method:"POST",body:formData})
-    //     if (res.ok){
-    //         const video = await res.json();
-    //         setVideoUrl(video.video_url)
-    //         setLoading(false)
-    //     }else{
-    //         setLoading(false)
-    //         alert('Upload Failed')
-    //     }
-    // }
-    // }
     const getUrlUpload = async(data,file)=>{
         try{
             const res = await fetch(`/api/media/media_url/${playerid}`,
@@ -221,12 +198,6 @@ const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
                     {players[playerid] ? <PlayerCard playerid={playerid} players={players}  pitcherEvals={pitcher[0]}nonPitcherEvals={nonPitcher[0]} notes={notes} media={videos} url={playerImageUrl}/>:<h1>loading</h1>}
                 </Grid>
             </Grid>
-      
-        //     <div className='player_profile_container'>
-        //      <PlayerImage playerid={playerid}/>
-        //      {players[playerid] ? <PlayerCard playerid={playerid} players={players}  pitcherEvals={pitcher[0]}nonPitcherEvals={nonPitcher[0]} notes={notes} media={videos} url={playerImageUrl}/>:<h1>loading</h1>}
-             
-        // </div>
         )}
         <div className='player_videos'>
             {loading && <div className='loader_container'><img src={helper} alt="centered image" className='loading_image' /><h1 >{loadPercentage}</h1></div>}
