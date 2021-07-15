@@ -277,13 +277,6 @@ input[type='file'] {
 .loader_container h1{
     color: red;
 }
-/* .loading_image{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 100;
-  transform: translate(-50%, -50%);
-} */
 #profile_back_button{
     padding-right:1em;
     padding-left:1em;

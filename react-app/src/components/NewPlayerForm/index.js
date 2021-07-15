@@ -100,7 +100,8 @@ const NewPlayerForm = ({playerid, handleClose,edit})=>{
                 {!edit&&<h1 style={{textAlign:'center'}}>New Player</h1>}
                 <div>
                 <Input 
-                type='text'
+                type='search'
+                autocomplete='off'
                 required
                 placeholder='First Name'
                 value={first_name}
@@ -108,28 +109,32 @@ const NewPlayerForm = ({playerid, handleClose,edit})=>{
                 </div>   
                 <div>
                 <Input
-                 type='text'
+                 type='search'
+                 autocomplete='off'
                  value={last_name}
                  placeholder='Last Name'
                  onChange={(e)=>setLastName(e.target.value)} />
                 </div>
                 <div>
                 <Input
-                 type='text'
+                 type='search'
+                 autocomplete='off'
                  value={height}
                  placeholder="Height ex.(5'11)"
                  onChange={(e)=>setHeight(e.target.value)} />
                 </div>
                 <div>
                 <Input 
-                 type='text'
+                type='search'
+                autocomplete='off'
                  value={weight}
                  placeholder='Weight ex.(185)'
                  onChange={(e)=>setWeight(e.target.value)}/>
                 </div>
                 <div>
                 <Input 
-                 type='text'
+                 type='search'
+                 autocomplete='off'
                  value={dob}
                  placeholder='D.O.B. (01/01/2000)'
                  onChange={(e)=>setDob(e.target.value)}/>
@@ -137,42 +142,48 @@ const NewPlayerForm = ({playerid, handleClose,edit})=>{
                
                 <div>
                 <Input 
-                 type='text'
+                 type='search'
+                 autocomplete='off'
                  value={address}
                  placeholder='Full Address'
                  onChange={(e)=>setAddress(e.target.value)}/>
                 </div>
                 <div>
                 <Input 
-                 type='text'
+                 type='search'
+                 autocomplete='off'
                  value={phone_number}
                  placeholder='Phone 555-555-5555'
                  onChange={(e)=>setPhone(e.target.value)}/>
                 </div>
                 <div>
                 <Input 
-                 type='text'
+                 type='search'
+                 autocomplete='off'
                  value={email}
                  placeholder='Email'
                  onChange={(e)=>setEmail(e.target.value)}/>
                 </div>
                 <div>
                 <Input 
-                 type='text'
+                type='search'
+                autocomplete='off'
                  value={team_name}
                  placeholder='Team Name'
                  onChange={(e)=>setTeam(e.target.value)}/>
                 </div>
                 <div>
                 <Input 
-                 type='text'
+                 type='search'
+                 autocomplete='off'
                  placeholder='Team City'
                  value={team_city}
                  onChange={(e)=>setCity(e.target.value)}/>
                 </div>
                 <div>
                 <Input 
-                 type='text'
+                 type='search'
+                 autocomplete='off'
                  placeholder='Team State'
                  value={team_state}
                  onChange={(e)=>setState(e.target.value)}/>
