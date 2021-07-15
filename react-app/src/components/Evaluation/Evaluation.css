@@ -4,6 +4,9 @@
     align-items: center;
     
 }
+.player_evaluation_and_player_notes_container input{
+    outline:none;
+}
 
 .abilities_notes {
     display: flex;

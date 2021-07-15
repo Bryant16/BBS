@@ -232,17 +232,17 @@ const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
             {loading && <div className='loader_container'><img src={helper} alt="centered image" className='loading_image' /><h1 >{loadPercentage}</h1></div>}
         <form>
                 {!controls&&<Button onClick={handleOpenButton}  variant="contained" color="primary" >New Media</Button>}
-                {controls&&<Button onClick={backToPlayerHome}  variant="contained" color="primary">Back</Button>}
-                {controls&&<Button onClick={deleteContent}  variant="contained" color="secondary">Delete</Button>}
+                {controls&&<Button id='profile_back_button' onClick={backToPlayerHome}  variant="contained" color="primary">Back</Button>}
+                {controls&&<Button id='profile_delete_button' onClick={deleteContent}  variant="contained" color="secondary">Delete</Button>}
                 <input type='file'  id='new_media_upload'style={{'marginTop':'.5em', 'opacity':'0'}} name='video' onChange={updateFile} size="50" accept="image/*,video/*"/>
         </form>
             <div className='video_container'>
             {videos && videos.map(vid=>
             {if(vid.type.includes('video')){
-                return <Link onClick={(e)=>handleVideoOpen(e,vid)}><ReactPlayer className='react-player' width='20em' height='22em' style={{'margin':'',"box-shadow":'5px 5px 15px 5px #B5B5B5', 'border-bottom':'1px solid black'}} controls={controls} playing={false} url={vid.content} /></Link>
+                return <Link onClick={(e)=>handleVideoOpen(e,vid)}><ReactPlayer className='react-player' width='22em' height='22em' style={{'margin':'',"box-shadow":'5px 5px 15px 5px #B5B5B5', 'border-bottom':'1px solid black'}} controls={controls} playing={false} url={vid.content} /></Link>
                 // return <VideoModal setVideos={setVideos} url={vid.content} vid={vid} playerid={playerid}/>
             }else{
-                return <Link onClick={(e)=>handleVideoOpen(e,vid)}><Image width='20em' height='22em'  objectFit="fill" src={vid.content} className='react-player'></Image> </Link>
+                return <Link onClick={(e)=>handleVideoOpen(e,vid)}><Image width={!controls?'20em':'40em'} height={!controls ? '22em':'40em'}  objectFit={!controls?"fill":'scale-down'} src={vid.content} className='react-player'></Image> </Link>
                 // return <PictureModal setVideos={setVideos} playerid={playerid} image={vid} content={vid.content} content_type={vid.content_type}/>
             }}
             ) }

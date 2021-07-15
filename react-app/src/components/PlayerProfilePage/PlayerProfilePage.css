@@ -284,7 +284,11 @@ input[type='file'] {
   z-index: 100;
   transform: translate(-50%, -50%);
 } */
-
+#profile_back_button{
+    padding-right:1em;
+    padding-left:1em;
+    margin-right:1em;
+}
 .player_profile_container_image {
     border-radius: 10px;
 }
