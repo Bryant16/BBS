@@ -68,7 +68,6 @@ export default function VideoModal({vid, url, setVideos, playerid}) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      {/* <h2 id="simple-modal-title">Edit Player</h2> */}
       <div className='picture_modal_container'>
       <ReactPlayer className='react-player' width='25em' height='40em' style={{"box-shadow":'5px 5px 15px 5px #B5B5B5', 'border-bottom':'1px solid black'}} controls url={url} />
             <button className='delete_button_pic_video' onClick={e=>deleteContent(e, vid.id)}>Delete</button>

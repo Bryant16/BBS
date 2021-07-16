@@ -46,9 +46,7 @@ const PlayerImage = ({playerid})=>{
         <div className='player_profile_container_image'>
         <div>
         {loading && <img src={helper} alt="centered image" className='loading_image' />}
-        {/* <AspectRatio maxW="560px" ratio={1}> */}
         {playerImageUrl ? <Image boxSize="25em"  objectFit="scale-down" src={playerImageUrl}/>: <Image  boxSize="25em"  objectFit="scale-down" src={defaultUser}/>}
-        {/* </AspectRatio> */}
         </div>
         <div className='file_upload_container'>
         <form >
