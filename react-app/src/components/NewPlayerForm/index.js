@@ -215,7 +215,6 @@ const NewPlayerForm = ({playerid, handleClose,edit})=>{
                     checked={hotList}
                     style={{width:'2.4em'}}
                     onChange={(e)=> setHotList(e.target.checked)}
-                    // onChange={(e)=>setHotList(e.target)}
                     ></Input>
                 </div>
                 <Button id="register_button" size='large' variant="contained" color='primary' onClick={registerClick}>Register</Button>

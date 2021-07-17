@@ -87,9 +87,7 @@ const PitcherForm = ({ playerId }) => {
   };
 
   useEffect(()=>{
-    
         submitEval()
-  
 },[fastball,
   curve,
   control,
