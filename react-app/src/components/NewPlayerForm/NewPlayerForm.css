@@ -5,7 +5,9 @@
     
 }
 
-
+.new_player_form_container form input{
+    outline:none;
+}
 
 .new_player_form_container form{
     display: inline-flex;
