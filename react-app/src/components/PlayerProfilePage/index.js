@@ -213,7 +213,7 @@ const PlayerProfilePage = ()=>{
                 return <Link onClick={(e)=>handleVideoOpen(e,vid)}><ReactPlayer className='react-player' width='22em' height='22em' style={{'margin':'',"box-shadow":'5px 5px 15px 5px #B5B5B5', 'border-bottom':'1px solid black'}} controls={controls} playing={false} url={vid.content} /></Link>
                 // return <VideoModal setVideos={setVideos} url={vid.content} vid={vid} playerid={playerid}/>
             }else{
-                return <Link onClick={(e)=>handleVideoOpen(e,vid)}><Image width={!controls?'20em':'40em'} height={!controls ? '22em':'40em'}  objectFit={!controls?"fill":'scale-down'} src={vid.content} className='react-player'></Image> </Link>
+                return <Link onClick={(e)=>handleVideoOpen(e,vid)}><Image width={!controls?'22em':'40em'} height={!controls ? '22em':'40em'}  objectFit={!controls?"fill":'scale-down'} src={vid.content} className='react-player'></Image> </Link>
                 // return <PictureModal setVideos={setVideos} playerid={playerid} image={vid} content={vid.content} content_type={vid.content_type}/>
             }}
             ) }
