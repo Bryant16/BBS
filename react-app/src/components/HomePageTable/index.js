@@ -3,6 +3,7 @@ import { DataGrid } from '@material-ui/data-grid';
 import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import './HomePage.css';
+import Button from '@material-ui/core/Button';
 
 const columns = [
   { field: '__check__', hide: true },
@@ -89,8 +90,8 @@ export default function DataGridDemo() {
   return (
     <div style={{ minHeight: '75vh', width: '75vw'}}>
       {/* , fontSize: '1.8rem' */}
-      <button id='tracker_button' onClick={handleTrack}>{tracked}</button>
-      <input id='search_bar' type='text' placeholder='search...'onChange={filterResults}></input>
+      <Button id='tracker_button' size='large' variant="contained" color='' onClick={handleTrack}>{tracked}</Button>
+      <input id='search_bar' type='search' autocomplete='off' placeholder='search...'onChange={filterResults}></input>
       <DataGrid autoPageSize rows={arr || newArrOfPlayers.filter(play=>play.hot_list===true)} rowHeight={80} columns={columns}
         // [{ field: '__check__', hide: true },{
         //   field: "first_name",  headerName: "First name",  width: 150,
