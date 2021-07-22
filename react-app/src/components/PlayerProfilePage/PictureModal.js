@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import './Modal.css';
 
-
 function getModalStyle() {
   const top = 50 ;
   const left = 50 ;
