@@ -5,4 +5,21 @@
 
 .react-player{
     margin:.6em;
+  
+}
+.react-player-solo{
+    margin-top: .5em;
+    margin-bottom: 1em;
+    max-height: 40em !important;
+    max-width: 40em !important;
+}
+.react-player:hover{
+    width:21.8em !important;
+    height:21.8em !important;
+    box-shadow: 5px 5px 15px 5px rgba(63,81,181,0.59) !important
+    ;
+}
+#profile_back_button,#profile_delete_button,#new_media_button{
+    padding: .5em;
+    min-width: 15em;
 }
