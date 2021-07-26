@@ -16,7 +16,6 @@ const Home = () => {
     dispatch(getPlayers())
   }, [dispatch]);
 
-
   return user ? (
     <div className='players_library_container'>
       {(players && FIRST>0) ? (
