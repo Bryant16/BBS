@@ -55,12 +55,13 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         <div>
           <img id="bb_letters" alt="" src={letters} />
         </div>
+        {errors.length>0&&(
+              <div id='invalid_login'>{'Email Password Combination Not Valid'}</div>
+            )}
         <form className="form_for_login" onSubmit={onLogin}>
-          <div>
-            {errors.map((error) => (
-              <div>{error}</div>
-            ))}
-          </div>
+          
+           
+          
           <div>
             <input
               name="email"

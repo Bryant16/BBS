@@ -93,3 +93,9 @@ background-color: white;
     font-size: .6em;
     cursor: pointer;
 }
+
+#invalid_login{
+    color: red;
+    font-weight: bold;
+    text-decoration: underline;
+}
